@@ -687,6 +687,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.debug-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
 .debug-clear {
@@ -697,10 +705,32 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
+    transition: background 0.2s ease;
 }
 
 .debug-clear:hover {
     background: #45a049;
+}
+
+.debug-download {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.debug-download:hover {
+    background: #1976D2;
+}
+
+.debug-stats {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
 }
 
 .debug-log {

@@ -2138,8 +2138,18 @@ function toggleDebugPanel() {
 }
 
 function clearDebugLog() {
-    if (window.debugLogger) {
+    if (window.enhancedLogger) {
+        enhancedLogger.clearLogs();
+    } else if (window.debugLogger) {
         debugLogger.clear();
+    }
+}
+
+function downloadDebugLog() {
+    if (window.enhancedLogger) {
+        enhancedLogger.downloadLogs();
+    } else {
+        console.warn('Enhanced logger not available for download');
     }
 }
 
@@ -2232,31 +2242,61 @@ let serverStatusManager = null;
 let debugLogger = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize debug logger first
-    debugLogger = new DebugLogger();
-    window.debugLogger = debugLogger;
+    // Initialize enhanced logger first if available
+    if (window.EnhancedLogger) {
+        window.enhancedLogger = new EnhancedLogger();
+        console.log('Enhanced Logger initialized');
+        
+        // Initialize existing debug logger as fallback
+        debugLogger = new DebugLogger();
+        window.debugLogger = debugLogger;
+    } else {
+        // Initialize debug logger only
+        debugLogger = new DebugLogger();
+        window.debugLogger = debugLogger;
+        console.warn('Enhanced Logger not available, using basic debug logger');
+    }
     
     // Initialize server status manager
     serverStatusManager = new ServerStatusManager();
     window.serverStatusManager = serverStatusManager;
     
-    debugLogger.log('UI enhancement systémy inicializovány', 'system');
-    debugLogger.log('Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test', 'info');
+    // Log initialization
+    const logger = window.enhancedLogger || window.debugLogger;
+    if (logger) {
+        logger.log('UI enhancement systémy inicializovány', 'system');
+        logger.log('Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test', 'info');
+    }
     
     // Override original server communication methods to add logging
     if (window.enhancedIntegration) {
         const originalNotifyServer = enhancedIntegration.notifyServerEvent;
         enhancedIntegration.notifyServerEvent = function(eventType, data) {
-            debugLogger.log(`Odesílání události: ${eventType}`, 'info');
+            if (window.enhancedLogger) {
+                enhancedLogger.logAction('api_call', { 
+                    event: eventType, 
+                    data: data,
+                    url: 'server_event'
+                });
+            } else if (window.debugLogger) {
+                debugLogger.log(`Odesílání události: ${eventType}`, 'info');
+            }
+            
             serverStatusManager.setConnecting();
             
             const result = originalNotifyServer.call(this, eventType, data);
             
             if (result && typeof result.then === 'function') {
                 result.then(() => {
-                    debugLogger.log(`Událost ${eventType} úspěšně odeslána`, 'success');
+                    const logger = window.enhancedLogger || window.debugLogger;
+                    if (logger) {
+                        logger.log(`Událost ${eventType} úspěšně odeslána`, 'success');
+                    }
                 }).catch((error) => {
-                    debugLogger.log(`Chyba při odesílání události ${eventType}: ${error.message}`, 'error');
+                    const logger = window.enhancedLogger || window.debugLogger;
+                    if (logger) {
+                        logger.log(`Chyba při odesílání události ${eventType}: ${error.message}`, 'error');
+                    }
                 });
             }
             
