@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení - Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>🎯 Quiz App</h1>
+            <p>Modulární verze s vylepšenou architekturou</p>
+            <a href="../../index.html" class="back-link">← Zpět na hlavní stránku</a>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Přihlášení</button>
+            <button class="auth-tab" data-tab="register">Registrace</button>
+            <button class="auth-tab" data-tab="reset">Reset hesla</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="login-form" class="auth-form active">
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔐 Přihlášení</h2>
+                    <p class="card-subtitle">Přihlaste se ke svému účtu</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername" class="form-label">Uživatelské jméno</label>
+                        <input 
+                            type="text" 
+                            id="loginUsername" 
+                            class="form-input" 
+                            required 
+                            minlength="3"
+                            maxlength="20"
+                            placeholder="Zadejte své uživatelské jméno"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword" class="form-label">Heslo</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            class="form-input" 
+                            required 
+                            minlength="6"
+                            placeholder="Zadejte své heslo"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe"> 
+                            Zapamatovat si přihlášení
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-large" style="width: 100%">
+                        Přihlásit se
+                    </button>
+                </form>
+
+                <div class="auth-demo">
+                    <h4>Demo účty pro testování:</h4>
+                    <div class="demo-accounts">
+                        <button class="btn btn-small btn-outline demo-btn" data-username="admin" data-password="admin123">
+                            👨‍💼 Admin
+                        </button>
+                        <button class="btn btn-small btn-outline demo-btn" data-username="test" data-password="test">
+                            👤 Test User
+                        </button>
+                        <button class="btn btn-small btn-outline demo-btn" data-username="demo" data-password="demo">
+                            🎯 Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="register-form" class="auth-form">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📝 Registrace</h2>
+                    <p class="card-subtitle">Vytvořte si nový účet</p>
+                </div>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername" class="form-label">Uživatelské jméno</label>
+                        <input 
+                            type="text" 
+                            id="registerUsername" 
+                            class="form-input" 
+                            required 
+                            minlength="3"
+                            maxlength="20"
+                            pattern="[a-zA-Z0-9_]+"
+                            placeholder="3-20 znaků, pouze písmena, číslice a podtržítka"
+                        >
+                        <small class="form-help">Pouze písmena, číslice a podtržítka</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail" class="form-label">Email (volitelný)</label>
+                        <input 
+                            type="email" 
+                            id="registerEmail" 
+                            class="form-input" 
+                            placeholder="vas@email.com"
+                        >
+                        <small class="form-help">Pro obnovení hesla a notifikace</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword" class="form-label">Heslo</label>
+                        <input 
+                            type="password" 
+                            id="registerPassword" 
+                            class="form-input" 
+                            required 
+                            minlength="6"
+                            placeholder="Alespoň 6 znaků"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm" class="form-label">Potvrzení hesla</label>
+                        <input 
+                            type="password" 
+                            id="registerPasswordConfirm" 
+                            class="form-input" 
+                            required 
+                            placeholder="Zadejte heslo znovu"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required> 
+                            Souhlasím s <a href="#" data-navigate="terms">podmínkami použití</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-large btn-secondary" style="width: 100%">
+                        Zaregistrovat se
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- RESET PASSWORD FORM -->
+        <div id="reset-form" class="auth-form">
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔑 Reset hesla</h2>
+                    <p class="card-subtitle">Obnovte si zapomenuté heslo</p>
+                </div>
+
+                <form id="resetForm">
+                    <div class="form-group">
+                        <label for="resetEmail" class="form-label">Email nebo uživatelské jméno</label>
+                        <input 
+                            type="text" 
+                            id="resetEmail" 
+                            class="form-input" 
+                            required 
+                            placeholder="Zadejte email nebo uživatelské jméno"
+                        >
+                    </div>
+
+                    <button type="submit" class="btn btn-large" style="width: 100%">
+                        Odeslat reset link
+                    </button>
+                </form>
+
+                <div class="notification notification-info">
+                    <strong>Info:</strong> Reset link bude odeslán na váš email (pokud byl zadán při registraci).
+                </div>
+            </div>
+        </div>
+
+        <!-- STATUS SECTION -->
+        <div class="auth-status">
+            <div class="server-status" id="serverStatus">
+                <span class="status-indicator" id="statusIndicator">🔴</span>
+                <span class="status-text" id="statusText">Offline Mode</span>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div id="notifications" class="notifications-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>
