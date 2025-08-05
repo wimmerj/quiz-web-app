@@ -198,7 +198,36 @@ Pokud máte vlastní doménu:
    - **Username**: `admin`
    - **Password**: `admin123`
 
-### 5.2 První nastavení
+### 5.3 Konfigurace Backend URL
+
+**DŮLEŽITÉ**: Po úspěšném deployment backend serveru na Render.com musíte aktualizovat frontend:
+
+1. **Najděte URL vašeho backend serveru** v Render.com Dashboard
+   - Měla by vypadat jako: `https://quiz-backend-xxx.onrender.com`
+
+2. **Aktualizujte frontend konfigurace**:
+   ```javascript
+   // V souboru frontend_deploy/api-config.js
+   const API_CONFIG = {
+       PRODUCTION_URL: 'https://quiz-backend-YOUR-URL.onrender.com', // Nahraďte YOUR-URL
+       // ...
+   };
+   ```
+
+3. **Commitněte a pushněte změny**:
+   ```bash
+   git add frontend_deploy/api-config.js
+   git commit -m "Update backend URL to actual Render.com deployment"
+   git push
+   ```
+
+4. **Test připojení**:
+   - Otevřete aplikaci na GitHub Pages
+   - Jděte do Nastavení
+   - Zkontrolujte, že "Režim backend" je nastaven na "Serverová verze"
+   - Status by měl ukázat ✅ "Server je připojen"
+
+### 5.4 První nastavení
 
 1. Přihlaste se do admin panelu
 2. Změňte heslo admina
@@ -214,9 +243,9 @@ Ujistěte se, že backend povoluje požadavky z vašeho frontend URL:
 ```python
 # V app.py
 CORS(app, origins=[
-    'https://your-username.github.io',
-    'http://localhost:3000',  # pro development
-    'http://127.0.0.1:3000'   # pro development
+    'https://wimmerj.github.io',  # Vaše GitHub Pages URL
+    'http://localhost:3000',      # pro development
+    'http://127.0.0.1:3000'       # pro development
 ])
 ```
 
