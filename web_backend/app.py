@@ -42,6 +42,31 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 CORS(app, origins=['*'])
 
+# Initialize database on startup
+def init_database():
+    """Create database tables and admin user"""
+    with app.app_context():
+        db.create_all()
+        
+        # Create admin user if not exists
+        admin = User.query.filter_by(username='admin').first()
+        if not admin:
+            salt = secrets.token_hex(16)
+            password_hash = hashlib.pbkdf2_hmac('sha256', 'admin123'.encode('utf-8'), salt.encode('utf-8'), 100000).hex()
+            
+            admin = User(
+                username='admin',
+                email='admin@quiz.com',
+                password_hash=password_hash,
+                salt=salt,
+                role='admin',
+                monica_api_access=True
+            )
+            
+            db.session.add(admin)
+            db.session.commit()
+            print("✅ Admin user created (username: admin, password: admin123)")
+
 # JWT configuration
 JWT_SECRET = app.config['SECRET_KEY']
 JWT_EXPIRATION_HOURS = 24
@@ -609,32 +634,8 @@ def monica_evaluate():
 # STARTUP & MAIN
 # ===============================================
 
-def init_db():
-    """Initialize database with sample data"""
-    with app.app_context():
-        db.create_all()
-        
-        # Create admin user if not exists
-        admin = User.query.filter_by(username='admin').first()
-        if not admin:
-            salt = secrets.token_hex(16)
-            password_hash = hashlib.pbkdf2_hmac('sha256', 'admin123'.encode('utf-8'), salt.encode('utf-8'), 100000).hex()
-            
-            admin = User(
-                username='admin',
-                email='admin@quiz.com',
-                password_hash=password_hash,
-                salt=salt,
-                role='admin',
-                monica_api_access=True
-            )
-            
-            db.session.add(admin)
-            db.session.commit()
-            print("✅ Admin user created (username: admin, password: admin123)")
-
 if __name__ == '__main__':
-    init_db()
+    init_database()
     
     port = int(os.environ.get('PORT', 5000))
     debug = os.environ.get('FLASK_ENV') == 'development'
