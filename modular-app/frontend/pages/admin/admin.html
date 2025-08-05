@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Modular Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications-container"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🛠️ Admin Panel</h1>
+            <div class="user-info">
+                <span id="userDisplay">👤 Loading...</span>
+                <span id="userRole" class="user-role"></span>
+                <button id="logoutBtn" class="btn btn-secondary">Odhlásit</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../../index.html">🏠 Dashboard</a>
+            <span class="separator">›</span>
+            <span class="current">🛠️ Admin Panel</span>
+        </nav>
+    </header>
+
+    <!-- Access Control Warning -->
+    <div id="accessWarning" class="access-warning" style="display: none;">
+        <div class="warning-content">
+            <h3>⚠️ Omezený přístup</h3>
+            <p>Pro přístup k admin panelu potřebujete admin oprávnění.</p>
+            <button onclick="window.location.href='../auth/login.html'" class="btn btn-primary">
+                Přihlásit jako Admin
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="adminContent">
+        
+        <!-- Admin Dashboard -->
+        <section class="admin-dashboard">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Celkem uživatelů</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-content">
+                        <h3 id="totalTables">0</h3>
+                        <p>Tabulek otázek</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">❓</div>
+                    <div class="stat-content">
+                        <h3 id="totalQuestions">0</h3>
+                        <p>Celkem otázek</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="totalAnswers">0</h3>
+                        <p>Odpovědí dnes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Tabs -->
+        <section class="admin-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="users">👥 Uživatelé</button>
+                <button class="tab-btn" data-tab="questions">❓ Otázky</button>
+                <button class="tab-btn" data-tab="tables">📚 Tabulky</button>
+                <button class="tab-btn" data-tab="analytics">📊 Analytika</button>
+                <button class="tab-btn" data-tab="system">⚙️ Systém</button>
+            </div>
+            
+            <!-- Users Tab -->
+            <div id="users-tab" class="tab-content active">
+                <div class="tab-header">
+                    <h2>👥 Správa Uživatelů</h2>
+                    <div class="tab-actions">
+                        <button id="refreshUsersBtn" class="btn btn-secondary">🔄 Obnovit</button>
+                        <button id="addUserBtn" class="btn btn-primary">➕ Přidat uživatele</button>
+                    </div>
+                </div>
+                
+                <div class="users-table-container">
+                    <table class="admin-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Uživatel</th>
+                                <th>Role</th>
+                                <th>Registrace</th>
+                                <th>Poslední aktivita</th>
+                                <th>Správně/Špatně</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Questions Tab -->
+            <div id="questions-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>❓ Správa Otázek</h2>
+                    <div class="tab-actions">
+                        <select id="questionTableFilter" class="form-select">
+                            <option value="">Všechny tabulky</option>
+                        </select>
+                        <button id="refreshQuestionsBtn" class="btn btn-secondary">🔄 Obnovit</button>
+                        <button id="addQuestionBtn" class="btn btn-primary">➕ Přidat otázku</button>
+                        <button id="importQuestionsBtn" class="btn btn-primary">📁 Import</button>
+                    </div>
+                </div>
+                
+                <div class="questions-table-container">
+                    <table class="admin-table" id="questionsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tabulka</th>
+                                <th>Otázka</th>
+                                <th>Správná odpověď</th>
+                                <th>Obtížnost</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody id="questionsTableBody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Tables Tab -->
+            <div id="tables-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>📚 Správa Tabulek</h2>
+                    <div class="tab-actions">
+                        <button id="refreshTablesBtn" class="btn btn-secondary">🔄 Obnovit</button>
+                        <button id="addTableBtn" class="btn btn-primary">➕ Vytvořit tabulku</button>
+                    </div>
+                </div>
+                
+                <div class="tables-grid" id="tablesGrid">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+            
+            <!-- Analytics Tab -->
+            <div id="analytics-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>📊 Analytika a Statistiky</h2>
+                    <div class="tab-actions">
+                        <select id="analyticsTimeRange" class="form-select">
+                            <option value="today">Dnes</option>
+                            <option value="week">Tento týden</option>
+                            <option value="month">Tento měsíc</option>
+                            <option value="all">Vše</option>
+                        </select>
+                        <button id="refreshAnalyticsBtn" class="btn btn-secondary">🔄 Obnovit</button>
+                        <button id="exportDataBtn" class="btn btn-primary">📤 Export dat</button>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>📈 Aktivita uživatelů</h3>
+                        <div class="chart-container">
+                            <canvas id="userActivityChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>🎯 Úspěšnost otázek</h3>
+                        <div class="chart-container">
+                            <canvas id="questionSuccessChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>⚔️ Battle statistiky</h3>
+                        <div id="battleStats" class="battle-stats">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>🏆 Top uživatelé</h3>
+                        <div id="topUsers" class="top-users-list">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Tab -->
+            <div id="system-tab" class="tab-content">
+                <div class="tab-header">
+                    <h2>⚙️ Systémová Administrace</h2>
+                    <div class="tab-actions">
+                        <button id="systemInfoBtn" class="btn btn-secondary">ℹ️ Info</button>
+                        <button id="cleanupBtn" class="btn btn-warning">🧹 Vyčistit data</button>
+                    </div>
+                </div>
+                
+                <div class="system-grid">
+                    <div class="system-card">
+                        <h3>🔧 Údržba databáze</h3>
+                        <div class="system-actions">
+                            <button id="backupDbBtn" class="btn btn-primary">💾 Zálohovat DB</button>
+                            <button id="repairDbBtn" class="btn btn-warning">🔧 Opravit DB</button>
+                            <button id="optimizeDbBtn" class="btn btn-secondary">⚡ Optimalizovat</button>
+                        </div>
+                    </div>
+                    
+                    <div class="system-card">
+                        <h3>📊 Systémové metriky</h3>
+                        <div id="systemMetrics" class="metrics-list">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    
+                    <div class="system-card">
+                        <h3>🔐 Bezpečnost</h3>
+                        <div class="system-actions">
+                            <button id="auditLogBtn" class="btn btn-secondary">📝 Audit log</button>
+                            <button id="resetPasswordsBtn" class="btn btn-danger">🔑 Reset hesel</button>
+                            <button id="lockAccountBtn" class="btn btn-danger">🚫 Zablokovat účty</button>
+                        </div>
+                    </div>
+                    
+                    <div class="system-card">
+                        <h3>🚀 Server management</h3>
+                        <div class="server-status" id="serverStatus">
+                            <div class="status-indicator">🔴 Offline</div>
+                            <div class="status-details">
+                                <p>Backend server: <span id="backendStatus">Checking...</span></p>
+                                <p>Database: <span id="databaseStatus">Checking...</span></p>
+                                <p>Verze: <span id="serverVersion">Unknown</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Přidat nového uživatele</h3>
+                <button class="modal-close" onclick="closeModal('addUserModal')">×</button>
+            </div>
+            
+            <form id="addUserForm" class="modal-body">
+                <div class="form-group">
+                    <label for="newUsername">Uživatelské jméno:</label>
+                    <input type="text" id="newUsername" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="newUserEmail">Email:</label>
+                    <input type="email" id="newUserEmail" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="newUserPassword">Heslo:</label>
+                    <input type="password" id="newUserPassword" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="newUserRole">Role:</label>
+                    <select id="newUserRole" class="form-select">
+                        <option value="user">Uživatel</option>
+                        <option value="admin">Administrátor</option>
+                    </select>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('addUserModal')">
+                    Zrušit
+                </button>
+                <button type="submit" form="addUserForm" class="btn btn-primary">
+                    ➕ Vytvořit uživatele
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Question Modal -->
+    <div id="addQuestionModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>➕ Přidat novou otázku</h3>
+                <button class="modal-close" onclick="closeModal('addQuestionModal')">×</button>
+            </div>
+            
+            <form id="addQuestionForm" class="modal-body">
+                <div class="form-group">
+                    <label for="questionTable">Tabulka:</label>
+                    <select id="questionTable" class="form-select" required>
+                        <option value="">Vyberte tabulku</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="questionText">Otázka:</label>
+                    <textarea id="questionText" class="form-textarea" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="answerA">Odpověď A:</label>
+                        <input type="text" id="answerA" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="answerB">Odpověď B:</label>
+                        <input type="text" id="answerB" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="answerC">Odpověď C:</label>
+                        <input type="text" id="answerC" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="correctAnswer">Správná odpověď:</label>
+                        <select id="correctAnswer" class="form-select" required>
+                            <option value="">Vyberte</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="questionDifficulty">Obtížnost:</label>
+                        <select id="questionDifficulty" class="form-select">
+                            <option value="easy">Snadná</option>
+                            <option value="medium" selected>Střední</option>
+                            <option value="hard">Těžká</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="questionExplanation">Vysvětlení:</label>
+                    <textarea id="questionExplanation" class="form-textarea" rows="2"></textarea>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('addQuestionModal')">
+                    Zrušit
+                </button>
+                <button type="submit" form="addQuestionForm" class="btn btn-primary">
+                    ➕ Přidat otázku
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

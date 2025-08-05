@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Modular Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications-container"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🎯 Quiz Modul</h1>
+            <div class="user-info">
+                <span id="userDisplay">👤 Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Odhlásit</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../../index.html">🏠 Dashboard</a>
+            <span class="separator">›</span>
+            <span class="current">🎯 Quiz</span>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Quiz Setup Panel -->
+        <section class="quiz-setup" id="quizSetup">
+            <div class="setup-card">
+                <h2>🎮 Nastavení Kvízu</h2>
+                
+                <div class="setup-row">
+                    <div class="form-group">
+                        <label for="tableSelect">📚 Vyberte tabulku:</label>
+                        <select id="tableSelect" class="form-select">
+                            <option value="">-- Vyberte tabulku --</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="questionMode">🎲 Režim otázek:</label>
+                        <select id="questionMode" class="form-select">
+                            <option value="normal">Všechny otázky</option>
+                            <option value="unanswered">Pouze nezodpovězené</option>
+                            <option value="wrong">Pouze chybné odpovědi</option>
+                            <option value="random">Náhodný výběr</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setup-actions">
+                    <button id="startQuizBtn" class="btn btn-primary" disabled>
+                        🚀 Spustit Kvíz
+                    </button>
+                    <button id="endQuizBtn" class="btn btn-danger" disabled>
+                        🛑 Ukončit Kvíz
+                    </button>
+                    <button id="settingsBtn" class="btn btn-secondary">
+                        ⚙️ Nastavení
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Interface -->
+        <section class="quiz-interface" id="quizInterface" style="display: none;">
+            
+            <!-- Question Progress -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span id="questionCounter">Otázka: 0/0</span>
+                    <span id="scoreDisplay">Správně: 0 | Špatně: 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <!-- Question Card -->
+            <div class="question-card">
+                <div class="question-header">
+                    <h3>📝 Otázka</h3>
+                    <div class="question-actions">
+                        <button id="hintToggle" class="btn btn-small">
+                            💡 Nápověda
+                        </button>
+                        <button id="markIncorrectBtn" class="btn btn-small btn-warning">
+                            ⚠️ Označit jako chybnou
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="question-content">
+                    <p id="questionText" class="question-text">
+                        Vyberte tabulku a spusťte kvíz...
+                    </p>
+                    
+                    <!-- Hint Display -->
+                    <div id="hintDisplay" class="hint-display" style="display: none;">
+                        <div class="hint-content">
+                            <strong>💡 Nápověda:</strong>
+                            <span id="hintText">Správná odpověď je označena</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Answer Options -->
+            <div class="answers-section">
+                <div class="answers-grid">
+                    <button id="answerA" class="answer-option" data-letter="A" disabled>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Odpověď A</span>
+                    </button>
+                    
+                    <button id="answerB" class="answer-option" data-letter="B" disabled>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Odpověď B</span>
+                    </button>
+                    
+                    <button id="answerC" class="answer-option" data-letter="C" disabled>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Odpověď C</span>
+                    </button>
+                </div>
+                
+                <!-- Keyboard Hint -->
+                <div class="keyboard-hint">
+                    ⌨️ Můžete použít klávesy A, B, C pro odpovědi | ← → pro navigaci | R pro náhodnou otázku
+                </div>
+            </div>
+            
+            <!-- Explanation Panel -->
+            <div id="explanationPanel" class="explanation-panel" style="display: none;">
+                <div class="explanation-header">
+                    <h4>📖 Vysvětlení</h4>
+                </div>
+                <div class="explanation-content">
+                    <p id="explanationText">Zde bude vysvětlení...</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Controls -->
+            <div class="navigation-controls">
+                <button id="prevBtn" class="btn btn-secondary" disabled>
+                    ⬅️ Předchozí
+                </button>
+                
+                <button id="randomBtn" class="btn btn-secondary" disabled>
+                    🎲 Náhodná
+                </button>
+                
+                <button id="nextBtn" class="btn btn-primary" disabled>
+                    Další ➡️
+                </button>
+            </div>
+            
+        </section>
+
+        <!-- Results Summary -->
+        <section class="results-summary" id="resultsSummary" style="display: none;">
+            <div class="results-card">
+                <h2>🎉 Výsledky Kvízu</h2>
+                <div class="results-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="finalCorrect">0</span>
+                        <span class="stat-label">Správně</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="finalWrong">0</span>
+                        <span class="stat-label">Špatně</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="finalAccuracy">0%</span>
+                        <span class="stat-label">Úspěšnost</span>
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button id="restartQuizBtn" class="btn btn-primary">
+                        🔄 Opakovat Kvíz
+                    </button>
+                    <button id="newQuizBtn" class="btn btn-secondary">
+                        📚 Nový Kvíz
+                    </button>
+                    <button id="viewStatsBtn" class="btn btn-secondary">
+                        📊 Podrobné Statistiky
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Nastavení Kvízu</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
+            </div>
+            
+            <form id="settingsForm" class="modal-body">
+                <div class="settings-section">
+                    <h4>🎨 Vzhled</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="questionFontSize">Velikost písma otázky:</label>
+                            <input type="range" id="questionFontSize" min="12" max="24" value="16">
+                            <span id="questionFontDisplay">16px</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="answerFontSize">Velikost písma odpovědí:</label>
+                            <input type="range" id="answerFontSize" min="12" max="20" value="14">
+                            <span id="answerFontDisplay">14px</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4>🎮 Chování</h4>
+                    <div class="form-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="shuffleAnswers">
+                            <span class="checkmark"></span>
+                            Zamíchat pořadí odpovědí
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="showHints">
+                            <span class="checkmark"></span>
+                            Zobrazovat nápovědy
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="autoNext">
+                            <span class="checkmark"></span>
+                            Automaticky pokračovat na další otázku
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h4>🔧 Pokročilé</h4>
+                    <div class="form-group">
+                        <label for="backendMode">Backend režim:</label>
+                        <select id="backendMode" class="form-select">
+                            <option value="local">Lokální (offline)</option>
+                            <option value="server">Server (online)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serverUrl">URL serveru:</label>
+                        <input type="url" id="serverUrl" class="form-input" 
+                               placeholder="https://quiz-web-app-wpls.onrender.com">
+                    </div>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('settingsModal')">
+                    Zrušit
+                </button>
+                <button type="submit" form="settingsForm" class="btn btn-primary">
+                    💾 Uložit Nastavení
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>
