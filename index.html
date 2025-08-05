@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Web App - Vstupní stránka</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .main-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            margin: 10px;
+        }
+        
+        .main-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(45deg, #45a049, #4caf50);
+        }
+        
+        .secondary-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .feature h3 {
+            margin-top: 0;
+            color: #4caf50;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Quiz Web App</h1>
+        <p class="subtitle">Interaktivní kvízová aplikace s pokročilými funkcemi</p>
+        
+        <div style="margin: 30px 0;">
+            <a href="frontend_deploy/quiz_app.html" class="main-button">
+                🚀 Spustit Quiz Aplikaci
+            </a>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <a href="web_frontend/admin/" class="secondary-button">
+                👨‍💼 Admin Panel
+            </a>
+            <a href="frontend_deploy/" class="secondary-button">
+                📊 Demo & Testy
+            </a>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🎮 Interaktivní kvízy</h3>
+                <p>Rozsáhlá databáze otázek s pokročilým hodnocením a statistikami výsledků.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🎤 Ústní zkoušení</h3>
+                <p>Pokročilý systém ústního zkoušení s AI asistencí a hlasovým rozpoznáváním.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚔️ Bitvy kvízů</h3>
+                <p>Soutěžte s ostatními uživateli v real-time bitvách a klání.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>👨‍💼 Správa uživatelů</h3>
+                <p>Kompletní admin panel pro správu uživatelů, otázek a systému.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📱 Responzivní design</h3>
+                <p>Optimalizováno pro všechna zařízení - mobily, tablety i počítače.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🔐 Bezpečnost</h3>
+                <p>Pokročilé zabezpečení s JWT tokenami a šifrovanými hesly.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Vytvořeno s ❤️ pro vzdělávání a zábavu</p>
+            <p>© 2025 Quiz Web App - Všechna práva vyhrazena</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -187,11 +187,14 @@ Pokud máte vlastní doménu:
 
 ## 👨‍💼 Krok 5: Admin Panel
 
-### 5.1 Přístup k admin panelu
+### 5.1 Přístup k aplikaci
 
-1. Frontend je dostupný na: `https://your-username.github.io/quiz-web-app/`
-2. Admin panel je na: `https://your-username.github.io/quiz-web-app/admin/`
-3. Přihlašovací údaje:
+1. **Hlavní stránka**: `https://wimmerj.github.io/quiz-web-app/`
+2. **Quiz aplikace**: `https://wimmerj.github.io/quiz-web-app/frontend_deploy/quiz_app.html`
+3. **Admin panel**: `https://wimmerj.github.io/quiz-web-app/web_frontend/admin/`
+4. **Demo a testy**: `https://wimmerj.github.io/quiz-web-app/frontend_deploy/`
+
+### 5.2 Přihlašovací údaje
    - **Username**: `admin`
    - **Password**: `admin123`
 
