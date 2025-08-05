@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Jednoduchý Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid rgba(255,255,255,0.3); 
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+        }
+        button { 
+            padding: 10px 15px; 
+            margin: 5px; 
+            cursor: pointer; 
+            border: none;
+            border-radius: 4px;
+            background: #4CAF50;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover { background: #45a049; }
+        .success { color: #90EE90; }
+        .error { color: #ffcccb; }
+        #log { 
+            background: rgba(0,0,0,0.4); 
+            padding: 10px; 
+            height: 200px; 
+            overflow-y: auto; 
+            font-family: monospace; 
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        input { 
+            padding: 8px; 
+            margin: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            background: rgba(255,255,255,0.9);
+        }
+        h1, h3 { color: white; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Quiz App - Jednoduchý Test</h1>
+    
+    <div class="test-section">
+        <h3>📁 Test načítání skriptů</h3>
+        <button onclick="testScripts()">Test skriptů</button>
+        <div id="scriptResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>👤 Test registrace</h3>
+        <div>
+            <input type="text" id="testUsername" placeholder="Username" value="test_user_001">
+            <input type="email" id="testEmail" placeholder="Email" value="test001@example.com">
+            <input type="password" id="testPassword" placeholder="Password" value="testpass123">
+        </div>
+        <button onclick="testRegistration()">🚀 Test registrace</button>
+        <div id="registrationResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🌐 Test server připojení</h3>
+        <button onclick="testServerConnection()">Test serveru</button>
+        <button onclick="testServerHealth()">Health Check</button>
+        <div id="serverResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>📊 Log</h3>
+        <button onclick="clearLog()">Vymazat log</button>
+        <button onclick="downloadLog()">📥 Stáhnout log</button>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const testLog = [];
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = `[${timestamp}] ${type.toUpperCase()}: ${message}`;
+            testLog.push(entry);
+            
+            const logDiv = document.getElementById('log');
+            const div = document.createElement('div');
+            div.textContent = entry;
+            div.className = type;
+            logDiv.appendChild(div);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            
+            console.log(entry);
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            testLog.length = 0;
+            log('Log vymazán', 'info');
+        }
+        
+        function downloadLog() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                logs: testLog
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `test-log-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            log('Log stažen', 'success');
+        }
+        
+        function testScripts() {
+            log('🔍 Zahájení testu skriptů');
+            const results = document.getElementById('scriptResults');
+            results.innerHTML = '';
+            
+            const scripts = ['api-config.js', 'quiz_data.js', 'quiz_app.js', 'enhanced_integration.js'];
+            
+            scripts.forEach(script => {
+                fetch(script)
+                    .then(response => {
+                        if (response.ok) {
+                            log(`✅ ${script} - OK (${response.status})`, 'success');
+                            results.innerHTML += `<div class="success">✅ ${script}</div>`;
+                        } else {
+                            log(`❌ ${script} - Chyba ${response.status}`, 'error');
+                            results.innerHTML += `<div class="error">❌ ${script} (${response.status})</div>`;
+                        }
+                    })
+                    .catch(error => {
+                        log(`❌ ${script} - ${error.message}`, 'error');
+                        results.innerHTML += `<div class="error">❌ ${script} - ${error.message}</div>`;
+                    });
+            });
+        }
+        
+        async function testServerHealth() {
+            log('🏥 Test server health check');
+            const results = document.getElementById('serverResults');
+            
+            try {
+                const response = await fetch('https://quiz-web-app-wpls.onrender.com/api/health');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Server health OK: ${JSON.stringify(data)}`, 'success');
+                    results.innerHTML += `<div class="success">✅ Health Check OK</div>`;
+                } else {
+                    log(`⚠️ Server health issue: ${response.status}`, 'error');
+                    results.innerHTML += `<div class="error">⚠️ Health Check: ${response.status}</div>`;
+                }
+            } catch (error) {
+                log(`❌ Health check failed: ${error.message}`, 'error');
+                results.innerHTML += `<div class="error">❌ Health Check Failed</div>`;
+            }
+        }
+        
+        async function testRegistration() {
+            log('👤 Zahájení testu registrace');
+            const results = document.getElementById('registrationResults');
+            results.innerHTML = '<div style="color: orange;">🔄 Testování registrace...</div>';
+            
+            const username = document.getElementById('testUsername').value;
+            const email = document.getElementById('testEmail').value;
+            const password = document.getElementById('testPassword').value;
+            
+            if (!username || !email || !password) {
+                log('❌ Všechna pole musí být vyplněna', 'error');
+                results.innerHTML = '<div class="error">❌ Vyplňte všechna pole</div>';
+                return;
+            }
+            
+            try {
+                log(`📤 Odesílání registrace: ${username} (${email})`);
+                
+                const response = await fetch('https://quiz-web-app-wpls.onrender.com/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    log(`✅ Registrace úspěšná: ${username}`, 'success');
+                    results.innerHTML = `<div class="success">✅ Registrace úspěšná pro ${username}</div>`;
+                } else {
+                    log(`❌ Registrace neúspěšná (${response.status}): ${data.message || 'Neznámá chyba'}`, 'error');
+                    results.innerHTML = `<div class="error">❌ ${data.message || 'Registrace selhala'}</div>`;
+                }
+            } catch (error) {
+                log(`❌ Chyba síťové komunikace: ${error.message}`, 'error');
+                results.innerHTML = `<div class="error">❌ Síťová chyba: ${error.message}</div>`;
+            }
+        }
+        
+        async function testServerConnection() {
+            log('🌐 Test připojení k serveru');
+            const results = document.getElementById('serverResults');
+            results.innerHTML = '';
+            
+            const startTime = performance.now();
+            
+            try {
+                const response = await fetch('https://quiz-web-app-wpls.onrender.com/api/health', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                const endTime = performance.now();
+                const duration = Math.round(endTime - startTime);
+                
+                if (response.ok) {
+                    try {
+                        const data = await response.json();
+                        log(`✅ Server dostupný (${duration}ms): ${JSON.stringify(data)}`, 'success');
+                        results.innerHTML = `<div class="success">✅ Server OK (${duration}ms)</div>`;
+                    } catch (parseError) {
+                        log(`✅ Server odpovídá, ale bez JSON (${duration}ms)`, 'success');
+                        results.innerHTML = `<div class="success">✅ Server OK, bez JSON (${duration}ms)</div>`;
+                    }
+                } else {
+                    log(`⚠️ Server odpovídá s chybou: ${response.status} (${duration}ms)`, 'error');
+                    results.innerHTML = `<div class="error">⚠️ Server Error ${response.status} (${duration}ms)</div>`;
+                }
+            } catch (error) {
+                const endTime = performance.now();
+                const duration = Math.round(endTime - startTime);
+                log(`❌ Server nedostupný (${duration}ms): ${error.message}`, 'error');
+                results.innerHTML = `<div class="error">❌ Server nedostupný (${duration}ms)</div>`;
+            }
+        }
+        
+        // Automatický test při načtení
+        window.addEventListener('load', () => {
+            log('🚀 Testovací stránka načtena - spouštím automatické testy');
+            setTimeout(() => {
+                testScripts();
+                testServerConnection();
+            }, 500);
+        });
+        
+        // Zobrazit informace o prohlížeči
+        log(`🌐 Prohlížeč: ${navigator.userAgent}`, 'info');
+        log(`📍 URL: ${window.location.href}`, 'info');
+    </script>
+</body>
+</html>
