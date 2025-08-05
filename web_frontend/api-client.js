@@ -1,7 +1,7 @@
 // Frontend API Configuration for Web Deployment
 const API_CONFIG = {
     // Production URL - aktualizujte po deployment na Render.com
-    PRODUCTION_URL: 'https://your-quiz-app.onrender.com',
+    PRODUCTION_URL: 'https://quiz-web-app-wpls.onrender.com',
     
     // Development URL
     DEVELOPMENT_URL: 'http://localhost:5000',
