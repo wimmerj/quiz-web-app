@@ -237,7 +237,7 @@ class QuizApp {
             showOnlyUnanswered: false,
             useTestDb: false,
             backendMode: 'server', // 'local' nebo 'server' - změněno na server pro produkci
-            serverUrl: 'https://quiz-backend-xxx.onrender.com', // URL backend serveru na Render.com
+            serverUrl: 'https://quiz-web-app-wpls.onrender.com', // URL backend serveru na Render.com
             shuffleAnswers: true, // míchání odpovědí A, B, C
             randomOrder: false // náhodné pořadí otázek
         };
@@ -1464,7 +1464,7 @@ class QuizApp {
         this.settings.shuffleAnswers = form.shuffleAnswers.checked;
         this.settings.randomOrder = form.randomOrder.checked;
         this.settings.backendMode = form.backendMode.value;
-        this.settings.serverUrl = form.serverUrl.value.trim() || 'https://quiz-backend-xxx.onrender.com';
+        this.settings.serverUrl = form.serverUrl.value.trim() || 'https://quiz-web-app-wpls.onrender.com';
         
         this.saveSettings();
         this.updateFontSizes();

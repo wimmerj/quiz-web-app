@@ -7,7 +7,7 @@ class EnhancedQuizIntegration {
     constructor(quizApp) {
         this.app = quizApp;
         // Použij URL z nastavení aplikace
-        this.backendUrl = this.app?.settings?.serverUrl || 'https://quiz-backend-xxx.onrender.com';
+        this.backendUrl = this.app?.settings?.serverUrl || 'https://quiz-web-app-wpls.onrender.com';
         this.useServerAuth = false;
         this.backendAvailable = false;
         this.authToken = null;
