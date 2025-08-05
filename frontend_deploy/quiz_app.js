@@ -29,11 +29,22 @@ const SimpleLogger = {
         if (debugLog) {
             const logEntry = document.createElement('div');
             logEntry.className = `debug-entry ${entry.type}`;
-            logEntry.innerHTML = `
-                <span class="timestamp">[${new Date(entry.timestamp).toLocaleTimeString()}]</span>
-                <span class="type">${entry.type.toUpperCase()}</span>
-                <span class="message">${entry.message}</span>
-            `;
+            
+            const timestamp = document.createElement('span');
+            timestamp.className = 'timestamp';
+            timestamp.textContent = `[${new Date(entry.timestamp).toLocaleTimeString()}]`;
+            
+            const type = document.createElement('span');
+            type.className = 'type';
+            type.textContent = entry.type.toUpperCase();
+            
+            const message = document.createElement('span');
+            message.className = 'message';
+            message.textContent = entry.message;
+            
+            logEntry.appendChild(timestamp);
+            logEntry.appendChild(type);
+            logEntry.appendChild(message);
             
             debugLog.appendChild(logEntry);
             debugLog.scrollTop = debugLog.scrollHeight;
@@ -1800,14 +1811,25 @@ class QuizApp {
         });
 
         // Register form
-        document.getElementById('registerForm').addEventListener('submit', (e) => {
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            SimpleLogger.log('action', 'Register form submitted');
+            
             const username = document.getElementById('registerUsername').value;
             const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
-            this.registerUser(username, password, email);
-            this.closeModal('registerModal');
-            e.target.reset();
+            
+            SimpleLogger.log('info', `Form data: username=${username}, email=${email}`);
+            
+            try {
+                await this.registerUser(username, password, email);
+                SimpleLogger.log('success', 'Registration completed successfully');
+                this.closeModal('registerModal');
+                e.target.reset();
+            } catch (error) {
+                SimpleLogger.log('error', `Registration failed: ${error.message}`);
+                // Don't close modal on error, let user try again
+            }
         });
 
         // Change password form
@@ -2402,67 +2424,72 @@ let serverStatusManager = null;
 let debugLogger = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize enhanced logger first if available
-    if (window.EnhancedLogger) {
-        window.enhancedLogger = new EnhancedLogger();
-        console.log('Enhanced Logger initialized');
-        
-        // Initialize existing debug logger as fallback
-        debugLogger = new DebugLogger();
-        window.debugLogger = debugLogger;
-    } else {
-        // Initialize debug logger only
-        debugLogger = new DebugLogger();
-        window.debugLogger = debugLogger;
-        console.warn('Enhanced Logger not available, using basic debug logger');
+    // Initialize SimpleLogger
+    SimpleLogger.log('system', 'Quiz Application DOMContentLoaded - SimpleLogger ready');
+    SimpleLogger.log('info', 'Inicializace aplikace začíná...');
+    
+    // Make SimpleLogger globally available for compatibility
+    window.debugLogger = SimpleLogger;
+    window.enhancedLogger = SimpleLogger;
+    
+    // Initialize server status manager if available
+    try {
+        if (typeof ServerStatusManager !== 'undefined') {
+            serverStatusManager = new ServerStatusManager();
+            window.serverStatusManager = serverStatusManager;
+            SimpleLogger.log('success', 'ServerStatusManager inicializován');
+        } else {
+            SimpleLogger.log('warning', 'ServerStatusManager není dostupný');
+        }
+    } catch (error) {
+        SimpleLogger.log('error', `Chyba při inicializaci ServerStatusManager: ${error.message}`);
     }
     
-    // Initialize server status manager
-    serverStatusManager = new ServerStatusManager();
-    window.serverStatusManager = serverStatusManager;
+    // Log workflow info
+    SimpleLogger.log('info', 'Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test');
     
-    // Log initialization
-    const logger = window.enhancedLogger || window.debugLogger;
-    if (logger) {
-        logger.log('UI enhancement systémy inicializovány', 'system');
-        logger.log('Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test', 'info');
-    }
-    
-    // Override original server communication methods to add logging
+    // Override enhanced integration if available
     if (window.enhancedIntegration) {
+        SimpleLogger.log('success', 'Enhanced integration detected - setting up logging override');
         const originalNotifyServer = enhancedIntegration.notifyServerEvent;
         enhancedIntegration.notifyServerEvent = function(eventType, data) {
-            if (window.enhancedLogger) {
-                enhancedLogger.logAction('api_call', { 
-                    event: eventType, 
-                    data: data,
-                    url: 'server_event'
-                });
-            } else if (window.debugLogger) {
-                debugLogger.log(`Odesílání události: ${eventType}`, 'info');
-            }
+            SimpleLogger.log('info', `Odesílání události: ${eventType}`);
             
-            serverStatusManager.setConnecting();
+            if (window.serverStatusManager) {
+                serverStatusManager.setConnecting();
+            }
             
             const result = originalNotifyServer.call(this, eventType, data);
             
             if (result && typeof result.then === 'function') {
                 result.then(() => {
-                    const logger = window.enhancedLogger || window.debugLogger;
-                    if (logger) {
-                        logger.log(`Událost ${eventType} úspěšně odeslána`, 'success');
-                    }
+                    SimpleLogger.log('success', `Událost ${eventType} úspěšně odeslána`);
                 }).catch((error) => {
-                    const logger = window.enhancedLogger || window.debugLogger;
-                    if (logger) {
-                        logger.log(`Chyba při odesílání události ${eventType}: ${error.message}`, 'error');
-                    }
+                    SimpleLogger.log('error', `Chyba při odesílání události ${eventType}: ${error.message}`);
                 });
             }
             
             return result;
         };
+    } else {
+        SimpleLogger.log('warning', 'Enhanced integration not available yet');
     }
+    
+    // Initialize the application after DOM is ready
+    SimpleLogger.log('system', 'Inicializuji QuizApp...');
+    app = new QuizApp();
+    window.app = app; // Make it globally accessible
+    
+    // Initialize enhanced integration if available
+    if (typeof EnhancedQuizIntegration !== 'undefined') {
+        enhancedIntegration = new EnhancedQuizIntegration(app);
+        window.enhancedIntegration = enhancedIntegration; // Make it globally accessible
+        SimpleLogger.log('success', 'Enhanced integration initialized');
+    } else {
+        SimpleLogger.log('warning', 'Enhanced integration not available - using local mode only');
+    }
+    
+    SimpleLogger.log('success', 'Aplikace úspěšně inicializována!');
 });
 
 // Cleanup on page unload
@@ -2472,15 +2499,6 @@ window.addEventListener('beforeunload', function() {
     }
 });
 
-// Initialize the application
-const app = new QuizApp();
-
-// Initialize enhanced integration if available
+// Global variables
+let app = null;
 let enhancedIntegration = null;
-if (typeof EnhancedQuizIntegration !== 'undefined') {
-    enhancedIntegration = new EnhancedQuizIntegration(app);
-    window.enhancedIntegration = enhancedIntegration; // Make it globally accessible
-    console.log('Enhanced integration initialized');
-} else {
-    console.warn('Enhanced integration not available - using local mode only');
-}
