@@ -45,6 +45,11 @@ class EnhancedQuizIntegration {
         console.log('🔄 Updating backend URL from', this.backendUrl, 'to', newUrl);
         this.backendUrl = newUrl;
         
+        // Aktualizuj URL v aplikaci také
+        if (this.app && this.app.settings) {
+            this.app.settings.serverUrl = newUrl;
+        }
+        
         // Restartuj monitorování s novou URL
         if (this.useServerAuth) {
             this.checkBackendAvailability();

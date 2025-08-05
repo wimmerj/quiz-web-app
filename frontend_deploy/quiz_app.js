@@ -74,25 +74,36 @@ class QuizApp {
             return;
         }
         
+        console.log('Attempting to show oral exam...');
+        
         // Zkusit najít OralExamSystem třídu
         if (typeof OralExamSystem === 'undefined') {
-            console.warn('OralExamSystem class not found, trying to initialize...');
+            console.warn('OralExamSystem class not found, trying to load dynamically...');
             this.showNotification('Systém ústního zkoušení se načítá...', 'info');
             
-            // Zkus znovu za 1 sekundu
-            setTimeout(() => {
+            // Dynamicky načíst script pokud není dostupný
+            const script = document.createElement('script');
+            script.src = 'oral_exam_system.js';
+            script.onload = () => {
+                console.log('OralExamSystem script loaded');
                 if (typeof OralExamSystem !== 'undefined') {
                     try {
                         this.oralExamSystem = new OralExamSystem();
                         this.oralExamSystem.showModal();
+                        console.log('OralExamSystem initialized and modal shown');
                     } catch (error) {
                         console.error('Failed to initialize oral exam system:', error);
                         this.showNotification('Chyba při inicializaci systému ústního zkoušení: ' + error.message, 'error');
                     }
                 } else {
-                    this.showNotification('Systém ústního zkoušení není dostupný. Zkontrolujte, zda je načten script oral_exam_system.js', 'error');
+                    this.showNotification('Systém ústního zkoušení nelze načíst', 'error');
                 }
-            }, 1000);
+            };
+            script.onerror = () => {
+                console.error('Failed to load OralExamSystem script');
+                this.showNotification('Chyba při načítání systému ústního zkoušení', 'error');
+            };
+            document.head.appendChild(script);
             return;
         }
         
@@ -152,10 +163,15 @@ class QuizApp {
         // Auto-login last user if available
         this.tryAutoLogin();
         
+        // Initialize main status bar
+        this.updateMainStatusBar();
+        
         // Zkontroluj dostupnost serveru při startu (s malým zpožděním aby se UI stihlo načíst)
         setTimeout(() => {
             if (this.settings.backendMode === 'server') {
                 this.checkServerAvailability();
+            } else {
+                this.updateMainStatusBar('local');
             }
         }, 1000);
     }
@@ -406,13 +422,15 @@ class QuizApp {
         this.currentTable = tableName;
         this.loadQuestionsForTable(tableName);
         
-        // Enable start quiz button but keep quiz controls disabled
+        // Enable start quiz button if user is logged in
         const startBtn = document.getElementById('startQuizBtn');
-        if (startBtn) startBtn.disabled = false;
+        if (startBtn && this.currentUser) {
+            startBtn.disabled = false;
+        }
         
         // Update status
         document.getElementById('questionText').textContent = 
-            `Tabulka "${tableName}" načtena. Klikněte na "Spustit kvíz" pro zahájení testu.`;
+            `Tabulka "${tableName}" načtena (${this.questions.length} otázek). Klikněte na "Spustit kvíz" pro zahájení testu.`;
         
         if (window.debugLogger) {
             debugLogger.log(`Tabulka ${tableName} vybrána (${this.questions.length} otázek)`, 'info');
@@ -455,8 +473,13 @@ class QuizApp {
     
     // Start the quiz after table is selected
     startQuiz() {
+        if (!this.currentUser) {
+            this.showNotification('Pro spuštění kvízu se musíte přihlásit.', 'warning');
+            return;
+        }
+        
         if (!this.currentTable || this.questions.length === 0) {
-            alert('Nejprve vyberte tabulku s otázkami.');
+            this.showNotification('Nejprve vyberte tabulku s otázkami.', 'warning');
             return;
         }
         
@@ -1088,7 +1111,8 @@ class QuizApp {
     // UI State Management
     updateUI() {
         const isLoggedIn = !!this.currentUser;
-        const hasQuestions = this.questions.length > 0 && isLoggedIn;
+        const hasTable = !!this.currentTable;
+        const hasQuestions = this.questions.length > 0 && isLoggedIn && hasTable;
         
         // Update auth buttons visibility
         const loginBtn = document.getElementById('loginBtn');
@@ -1109,11 +1133,15 @@ class QuizApp {
             userStatus.style.display = 'none';
         }
         
-        // Enable/disable quiz controls
-        const quizControls = ['tableCombo', 'backBtn', 'forwardBtn', 'randomBtn', 'hardBtn', 'loadBtn', 'incorrectBtn'];
+        // Enable/disable table combo - allow selection when logged in
+        const tableCombo = document.getElementById('tableCombo');
+        if (tableCombo) tableCombo.disabled = !isLoggedIn;
+        
+        // Enable/disable quiz navigation controls - only when quiz is active
+        const quizControls = ['backBtn', 'forwardBtn', 'randomBtn', 'hardBtn', 'loadBtn', 'incorrectBtn'];
         quizControls.forEach(id => {
             const element = document.getElementById(id);
-            if (element) element.disabled = !isLoggedIn;
+            if (element) element.disabled = !hasQuestions || this.currentQuestionIndex === -1;
         });
         
         // Enable/disable quiz start/end buttons
@@ -1121,7 +1149,7 @@ class QuizApp {
         const endBtn = document.getElementById('endTestBtn');
         
         if (startBtn) {
-            startBtn.disabled = !hasQuestions; // Enable when logged in AND has questions
+            startBtn.disabled = !hasQuestions; // Enable when logged in AND has table AND has questions
         }
         if (endBtn) {
             endBtn.disabled = true; // Initially disabled, enabled when quiz starts
@@ -1141,14 +1169,21 @@ class QuizApp {
         
         // Update question display
         const questionText = document.getElementById('questionText');
-        if (!hasQuestions) {
-            questionText.textContent = isLoggedIn ? 
-                "Vyberte tabulku pro začátek kvízu." : 
-                "Vyberte tabulku a přihlaste se pro začátek kvízu.";
+        if (!isLoggedIn) {
+            questionText.textContent = "Přihlaste se pro začátek kvízu.";
+            questionText.setAttribute('disabled', '');
+        } else if (!hasTable) {
+            questionText.textContent = "Vyberte tabulku pro začátek kvízu.";
+            questionText.setAttribute('disabled', '');
+        } else if (!hasQuestions) {
+            questionText.textContent = "Načítání otázek...";
             questionText.setAttribute('disabled', '');
         } else {
             questionText.removeAttribute('disabled');
         }
+        
+        // Update main status bar
+        this.updateMainStatusBar();
     }
 
     // Hard Mode (Wrong Questions)
@@ -1522,6 +1557,9 @@ class QuizApp {
         
         // Zkontroluj dostupnost serveru po uložení
         this.checkServerAvailability();
+        
+        // Aktualizuj status bar
+        this.updateMainStatusBar();
     }
 
     // Image Mode
@@ -1688,10 +1726,6 @@ class QuizApp {
         const serverUrlInput = document.getElementById('serverUrl');
         const backendModeSelect = document.getElementById('backendMode');
         
-        if (!statusElement || !statusText || !refreshBtn) {
-            return; // Elementy nejsou v DOM (např. modal není otevřený)
-        }
-        
         // Aktualizuj URL serveru z formuláře před testem
         if (serverUrlInput && serverUrlInput.value.trim()) {
             this.settings.serverUrl = serverUrlInput.value.trim();
@@ -1700,6 +1734,14 @@ class QuizApp {
         // Aktualizuj backend mode z formuláře před testem
         if (backendModeSelect) {
             this.settings.backendMode = backendModeSelect.value;
+            this.saveSettings(); // Uložit nastavení
+        }
+        
+        // Aktualizuj status bar okamžitě podle režimu
+        this.updateMainStatusBar();
+        
+        if (!statusElement || !statusText || !refreshBtn) {
+            return; // Elementy nejsou v DOM (např. modal není otevřený)
         }
         
         // Nastavit stav "kontroluji"
@@ -1738,6 +1780,9 @@ class QuizApp {
                 statusText.className = 'online';
                 statusText.textContent = `Server dostupný (${data.status || 'OK'})`;
                 this.showNotification('Server je dostupný', 'success');
+                
+                // Aktualizuj hlavní status bar na online
+                this.updateMainStatusBar('online');
             } else {
                 throw new Error(`Server odpověděl s kódem: ${response.status}`);
             }
@@ -1752,8 +1797,54 @@ class QuizApp {
             }
             
             this.showNotification('Server není dostupný - používá se lokální režim', 'warning');
+            
+            // Aktualizuj hlavní status bar na offline
+            this.updateMainStatusBar('offline');
         } finally {
             refreshBtn.disabled = false;
+        }
+    }
+
+    // Update main status bar in the header
+    updateMainStatusBar(forceStatus = null) {
+        const statusIndicator = document.getElementById('statusIndicator');
+        const statusIndicatorText = document.getElementById('statusIndicatorText');
+        const statusMode = document.getElementById('statusMode');
+        
+        if (!statusIndicator || !statusIndicatorText || !statusMode) {
+            return;
+        }
+        
+        let status = forceStatus;
+        if (!status) {
+            // Určit status podle nastavení
+            if (this.settings.backendMode === 'local') {
+                status = 'local';
+            } else {
+                status = 'offline'; // defaultní pro server mode
+            }
+        }
+        
+        switch (status) {
+            case 'online':
+                statusIndicator.textContent = '🟢';
+                statusIndicatorText.textContent = 'Online';
+                statusMode.textContent = 'Server Mode';
+                break;
+            case 'offline':
+                statusIndicator.textContent = '🔴';
+                statusIndicatorText.textContent = 'Offline';
+                statusMode.textContent = 'Local Mode';
+                break;
+            case 'local':
+                statusIndicator.textContent = '🟡';
+                statusIndicatorText.textContent = 'Local';
+                statusMode.textContent = 'Local Mode';
+                break;
+            default:
+                statusIndicator.textContent = '🔴';
+                statusIndicatorText.textContent = 'Offline';
+                statusMode.textContent = 'Local Mode';
         }
     }
 

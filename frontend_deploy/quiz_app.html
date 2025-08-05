@@ -216,7 +216,7 @@
     </div>
 
     <div id="settingsModal" class="modal hidden">
-        <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+        <div class="modal-content" style="max-height: 90vh; max-width: 600px; overflow-y: auto;">
             <h2>Nastavení</h2>
             <form id="settingsForm">
                 <div class="form-group">
@@ -268,7 +268,7 @@
                         <button type="button" id="refreshServerBtn" onclick="app.checkServerAvailability()" style="margin-left: 10px;">Obnovit</button>
                     </div>
                 </div>
-                <div class="form-buttons" style="position: sticky; bottom: 0; background: white; padding: 10px 0; border-top: 1px solid #ddd;">
+                <div class="form-buttons" style="position: sticky; bottom: 0; background: white; padding: 15px 0; border-top: 1px solid #ddd; margin-top: 20px;">
                     <button type="submit">Uložit</button>
                     <button type="button" onclick="app.closeModal('settingsModal')">Zrušit</button>
                 </div>
