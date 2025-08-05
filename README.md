@@ -18,6 +18,14 @@
 
 ### 🌐 Online verze (Produkce)
 
+**🏠 Hlavní stránka**: https://wimmerj.github.io/quiz-web-app/  
+**🎯 Quiz aplikace**: https://wimmerj.github.io/quiz-web-app/frontend_deploy/quiz_app.html  
+**👨‍💼 Admin panel**: https://wimmerj.github.io/quiz-web-app/web_frontend/admin/  
+**📊 Demo & testy**: https://wimmerj.github.io/quiz-web-app/frontend_deploy/  
+
+> **Přihlašovací údaje pro demo:**  
+> Username: `admin` | Password: `admin123`
+
 1. **Frontend**: [https://your-username.github.io/quiz-web-app](https://your-username.github.io/quiz-web-app)
 2. **Admin panel**: [https://your-username.github.io/quiz-web-app/admin](https://your-username.github.io/quiz-web-app/admin)
    - Username: `admin`
