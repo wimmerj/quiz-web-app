@@ -6,6 +6,7 @@
     <title>Quiz Application - Web Version</title>
     <link rel="stylesheet" href="quiz_styles.css">
     <link rel="stylesheet" href="enhanced_integration.css">
+    <script src="api-config.js"></script>
 </head>
 <body>
     <div id="app">
@@ -253,13 +254,13 @@
                 <div class="form-group">
                     <label for="backendMode">Režim backend:</label>
                     <select id="backendMode" onchange="app.checkServerAvailability()">
-                        <option value="local">Lokální verze</option>
-                        <option value="server">Serverová verze</option>
+                        <option value="server">Serverová verze (Produkce)</option>
+                        <option value="local">Lokální verze (Development)</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="serverUrl">URL serveru:</label>
-                    <input type="text" id="serverUrl" placeholder="http://localhost:5000" value="http://localhost:5000">
+                    <input type="text" id="serverUrl" placeholder="https://quiz-backend-xxx.onrender.com" value="https://quiz-backend-xxx.onrender.com">
                 </div>
                 <div class="form-group">
                     <div id="serverStatus" class="server-status">

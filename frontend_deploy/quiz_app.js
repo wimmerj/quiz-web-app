@@ -231,16 +231,25 @@ class QuizApp {
 
     // Settings Management
     loadSettings() {
-        return this.loadFromStorage('settings') || {
+        const defaults = {
             maxQuestionFontSize: 28,
             maxAnswerFontSize: 26,
             showOnlyUnanswered: false,
             useTestDb: false,
-            backendMode: 'local', // 'local' nebo 'server'
-            serverUrl: 'http://localhost:5000', // defaultní URL serveru
+            backendMode: 'server', // 'local' nebo 'server' - změněno na server pro produkci
+            serverUrl: 'https://quiz-backend-xxx.onrender.com', // URL backend serveru na Render.com
             shuffleAnswers: true, // míchání odpovědí A, B, C
             randomOrder: false // náhodné pořadí otázek
         };
+        
+        // Použij API_CONFIG pokud je dostupný pro automatickou detekci prostředí
+        if (window.API_CONFIG) {
+            const apiDefaults = window.API_CONFIG.getDefaultSettings();
+            defaults.backendMode = apiDefaults.backendMode;
+            defaults.serverUrl = apiDefaults.serverUrl;
+        }
+        
+        return this.loadFromStorage('settings') || defaults;
     }
 
     saveSettings() {
@@ -1455,10 +1464,15 @@ class QuizApp {
         this.settings.shuffleAnswers = form.shuffleAnswers.checked;
         this.settings.randomOrder = form.randomOrder.checked;
         this.settings.backendMode = form.backendMode.value;
-        this.settings.serverUrl = form.serverUrl.value.trim() || 'http://localhost:5000';
+        this.settings.serverUrl = form.serverUrl.value.trim() || 'https://quiz-backend-xxx.onrender.com';
         
         this.saveSettings();
         this.updateFontSizes();
+        
+        // Aktualizuj backend URL v enhanced integration
+        if (window.enhancedIntegration) {
+            window.enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+        }
         
         // Reload questions if the unanswered filter changed
         if (this.currentTable) {

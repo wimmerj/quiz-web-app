@@ -6,7 +6,8 @@
 class EnhancedQuizIntegration {
     constructor(quizApp) {
         this.app = quizApp;
-        this.backendUrl = 'http://localhost:5000';
+        // Použij URL z nastavení aplikace
+        this.backendUrl = this.app?.settings?.serverUrl || 'https://quiz-backend-xxx.onrender.com';
         this.useServerAuth = false;
         this.backendAvailable = false;
         this.authToken = null;
@@ -36,6 +37,17 @@ class EnhancedQuizIntegration {
                 console.log('⏰ Timeout reached, showing auth preference dialog...');
                 this.showAuthPreferenceDialog();
             }, 2000); // Zvýšené zpoždění na 2 sekundy
+        }
+    }
+    
+    // Metoda pro aktualizaci backend URL při změně nastavení
+    updateBackendUrl(newUrl) {
+        console.log('🔄 Updating backend URL from', this.backendUrl, 'to', newUrl);
+        this.backendUrl = newUrl;
+        
+        // Restartuj monitorování s novou URL
+        if (this.useServerAuth) {
+            this.checkBackendAvailability();
         }
     }
     
@@ -185,7 +197,7 @@ class EnhancedQuizIntegration {
             <div class="dialog-content">
                 <h3>🔄 Připojování k serveru...</h3>
                 <div class="spinner"></div>
-                <p>Čekám na spuštění lokálního serveru na <strong>localhost:5000</strong></p>
+                <p>Čekám na připojení k serveru na <strong>${this.backendUrl}</strong></p>
                 
                 <div class="backend-instructions">
                     <h4>📋 Pro spuštění serveru:</h4>
