@@ -40,13 +40,14 @@ class QuizApp {
                     this.oralExamSystem = new OralExamSystem();
                     console.log('Oral exam system initialized successfully');
                 } else {
-                    console.warn('OralExamSystem class not found - oral exam disabled');
+                    console.warn('OralExamSystem class not found - oral exam will be initialized on demand');
+                    this.oralExamSystem = null;
                 }
             } catch (error) {
                 console.error('Failed to initialize oral exam system:', error);
                 this.oralExamSystem = null;
             }
-        }, 100);
+        }, 500); // Prodloužené zpoždění
     }
 
     // Notification system
@@ -73,18 +74,46 @@ class QuizApp {
             return;
         }
         
-        if (this.oralExamSystem) {
-            this.oralExamSystem.showModal();
-        } else {
-            this.showNotification('Systém ústního zkoušení se inicializuje, zkuste to za chvíli...', 'info');
-            // Zkusit za 500ms, pokud se ještě nevytvořil
+        // Zkusit najít OralExamSystem třídu
+        if (typeof OralExamSystem === 'undefined') {
+            console.warn('OralExamSystem class not found, trying to initialize...');
+            this.showNotification('Systém ústního zkoušení se načítá...', 'info');
+            
+            // Zkus znovu za 1 sekundu
             setTimeout(() => {
-                if (this.oralExamSystem) {
-                    this.oralExamSystem.showModal();
+                if (typeof OralExamSystem !== 'undefined') {
+                    try {
+                        this.oralExamSystem = new OralExamSystem();
+                        this.oralExamSystem.showModal();
+                    } catch (error) {
+                        console.error('Failed to initialize oral exam system:', error);
+                        this.showNotification('Chyba při inicializaci systému ústního zkoušení: ' + error.message, 'error');
+                    }
                 } else {
-                    this.showNotification('Chyba při inicializaci systému ústního zkoušení.', 'error');
+                    this.showNotification('Systém ústního zkoušení není dostupný. Zkontrolujte, zda je načten script oral_exam_system.js', 'error');
                 }
-            }, 500);
+            }, 1000);
+            return;
+        }
+        
+        // Zkontrolovat, jestli už máme instanci
+        if (!this.oralExamSystem) {
+            try {
+                this.oralExamSystem = new OralExamSystem();
+                console.log('Oral exam system initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize oral exam system:', error);
+                this.showNotification('Chyba při inicializaci systému ústního zkoušení: ' + error.message, 'error');
+                return;
+            }
+        }
+        
+        // Zobrazit modal
+        try {
+            this.oralExamSystem.showModal();
+        } catch (error) {
+            console.error('Failed to show oral exam modal:', error);
+            this.showNotification('Chyba při zobrazení ústního zkoušení: ' + error.message, 'error');
         }
     }
 
@@ -1083,8 +1112,20 @@ class QuizApp {
         // Enable/disable quiz controls
         const quizControls = ['tableCombo', 'backBtn', 'forwardBtn', 'randomBtn', 'hardBtn', 'loadBtn', 'incorrectBtn'];
         quizControls.forEach(id => {
-            document.getElementById(id).disabled = !isLoggedIn;
+            const element = document.getElementById(id);
+            if (element) element.disabled = !isLoggedIn;
         });
+        
+        // Enable/disable quiz start/end buttons
+        const startBtn = document.getElementById('startQuizBtn');
+        const endBtn = document.getElementById('endTestBtn');
+        
+        if (startBtn) {
+            startBtn.disabled = !hasQuestions; // Enable when logged in AND has questions
+        }
+        if (endBtn) {
+            endBtn.disabled = true; // Initially disabled, enabled when quiz starts
+        }
         
         // Enable/disable menu items
         document.getElementById('changePasswordBtn').disabled = !isLoggedIn;
@@ -1826,9 +1867,17 @@ class ServerStatusManager {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 3000);
             
-            const response = await fetch('/api/health', {
+            // Use the app's backend URL setting
+            const backendUrl = app && app.settings && app.settings.backendMode === 'server' 
+                ? app.settings.serverUrl 
+                : 'https://quiz-web-app-wpls.onrender.com';
+            
+            const response = await fetch(`${backendUrl}/api/health`, {
                 method: 'GET',
-                signal: controller.signal
+                signal: controller.signal,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
             
             clearTimeout(timeoutId);
