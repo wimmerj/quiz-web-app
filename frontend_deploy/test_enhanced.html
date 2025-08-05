@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Enhanced Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #console {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 200px;
+            font-family: monospace;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Test Enhanced Integration</h1>
+    
+    <div class="test-panel">
+        <h2>Test kroky:</h2>
+        <button onclick="resetPreference()">1. Reset auth preference</button>
+        <button onclick="testQuizApp()">2. Test QuizApp třídy</button>
+        <button onclick="testEnhancedIntegration()">3. Test Enhanced Integration</button>
+        <button onclick="testDialog()">4. Test dialog zobrazení</button>
+        <button onclick="clearConsole()">Vymazat konzoli</button>
+    </div>
+    
+    <div class="test-panel">
+        <h2>Console Output:</h2>
+        <div id="console"></div>
+    </div>
+
+    <!-- Načíst stejné soubory jako quiz_app.html -->
+    <script src="quiz_data.js"></script>
+    <script src="security_improvements.js"></script>
+    <script src="ux_improvements.js"></script>
+    <script src="data_management.js"></script>
+    <script src="accessibility.js"></script>
+    <script src="statistics.js"></script>
+    <script src="oral_exam_system.js"></script>
+    <script src="quiz_app.js"></script>
+
+    <script>
+        // Override console.log to also show in our custom console
+        const originalLog = console.log;
+        const consoleElement = document.getElementById('console');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+            ).join(' ');
+            consoleElement.innerHTML += message + '\\n';
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+        };
+        
+        console.error = function(...args) {
+            console.log('❌ ERROR:', ...args);
+        };
+        
+        console.warn = function(...args) {
+            console.log('⚠️ WARNING:', ...args);
+        };
+
+        function log(message) {
+            console.log('🔧 TEST: ' + message);
+        }
+
+        function resetPreference() {
+            localStorage.removeItem('authPreference');
+            log('Auth preference resetována');
+        }
+
+        function testQuizApp() {
+            try {
+                // Test načtení QuizApp
+                if (typeof QuizApp === 'undefined') {
+                    log('❌ QuizApp třída není dostupná');
+                    return;
+                }
+                log('✅ QuizApp třída je dostupná');
+                
+                // Test vytvoření instance
+                window.testApp = new QuizApp();
+                log('✅ QuizApp instance vytvořena');
+                
+            } catch (error) {
+                log('❌ Chyba při testování QuizApp: ' + error.message);
+            }
+        }
+
+        function testEnhancedIntegration() {
+            try {
+                // Test načtení Enhanced Integration
+                if (typeof EnhancedQuizIntegration === 'undefined') {
+                    log('❌ EnhancedQuizIntegration třída není dostupná');
+                    // Pokusit se načíst soubor
+                    loadEnhancedIntegration();
+                    return;
+                }
+                log('✅ EnhancedQuizIntegration třída je dostupná');
+                
+                // Test vytvoření instance
+                if (!window.testApp) {
+                    log('⚠️ Nejdříve vytvořte QuizApp instanci');
+                    return;
+                }
+                
+                window.testEnhanced = new EnhancedQuizIntegration(window.testApp);
+                log('✅ EnhancedQuizIntegration instance vytvořena');
+                
+            } catch (error) {
+                log('❌ Chyba při testování Enhanced Integration: ' + error.message);
+            }
+        }
+
+        function loadEnhancedIntegration() {
+            log('📥 Pokouším se načíst enhanced_integration.js...');
+            const script = document.createElement('script');
+            script.src = 'enhanced_integration.js';
+            script.onload = function() {
+                log('✅ enhanced_integration.js načten');
+                testEnhancedIntegration();
+            };
+            script.onerror = function() {
+                log('❌ Chyba při načítání enhanced_integration.js');
+            };
+            document.head.appendChild(script);
+        }
+
+        function testDialog() {
+            try {
+                if (!window.testEnhanced) {
+                    log('⚠️ Nejdříve vytvořte Enhanced Integration instanci');
+                    return;
+                }
+                
+                log('🔒 Pokouším se zobrazit auth preference dialog...');
+                window.testEnhanced.showAuthPreferenceDialog();
+                
+            } catch (error) {
+                log('❌ Chyba při zobrazování dialogu: ' + error.message);
+            }
+        }
+
+        function clearConsole() {
+            consoleElement.innerHTML = '';
+        }
+
+        // Automaticky spustit testy
+        window.addEventListener('load', function() {
+            log('🚀 Test stránka načtena');
+            log('📋 LocalStorage authPreference: ' + (localStorage.getItem('authPreference') || 'není nastaveno'));
+        });
+    </script>
+</body>
+</html>

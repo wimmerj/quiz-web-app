@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application - Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .demo-section h2 {
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        
+        .demo-section p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .demo-users {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .demo-user {
+            background: rgba(33, 150, 243, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .demo-user strong {
+            display: block;
+            color: #2196f3;
+            margin-bottom: 5px;
+        }
+        
+        .start-button {
+            display: block;
+            width: 300px;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255, 87, 34, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff5722;
+        }
+        
+        .stats {
+            text-align: center;
+            font-size: 1.2em;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .stats strong {
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Quiz Application</h1>
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+            Webová verze profesionální quiz aplikace s multiplayer podporou
+        </p>
+        
+        <div class="stats">
+            <strong>1099</strong> otázek v <strong>13</strong> tabulkách připraveno k testování!
+        </div>
+        
+        <div class="demo-section">
+            <h2>🚀 Jak začít</h2>
+            <p><strong>1. Registrace:</strong> Vytvořte si uživatelský účet (můžete použít jakékoliv jméno a heslo)</p>
+            <p><strong>2. Výběr tabulky:</strong> Vyberte z 13 dostupných sad otázek</p>
+            <p><strong>3. Kvízování:</strong> Odpovídejte na otázky a sledujte své skóre</p>
+            <p><strong>4. Multiplayer:</strong> Založte bitvu nebo se připojte k existující</p>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎮 Demo uživatelé</h2>
+            <p>Pro rychlé testování můžete použít tyto předdefinované účty:</p>
+            <div class="demo-users">
+                <div class="demo-user">
+                    <strong>Testovací účet</strong>
+                    Jméno: <code>test</code><br>
+                    Heslo: <code>test</code>
+                </div>
+                <div class="demo-user">
+                    <strong>Admin účet</strong>
+                    Jméno: <code>admin</code><br>
+                    Heslo: <code>admin</code>
+                </div>
+                <div class="demo-user">
+                    <strong>Demo účet</strong>
+                    Jméno: <code>demo</code><br>
+                    Heslo: <code>demo</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>✨ Hlavní funkce</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>📚 13 tabulek otázek</strong><br>
+                    Více než 1000 skutečných otázek z vaší databáze
+                </div>
+                <div class="feature-item">
+                    <strong>👥 Multiplayer bitvy</strong><br>
+                    Soutěžte s ostatními hráči v reálném čase
+                </div>
+                <div class="feature-item">
+                    <strong>📊 Sledování pokroku</strong><br>
+                    Statistiky, žebříček a historie výsledků
+                </div>
+                <div class="feature-item">
+                    <strong>🔧 Pokročilé nastavení</strong><br>
+                    Přizpůsobení písma, filtrů a režimů
+                </div>
+                <div class="feature-item">
+                    <strong>⌨️ Klávesové zkratky</strong><br>
+                    A/B/C pro odpovědi, šipky pro navigaci
+                </div>
+                <div class="feature-item">
+                    <strong>📱 Responzivní design</strong><br>
+                    Funguje na počítačích, tabletech i mobilech
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎯 Klávesové zkratky</h2>
+            <p><strong>A, B, C</strong> - Výběr odpovědi</p>
+            <p><strong>←/→</strong> - Předchozí/Další otázka</p>
+            <p><strong>R</strong> - Náhodná otázka</p>
+            <p><strong>Mezerník</strong> - Další otázka</p>
+        </div>
+        
+        <a href="quiz_app.html" class="start-button">
+            🎯 Spustit Quiz Aplikaci
+        </a>
+        
+        <div class="demo-section">
+            <h2>🔧 Technické informace</h2>
+            <p><strong>Backend:</strong> Čistý JavaScript (bez závislostí na serveru)</p>
+            <p><strong>Ukládání:</strong> localStorage prohlížeče</p>
+            <p><strong>Databáze:</strong> Konvertované SQLite data do JSON/JS</p>
+            <p><strong>Multiplayer:</strong> Simulované pomocí localStorage (pro demo)</p>
+            <p><strong>Kompatibilita:</strong> Moderní prohlížeče (Chrome, Firefox, Safari, Edge)</p>
+        </div>
+        
+        <div class="demo-section">
+            <h2>📈 Statistiky databáze</h2>
+            <p>Aplikace obsahuje <strong>1099 otázek</strong> rozdělených do těchto kategorií:</p>
+            <ul style="columns: 2; column-gap: 30px; margin: 15px 0;">
+                <li>_00_Official_2203__2015_ (35)</li>
+                <li>_00_Official_4343__2015_ (35)</li>
+                <li>_00_Official_4700__2015_ (35)</li>
+                <li>_00_SŽ_Změny___ok (237)</li>
+                <li>_01_ČSN_34_2600_ed_2___ok (59)</li>
+                <li>_02_ČSN_EN_50125_3___ok (36)</li>
+                <li>ČSN_34_2613_ed3___ok (114)</li>
+                <li>ČSN_34_2650___ok (140)</li>
+                <li>ČSN_37_5711___ok (58)</li>
+                <li>SŽ_T1___ok (7)</li>
+                <li>SŽ_T31___ok (28)</li>
+                <li>TNŽ_34_2620___ok (93)</li>
+                <li>03_UTZ_RTEZ_DUCR (222)</li>
+            </ul>
+        </div>
+        
+        <p style="text-align: center; margin-top: 40px; opacity: 0.8;">
+            🌟 Webová verze zachovává všechnu funkcionalitu původní Python aplikace<br>
+            a přidává moderní webové rozhraní s podporou multiplayer.
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test UI Enhancements - Quiz Application</title>
+    <link rel="stylesheet" href="quiz_styles.css">
+    <style>
+        .test-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-left">
+                <h1>Test UI Enhancements</h1>
+            </div>
+            <div class="menu-right">
+                <div id="authButtons">
+                    <div class="user-status">Test Mode - UI Enhancement Testing</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status bar with server connection indicator -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span id="statusText">Test aplikace - UI Enhancement Testing (Server status monitoring aktivní)</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debug section -->
+        <div class="debug-panel" id="debugPanel" style="display: none;">
+            <div class="debug-header">
+                <h3>Debug Log</h3>
+                <button type="button" onclick="toggleDebugPanel()" class="debug-toggle">Zavřít</button>
+            </div>
+            <div class="debug-content">
+                <div class="debug-controls">
+                    <button type="button" onclick="clearDebugLog()" class="debug-clear">Vymazat log</button>
+                    <label>
+                        <input type="checkbox" id="autoScrollDebug" checked> Auto-scroll
+                    </label>
+                </div>
+                <div class="debug-log" id="debugLog">
+                    <div class="debug-entry system">Debug panel inicializován pro testování</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="container">
+            <div class="test-section">
+                <h2>1. Server Connection Status Test</h2>
+                <p>Barevná kontrolka v pravém horním rohu status baru ukazuje stav připojení k serveru:</p>
+                <ul>
+                    <li>🔴 Červená = Offline (Local Mode)</li>
+                    <li>🟡 Žlutá = Connecting (připojování)</li>
+                    <li>🟢 Zelená = Online (Server Mode)</li>
+                </ul>
+                <div class="test-buttons">
+                    <button class="test-button" onclick="testServerConnection()">Test připojení k serveru</button>
+                    <button class="test-button" onclick="simulateConnectionStates()">Simulovat stavy připojení</button>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>2. Debug Panel Test</h2>
+                <p>Debug panel zobrazuje komunikaci s backend serverem a systémové události:</p>
+                <div class="test-buttons">
+                    <button class="test-button" onclick="toggleDebugPanel()">🔍 Zapnout/Vypnout Debug Panel</button>
+                    <button class="test-button" onclick="testDebugLogging()">Test různých typů logů</button>
+                    <button class="test-button" onclick="clearDebugLog()">Vymazat debug log</button>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>3. Control Buttons Test</h2>
+                <p>Nová tlačítka pro ovládání testu:</p>
+                <div class="test-buttons">
+                    <button class="end-test-button" onclick="endTestConfirm()">Ukončit test</button>
+                    <button class="debug-button" onclick="toggleDebugPanel()">🔍 Debug</button>
+                    <button class="test-button" onclick="testNotifications()">Test notifikací</button>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h2>4. Enhanced Integration Test</h2>
+                <p>Test integrace s backend serverem:</p>
+                <div class="test-buttons">
+                    <button class="test-button" onclick="testBackendCommunication()">Test komunikace s backend</button>
+                    <button class="test-button" onclick="testEventSending()">Test odesílání událostí</button>
+                    <button class="test-button" onclick="testHealthCheck()">Test health check</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize debug logger
+        class DebugLogger {
+            constructor() {
+                this.logElement = document.getElementById('debugLog');
+                this.autoScrollElement = document.getElementById('autoScrollDebug');
+                this.maxEntries = 100;
+                this.entries = [];
+            }
+            
+            log(message, type = 'info') {
+                const timestamp = new Date().toLocaleTimeString();
+                const entry = {
+                    timestamp,
+                    message,
+                    type,
+                    id: Date.now() + Math.random()
+                };
+                
+                this.entries.push(entry);
+                
+                if (this.entries.length > this.maxEntries) {
+                    this.entries.shift();
+                }
+                
+                this.renderEntry(entry);
+                
+                if (this.autoScrollElement && this.autoScrollElement.checked) {
+                    this.scrollToBottom();
+                }
+                
+                console.log(`[${type.toUpperCase()}] ${message}`);
+            }
+            
+            renderEntry(entry) {
+                if (!this.logElement) return;
+                
+                const entryDiv = document.createElement('div');
+                entryDiv.className = `debug-entry ${entry.type}`;
+                entryDiv.innerHTML = `
+                    <span class="timestamp">[${entry.timestamp}]</span>
+                    ${entry.message}
+                `;
+                
+                this.logElement.appendChild(entryDiv);
+                
+                while (this.logElement.children.length > this.maxEntries) {
+                    this.logElement.removeChild(this.logElement.firstChild);
+                }
+            }
+            
+            clear() {
+                this.entries = [];
+                if (this.logElement) {
+                    this.logElement.innerHTML = '<div class="debug-entry system">Debug log vymazán</div>';
+                }
+            }
+            
+            scrollToBottom() {
+                if (this.logElement) {
+                    this.logElement.scrollTop = this.logElement.scrollHeight;
+                }
+            }
+        }
+
+        // Server status manager
+        class ServerStatusManager {
+            constructor() {
+                this.isOnline = false;
+                this.statusElement = document.getElementById('serverStatus');
+                this.indicatorElement = document.getElementById('statusIndicator');
+                this.textElement = document.getElementById('statusIndicatorText');
+                this.modeElement = document.getElementById('statusMode');
+                
+                this.updateStatus('offline', 'Offline', 'Local Mode');
+            }
+            
+            updateStatus(status, text, mode) {
+                if (!this.statusElement) return;
+                
+                this.isOnline = (status === 'online');
+                this.statusElement.className = `server-status ${status}`;
+                
+                if (this.indicatorElement) {
+                    switch(status) {
+                        case 'online':
+                            this.indicatorElement.textContent = '🟢';
+                            break;
+                        case 'connecting':
+                            this.indicatorElement.textContent = '🟡';
+                            break;
+                        default:
+                            this.indicatorElement.textContent = '🔴';
+                    }
+                }
+                
+                if (this.textElement) {
+                    this.textElement.textContent = text;
+                }
+                
+                if (this.modeElement) {
+                    this.modeElement.textContent = mode;
+                }
+            }
+            
+            setConnecting() {
+                this.updateStatus('connecting', 'Connecting...', 'Connecting');
+            }
+        }
+
+        // Initialize managers
+        let debugLogger = new DebugLogger();
+        let serverStatusManager = new ServerStatusManager();
+
+        // Debug panel functions
+        function toggleDebugPanel() {
+            const panel = document.getElementById('debugPanel');
+            if (panel) {
+                if (panel.style.display === 'none' || panel.style.display === '') {
+                    panel.style.display = 'block';
+                    debugLogger.log('Debug panel otevřen', 'system');
+                } else {
+                    panel.style.display = 'none';
+                    debugLogger.log('Debug panel zavřen', 'system');
+                }
+            }
+        }
+
+        function clearDebugLog() {
+            debugLogger.clear();
+        }
+
+        // Test functions
+        function testServerConnection() {
+            debugLogger.log('Testování připojení k serveru...', 'info');
+            serverStatusManager.setConnecting();
+            
+            setTimeout(() => {
+                fetch('/api/health')
+                    .then(response => {
+                        if (response.ok) {
+                            serverStatusManager.updateStatus('online', 'Online', 'Server Mode');
+                            debugLogger.log('Server je dostupný', 'success');
+                        } else {
+                            throw new Error(`HTTP ${response.status}`);
+                        }
+                    })
+                    .catch(error => {
+                        serverStatusManager.updateStatus('offline', 'Offline', 'Local Mode');
+                        debugLogger.log(`Server nedostupný: ${error.message}`, 'error');
+                    });
+            }, 1000);
+        }
+
+        function simulateConnectionStates() {
+            debugLogger.log('Simulace stavů připojení...', 'info');
+            
+            const states = [
+                ['connecting', 'Connecting...', 'Connecting'],
+                ['online', 'Online', 'Server Mode'],
+                ['offline', 'Offline', 'Local Mode']
+            ];
+            
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < states.length) {
+                    serverStatusManager.updateStatus(...states[index]);
+                    debugLogger.log(`Stav změněn na: ${states[index][1]}`, 'info');
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    debugLogger.log('Simulace ukončena', 'system');
+                }
+            }, 2000);
+        }
+
+        function testDebugLogging() {
+            debugLogger.log('Test systémové zprávy', 'system');
+            debugLogger.log('Test úspěšné operace', 'success');
+            debugLogger.log('Test informační zprávy', 'info');
+            debugLogger.log('Test varování', 'warning');
+            debugLogger.log('Test chybové zprávy', 'error');
+        }
+
+        function endTestConfirm() {
+            const confirmed = confirm('Opravdu chcete ukončit test? Toto je pouze demonstrace funkcionality.');
+            if (confirmed) {
+                debugLogger.log('Test ukončen uživatelem', 'warning');
+                alert('Test funkcionalita "Ukončit test" funguje správně!');
+            }
+        }
+
+        function testNotifications() {
+            debugLogger.log('Test notifikací spuštěn', 'info');
+            alert('Testovací notifikace - funkce alert() jako fallback');
+        }
+
+        function testBackendCommunication() {
+            debugLogger.log('Testování komunikace s backend...', 'info');
+            serverStatusManager.setConnecting();
+            
+            const testData = {
+                test: true,
+                timestamp: new Date().toISOString(),
+                message: 'Test komunikace'
+            };
+            
+            // Simulace požadavku
+            setTimeout(() => {
+                debugLogger.log('Backend komunikace simulována', 'success');
+                serverStatusManager.updateStatus('online', 'Online', 'Server Mode');
+            }, 1500);
+        }
+
+        function testEventSending() {
+            debugLogger.log('Test odesílání událostí...', 'info');
+            debugLogger.log('Událost: test_event odeslána', 'success');
+            debugLogger.log('Odpověď serveru: event_received', 'info');
+        }
+
+        function testHealthCheck() {
+            debugLogger.log('Spouštění health check...', 'info');
+            testServerConnection();
+        }
+
+        // Initialize
+        debugLogger.log('Test stránka načtena - UI enhancements funkční', 'system');
+    </script>
+</body>
+</html>

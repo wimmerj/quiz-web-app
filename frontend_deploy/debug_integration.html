@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Enhanced Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .reset-btn {
+            background: #dc3545;
+        }
+        .reset-btn:hover {
+            background: #c82333;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Debug Enhanced Integration</h1>
+    
+    <div class="debug-panel">
+        <h2>LocalStorage Status</h2>
+        <button onclick="checkLocalStorage()">Zkontrolovat localStorage</button>
+        <button onclick="resetAuthPreference()" class="reset-btn">Reset Auth Preference</button>
+        <button onclick="clearAllStorage()" class="reset-btn">Vymazat všechno z localStorage</button>
+    </div>
+    
+    <div class="debug-panel">
+        <h2>Test Enhanced Integration</h2>
+        <button onclick="testDialog()">Test zobrazení dialogu</button>
+        <button onclick="window.location.href='quiz_app.html'">Přejít na Quiz App</button>
+    </div>
+    
+    <div id="status"></div>
+
+    <script>
+        function checkLocalStorage() {
+            const status = document.getElementById('status');
+            const authPref = localStorage.getItem('authPreference');
+            const allKeys = Object.keys(localStorage);
+            
+            status.innerHTML = `
+                <h3>📋 LocalStorage obsah:</h3>
+                <p><strong>authPreference:</strong> ${authPref || 'není nastaveno'}</p>
+                <p><strong>Všechny klíče:</strong> ${allKeys.join(', ') || 'žádné'}</p>
+                <p><strong>Počet položek:</strong> ${allKeys.length}</p>
+            `;
+        }
+        
+        function resetAuthPreference() {
+            localStorage.removeItem('authPreference');
+            document.getElementById('status').innerHTML = '✅ Auth preference resetována!';
+            setTimeout(checkLocalStorage, 500);
+        }
+        
+        function clearAllStorage() {
+            localStorage.clear();
+            document.getElementById('status').innerHTML = '✅ Celý localStorage vymazán!';
+            setTimeout(checkLocalStorage, 500);
+        }
+        
+        function testDialog() {
+            // Simulace enhanced integration dialogu
+            console.log('🔧 Testing dialog...');
+            
+            const dialog = document.createElement('div');
+            dialog.className = 'auth-preference-dialog';
+            dialog.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+            `;
+            dialog.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; text-align: center;">
+                    <h3>🔒 Test Dialog</h3>
+                    <p>Toto je test dialogu enhanced integration</p>
+                    <button onclick="this.closest('.auth-preference-dialog').remove()">Zavřít</button>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            document.getElementById('status').innerHTML = '✅ Test dialog zobrazen!';
+        }
+        
+        // Automaticky zkontrolovat localStorage při načtení
+        window.addEventListener('load', checkLocalStorage);
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application - Web Version</title>
+    <link rel="stylesheet" href="quiz_styles.css">
+    <link rel="stylesheet" href="enhanced_integration.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header s menu -->
+        <nav class="menu-bar">
+            <div class="menu-left">
+                <div id="authButtons">
+                    <button class="menu-item" onclick="app.showLoginDialog()" id="loginBtn">Přihlásit</button>
+                    <button class="menu-item" onclick="app.showRegisterDialog()" id="registerBtn">Registrovat</button>
+                    <button class="menu-item" onclick="app.logout()" id="logoutBtn" style="display:none;">Odhlásit</button>
+                    <span id="userStatus" class="user-status" style="display:none;"></span>
+                </div>
+                <button class="menu-item" onclick="app.showChangePasswordDialog()" id="changePasswordBtn" disabled>Změnit heslo</button>
+                <button class="menu-item" onclick="app.showResults()" id="resultsBtn" disabled>Výsledky</button>
+                <button class="menu-item" onclick="app.showSettings()">Nastavení</button>
+                <button class="menu-item oral-exam-btn" onclick="app.showOralExam()" id="oralExamBtn">🎤 Ústní zkoušení</button>
+            </div>
+            <div class="menu-right">
+                <button class="menu-item" onclick="app.toggleImageMode()">Režim obrázků</button>
+                <button class="menu-item battle-btn" onclick="app.startBattle()" id="startBattleBtn">Založit bitvu</button>
+                <button class="menu-item battle-btn" onclick="app.joinBattle()" id="joinBattleBtn">Připojit se k bitvě</button>
+            </div>
+        </nav>
+
+        <!-- Status bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span id="statusText">Quiz Application - Nepřihlášený uživatel (0 odpovědí, celkem správně 0, celkem špatně 0)</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <h3>Žebříček nejlepších:</h3>
+            <div id="leaderboard-list">
+                <div class="leaderboard-item">🥇 Načítání...</div>
+                <div class="leaderboard-item">🥈</div>
+                <div class="leaderboard-item">🥉</div>
+            </div>
+        </div>
+
+        <!-- Battle Score Widget (skryté ve výchozím stavu) -->
+        <div id="battleScoreWidget" class="battle-score-widget hidden">
+            <h3>Skóre bitvy:</h3>
+            <div id="battleScores"></div>
+            <div class="battle-timer">
+                <span id="battleTimeText">Čas: 00:00</span>
+                <div class="time-progress-bar">
+                    <div id="timeProgressFill" class="time-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debug section -->
+        <div class="debug-panel" id="debugPanel" style="display: none;">
+            <div class="debug-header">
+                <h3>Debug Log</h3>
+                <button type="button" onclick="toggleDebugPanel()" class="debug-toggle">Zavřít</button>
+            </div>
+            <div class="debug-content">
+                <div class="debug-controls">
+                    <button type="button" onclick="clearDebugLog()" class="debug-clear">Vymazat log</button>
+                    <label>
+                        <input type="checkbox" id="autoScrollDebug" checked> Auto-scroll
+                    </label>
+                </div>
+                <div class="debug-log" id="debugLog">
+                    <div class="debug-entry system">Debug panel inicializován</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Navigation controls -->
+            <div class="nav-controls">
+                <select id="tableCombo" onchange="app.onTableSelected(this.value)" disabled>
+                    <option value="">Vyberte tabulku...</option>
+                </select>
+                
+                <button onclick="app.startQuiz()" id="startQuizBtn" class="start-quiz-button" disabled>▶ Spustit kvíz</button>
+                
+                <button onclick="app.prevQuestion()" id="backBtn" disabled>Zpět</button>
+                <button onclick="app.nextQuestion()" id="forwardBtn" disabled>Vpřed</button>
+                <button onclick="app.randomQuestion()" id="randomBtn" disabled>Random</button>
+                <button onclick="app.toggleHardMode()" id="hardBtn" disabled>Hard</button>
+                <button onclick="app.loadQuestionsFile()" id="loadBtn" disabled>Načíst soubor</button>
+                <button onclick="app.markIncorrect()" id="incorrectBtn" disabled>Označit jako chybnou</button>
+                <button onclick="endTestConfirm()" id="endTestBtn" class="end-test-button" disabled>Ukončit test</button>
+                <button onclick="toggleDebugPanel()" id="debugToggleBtn" class="debug-button">🔍 Debug</button>
+                
+                <label class="hint-checkbox">
+                    <input type="checkbox" id="hintCheckbox" onchange="app.toggleHint(this.checked)" disabled>
+                    Nápověda
+                </label>
+            </div>
+
+            <!-- Question display -->
+            <div class="question-section">
+                <div class="question-header">
+                    <span id="questionCount">Otázka: 0/0</span>
+                    <span id="score">Správně: 0 Špatně: 0</span>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div id="questionText" class="question-text" disabled>
+                    Vyberte tabulku a přihlaste se pro začátek kvízu.
+                </div>
+
+                <div class="answers-section">
+                    <div class="answer-option" id="answerA" onclick="app.checkAnswer('A')">
+                        <span class="answer-letter">A)</span>
+                        <span class="answer-text">Odpověď A</span>
+                    </div>
+                    <div class="answer-option" id="answerB" onclick="app.checkAnswer('B')">
+                        <span class="answer-letter">B)</span>
+                        <span class="answer-text">Odpověď B</span>
+                    </div>
+                    <div class="answer-option" id="answerC" onclick="app.checkAnswer('C')">
+                        <span class="answer-letter">C)</span>
+                        <span class="answer-text">Odpověď C</span>
+                    </div>
+                </div>
+
+                <div id="correctAnswerHint" class="correct-answer-hint hidden">
+                    Správná odpověď: 
+                </div>
+
+                <div id="explanation" class="explanation hidden">
+                    <strong>Vysvětlení:</strong> <span id="explanationText"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal dialogs -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Přihlášení</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Uživatelské jméno:</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Heslo:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">Přihlásit</button>
+                    <button type="button" onclick="app.closeModal('loginModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Registrace</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">Uživatelské jméno:</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Heslo:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">Registrovat</button>
+                    <button type="button" onclick="app.closeModal('registerModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="changePasswordModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Změna hesla</h2>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Současné heslo:</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nové heslo:</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">Změnit</button>
+                    <button type="button" onclick="app.closeModal('changePasswordModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Nastavení</h2>
+            <form id="settingsForm">
+                <div class="form-group">
+                    <label for="maxQuestionFontSize">Max. velikost písma otázky:</label>
+                    <input type="number" id="maxQuestionFontSize" min="12" max="48" value="28">
+                </div>
+                <div class="form-group">
+                    <label for="maxAnswerFontSize">Max. velikost písma odpovědi:</label>
+                    <input type="number" id="maxAnswerFontSize" min="12" max="36" value="26">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="showOnlyUnanswered">
+                        Zobrazit pouze nezodpovězené otázky
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="useTestDb">
+                        Použít testovací databázi
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="shuffleAnswers">
+                        Míchať odpovědi A, B, C (proti zapamatování vzorů)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="randomOrder">
+                        Náhodné pořadí otázek
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="backendMode">Režim backend:</label>
+                    <select id="backendMode" onchange="app.checkServerAvailability()">
+                        <option value="local">Lokální verze</option>
+                        <option value="server">Serverová verze</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="serverUrl">URL serveru:</label>
+                    <input type="text" id="serverUrl" placeholder="http://localhost:5000" value="http://localhost:5000">
+                </div>
+                <div class="form-group">
+                    <div id="serverStatus" class="server-status">
+                        <span id="serverStatusText">Kontroluji dostupnost serveru...</span>
+                        <button type="button" id="refreshServerBtn" onclick="app.checkServerAvailability()" style="margin-left: 10px;">Obnovit</button>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">Uložit</button>
+                    <button type="button" onclick="app.closeModal('settingsModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="battleSetupModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Nastavení bitvy</h2>
+            <form id="battleSetupForm">
+                <div class="form-group">
+                    <label for="battleTable">Tabulka:</label>
+                    <select id="battleTable" required>
+                        <option value="">Vyberte tabulku...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="battleQuestionCount">Počet otázek:</label>
+                    <input type="number" id="battleQuestionCount" min="5" max="50" value="20">
+                </div>
+                <div class="form-group">
+                    <label for="battleTimeLimit">Časový limit (minuty):</label>
+                    <input type="number" id="battleTimeLimit" min="1" max="60" value="10">
+                </div>
+                <div class="form-group">
+                    <label for="battlePlayerCount">Počet hráčů:</label>
+                    <input type="number" id="battlePlayerCount" min="2" max="8" value="2">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">Založit bitvu</button>
+                    <button type="button" onclick="app.closeModal('battleSetupModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="quiz_data.js"></script>
+    <script src="security_improvements.js"></script>
+    <script src="ux_improvements.js"></script>
+    <script src="data_management.js"></script>
+    <script src="accessibility.js"></script>
+    <script src="statistics.js"></script>
+    <script src="oral_exam_system.js"></script>
+    <script src="quiz_app.js"></script>
+    <script src="enhanced_integration.js"></script>
+    <link rel="stylesheet" href="advanced_styles.css">
+    <link rel="stylesheet" href="oral_exam_styles.css">
+</body>
+</html>

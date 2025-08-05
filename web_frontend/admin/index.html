@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Admin Panel</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="admin-app">
+        <!-- Navigation -->
+        <nav class="admin-nav">
+            <div class="nav-header">
+                <h1><i class="fas fa-quiz"></i> Quiz Admin Panel</h1>
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusText">Checking...</span>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="adminPanel.showSection('dashboard')" id="dashboardBtn">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </button>
+                <button class="nav-btn" onclick="adminPanel.showSection('users')" id="usersBtn">
+                    <i class="fas fa-users"></i> Uživatelé
+                </button>
+                <button class="nav-btn" onclick="adminPanel.showSection('statistics')" id="statisticsBtn">
+                    <i class="fas fa-chart-bar"></i> Statistiky
+                </button>
+                <button class="nav-btn" onclick="adminPanel.showSection('logs')" id="logsBtn">
+                    <i class="fas fa-file-alt"></i> Logy
+                </button>
+                <button class="nav-btn" onclick="adminPanel.showSection('settings')" id="settingsBtn">
+                    <i class="fas fa-cog"></i> Nastavení
+                </button>
+                <button class="nav-btn logout-btn" onclick="adminPanel.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Odhlásit
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="adminPanel.refreshAll()">
+                            <i class="fas fa-sync-alt"></i> Obnovit vše
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Celkem uživatelů</h3>
+                            <div class="stat-value" id="totalUsers">-</div>
+                            <div class="stat-change" id="usersChange">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Aktivní uživatelé</h3>
+                            <div class="stat-value" id="activeUsers">-</div>
+                            <div class="stat-change" id="activeUsersChange">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Celkem otázek</h3>
+                            <div class="stat-value" id="totalQuestions">-</div>
+                            <div class="stat-change" id="questionsChange">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Úspěšnost</h3>
+                            <div class="stat-value" id="successRate">-</div>
+                            <div class="stat-change" id="successRateChange">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-clock"></i> Nedávná aktivita</h3>
+                        <div class="activity-list" id="recentActivity">
+                            <div class="activity-item">
+                                <i class="fas fa-spinner fa-spin"></i> Načítání...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Systémové upozornění</h3>
+                        <div class="alerts-list" id="systemAlerts">
+                            <div class="alert-item info">
+                                <i class="fas fa-info-circle"></i>
+                                Admin panel je připraven k použití
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Správa uživatelů</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="adminPanel.refreshUsers()">
+                            <i class="fas fa-sync-alt"></i> Obnovit
+                        </button>
+                        <button class="btn btn-secondary" onclick="adminPanel.exportUsers()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-success" onclick="adminPanel.showCreateUserDialog()">
+                            <i class="fas fa-plus"></i> Nový uživatel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>Role:</label>
+                        <select id="roleFilter" onchange="adminPanel.filterUsers()">
+                            <option value="all">Všechny role</option>
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select id="statusFilter" onchange="adminPanel.filterUsers()">
+                            <option value="all">Všechny stavy</option>
+                            <option value="active">Aktivní</option>
+                            <option value="inactive">Neaktivní</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Hledat:</label>
+                        <input type="text" id="userSearch" placeholder="Jméno nebo email..." onkeyup="adminPanel.filterUsers()">
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-container">
+                    <table class="data-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Uživatel</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Registrace</th>
+                                <th>Poslední přihlášení</th>
+                                <th>Status</th>
+                                <th>Monica API</th>
+                                <th>Statistiky</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td colspan="10" class="text-center">
+                                    <i class="fas fa-spinner fa-spin"></i> Načítání uživatelů...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="statistics-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Statistiky a analýzy</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="adminPanel.refreshStatistics()">
+                            <i class="fas fa-sync-alt"></i> Obnovit
+                        </button>
+                        <select id="statsTimeRange" onchange="adminPanel.changeStatsTimeRange()">
+                            <option value="week">Tento týden</option>
+                            <option value="month">Tento měsíc</option>
+                            <option value="year">Tento rok</option>
+                            <option value="all">Celková historie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Registrace uživatelů v čase</h3>
+                        <canvas id="userRegistrationsChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Aktivita quizů</h3>
+                        <canvas id="quizActivityChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Úspěšnost podle tabulek</h3>
+                        <canvas id="successByTableChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Nejpopulárnější otázky</h3>
+                        <div id="popularQuestionsList" class="questions-list">
+                            <!-- Dynamicky naplněno -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logs Section -->
+            <section id="logs-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-file-alt"></i> Systémové logy</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="adminPanel.refreshLogs()">
+                            <i class="fas fa-sync-alt"></i> Obnovit
+                        </button>
+                        <button class="btn btn-secondary" onclick="adminPanel.exportLogs()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-warning" onclick="adminPanel.clearLogs()">
+                            <i class="fas fa-trash"></i> Vymazat staré
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Log Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>Úroveň:</label>
+                        <select id="logLevelFilter" onchange="adminPanel.filterLogs()">
+                            <option value="all">Všechny úrovně</option>
+                            <option value="info">Info</option>
+                            <option value="warning">Warning</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Akce:</label>
+                        <select id="logActionFilter" onchange="adminPanel.filterLogs()">
+                            <option value="all">Všechny akce</option>
+                            <option value="USER_LOGIN">Přihlášení</option>
+                            <option value="USER_REGISTERED">Registrace</option>
+                            <option value="QUIZ_ANSWER">Odpovědi kvízu</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="autoRefreshLogs" onchange="adminPanel.toggleAutoRefreshLogs()">
+                            Auto-refresh
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Logs Display -->
+                <div class="logs-container">
+                    <div class="logs-content" id="logsContent">
+                        <div class="log-entry info">
+                            <span class="log-time">Načítání...</span>
+                            <span class="log-action">SYSTEM</span>
+                            <span class="log-details">Admin panel inicializován</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> Nastavení systému</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-success" onclick="adminPanel.saveSettings()">
+                            <i class="fas fa-save"></i> Uložit změny
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-database"></i> Databáze</h3>
+                        <div class="settings-form">
+                            <button class="btn btn-warning" onclick="adminPanel.backupDatabase()">
+                                <i class="fas fa-download"></i> Zálohovat databázi
+                            </button>
+                            <button class="btn btn-info" onclick="adminPanel.optimizeDatabase()">
+                                <i class="fas fa-tools"></i> Optimalizovat
+                            </button>
+                            <div class="setting-item">
+                                <label>Automatické zálohy:</label>
+                                <input type="checkbox" id="autoBackups">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-robot"></i> Monica AI</h3>
+                        <div class="settings-form">
+                            <div class="setting-item">
+                                <label>API klíč:</label>
+                                <input type="password" id="monicaApiKey" placeholder="Zadejte API klíč">
+                            </div>
+                            <div class="setting-item">
+                                <label>Timeout (sekundy):</label>
+                                <input type="number" id="monicaTimeout" value="30" min="5" max="120">
+                            </div>
+                            <button class="btn btn-secondary" onclick="adminPanel.testMonicaConnection()">
+                                <i class="fas fa-plug"></i> Test připojení
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-shield-alt"></i> Bezpečnost</h3>
+                        <div class="settings-form">
+                            <div class="setting-item">
+                                <label>Max. neúspěšných přihlášení:</label>
+                                <input type="number" id="maxLoginAttempts" value="5" min="3" max="10">
+                            </div>
+                            <div class="setting-item">
+                                <label>Session timeout (hodiny):</label>
+                                <input type="number" id="sessionTimeout" value="24" min="1" max="168">
+                            </div>
+                            <div class="setting-item">
+                                <label>Logovat IP adresy:</label>
+                                <input type="checkbox" id="logIpAddresses" checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-bell"></i> Notifikace</h3>
+                        <div class="settings-form">
+                            <div class="setting-item">
+                                <label>Email notifikace:</label>
+                                <input type="checkbox" id="emailNotifications">
+                            </div>
+                            <div class="setting-item">
+                                <label>Nové registrace:</label>
+                                <input type="checkbox" id="notifyNewUsers" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>Chyby systému:</label>
+                                <input type="checkbox" id="notifySystemErrors" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="createUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Vytvořit nového uživatele</h3>
+                <button class="modal-close" onclick="adminPanel.closeModal('createUserModal')">&times;</button>
+            </div>
+            <form id="createUserForm" onsubmit="adminPanel.createUser(event)">
+                <div class="form-group">
+                    <label for="newUsername">Uživatelské jméno:</label>
+                    <input type="text" id="newUsername" required minlength="3" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="newEmail">Email:</label>
+                    <input type="email" id="newEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Heslo:</label>
+                    <input type="password" id="newPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="newRole">Role:</label>
+                    <select id="newRole" required>
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="newMonicaAccess">
+                        Přístup k Monica AI
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-success">Vytvořit</button>
+                    <button type="button" class="btn btn-secondary" onclick="adminPanel.closeModal('createUserModal')">Zrušit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Načítání...</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../web_frontend/api-client.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
