@@ -106,7 +106,7 @@ class OralExamSystem {
                             
                             <div class="setting-group">
                                 <label for="questionCount">Počet otázek:</label>
-                                <input type="number" id="questionCount" min="1" max="50" value="5">
+                                <input type="number" id="oralQuestionCount" min="1" max="50" value="5">
                             </div>
                             
                             <div class="setting-group">
@@ -212,7 +212,7 @@ class OralExamSystem {
         
         // Okamžitě ověřit přidání do DOM
         const modal = document.getElementById('oralExamModal');
-        const questionCountElement = document.getElementById('questionCount');
+        const questionCountElement = document.getElementById('oralQuestionCount');
         
         if (!modal) {
             console.error('KRITICKÁ CHYBA: Modal nebyl přidán do DOM!');
@@ -220,9 +220,9 @@ class OralExamSystem {
         }
         
         if (!questionCountElement) {
-            console.error('KRITICKÁ CHYBA: QuestionCount element nebyl přidán do DOM!');
+            console.error('KRITICKÁ CHYBA: OralQuestionCount element nebyl přidán do DOM!');
             console.log('Všechny input elementy v DOM:', document.querySelectorAll('input').length);
-            console.log('Všechny elementy s ID questionCount:', document.querySelectorAll('#questionCount').length);
+            console.log('Všechny elementy s ID oralQuestionCount:', document.querySelectorAll('#oralQuestionCount').length);
             return;
         }
         
@@ -329,7 +329,7 @@ class OralExamSystem {
         modal.classList.remove('hidden');
         
         // Okamžitě ověřit dostupnost kritických elementů
-        const questionCountElement = document.getElementById('questionCount');
+        const questionCountElement = document.getElementById('oralQuestionCount');
         const tableSelect = document.getElementById('oralExamTable');
         
         console.log('showModal - kontrola elementů:', {
@@ -337,19 +337,19 @@ class OralExamSystem {
             questionCount: !!questionCountElement,
             questionCountValue: questionCountElement ? questionCountElement.value : 'NEEXISTUJE',
             tableSelect: !!tableSelect,
-            allQuestionCountElements: document.querySelectorAll('#questionCount').length,
+            allQuestionCountElements: document.querySelectorAll('#oralQuestionCount').length,
             totalInputs: document.querySelectorAll('input').length
         });
         
         if (!questionCountElement) {
-            console.error('QuestionCount element stále neexistuje! Pokusím se znovu vytvořit UI...');
+            console.error('OralQuestionCount element stále neexistuje! Pokusím se znovu vytvořit UI...');
             // Odebrat poškozený modal a vytvořit nový
             modal.remove();
             this.createOralExamUI();
             
             // Znovu získat odkazy
             modal = document.getElementById('oralExamModal');
-            const newQuestionCount = document.getElementById('questionCount');
+            const newQuestionCount = document.getElementById('oralQuestionCount');
             
             if (!newQuestionCount) {
                 console.error('Ani po opětovném vytvoření se element nepodařilo najít!');
@@ -419,7 +419,7 @@ class OralExamSystem {
         
         // Najít elementy s podrobným debugem
         const tableNameElement = document.getElementById('oralExamTable');
-        const questionCountInput = document.getElementById('questionCount');
+        const questionCountInput = document.getElementById('oralQuestionCount');
         const randomOrderElement = document.getElementById('randomOrder');
         
         console.log('Kontrola dostupnosti všech elementů:', {

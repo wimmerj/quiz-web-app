@@ -50,8 +50,8 @@ class EnhancedQuizIntegration {
             this.app.settings.serverUrl = newUrl;
         }
         
-        // Restartuj monitorování s novou URL
-        if (this.useServerAuth) {
+        // Restartuj monitorování pouze pokud je server režim aktivní
+        if (this.useServerAuth && this.app.settings.backendMode === 'server') {
             this.checkBackendAvailability();
         }
     }
@@ -328,29 +328,61 @@ class EnhancedQuizIntegration {
     }
     
     startBackendMonitoring() {
+        // Zastavit jakékoliv existující monitorování
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
+        }
+        
+        // Spustit pouze pokud používáme server režim
+        if (!this.useServerAuth || this.app.settings.backendMode !== 'server') {
+            console.log('Monitorování zastaveno - lokální režim');
+            return;
         }
         
         // Kontrola každých 30 sekund
         this.checkInterval = setInterval(() => {
-            this.checkBackendAvailability();
+            if (this.useServerAuth && this.app.settings.backendMode === 'server') {
+                this.checkBackendAvailability();
+            } else {
+                // Zastavit monitoring pokud se změnil režim
+                this.stopBackendMonitoring();
+            }
         }, 30000);
     }
     
     startIntensiveMonitoring() {
+        // Zastavit jakékoliv existující monitorování
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
         }
         
+        // Spustit pouze pokud používáme server režim
+        if (!this.useServerAuth || this.app.settings.backendMode !== 'server') {
+            console.log('Intenzivní monitorování zastaveno - lokální režim');
+            return;
+        }
+        
         // Intenzivní kontrola každé 3 sekundy
         this.checkInterval = setInterval(async () => {
-            const available = await this.checkBackendAvailability();
-            if (available) {
-                // Přepnout na běžné monitorování
-                this.startBackendMonitoring();
+            if (this.useServerAuth && this.app.settings.backendMode === 'server') {
+                const available = await this.checkBackendAvailability();
+                if (available) {
+                    // Přepnout na běžné monitorování
+                    this.startBackendMonitoring();
+                }
+            } else {
+                // Zastavit monitoring pokud se změnil režim
+                this.stopBackendMonitoring();
             }
         }, 3000);
+    }
+    
+    stopBackendMonitoring() {
+        if (this.checkInterval) {
+            clearInterval(this.checkInterval);
+            this.checkInterval = null;
+            console.log('Backend monitoring stopped');
+        }
     }
     
     async registerUser(username, password) {
@@ -411,9 +443,21 @@ class EnhancedQuizIntegration {
                     this.authToken = data.access_token;
                     this.app.showNotification('✅ Přihlášení úspěšné!', 'success');
                     
-                    // Aktualizovat UI pro přihlášeného uživatele
-                    this.app.currentUser = { username };
-                    this.app.updateUserInterface();
+                    // Aktualizovat UI pro přihlášeného uživatele - OPRAVA: správně nastavit currentUser
+                    this.app.currentUser = username; // Původní problém byl zde
+                    
+                    // Uložit přihlašovací údaje pro auto-login
+                    this.app.saveToStorage('last_user', { username, password });
+                    
+                    // Aktualizovat UI
+                    this.app.updateUI();
+                    this.app.updateScore();
+                    this.app.updateWindowTitle();
+                    
+                    // Pokud je už vybraná tabulka, načti otázky
+                    if (this.app.currentTable) {
+                        this.app.loadQuestionsForTable(this.app.currentTable);
+                    }
                     
                     // Trigger event for GUI monitoring (v4.0)
                     this.notifyServerEvent('user_login', { username });
@@ -441,9 +485,13 @@ class EnhancedQuizIntegration {
         this.useServerAuth = false;
         
         // Zastavit monitoring
-        if (this.checkInterval) {
-            clearInterval(this.checkInterval);
-            this.checkInterval = null;
+        this.stopBackendMonitoring();
+        
+        // Aktualizovat nastavení aplikace
+        if (this.app && this.app.settings) {
+            this.app.settings.backendMode = 'local';
+            this.app.saveSettings();
+            this.app.updateMainStatusBar('local');
         }
         
         // Zavřít všechny dialogy

@@ -1149,7 +1149,7 @@ class QuizApp {
         const endBtn = document.getElementById('endTestBtn');
         
         if (startBtn) {
-            startBtn.disabled = !hasQuestions; // Enable when logged in AND has table AND has questions
+            startBtn.disabled = !isLoggedIn || !hasTable; // Enable when logged in AND has table
         }
         if (endBtn) {
             endBtn.disabled = true; // Initially disabled, enabled when quiz starts
@@ -1729,12 +1729,32 @@ class QuizApp {
         // Aktualizuj URL serveru z formuláře před testem
         if (serverUrlInput && serverUrlInput.value.trim()) {
             this.settings.serverUrl = serverUrlInput.value.trim();
+            
+            // Synchronizovat URL s enhanced integration
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+            }
         }
         
         // Aktualizuj backend mode z formuláře před testem
         if (backendModeSelect) {
             this.settings.backendMode = backendModeSelect.value;
             this.saveSettings(); // Uložit nastavení
+            
+            // Synchronizovat s enhanced integration
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+                
+                // Aktualizovat režim enhanced integration
+                if (this.settings.backendMode === 'server') {
+                    enhancedIntegration.useServerAuth = true;
+                    localStorage.setItem('authPreference', 'server');
+                } else {
+                    enhancedIntegration.useServerAuth = false;
+                    enhancedIntegration.stopBackendMonitoring();
+                    localStorage.setItem('authPreference', 'local');
+                }
+            }
         }
         
         // Aktualizuj status bar okamžitě podle režimu
