@@ -353,6 +353,16 @@ a:hover {
     }
 }
 
+/* Module-specific Color Themes */
+.module-card.oral-exam {
+    border-left: 4px solid #9b59b6;
+}
+
+.module-card.oral-exam:hover {
+    border-left-color: #8e44ad;
+    box-shadow: 0 4px 20px rgba(155, 89, 182, 0.15);
+}
+
 /* Dark Theme Support */
 @media (prefers-color-scheme: dark) {
     :root {

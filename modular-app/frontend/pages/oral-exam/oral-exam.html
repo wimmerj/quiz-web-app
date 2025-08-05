@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Exam - Modular Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="oral-exam.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications-container"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🎤 Oral Exam Modul</h1>
+            <div class="user-info">
+                <span id="userDisplay">👤 Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Odhlásit</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../../index.html">🏠 Dashboard</a>
+            <span class="separator">›</span>
+            <span class="current">🎤 Oral Exam</span>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Exam Setup Panel -->
+        <section class="exam-setup" id="examSetup">
+            <div class="setup-card">
+                <h2>🎙️ Nastavení Ústní Zkoušky</h2>
+                
+                <div class="setup-grid">
+                    <div class="form-group">
+                        <label for="examTableSelect">📚 Vyberte tabulku:</label>
+                        <select id="examTableSelect" class="form-select">
+                            <option value="">-- Vyberte tabulku --</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="examDifficulty">📊 Úroveň obtížnosti:</label>
+                        <select id="examDifficulty" class="form-select">
+                            <option value="easy">🟢 Snadná (základní otázky)</option>
+                            <option value="medium" selected>🟡 Střední (smíšené otázky)</option>
+                            <option value="hard">🔴 Těžká (složité otázky)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="examDuration">⏱️ Doba trvání (minuty):</label>
+                        <select id="examDuration" class="form-select">
+                            <option value="5">5 minut</option>
+                            <option value="10">10 minut</option>
+                            <option value="15" selected>15 minut</option>
+                            <option value="20">20 minut</option>
+                            <option value="30">30 minut</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="questionCount">🔢 Počet otázek:</label>
+                        <select id="questionCount" class="form-select">
+                            <option value="5">5 otázek</option>
+                            <option value="10" selected>10 otázek</option>
+                            <option value="15">15 otázek</option>
+                            <option value="20">20 otázek</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Voice Settings -->
+                <div class="voice-settings">
+                    <h3>🔊 Nastavení Hlasu</h3>
+                    <div class="voice-grid">
+                        <div class="form-group">
+                            <label for="speechLanguage">🌍 Jazyk:</label>
+                            <select id="speechLanguage" class="form-select">
+                                <option value="cs-CZ" selected>🇨🇿 Čeština</option>
+                                <option value="en-US">🇺🇸 Angličtina</option>
+                                <option value="de-DE">🇩🇪 Němčina</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="speechRate">🎵 Rychlost řeči:</label>
+                            <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+                            <span id="speechRateDisplay">1x</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="speechPitch">🎶 Výška hlasu:</label>
+                            <input type="range" id="speechPitch" min="0.5" max="2" step="0.1" value="1">
+                            <span id="speechPitchDisplay">1x</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="speechVolume">🔊 Hlasitost:</label>
+                            <input type="range" id="speechVolume" min="0" max="1" step="0.1" value="0.8">
+                            <span id="speechVolumeDisplay">80%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-test">
+                        <button id="testSpeechBtn" class="btn btn-secondary">
+                            🔊 Test Hlasu
+                        </button>
+                        <button id="micTestBtn" class="btn btn-secondary">
+                            🎤 Test Mikrofonu
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="setup-actions">
+                    <button id="startExamBtn" class="btn btn-primary" disabled>
+                        🚀 Spustit Ústní Zkoušku
+                    </button>
+                    <button id="endExamBtn" class="btn btn-danger" disabled>
+                        🛑 Ukončit Zkoušku
+                    </button>
+                    <button id="examSettingsBtn" class="btn btn-secondary">
+                        ⚙️ Pokročilé Nastavení
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Interface -->
+        <section class="exam-interface" id="examInterface" style="display: none;">
+            
+            <!-- Exam Header -->
+            <div class="exam-header">
+                <div class="exam-progress">
+                    <div class="progress-info">
+                        <span id="examQuestionCounter">Otázka: 0/0</span>
+                        <span id="examTimeRemaining">⏱️ Zbývá: 15:00</span>
+                        <span id="examScore">🎯 Skóre: 0/0</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="examProgressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="exam-controls">
+                    <button id="pauseExamBtn" class="btn btn-small btn-warning">
+                        ⏸️ Pauza
+                    </button>
+                    <button id="helpExamBtn" class="btn btn-small btn-secondary">
+                        ❓ Nápověda
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Question Display -->
+            <div class="question-display">
+                <div class="question-header">
+                    <h3>📝 Otázka</h3>
+                    <div class="question-actions">
+                        <button id="repeatQuestionBtn" class="btn btn-small">
+                            🔁 Opakovat Otázku
+                        </button>
+                        <button id="skipQuestionBtn" class="btn btn-small btn-warning">
+                            ⏭️ Přeskočit
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="question-content">
+                    <div class="question-text-container">
+                        <p id="examQuestionText" class="question-text">
+                            Vyberte tabulku a spusťte ústní zkoušku...
+                        </p>
+                        
+                        <!-- Speech Status Indicator -->
+                        <div id="speechStatus" class="speech-status">
+                            <div class="speech-indicator">
+                                <div class="speech-icon">🔊</div>
+                                <div class="speech-waves">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <span id="speechStatusText">Připraveno k přečtení</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Voice Response Area -->
+            <div class="voice-response">
+                <div class="response-header">
+                    <h3>🎤 Vaša Odpověď</h3>
+                    <div class="response-mode">
+                        <label class="radio-label">
+                            <input type="radio" name="responseMode" value="voice" checked>
+                            <span>🎤 Hlasová odpověď</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="responseMode" value="text">
+                            <span>⌨️ Textová odpověď</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Voice Input -->
+                <div id="voiceInput" class="voice-input">
+                    <div class="mic-container">
+                        <button id="micButton" class="mic-button" disabled>
+                            <div class="mic-icon">🎤</div>
+                            <div class="mic-animation">
+                                <div class="pulse"></div>
+                                <div class="pulse delay-1"></div>
+                                <div class="pulse delay-2"></div>
+                            </div>
+                        </button>
+                        <div class="mic-status">
+                            <span id="micStatusText">Připraveno k nahrávání</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Visualization -->
+                    <div class="voice-visualizer">
+                        <canvas id="voiceCanvas" width="300" height="60"></canvas>
+                    </div>
+                    
+                    <!-- Recognized Text -->
+                    <div class="recognized-text">
+                        <label>📝 Rozpoznaný text:</label>
+                        <div id="recognizedText" class="text-display">
+                            Stiskněte mikrofon a začněte mluvit...
+                        </div>
+                        <div class="recognition-confidence">
+                            <span>Přesnost: </span>
+                            <span id="confidenceLevel">--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Text Input -->
+                <div id="textInput" class="text-input" style="display: none;">
+                    <label for="manualAnswer">✍️ Zadejte odpověď ručně:</label>
+                    <textarea id="manualAnswer" class="answer-textarea" 
+                              placeholder="Napište zde svou odpověď..."></textarea>
+                    <div class="text-actions">
+                        <button id="clearTextBtn" class="btn btn-small btn-secondary">
+                            🗑️ Vymazat
+                        </button>
+                        <button id="speakTextBtn" class="btn btn-small btn-secondary">
+                            🔊 Přečíst Text
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Response Actions -->
+                <div class="response-actions">
+                    <button id="submitAnswerBtn" class="btn btn-primary" disabled>
+                        ✅ Odeslat Odpověď
+                    </button>
+                    <button id="retryAnswerBtn" class="btn btn-secondary">
+                        🔄 Zkusit Znovu
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Feedback Panel -->
+            <div id="feedbackPanel" class="feedback-panel" style="display: none;">
+                <div class="feedback-header">
+                    <h4>📊 Zpětná Vazba</h4>
+                    <div class="feedback-score">
+                        <span id="answerScore">--</span>
+                    </div>
+                </div>
+                
+                <div class="feedback-content">
+                    <div class="answer-comparison">
+                        <div class="user-answer">
+                            <h5>👤 Vaše odpověď:</h5>
+                            <p id="userAnswerText">--</p>
+                        </div>
+                        <div class="correct-answer">
+                            <h5>✅ Správná odpověď:</h5>
+                            <p id="correctAnswerText">--</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-analysis">
+                        <h5>🔍 Analýza:</h5>
+                        <ul id="feedbackPoints">
+                            <li>Načítání analýzy...</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feedback-actions">
+                    <button id="nextQuestionBtn" class="btn btn-primary">
+                        ➡️ Další Otázka
+                    </button>
+                    <button id="explainAnswerBtn" class="btn btn-secondary">
+                        📖 Vysvětlit Odpověď
+                    </button>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Exam Results -->
+        <section class="exam-results" id="examResults" style="display: none;">
+            <div class="results-card">
+                <div class="results-header">
+                    <h2>🏆 Výsledky Ústní Zkoušky</h2>
+                    <div class="overall-grade">
+                        <span id="overallGrade" class="grade">A</span>
+                    </div>
+                </div>
+                
+                <div class="results-summary">
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalQuestions">0</div>
+                            <div class="stat-label">Celkem otázek</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="correctAnswers">0</div>
+                            <div class="stat-label">Správné odpovědi</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="accuracyPercent">0%</div>
+                            <div class="stat-label">Úspěšnost</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="timeSpent">0:00</div>
+                            <div class="stat-label">Čas strávený</div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-metrics">
+                        <h3>📈 Výkonnostní Metriky</h3>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="metric-label">🎤 Kvalita hlasu:</span>
+                                <div class="metric-bar">
+                                    <div id="voiceQuality" class="metric-fill" style="width: 85%"></div>
+                                </div>
+                                <span id="voiceQualityText">85%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">🗣️ Srozumitelnost:</span>
+                                <div class="metric-bar">
+                                    <div id="clarity" class="metric-fill" style="width: 92%"></div>
+                                </div>
+                                <span id="clarityText">92%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">⚡ Rychlost odpovědi:</span>
+                                <div class="metric-bar">
+                                    <div id="responseSpeed" class="metric-fill" style="width: 78%"></div>
+                                </div>
+                                <span id="responseSpeedText">78%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detailed Results -->
+                <div class="detailed-results">
+                    <h3>📋 Podrobné Výsledky</h3>
+                    <div id="questionReviews" class="question-reviews">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button id="retakeExamBtn" class="btn btn-primary">
+                        🔄 Opakovat Zkoušku
+                    </button>
+                    <button id="newExamBtn" class="btn btn-secondary">
+                        📚 Nová Zkouška
+                    </button>
+                    <button id="exportResultsBtn" class="btn btn-secondary">
+                        💾 Export Výsledků
+                    </button>
+                    <button id="shareResultsBtn" class="btn btn-secondary">
+                        📤 Sdílet Výsledky
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Advanced Settings Modal -->
+    <div id="advancedSettingsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>⚙️ Pokročilé Nastavení Ústní Zkoušky</h3>
+                <button class="modal-close" onclick="closeModal('advancedSettingsModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="settings-tabs">
+                    <button class="tab-button active" data-tab="speech">🔊 Řeč</button>
+                    <button class="tab-button" data-tab="recognition">🎤 Rozpoznávání</button>
+                    <button class="tab-button" data-tab="evaluation">📊 Hodnocení</button>
+                    <button class="tab-button" data-tab="interface">🎨 Rozhraní</button>
+                </div>
+                
+                <!-- Speech Settings Tab -->
+                <div id="speechTab" class="tab-content active">
+                    <h4>🔊 Nastavení Syntézy Řeči</h4>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="voiceSelect">Hlas:</label>
+                            <select id="voiceSelect" class="form-select">
+                                <option value="">-- Automatický výběr --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="autoReadQuestions" checked>
+                                Automaticky číst otázky
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="readFeedback" checked>
+                                Číst zpětnou vazbu
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pauseBetweenQuestions">Pauza mezi otázkami (s):</label>
+                            <input type="number" id="pauseBetweenQuestions" min="0" max="10" value="2">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recognition Settings Tab -->
+                <div id="recognitionTab" class="tab-content">
+                    <h4>🎤 Nastavení Rozpoznávání Řeči</h4>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="recognitionLanguage">Jazyk rozpoznávání:</label>
+                            <select id="recognitionLanguage" class="form-select">
+                                <option value="cs-CZ" selected>Čeština</option>
+                                <option value="en-US">Angličtina</option>
+                                <option value="de-DE">Němčina</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="continuousRecognition" checked>
+                                Průběžné rozpoznávání
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="interimResults">
+                                Zobrazovat průběžné výsledky
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxAlternatives">Maximální alternativy:</label>
+                            <input type="number" id="maxAlternatives" min="1" max="5" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="confidenceThreshold">Práh spolehlivosti:</label>
+                            <input type="range" id="confidenceThreshold" min="0" max="1" step="0.1" value="0.7">
+                            <span id="confidenceDisplay">70%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Evaluation Settings Tab -->
+                <div id="evaluationTab" class="tab-content">
+                    <h4>📊 Nastavení Hodnocení</h4>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="evaluationMode">Režim hodnocení:</label>
+                            <select id="evaluationMode" class="form-select">
+                                <option value="strict">Přísné (přesná shoda)</option>
+                                <option value="fuzzy" selected>Fuzzy (podobnost)</option>
+                                <option value="semantic">Sémantické (význam)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="similarityThreshold">Práh podobnosti:</label>
+                            <input type="range" id="similarityThreshold" min="0.5" max="1" step="0.05" value="0.8">
+                            <span id="similarityDisplay">80%</span>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="ignoreCase" checked>
+                                Ignorovat velikost písmen
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="ignorePunctuation" checked>
+                                Ignorovat interpunkci
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="allowPartialCredit">
+                                Povolit částečné body
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interface Settings Tab -->
+                <div id="interfaceTab" class="tab-content">
+                    <h4>🎨 Nastavení Rozhraní</h4>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="showWaveform" checked>
+                                Zobrazovat vlnové formy
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="showConfidence" checked>
+                                Zobrazovat spolehlivost rozpoznání
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedbackDetail">Úroveň zpětné vazby:</label>
+                            <select id="feedbackDetail" class="form-select">
+                                <option value="basic">Základní</option>
+                                <option value="detailed" selected>Podrobná</option>
+                                <option value="comprehensive">Komplexní</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="animationSpeed">Rychlost animací:</label>
+                            <select id="animationSpeed" class="form-select">
+                                <option value="slow">Pomalé</option>
+                                <option value="normal" selected>Normální</option>
+                                <option value="fast">Rychlé</option>
+                                <option value="none">Žádné</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('advancedSettingsModal')">
+                    Zrušit
+                </button>
+                <button id="resetSettingsBtn" class="btn btn-warning">
+                    🔄 Obnovit Výchozí
+                </button>
+                <button id="saveAdvancedSettingsBtn" class="btn btn-primary">
+                    💾 Uložit Nastavení
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>❓ Nápověda - Ústní Zkouška</h3>
+                <button class="modal-close" onclick="closeModal('helpModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="help-section">
+                    <h4>🎤 Jak funguje rozpoznávání řeči?</h4>
+                    <ul>
+                        <li>Stiskněte tlačítko mikrofonu pro zahájení nahrávání</li>
+                        <li>Mluvte zřetelně a v přiměřené rychlosti</li>
+                        <li>Sledujte indikátor rozpoznávání a úroveň spolehlivosti</li>
+                        <li>Můžete přepnout na textový režim kdykoli</li>
+                    </ul>
+                </div>
+                
+                <div class="help-section">
+                    <h4>🔊 Ovládání hlasového výstupu</h4>
+                    <ul>
+                        <li>Otázky jsou automaticky přečteny</li>
+                        <li>Použijte "Opakovat Otázku" pro znovupřehrání</li>
+                        <li>Upravte rychlost a výšku hlasu v nastavení</li>
+                        <li>Test hlasu ověří funkčnost před zkouškou</li>
+                    </ul>
+                </div>
+                
+                <div class="help-section">
+                    <h4>📊 Hodnocení odpovědí</h4>
+                    <ul>
+                        <li>Systém porovnává vaši odpověď s referenční</li>
+                        <li>Hodnotí se přesnost, srozumitelnost a rychlost</li>
+                        <li>Získáte podrobnou zpětnou vazbu po každé otázce</li>
+                        <li>Výsledky lze exportovat pro další analýzu</li>
+                    </ul>
+                </div>
+                
+                <div class="help-section">
+                    <h4>⌨️ Klávesové zkratky</h4>
+                    <ul>
+                        <li><kbd>Space</kbd> - Zahájit/ukončit nahrávání</li>
+                        <li><kbd>R</kbd> - Opakovat otázku</li>
+                        <li><kbd>S</kbd> - Přeskočit otázku</li>
+                        <li><kbd>Enter</kbd> - Odeslat odpověď</li>
+                        <li><kbd>Esc</kbd> - Pauza/obnovení</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeModal('helpModal')">
+                    Rozumím
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="oral-exam.js"></script>
+</body>
+</html>

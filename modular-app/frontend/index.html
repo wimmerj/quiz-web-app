@@ -130,7 +130,7 @@
         <a href="pages/oral-exam/oral-exam.html" class="module-card oral-exam">
             <h3>🎤 Ústní Zkoušení</h3>
             <p>TTS a STT integrace s AI vyhodnocováním. Specializované otázky optimalizované pro mluvené odpovědi.</p>
-            <span class="status planning">Plánováno</span>
+            <span class="status ready">Hotovo</span>
         </a>
 
         <!-- Battle Module -->
@@ -163,10 +163,10 @@
         <h3>📋 Status Modulů</h3>
         <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
             <div>✅ <strong>Infrastructure:</strong> Hotovo</div>
-            <div>🚧 <strong>Auth Module:</strong> V přípravě</div>
-            <div>📋 <strong>Quiz Module:</strong> Plánováno</div>
-            <div>📋 <strong>Admin Module:</strong> Plánováno</div>
-            <div>📋 <strong>Oral Exam:</strong> Plánováno</div>
+            <div>✅ <strong>Auth Module:</strong> Hotovo</div>
+            <div>✅ <strong>Quiz Module:</strong> Hotovo</div>
+            <div>✅ <strong>Admin Module:</strong> Hotovo</div>
+            <div>✅ <strong>Oral Exam:</strong> Hotovo</div>
             <div>📋 <strong>Battle Mode:</strong> Plánováno</div>
         </div>
     </div>
@@ -180,8 +180,8 @@
         // Update progress based on completed modules
         function updateProgress() {
             const total = 6; // Total modules
-            const completed = 0; // Completed modules
-            const inProgress = 1; // Auth module
+            const completed = 5; // Completed modules: Infrastructure, Auth, Quiz, Admin, Oral Exam
+            const inProgress = 0; // No modules in progress
             
             const progressPercent = ((completed + inProgress * 0.5) / total) * 100;
             document.querySelector('.progress-fill').style.width = progressPercent + '%';
