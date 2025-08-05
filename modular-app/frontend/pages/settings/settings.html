@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nastavení - Modular Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications-container"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>⚙️ Nastavení</h1>
+            <div class="user-info">
+                <span id="userDisplay">👤 Loading...</span>
+                <button id="logoutBtn" class="btn btn-secondary">Odhlásit</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../../index.html">🏠 Dashboard</a>
+            <span class="separator">›</span>
+            <span class="current">⚙️ Nastavení</span>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Settings Navigation Tabs -->
+        <div class="settings-navigation">
+            <div class="settings-tabs">
+                <button class="tab-button active" data-tab="general">
+                    🎨 Obecné
+                </button>
+                <button class="tab-button" data-tab="quiz">
+                    🎯 Quiz
+                </button>
+                <button class="tab-button" data-tab="account">
+                    👤 Účet
+                </button>
+                <button class="tab-button" data-tab="appearance">
+                    🎭 Vzhled
+                </button>
+                <button class="tab-button" data-tab="audio">
+                    🔊 Audio
+                </button>
+                <button class="tab-button" data-tab="advanced">
+                    🔧 Pokročilé
+                </button>
+                <button class="tab-button" data-tab="data">
+                    💾 Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Content Container -->
+        <div class="settings-container">
+
+            <!-- General Settings Tab -->
+            <div id="generalTab" class="settings-tab active">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>🎨 Obecná nastavení</h2>
+                        <p>Základní konfigurace aplikace</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🌍 Jazyk aplikace</h3>
+                                <p>Vyberte preferovaný jazyk rozhraní</p>
+                            </div>
+                            <div class="setting-control">
+                                <select id="languageSelect" class="form-select">
+                                    <option value="cs">🇨🇿 Čeština</option>
+                                    <option value="en">🇺🇸 English</option>
+                                    <option value="sk">🇸🇰 Slovenčina</option>
+                                    <option value="de">🇩🇪 Deutsch</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎮 Výchozí modul</h3>
+                                <p>Který modul se má spustit při přihlášení</p>
+                            </div>
+                            <div class="setting-control">
+                                <select id="defaultModuleSelect" class="form-select">
+                                    <option value="dashboard">🏠 Dashboard</option>
+                                    <option value="quiz">🎯 Quiz</option>
+                                    <option value="battle">⚔️ Battle</option>
+                                    <option value="oral-exam">🎙️ Ústní zkouška</option>
+                                    <option value="admin">⚙️ Admin (pokud máte oprávnění)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔔 Notifikace</h3>
+                                <p>Povolit zobrazování upozornění</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="notificationsEnabled" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>💾 Automatické ukládání</h3>
+                                <p>Automaticky ukládat pokrok a nastavení</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="autoSaveEnabled" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>⌨️ Klávesové zkratky</h3>
+                                <p>Povolit navigaci pomocí klávesnice</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="keyboardShortcuts" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔒 Pamatovat si přihlášení</h3>
+                                <p>Zůstat přihlášen po zavření prohlížeče</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="rememberLogin">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Settings Tab -->
+            <div id="quizTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>🎯 Nastavení kvízu</h2>
+                        <p>Konfigurace chování kvízového modulu</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎲 Zamíchat odpovědi</h3>
+                                <p>Náhodné pořadí možností u každé otázky</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="shuffleAnswers">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>💡 Zobrazovat nápovědy</h3>
+                                <p>Povolit tlačítko nápovědy u otázek</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showHints" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>⏭️ Automaticky pokračovat</h3>
+                                <p>Přejít na další otázku po odpovědi</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="autoNextQuestion">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📖 Zobrazovat vysvětlení</h3>
+                                <p>Automaticky ukázat vysvětlení po odpovědi</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showExplanations" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📏 Velikost písma otázky</h3>
+                                <p>Nastavte velikost textu otázek</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="questionFontSize" min="12" max="28" value="16" class="slider">
+                                    <span id="questionFontDisplay" class="slider-value">16px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📝 Velikost písma odpovědí</h3>
+                                <p>Nastavte velikost textu odpovědí</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="answerFontSize" min="12" max="24" value="14" class="slider">
+                                    <span id="answerFontDisplay" class="slider-value">14px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Settings Tab -->
+            <div id="accountTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>👤 Nastavení účtu</h2>
+                        <p>Správa vašeho uživatelského profilu</p>
+                    </div>
+                    
+                    <div class="account-info-card">
+                        <div class="account-avatar">
+                            <div id="userAvatar" class="avatar-circle">👤</div>
+                            <button id="changeAvatarBtn" class="btn btn-small">Změnit avatar</button>
+                        </div>
+                        
+                        <div class="account-details">
+                            <div class="account-field">
+                                <label>Uživatelské jméno:</label>
+                                <span id="usernameDisplay">Loading...</span>
+                            </div>
+                            <div class="account-field">
+                                <label>E-mail:</label>
+                                <span id="emailDisplay">Loading...</span>
+                            </div>
+                            <div class="account-field">
+                                <label>Registrace:</label>
+                                <span id="registrationDate">Loading...</span>
+                            </div>
+                            <div class="account-field">
+                                <label>Poslední přihlášení:</label>
+                                <span id="lastLoginDate">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔒 Změnit heslo</h3>
+                                <p>Aktualizace přihlašovacího hesla</p>
+                            </div>
+                            <div class="setting-control">
+                                <button id="changePasswordBtn" class="btn btn-secondary">
+                                    🔐 Změnit heslo
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📧 Změnit e-mail</h3>
+                                <p>Aktualizace e-mailové adresy</p>
+                            </div>
+                            <div class="setting-control">
+                                <button id="changeEmailBtn" class="btn btn-secondary">
+                                    ✉️ Změnit e-mail
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔐 Dvou-faktorové ověření</h3>
+                                <p>Zvýšení bezpečnosti účtu</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📱 Mobilní notifikace</h3>
+                                <p>Zasílání upozornění na telefon</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="mobileNotifications">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appearance Settings Tab -->
+            <div id="appearanceTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>🎭 Nastavení vzhledu</h2>
+                        <p>Přizpůsobení vizuálního stylu aplikace</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🌙 Tmavý režim</h3>
+                                <p>Přepnutí mezi světlým a tmavým tématem</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="darkMode">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎨 Barevné téma</h3>
+                                <p>Vyberte hlavní barvu aplikace</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="color-themes">
+                                    <div class="color-option blue active" data-theme="blue" title="Modrá">
+                                        <div class="color-preview"></div>
+                                    </div>
+                                    <div class="color-option green" data-theme="green" title="Zelená">
+                                        <div class="color-preview"></div>
+                                    </div>
+                                    <div class="color-option purple" data-theme="purple" title="Fialová">
+                                        <div class="color-preview"></div>
+                                    </div>
+                                    <div class="color-option orange" data-theme="orange" title="Oranžová">
+                                        <div class="color-preview"></div>
+                                    </div>
+                                    <div class="color-option red" data-theme="red" title="Červená">
+                                        <div class="color-preview"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📐 Kompaktní rozhraní</h3>
+                                <p>Menší mezery a prvky pro více obsahu</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="compactInterface">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>✨ Animace</h3>
+                                <p>Povolit animace a přechody</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="animationsEnabled" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔤 Velikost písma UI</h3>
+                                <p>Celková velikost textu v rozhraní</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="uiFontSize" min="12" max="20" value="14" class="slider">
+                                    <span id="uiFontDisplay" class="slider-value">14px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📊 Zobrazovat statistiky</h3>
+                                <p>Ukázat pokrok a výkon na dashboard</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showDashboardStats" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Settings Tab -->
+            <div id="audioTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>🔊 Nastavení zvuku</h2>
+                        <p>Konfigurace audio funkcí a hlasových asistentů</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔊 Hlavní hlasitost</h3>
+                                <p>Celková hlasitost zvukových efektů</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="masterVolume" min="0" max="100" value="50" class="slider">
+                                    <span id="masterVolumeDisplay" class="slider-value">50%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎵 Zvukové efekty</h3>
+                                <p>Povolit zvuky při interakcích</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="soundEffects" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎙️ Text-to-Speech</h3>
+                                <p>Předčítání otázek a textu</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="textToSpeech">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🗣️ Hlas TTS</h3>
+                                <p>Výběr hlasu pro předčítání</p>
+                            </div>
+                            <div class="setting-control">
+                                <select id="ttsVoiceSelect" class="form-select">
+                                    <option value="default">Výchozí hlas</option>
+                                    <option value="czech-female">Česká žena</option>
+                                    <option value="czech-male">Český muž</option>
+                                    <option value="english-female">English Female</option>
+                                    <option value="english-male">English Male</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>⚡ Rychlost řeči</h3>
+                                <p>Tempo předčítání textu</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="ttsSpeed" min="0.5" max="2" step="0.1" value="1" class="slider">
+                                    <span id="ttsSpeedDisplay" class="slider-value">1.0x</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎤 Hlasové ovládání</h3>
+                                <p>Povolit ovládání hlasem (Speech-to-Text)</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="voiceControl">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🎯 Battle zvuky</h3>
+                                <p>Speciální efekty v Battle módech</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="battleSounds" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Settings Tab -->
+            <div id="advancedTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>🔧 Pokročilá nastavení</h2>
+                        <p>Technické konfigurace a vývojářské nástroje</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🌐 Backend režim</h3>
+                                <p>Typ připojení k datovým službám</p>
+                            </div>
+                            <div class="setting-control">
+                                <select id="backendMode" class="form-select">
+                                    <option value="demo">Demo (offline)</option>
+                                    <option value="local">Lokální server</option>
+                                    <option value="render">Render.com (online)</option>
+                                    <option value="custom">Vlastní server</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔗 URL serveru</h3>
+                                <p>Adresa backend API serveru</p>
+                            </div>
+                            <div class="setting-control">
+                                <input type="url" id="serverUrl" class="form-input" 
+                                       placeholder="https://quiz-web-app-wpls.onrender.com">
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>⏱️ Timeout API</h3>
+                                <p>Časový limit pro požadavky na server (s)</p>
+                            </div>
+                            <div class="setting-control">
+                                <div class="slider-container">
+                                    <input type="range" id="apiTimeout" min="5" max="60" value="30" class="slider">
+                                    <span id="apiTimeoutDisplay" class="slider-value">30s</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔍 Vývojářský režim</h3>
+                                <p>Zobrazit konzoli a debug informace</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="developerMode">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>📊 Analytika</h3>
+                                <p>Sbírat anonymní data o používání</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="analytics" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🚀 Experimentální funkce</h3>
+                                <p>Povolit beta verze nových modulů</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="experimentalFeatures">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🔄 Automatické aktualizace</h3>
+                                <p>Automaticky stahovat nové verze</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="autoUpdates" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h3>🐛 Hlášení chyb</h3>
+                                <p>Automaticky zasílat chybové hlášení</p>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="errorReporting" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Management Tab -->
+            <div id="dataTab" class="settings-tab">
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>💾 Správa dat</h2>
+                        <p>Import, export a záloha vašich dat</p>
+                    </div>
+                    
+                    <div class="data-management-grid">
+                        <!-- Export Section -->
+                        <div class="data-section">
+                            <h3>📤 Export dat</h3>
+                            <p>Stáhněte si zálohu vašeho pokroku a nastavení</p>
+                            
+                            <div class="export-options">
+                                <div class="export-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="exportSettings" checked>
+                                        <span class="checkmark"></span>
+                                        Nastavení aplikace
+                                    </label>
+                                </div>
+                                <div class="export-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="exportProgress" checked>
+                                        <span class="checkmark"></span>
+                                        Pokrok v kvízech
+                                    </label>
+                                </div>
+                                <div class="export-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="exportStats" checked>
+                                        <span class="checkmark"></span>
+                                        Statistiky a výsledky
+                                    </label>
+                                </div>
+                                <div class="export-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="exportBattleHistory">
+                                        <span class="checkmark"></span>
+                                        Historie Battle módů
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button id="exportDataBtn" class="btn btn-primary">
+                                📥 Exportovat data
+                            </button>
+                        </div>
+
+                        <!-- Import Section -->
+                        <div class="data-section">
+                            <h3>📥 Import dat</h3>
+                            <p>Obnovte data z předchozí zálohy</p>
+                            
+                            <div class="import-area">
+                                <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                                <button id="importDataBtn" class="btn btn-secondary">
+                                    📂 Vybrat soubor
+                                </button>
+                                <div id="importStatus" class="import-status"></div>
+                            </div>
+                        </div>
+
+                        <!-- Storage Info -->
+                        <div class="data-section">
+                            <h3>💽 Informace o úložišti</h3>
+                            <p>Aktuální využití místního úložiště</p>
+                            
+                            <div class="storage-info">
+                                <div class="storage-item">
+                                    <span>Nastavení:</span>
+                                    <span id="settingsSize">Načítá se...</span>
+                                </div>
+                                <div class="storage-item">
+                                    <span>Pokrok kvízů:</span>
+                                    <span id="progressSize">Načítá se...</span>
+                                </div>
+                                <div class="storage-item">
+                                    <span>Battle statistiky:</span>
+                                    <span id="battleStatsSize">Načítá se...</span>
+                                </div>
+                                <div class="storage-item">
+                                    <span>Cache:</span>
+                                    <span id="cacheSize">Načítá se...</span>
+                                </div>
+                                <div class="storage-total">
+                                    <span><strong>Celkem:</strong></span>
+                                    <span id="totalSize"><strong>Načítá se...</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clear Data Section -->
+                        <div class="data-section danger-section">
+                            <h3>🗑️ Vymazání dat</h3>
+                            <p>Permanentní odstranění vybraných dat</p>
+                            
+                            <div class="danger-actions">
+                                <button id="clearCacheBtn" class="btn btn-warning">
+                                    🧹 Vymazat cache
+                                </button>
+                                <button id="clearProgressBtn" class="btn btn-danger">
+                                    ⚠️ Vymazat pokrok
+                                </button>
+                                <button id="resetSettingsBtn" class="btn btn-danger">
+                                    🔄 Reset nastavení
+                                </button>
+                                <button id="clearAllDataBtn" class="btn btn-danger">
+                                    💣 Vymazat vše
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Settings Actions -->
+        <div class="settings-actions">
+            <button id="resetToDefaultBtn" class="btn btn-secondary">
+                🔄 Obnovit výchozí
+            </button>
+            <button id="saveSettingsBtn" class="btn btn-primary">
+                💾 Uložit nastavení
+            </button>
+            <button id="applyChangesBtn" class="btn btn-success">
+                ✅ Použít změny
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔒 Změna hesla</h3>
+                <button class="modal-close" onclick="closeModal('changePasswordModal')">×</button>
+            </div>
+            
+            <form id="changePasswordForm" class="modal-body">
+                <div class="form-group">
+                    <label for="currentPassword">Současné heslo:</label>
+                    <input type="password" id="currentPassword" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newPassword">Nové heslo:</label>
+                    <input type="password" id="newPassword" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Potvrdit heslo:</label>
+                    <input type="password" id="confirmPassword" class="form-input" required>
+                </div>
+                
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div id="strengthFill" class="strength-fill"></div>
+                    </div>
+                    <span id="strengthText">Zadejte nové heslo</span>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('changePasswordModal')">
+                    Zrušit
+                </button>
+                <button type="submit" form="changePasswordForm" class="btn btn-primary">
+                    🔐 Změnit heslo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Email Modal -->
+    <div id="changeEmailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📧 Změna e-mailu</h3>
+                <button class="modal-close" onclick="closeModal('changeEmailModal')">×</button>
+            </div>
+            
+            <form id="changeEmailForm" class="modal-body">
+                <div class="form-group">
+                    <label for="newEmail">Nový e-mail:</label>
+                    <input type="email" id="newEmail" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmEmail">Potvrdit e-mail:</label>
+                    <input type="email" id="confirmEmail" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="passwordConfirm">Heslo pro potvrzení:</label>
+                    <input type="password" id="passwordConfirm" class="form-input" required>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('changeEmailModal')">
+                    Zrušit
+                </button>
+                <button type="submit" form="changeEmailForm" class="btn btn-primary">
+                    ✉️ Změnit e-mail
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Selection Modal -->
+    <div id="avatarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👤 Výběr avataru</h3>
+                <button class="modal-close" onclick="closeModal('avatarModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="avatar-grid">
+                    <div class="avatar-option" data-avatar="👤">👤</div>
+                    <div class="avatar-option" data-avatar="🧑‍💼">🧑‍💼</div>
+                    <div class="avatar-option" data-avatar="👩‍🎓">👩‍🎓</div>
+                    <div class="avatar-option" data-avatar="🧑‍🔬">🧑‍🔬</div>
+                    <div class="avatar-option" data-avatar="👨‍💻">👨‍💻</div>
+                    <div class="avatar-option" data-avatar="👩‍🏫">👩‍🏫</div>
+                    <div class="avatar-option" data-avatar="🧙‍♂️">🧙‍♂️</div>
+                    <div class="avatar-option" data-avatar="🦸‍♀️">🦸‍♀️</div>
+                    <div class="avatar-option" data-avatar="🤖">🤖</div>
+                    <div class="avatar-option" data-avatar="🐱">🐱</div>
+                    <div class="avatar-option" data-avatar="🐶">🐶</div>
+                    <div class="avatar-option" data-avatar="🦊">🦊</div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('avatarModal')">
+                    Zrušit
+                </button>
+                <button id="saveAvatarBtn" class="btn btn-primary">
+                    💾 Uložit avatar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>
