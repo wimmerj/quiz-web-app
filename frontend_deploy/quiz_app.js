@@ -1041,20 +1041,25 @@ class QuizApp {
         }
     }
 
-    async registerUser(username, password) {
+    async registerUser(username, password, email = '') {
         // Pokud je dostupná enhanced integrace, použij ji
         if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
-            return await enhancedIntegration.registerUser(username, password);
+            return await enhancedIntegration.registerUser(username, password, email);
         }
         
         // Jinak použij původní lokální registraci
-        return this.registerUserLocal(username, password);
+        return this.registerUserLocal(username, password, email);
     }
     
-    registerUserLocal(username, password) {
+    registerUserLocal(username, password, email = '') {
         // Input validation
         if (!username || !password) {
             this.showNotification("Uživatelské jméno a heslo jsou povinné.", 'error');
+            return false;
+        }
+
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            this.showNotification("Neplatný formát emailu.", 'error');
             return false;
         }
 
@@ -1638,8 +1643,9 @@ class QuizApp {
         document.getElementById('registerForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
-            this.registerUser(username, password);
+            this.registerUser(username, password, email);
             this.closeModal('registerModal');
             e.target.reset();
         });

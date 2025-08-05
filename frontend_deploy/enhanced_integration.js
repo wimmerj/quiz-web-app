@@ -385,23 +385,28 @@ class EnhancedQuizIntegration {
         }
     }
     
-    async registerUser(username, password) {
+    async registerUser(username, password, email = '') {
         console.log('Register user called with server auth:', this.useServerAuth);
         
         if (this.useServerAuth && this.backendAvailable) {
             try {
-                const response = await fetch(`${this.backendUrl}/api/register`, {
+                // Email je povinný pro server registraci
+                if (!email) {
+                    email = `${username}@local.quiz`; // Fallback email
+                }
+                
+                const response = await fetch(`${this.backendUrl}/api/auth/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username, password }),
+                    body: JSON.stringify({ username, password, email }),
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
-                    this.authToken = data.access_token;
+                    this.authToken = data.token; // Backend vrací 'token', ne 'access_token'
                     this.app.showNotification('✅ Registrace úspěšná!', 'success');
                     
                     // Trigger event for GUI monitoring (v4.0)
@@ -429,7 +434,7 @@ class EnhancedQuizIntegration {
         
         if (this.useServerAuth && this.backendAvailable) {
             try {
-                const response = await fetch(`${this.backendUrl}/api/login`, {
+                const response = await fetch(`${this.backendUrl}/api/auth/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -440,7 +445,7 @@ class EnhancedQuizIntegration {
                 const data = await response.json();
 
                 if (response.ok) {
-                    this.authToken = data.access_token;
+                    this.authToken = data.token; // Backend vrací 'token', ne 'access_token'
                     this.app.showNotification('✅ Přihlášení úspěšné!', 'success');
                     
                     // Aktualizovat UI pro přihlášeného uživatele - OPRAVA: správně nastavit currentUser
