@@ -209,7 +209,7 @@ Pokud máte vlastní doménu:
    ```javascript
    // V souboru frontend_deploy/api-config.js
    const API_CONFIG = {
-       PRODUCTION_URL: 'https://quiz-backend-YOUR-URL.onrender.com', // Nahraďte YOUR-URL
+       PRODUCTION_URL: 'https://quiz-web-app-wpls.onrender.com', // Nahraďte YOUR-URL
        // ...
    };
    ```
