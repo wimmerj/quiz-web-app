@@ -298,17 +298,13 @@ class AuthManager {
         this.setFormLoading(form, true);
         
         try {
-            if (window.APIClient) {
-                const response = await window.APIClient.resetPassword(emailOrUsername);
-                
-                if (response.success) {
-                    this.showNotification('Reset link byl odeslán na váš email', 'success');
-                    form.reset();
-                } else {
-                    this.showNotification(`Reset se nezdařil: ${response.error}`, 'error');
-                }
+            const response = await APIClient.resetPassword(emailOrUsername);
+            
+            if (response.success) {
+                this.showNotification('Reset link byl odeslán na váš email', 'success');
+                form.reset();
             } else {
-                this.showNotification('Server není dostupný, reset hesla momentálně není možný.', 'warning');
+                this.showNotification(`Reset se nezdařil: ${response.error}`, 'error');
             }
             
         } catch (error) {

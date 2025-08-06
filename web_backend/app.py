@@ -84,7 +84,7 @@ class User(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False, index=True)
-    email = db.Column(db.String(100), unique=True, nullable=True, index=True)  # Allow NULL emails
+    email = db.Column(db.String(100), unique=True, nullable=False, index=True)
     password_hash = db.Column(db.String(255), nullable=False)
     salt = db.Column(db.String(32), nullable=False)
     role = db.Column(db.String(20), default='student', nullable=False)
@@ -274,16 +274,8 @@ def register_user():
         email = data.get('email', '').strip()
         
         # Validation
-        if not username or not password:
-            return jsonify({'error': 'Username and password are required'}), 400
-        
-        # Email is optional but if provided, must be valid
-        if email and '@' not in email:
-            return jsonify({'error': 'Invalid email format'}), 400
-        
-        # If email is empty, set it to None to avoid unique constraint issues
-        if not email:
-            email = None
+        if not username or not password or not email:
+            return jsonify({'error': 'Username, email and password are required'}), 400
         
         if len(username) < 3 or len(username) > 50:
             return jsonify({'error': 'Username must be 3-50 characters long'}), 400
@@ -292,15 +284,12 @@ def register_user():
             return jsonify({'error': 'Password must be at least 6 characters long'}), 400
         
         # Check if user exists
-        existing_user = User.query.filter(User.username == username).first()
+        existing_user = User.query.filter(
+            (User.username == username) | (User.email == email)
+        ).first()
+        
         if existing_user:
-            return jsonify({'error': 'Username already exists'}), 409
-            
-        # Check email only if provided
-        if email:
-            existing_email = User.query.filter(User.email == email).first()
-            if existing_email:
-                return jsonify({'error': 'Email already exists'}), 409
+            return jsonify({'error': 'Username or email already exists'}), 409
         
         # Create user
         salt = secrets.token_hex(16)
