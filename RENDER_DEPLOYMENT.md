@@ -8,6 +8,15 @@ Tento návod vás provede kroky k nasazení modulárního backend API na **Rende
 - PostgreSQL databáze
 - Environment variables pro produkci
 
+## ⚠️ DŮLEŽITÉ POŘADÍ KROKŮ:
+1. **PRVNÍ:** Registrace na Render.com
+2. **DRUHÉ:** Vytvoření PostgreSQL databáze ← **NEJDŮLEŽITĚJŠÍ!**
+3. **TŘETÍ:** Vytvoření Web Service (propojení GitHub)
+4. **ČTVRTÉ:** Environment Variables setup
+5. **PÁTÉ:** Deploy a testování
+
+**Proč databáze první?** Web Service potřebuje DATABASE_URL při startu!
+
 ---
 
 ## 🔧 KROK 1: Příprava před nasazením
@@ -57,7 +66,7 @@ services:
 
 ---
 
-## 🌐 KROK 2: Registrace a příprava Render.com
+## 🌐 KROK 2: Registrace na Render.com
 
 ### 2.1 Registrace účtu
 1. Jděte na **[render.com](https://render.com)**
@@ -65,12 +74,25 @@ services:
 3. Zaregistrujte se pomocí **GitHub účtu** (doporučeno)
 4. Autorizujte přístup k vašemu GitHub účtu
 
-### 2.2 Propojení GitHub repository
-1. Po přihlášení klikněte **"New +"** v pravém horním rohu
-2. Vyberte **"Web Service"**
-3. Klikněte **"Connect a repository"**
-4. Najděte a vyberte **`quiz-web-app`** repository
-5. Klikněte **"Connect"**
+### 2.2 Dashboard příprava
+- Po přihlášení budete v **Render Dashboard**
+- **NEPROPOJUJTE** ještě repository
+- Nejdříve vytvoříme databázi, pak teprve backend service
+
+### 2.3 Projekty na Render.com
+**Render.com má dva přístupy:**
+
+**A) Bez projektů (doporučeno pro začátečníky):**
+- Služby (databáze, web services) vytváříte přímo z hlavního dashboard
+- Jednodušší správa pro malé aplikace
+- **Tento přístup použijeme v návodu**
+
+**B) S projekty (pro větší aplikace):**
+- Vytvoříte projekt pomocí **"New Project"**
+- V projektu pak přidáváte související služby
+- Lepší organizace pro complex apps
+
+**Pro naši Quiz App použijeme přístup A) - bez projektů.**
 
 ---
 
@@ -106,11 +128,14 @@ postgresql://quiz_user:dlouhy_password_string@dpg-xyz123/quiz_modular
 
 ## 🖥️ KROK 4: Vytvoření Web Service
 
-### 4.1 Základní konfigurace
-1. Klikněte **"New +"** → **"Web Service"**
-2. Vyberte **"Build and deploy from a Git repository"**
-3. Vyberte repository **`quiz-web-app`**
-4. Vyplňte konfigurace:
+### 4.1 Propojení GitHub repository a základní konfigurace
+1. V Render dashboardu klikněte **"New +"** v pravém horním rohu
+2. Vyberte **"Web Service"**
+3. Klikněte **"Build and deploy from a Git repository"**
+4. Klikněte **"Connect a repository"**
+5. Najděte a vyberte **`quiz-web-app`** repository
+6. Klikněte **"Connect"**
+7. Vyplňte konfigurace:
 
 ```
 Name: quiz-modular-backend
