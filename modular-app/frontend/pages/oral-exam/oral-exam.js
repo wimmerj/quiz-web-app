@@ -305,8 +305,8 @@ class OralExamModule {
     setupEventListeners() {
         // 🧪 TESTOVACÍ TLAČÍTKO PRO ORAL EXAM
         document.getElementById('testOralBtn')?.addEventListener('click', () => {
-            console.log('🎯 Test button event listener triggered!');
-            alert('🎯 Event listener works!');
+            console.log('🎯 Test button event listener triggered! v2.1');
+            alert('🎯 Event listener works! v2.1');
             this.runOralAPIClientTest();
         });
         
