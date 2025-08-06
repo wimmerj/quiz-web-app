@@ -111,21 +111,32 @@ class QuizModule {
     async checkAuthentication() {
         // Check if user is logged in (from auth module or previous session)
         
+        console.log('🔍 Checking authentication...');
+        console.log('🔍 window.APIClient:', window.APIClient);
+        
         // NEW: First check APIClient authentication
         if (window.APIClient && window.APIClient.isLoggedIn()) {
             try {
+                console.log('✅ APIClient is logged in, getting user info...');
                 const userInfo = await window.APIClient.getCurrentUser();
+                console.log('✅ User info received:', userInfo);
                 this.currentUser = userInfo.username || userInfo.user || 'authenticated_user';
                 Logger.info('User authenticated via APIClient', { user: this.currentUser });
                 this.updateUserDisplay();
                 return;
             } catch (error) {
+                console.error('❌ APIClient user info failed:', error);
                 Logger.warning('APIClient user info failed, trying fallback', error);
             }
+        } else {
+            console.log('⚠️ APIClient not available or not logged in');
+            console.log('⚠️ APIClient exists:', !!window.APIClient);
+            console.log('⚠️ APIClient logged in:', window.APIClient ? window.APIClient.isLoggedIn() : 'N/A');
         }
         
         // Fallback to old method
         const currentUser = this.getCurrentUser();
+        console.log('🔍 Fallback getCurrentUser result:', currentUser);
         
         if (currentUser instanceof Promise) {
             // Handle async getCurrentUser
@@ -140,6 +151,8 @@ class QuizModule {
             this.currentUser = currentUser;
             Logger.info('User authenticated', { user: currentUser });
         }
+        
+        console.log('🔍 Final currentUser:', this.currentUser);
         
         if (!this.currentUser) {
             // Redirect to auth module if not authenticated
@@ -249,9 +262,21 @@ class QuizModule {
     
     async loadServerTables() {
         try {
+            console.log('🔍 Loading server tables...');
+            console.log('🔍 APIClient available:', !!window.APIClient);
+            
+            if (!window.APIClient) {
+                console.error('❌ APIClient not available for loading tables');
+                return;
+            }
+            
             const response = await window.APIClient.get('/api/quiz/tables');
+            console.log('🔍 Server tables response:', response);
+            
             if (response.success && response.data) {
                 const tableSelect = document.getElementById('tableSelect');
+                console.log('🔍 Table select element:', tableSelect);
+                console.log('🔍 Tables received:', response.data);
                 
                 response.data.forEach(table => {
                     const option = document.createElement('option');
@@ -261,8 +286,12 @@ class QuizModule {
                 });
                 
                 Logger.success('Server tables loaded', { count: response.data.length });
+                console.log('✅ Server tables loaded successfully');
+            } else {
+                console.log('⚠️ No table data in response or not successful');
             }
         } catch (error) {
+            console.error('❌ Failed to load server tables:', error);
             Logger.warning('Failed to load server tables', error);
         }
     }
