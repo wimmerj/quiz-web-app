@@ -47,7 +47,24 @@ class AdminModule {
     async checkAdminAccess() {
         console.log('🔍 Checking admin access...');
         
-        if (window.APIClient && window.APIClient.isAuthenticated()) {
+        // Wait for APIClient to be available
+        let attempts = 0;
+        const maxAttempts = 30;
+        while (!window.APIClient && attempts < maxAttempts) {
+            console.log(`⏳ Waiting for APIClient... (${attempts + 1}/${maxAttempts})`);
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+        
+        if (!window.APIClient) {
+            console.error('❌ APIClient not available after waiting, redirecting to login...');
+            window.location.href = '../auth/login.html';
+            return;
+        }
+        
+        console.log('✅ APIClient is available, checking authentication...');
+        
+        if (window.APIClient.isAuthenticated()) {
             console.log('✅ APIClient is authenticated, getting user info...');
             try {
                 const user = await window.APIClient.getCurrentUser();
