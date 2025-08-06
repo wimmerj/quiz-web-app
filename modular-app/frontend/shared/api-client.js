@@ -48,12 +48,9 @@ class ModularAPIClient {
         const hostname = window.location.hostname;
         
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
-            return 'http://localhost:5000';
-        } else if (hostname.includes('github.io')) {
-            return 'https://quiz-web-app-wpls.onrender.com';
+            return 'http://localhost:5000';  // Local development
         } else {
-            // Default production backend
-            return 'https://quiz-web-app-wpls.onrender.com';
+            return 'https://quiz-modular-backend.onrender.com';  // Production on Render.com
         }
     }
     
