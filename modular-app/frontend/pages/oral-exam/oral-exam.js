@@ -193,9 +193,9 @@ class OralExamModule {
                 this.speechRecognition.maxAlternatives = this.settings.recognition.maxAlternatives;
                 
                 this.setupSpeechRecognitionEvents();
-                logger.info('Speech Recognition initialized');
+                console.log('✅ Speech Recognition initialized');
             } else {
-                logger.warn('Speech Recognition not supported');
+                console.log('⚠️ Speech Recognition not supported');
                 this.showNotification('Rozpoznávání řeči není v tomto prohlížeči podporováno', 'warning');
             }
             
@@ -206,13 +206,13 @@ class OralExamModule {
                 if (speechSynthesis.onvoiceschanged !== undefined) {
                     speechSynthesis.onvoiceschanged = () => this.loadVoices();
                 }
-                logger.info('Speech Synthesis initialized');
+                console.log('✅ Speech Synthesis initialized');
             } else {
-                logger.warn('Speech Synthesis not supported');
+                console.log('⚠️ Speech Synthesis not supported');
             }
             
         } catch (error) {
-            logger.error('Failed to initialize speech capabilities:', error);
+            console.error('❌ Failed to initialize speech capabilities:', error);
         }
     }
 
@@ -275,7 +275,7 @@ class OralExamModule {
         };
         
         this.speechRecognition.onerror = (event) => {
-            logger.error('Speech recognition error:', event.error);
+            console.error('Speech recognition error:', event.error);
             this.isRecording = false;
             this.updateMicStatus('error', '❌ Chyba rozpoznávání');
             this.stopVoiceVisualization();
@@ -305,6 +305,8 @@ class OralExamModule {
     setupEventListeners() {
         // 🧪 TESTOVACÍ TLAČÍTKO PRO ORAL EXAM
         document.getElementById('testOralBtn')?.addEventListener('click', () => {
+            console.log('🎯 Test button event listener triggered!');
+            alert('🎯 Event listener works!');
             this.runOralAPIClientTest();
         });
         
@@ -406,13 +408,13 @@ class OralExamModule {
                             tableSelect.appendChild(option);
                         });
                         
-                        logger.info('Server tables loaded for oral exam', { count: response.data.length });
+                        console.log('✅ Server tables loaded for oral exam', { count: response.data.length });
                         console.log('✅ Server tables loaded successfully for oral exam');
                         return; // Exit if server data loaded successfully
                     }
                 } catch (error) {
                     console.error('❌ Failed to load server tables for oral exam:', error);
-                    logger.warning('Failed to load server tables, using demo data', error);
+                    console.log('⚠️ Failed to load server tables, using demo data', error);
                 }
             }
 
@@ -430,10 +432,10 @@ class OralExamModule {
                 tableSelect.appendChild(option);
             });
 
-            logger.info('Demo tables loaded for oral exam');
+            console.log('Demo tables loaded for oral exam');
 
         } catch (error) {
-            logger.error('Failed to load available tables:', error);
+            console.error('Failed to load available tables:', error);
             this.showNotification('Nepodařilo se načíst dostupné tabulky', 'error');
         }
     }
@@ -447,7 +449,7 @@ class OralExamModule {
         }
         
         if (selectedTable) {
-            logger.info('Table selected:', selectedTable);
+            console.log('Table selected:', selectedTable);
         }
     }
 
@@ -455,7 +457,7 @@ class OralExamModule {
         try {
             if (!this.validateExamSetup()) return;
             
-            logger.info('Starting oral exam...');
+            console.log('Starting oral exam...');
             
             // Initialize exam state
             this.examState.isActive = true;
@@ -480,7 +482,7 @@ class OralExamModule {
             this.showNotification('Ústní zkouška byla spuštěna!', 'success');
             
         } catch (error) {
-            logger.error('Failed to start exam:', error);
+            console.error('Failed to start exam:', error);
             this.showNotification('Nepodařilo se spustit zkoušku', 'error');
         }
     }
@@ -517,10 +519,10 @@ class OralExamModule {
             availableQuestions = this.shuffleArray(availableQuestions);
             this.examState.questions = availableQuestions.slice(0, questionCount);
             
-            logger.info(`Loaded ${this.examState.questions.length} questions for exam`);
+            console.log(`Loaded ${this.examState.questions.length} questions for exam`);
             
         } catch (error) {
-            logger.error('Failed to load exam questions:', error);
+            console.error('Failed to load exam questions:', error);
             throw error;
         }
     }
@@ -567,7 +569,7 @@ class OralExamModule {
             }, 500);
         }
         
-        logger.info(`Loaded question ${this.examState.currentQuestion + 1}:`, question.question);
+        console.log(`Loaded question ${this.examState.currentQuestion + 1}:`, question.question);
     }
 
     updateProgress() {
@@ -682,7 +684,7 @@ class OralExamModule {
                 micButton.classList.add('recording');
             }
         } catch (error) {
-            logger.error('Failed to start recording:', error);
+            console.error('Failed to start recording:', error);
             this.showNotification('Nepodařilo se spustit nahrávání', 'error');
         }
     }
@@ -695,7 +697,7 @@ class OralExamModule {
                 micButton.classList.remove('recording');
             }
         } catch (error) {
-            logger.error('Failed to stop recording:', error);
+            console.error('Failed to stop recording:', error);
         }
     }
 
@@ -731,7 +733,7 @@ class OralExamModule {
     }
 
     processFinalTranscript(transcript) {
-        logger.info('Final transcript:', transcript);
+        console.log('Final transcript:', transcript);
         
         // Update submit button
         this.updateSubmitButton();
@@ -827,10 +829,10 @@ class OralExamModule {
             // Show feedback
             this.showAnswerFeedback(result);
             
-            logger.info('Answer submitted:', { userAnswer, result });
+            console.log('Answer submitted:', { userAnswer, result });
             
         } catch (error) {
-            logger.error('Failed to submit answer:', error);
+            console.error('Failed to submit answer:', error);
             this.showNotification('Chyba při odesílání odpovědi', 'error');
         } finally {
             this.isProcessing = false;
@@ -1126,10 +1128,10 @@ class OralExamModule {
             // Save results
             await this.saveExamResults(results);
             
-            logger.info('Exam finished with results:', results);
+            console.log('Exam finished with results:', results);
             
         } catch (error) {
-            logger.error('Failed to finish exam:', error);
+            console.error('Failed to finish exam:', error);
         }
     }
 
@@ -1255,10 +1257,10 @@ class OralExamModule {
             savedResults.push(examData);
             localStorage.setItem('oralExamResults', JSON.stringify(savedResults));
             
-            logger.info('Exam results saved');
+            console.log('Exam results saved');
             
         } catch (error) {
-            logger.error('Failed to save exam results:', error);
+            console.error('Failed to save exam results:', error);
         }
     }
 
@@ -1331,7 +1333,7 @@ class OralExamModule {
             this.showNotification('Výsledky byly exportovány', 'success');
             
         } catch (error) {
-            logger.error('Failed to export results:', error);
+            console.error('Failed to export results:', error);
             this.showNotification('Chyba při exportu výsledků', 'error');
         }
     }
@@ -1369,7 +1371,7 @@ class OralExamModule {
             this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
             
         } catch (error) {
-            logger.error('Failed to setup audio context:', error);
+            console.error('Failed to setup audio context:', error);
         }
     }
 
@@ -1384,7 +1386,7 @@ class OralExamModule {
             this.drawVisualization();
             
         } catch (error) {
-            logger.error('Failed to start voice visualization:', error);
+            console.error('Failed to start voice visualization:', error);
         }
     }
 
@@ -1474,7 +1476,7 @@ class OralExamModule {
             stream.getTracks().forEach(track => track.stop());
             
         } catch (error) {
-            logger.error('Microphone test failed:', error);
+            console.error('Microphone test failed:', error);
             this.showNotification('Problém s přístupem k mikrofonu', 'error');
         }
     }
@@ -1502,16 +1504,16 @@ class OralExamModule {
                 this.applySettings();
             }
         } catch (error) {
-            logger.error('Failed to load settings:', error);
+            console.error('Failed to load settings:', error);
         }
     }
 
     saveSettings() {
         try {
             localStorage.setItem('oralExamSettings', JSON.stringify(this.settings));
-            logger.info('Settings saved');
+            console.log('Settings saved');
         } catch (error) {
-            logger.error('Failed to save settings:', error);
+            console.error('Failed to save settings:', error);
         }
     }
 
@@ -1771,7 +1773,9 @@ function closeModal(modalId) {
 // Initialize module when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        console.log('🔧 Starting oral exam module initialization...');
         window.oralExamModule = new OralExamModule();
+        console.log('🏗️ OralExamModule created:', window.oralExamModule);
         await window.oralExamModule.initialize();
         console.log('✅ Oral Exam Module ready');
     } catch (error) {
