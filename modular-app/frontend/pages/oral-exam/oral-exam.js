@@ -132,9 +132,45 @@ class OralExamModule {
 
     async initializeUserSession() {
         try {
+            // Check authentication using APIClient first
+            console.log('🔍 Checking authentication for oral exam...');
+            
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                try {
+                    console.log('✅ APIClient is authenticated, getting user info...');
+                    const userInfo = await window.APIClient.getCurrentUser();
+                    console.log('✅ User info received:', userInfo);
+                    
+                    // Extract username properly from the response
+                    if (userInfo && userInfo.username) {
+                        this.currentUser = { username: userInfo.username };
+                    } else if (userInfo && userInfo.user && userInfo.user.username) {
+                        this.currentUser = { username: userInfo.user.username };
+                    } else {
+                        this.currentUser = { username: 'authenticated_user' }; // fallback
+                    }
+                    
+                    document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
+                    logger.info('User authenticated via APIClient for oral exam', { user: this.currentUser.username });
+                    return;
+                } catch (error) {
+                    console.error('❌ APIClient user info failed in oral exam:', error);
+                    logger.warning('APIClient user info failed, trying fallback', error);
+                }
+            }
+            
+            // Fallback to old navigation method
             this.currentUser = navigation.getCurrentUser();
             if (this.currentUser) {
                 document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
+            } else {
+                // Redirect to auth if not authenticated
+                logger.warning('User not authenticated, redirecting to auth');
+                const shouldRedirect = confirm('Pro použití ústní zkoušky se musíte přihlásit. Chcete přejít na přihlášení?');
+                if (shouldRedirect) {
+                    window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.href);
+                    return;
+                }
             }
         } catch (error) {
             logger.error('Failed to initialize user session:', error);
@@ -264,14 +300,27 @@ class OralExamModule {
     }
 
     setupEventListeners() {
+        // 🧪 TESTOVACÍ TLAČÍTKO PRO ORAL EXAM
+        document.getElementById('testOralBtn')?.addEventListener('click', () => {
+            this.runOralAPIClientTest();
+        });
+        
         // Logout
         document.getElementById('logoutBtn')?.addEventListener('click', () => {
             if (this.examState.isActive) {
                 if (confirm('Opravdu se chcete odhlásit během aktivní zkoušky? Váš pokrok bude ztracen.')) {
                     this.endExam();
+                    // Use APIClient logout if available
+                    if (window.APIClient) {
+                        window.APIClient.logout();
+                    }
                     navigation.logout();
                 }
             } else {
+                // Use APIClient logout if available
+                if (window.APIClient) {
+                    window.APIClient.logout();
+                }
                 navigation.logout();
             }
         });
@@ -339,7 +388,32 @@ class OralExamModule {
             // Clear existing options
             tableSelect.innerHTML = '<option value="">-- Vyberte tabulku --</option>';
 
-            // For demo purposes, add sample tables
+            // Try to load from server first if APIClient is available
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                try {
+                    console.log('🔍 Loading oral exam tables from server...');
+                    const response = await window.APIClient.get('/api/quiz/tables');
+                    console.log('🔍 Server tables response for oral exam:', response);
+                    
+                    if (response.success && response.data) {
+                        response.data.forEach(table => {
+                            const option = document.createElement('option');
+                            option.value = table.name;
+                            option.textContent = `🌐 ${table.name} (${table.question_count || 0} otázek)`;
+                            tableSelect.appendChild(option);
+                        });
+                        
+                        logger.info('Server tables loaded for oral exam', { count: response.data.length });
+                        console.log('✅ Server tables loaded successfully for oral exam');
+                        return; // Exit if server data loaded successfully
+                    }
+                } catch (error) {
+                    console.error('❌ Failed to load server tables for oral exam:', error);
+                    logger.warning('Failed to load server tables, using demo data', error);
+                }
+            }
+
+            // Fallback to demo tables
             const demoTables = [
                 { id: 'javascript_basics', name: 'JavaScript - Základy' },
                 { id: 'web_development', name: 'Webový vývoj' },
@@ -349,11 +423,11 @@ class OralExamModule {
             demoTables.forEach(table => {
                 const option = document.createElement('option');
                 option.value = table.id;
-                option.textContent = table.name;
+                option.textContent = `📚 ${table.name}`;
                 tableSelect.appendChild(option);
             });
 
-            logger.info('Available tables loaded');
+            logger.info('Demo tables loaded for oral exam');
 
         } catch (error) {
             logger.error('Failed to load available tables:', error);
@@ -1595,6 +1669,90 @@ class OralExamModule {
                 }, 300);
             }, 3000);
         }
+    }
+    
+    // 🧪 TESTOVACÍ FUNKCE PRO APIClient - ORAL EXAM
+    async runOralAPIClientTest() {
+        console.log('🧪 ORAL EXAM TEST BUTTON CLICKED!'); // Debug
+        
+        const testResults = document.getElementById('testOralResults');
+        const testOutput = document.getElementById('testOralOutput');
+        
+        if (!testResults || !testOutput) {
+            console.error('❌ Oral exam test elements not found!');
+            alert('❌ Oral exam test elements not found!');
+            return;
+        }
+        
+        testResults.style.display = 'block';
+        
+        let output = '';
+        
+        try {
+            // Test 1: APIClient existence
+            output += `<div>✅ APIClient exists: ${!!window.APIClient}</div>`;
+            
+            if (window.APIClient) {
+                // Test 2: APIClient methods
+                output += `<div>🔍 APIClient methods:</div>`;
+                output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
+                output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
+                output += `<div>- get: ${typeof window.APIClient.get}</div>`;
+                
+                // Test 3: Authentication status
+                try {
+                    const isAuth = window.APIClient.isAuthenticated();
+                    output += `<div>🔐 Is Authenticated: ${isAuth}</div>`;
+                    
+                    if (isAuth) {
+                        // Test 4: Get current user
+                        try {
+                            const user = await window.APIClient.getCurrentUser();
+                            output += `<div>👤 Current User Full Object:</div>`;
+                            output += `<div style="margin-left: 20px; font-family: monospace; font-size: 12px;">${JSON.stringify(user, null, 2)}</div>`;
+                            
+                            // Extract username properly
+                            let extractedUsername = 'unknown';
+                            if (user && user.username) {
+                                extractedUsername = user.username;
+                            } else if (user && user.user && user.user.username) {
+                                extractedUsername = user.user.username;
+                            }
+                            output += `<div>👤 Extracted Username: <strong>${extractedUsername}</strong></div>`;
+                        } catch (error) {
+                            output += `<div>❌ getCurrentUser error: ${error.message}</div>`;
+                        }
+                    }
+                } catch (error) {
+                    output += `<div>❌ isAuthenticated error: ${error.message}</div>`;
+                }
+                
+                // Test 5: Try API call - tables
+                try {
+                    output += `<div>🌐 Testing API call to /api/quiz/tables...</div>`;
+                    const tablesResponse = await window.APIClient.get('/api/quiz/tables');
+                    output += `<div>✅ Tables response: ${JSON.stringify(tablesResponse, null, 2)}</div>`;
+                } catch (error) {
+                    output += `<div>❌ Tables API call error: ${error.message}</div>`;
+                }
+                
+                // Test 6: localStorage tokens
+                const token = localStorage.getItem('modular_quiz_token');
+                output += `<div>🎫 Token in localStorage: ${token ? 'YES (length: ' + token.length + ')' : 'NO'}</div>`;
+                
+                // Test 7: Current user state in oral exam module
+                output += `<div>👨‍🎓 Oral Exam Current User: ${this.currentUser ? this.currentUser.username : 'NULL'}</div>`;
+            }
+            
+        } catch (error) {
+            output += `<div>🚨 CRITICAL ERROR: ${error.message}</div>`;
+            console.error('🚨 Oral exam test function error:', error);
+        }
+        
+        testOutput.innerHTML = output;
+        
+        console.log('🧪 ORAL EXAM TEST COMPLETED - Check test results panel');
+        alert('🧪 Oral exam test completed! Check results in red panel.');
     }
 }
 
