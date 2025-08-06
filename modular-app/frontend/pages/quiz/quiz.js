@@ -115,9 +115,9 @@ class QuizModule {
         console.log('🔍 window.APIClient:', window.APIClient);
         
         // NEW: First check APIClient authentication
-        if (window.APIClient && window.APIClient.isLoggedIn()) {
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
             try {
-                console.log('✅ APIClient is logged in, getting user info...');
+                console.log('✅ APIClient is authenticated, getting user info...');
                 const userInfo = await window.APIClient.getCurrentUser();
                 console.log('✅ User info received:', userInfo);
                 this.currentUser = userInfo.username || userInfo.user || 'authenticated_user';
@@ -129,9 +129,9 @@ class QuizModule {
                 Logger.warning('APIClient user info failed, trying fallback', error);
             }
         } else {
-            console.log('⚠️ APIClient not available or not logged in');
+            console.log('⚠️ APIClient not available or not authenticated');
             console.log('⚠️ APIClient exists:', !!window.APIClient);
-            console.log('⚠️ APIClient logged in:', window.APIClient ? window.APIClient.isLoggedIn() : 'N/A');
+            console.log('⚠️ APIClient authenticated:', window.APIClient ? window.APIClient.isAuthenticated() : 'N/A');
         }
         
         // Fallback to old method

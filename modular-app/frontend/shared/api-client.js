@@ -237,6 +237,12 @@ class ModularAPIClient {
         return await this.request(this.endpoints.profile);
     }
     
+    // Alias for compatibility
+    async getCurrentUser() {
+        const response = await this.getProfile();
+        return response.success ? response.data.user : null;
+    }
+    
     async updateProfile(profileData) {
         return await this.request(this.endpoints.updateProfile, {
             method: 'PUT',
@@ -301,6 +307,29 @@ class ModularAPIClient {
     
     setLogging(enabled) {
         this.logRequests = enabled;
+    }
+    
+    // Convenience HTTP methods for compatibility
+    async get(endpoint) {
+        return await this.request(endpoint, { method: 'GET' });
+    }
+    
+    async post(endpoint, data) {
+        return await this.request(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    }
+    
+    async put(endpoint, data) {
+        return await this.request(endpoint, {
+            method: 'PUT',
+            body: JSON.stringify(data)
+        });
+    }
+    
+    async delete(endpoint) {
+        return await this.request(endpoint, { method: 'DELETE' });
     }
     
     // Utility methods
