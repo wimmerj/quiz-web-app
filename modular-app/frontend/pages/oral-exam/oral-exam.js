@@ -97,6 +97,9 @@ class OralExamModule {
         ];
         
         logger.info('OralExamModule constructor completed');
+        
+        // 🧪 DEBUG: Log that changes are loaded
+        console.log('🧪 ORAL EXAM MODULE v2.0 - JavaScript changes loaded successfully!');
     }
 
     async initialize() {
@@ -1673,7 +1676,8 @@ class OralExamModule {
     
     // 🧪 TESTOVACÍ FUNKCE PRO APIClient - ORAL EXAM
     async runOralAPIClientTest() {
-        console.log('🧪 ORAL EXAM TEST BUTTON CLICKED!'); // Debug
+        console.log('🧪 ORAL EXAM TEST BUTTON CLICKED! (v2.0)'); // Debug
+        alert('🧪 TEST FUNCTION REACHED! - Oral Exam v2.0'); // Immediate feedback
         
         const testResults = document.getElementById('testOralResults');
         const testOutput = document.getElementById('testOralOutput');
