@@ -68,12 +68,12 @@ class SettingsModule {
             lastLogin: new Date().toLocaleDateString()
         };
         
-        logger.info('SettingsModule constructor completed');
+        console.log('SettingsModule constructor completed');
     }
 
     async initialize() {
         try {
-            logger.info('Initializing Settings Module...');
+            console.log('Initializing Settings Module...');
             
             // Initialize user session
             await this.initializeUserSession();
@@ -91,31 +91,62 @@ class SettingsModule {
             this.updateUI();
             
             this.isInitialized = true;
-            logger.info('Settings Module initialized successfully');
+            console.log('Settings Module initialized successfully');
             
         } catch (error) {
-            logger.error('Failed to initialize Settings Module:', error);
+            console.error('Failed to initialize Settings Module:', error);
             this.showNotification('Chyba při inicializaci Settings modulu', 'error');
         }
     }
 
     async initializeUserSession() {
         try {
-            this.currentUser = navigation.getCurrentUser();
-            if (this.currentUser) {
-                document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
-                this.accountData.username = this.currentUser.username;
-                this.accountData.email = this.currentUser.email || 'demo@example.com';
+            console.log('🔍 Checking authentication for settings...');
+            
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                console.log('✅ APIClient is authenticated, getting user info...');
+                const user = await window.APIClient.getCurrentUser();
+                console.log('✅ User info received:', user);
+                
+                if (user) {
+                    this.currentUser = user;
+                    const username = user.username || user.name || user.email || 'Unknown';
+                    document.getElementById('userDisplay').textContent = `👤 ${username}`;
+                    this.accountData.username = username;
+                    this.accountData.email = user.email || 'demo@example.com';
+                    console.log('✅ User authenticated via APIClient for settings', { user: username });
+                }
+            } else {
+                console.log('❌ No APIClient authentication, redirecting to login...');
+                window.location.href = '../auth/login.html';
+                return;
             }
         } catch (error) {
-            logger.error('Failed to initialize user session:', error);
+            console.error('Failed to initialize user session:', error);
         }
     }
 
     setupEventListeners() {
         // Logout
-        document.getElementById('logoutBtn')?.addEventListener('click', () => {
-            navigation.logout();
+        document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+            console.log('🚪 Logout button clicked in settings');
+            
+            // Use APIClient logout
+            if (window.APIClient) {
+                console.log('📡 Using APIClient logout');
+                await window.APIClient.logout();
+            }
+            
+            // Redirect to login
+            console.log('🔄 Redirecting to login page');
+            window.location.href = '../auth/login.html';
+        });
+
+        // 🧪 TESTOVACÍ TLAČÍTKO PRO SETTINGS
+        document.getElementById('testSettingsBtn')?.addEventListener('click', () => {
+            console.log('🎯 Test button event listener triggered! v2.1');
+            alert('🎯 Event listener works! v2.1');
+            this.runSettingsAPIClientTest();
         });
 
         // Tab switching
@@ -311,7 +342,7 @@ class SettingsModule {
         if (element) {
             element.addEventListener('change', (e) => {
                 this.settings[category][settingId] = e.target.checked;
-                logger.info(`Setting ${category}.${settingId} changed to:`, e.target.checked);
+                console.log(`Setting ${category}.${settingId} changed to:`, e.target.checked);
             });
         }
     }
@@ -376,9 +407,9 @@ class SettingsModule {
                 Object.assign(this.accountData, JSON.parse(savedAccount));
             }
             
-            logger.info('Settings loaded successfully');
+            console.log('Settings loaded successfully');
         } catch (error) {
-            logger.error('Failed to load settings:', error);
+            console.error('Failed to load settings:', error);
             this.settings = JSON.parse(JSON.stringify(this.defaultSettings));
         }
     }
@@ -593,10 +624,10 @@ class SettingsModule {
             localStorage.setItem('accountData', JSON.stringify(this.accountData));
             
             this.showNotification('Nastavení byla úspěšně uložena', 'success');
-            logger.info('Settings saved successfully');
+            console.log('Settings saved successfully');
             
         } catch (error) {
-            logger.error('Failed to save settings:', error);
+            console.error('Failed to save settings:', error);
             this.showNotification('Chyba při ukládání nastavení', 'error');
         }
     }
@@ -608,7 +639,7 @@ class SettingsModule {
             this.showNotification('Změny byly aplikovány', 'success');
             
         } catch (error) {
-            logger.error('Failed to apply changes:', error);
+            console.error('Failed to apply changes:', error);
             this.showNotification('Chyba při aplikování změn', 'error');
         }
     }
@@ -774,7 +805,7 @@ class SettingsModule {
             this.showNotification('Data byla exportována', 'success');
             
         } catch (error) {
-            logger.error('Failed to export data:', error);
+            console.error('Failed to export data:', error);
             this.showNotification('Chyba při exportu dat', 'error');
         }
     }
@@ -819,7 +850,7 @@ class SettingsModule {
                 importStatus.textContent = 'Import dokončen úspěšně';
                 
             } catch (error) {
-                logger.error('Failed to import data:', error);
+                console.error('Failed to import data:', error);
                 this.showNotification('Chyba při importu dat - neplatný formát', 'error');
                 
                 const importStatus = document.getElementById('importStatus');
@@ -906,7 +937,7 @@ class SettingsModule {
             document.getElementById('totalSize').textContent = this.formatSize(total);
             
         } catch (error) {
-            logger.error('Failed to update storage info:', error);
+            console.error('Failed to update storage info:', error);
         }
     }
 
@@ -963,6 +994,81 @@ class SettingsModule {
             colorTheme: this.settings.appearance.colorTheme
         };
     }
+
+    async runSettingsAPIClientTest() {
+        console.log('🧪 SETTINGS TEST BUTTON CLICKED! (v2.0)'); // Debug
+        alert('🧪 TEST FUNCTION REACHED! - Settings v2.0'); // Immediate feedback
+        
+        const testResults = document.getElementById('testSettingsResults');
+        const testOutput = document.getElementById('testSettingsOutput');
+        
+        if (!testResults || !testOutput) {
+            console.error('❌ Settings test elements not found!');
+            alert('❌ Settings test elements not found!');
+            return;
+        }
+        
+        testResults.style.display = 'block';
+        
+        let output = '';
+        
+        try {
+            // Test 1: APIClient existence
+            output += `<div>✅ APIClient exists: ${!!window.APIClient}</div>`;
+            
+            if (window.APIClient) {
+                // Test 2: APIClient methods
+                output += `<div>🔍 APIClient methods:</div>`;
+                output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
+                output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
+                output += `<div>- get: ${typeof window.APIClient.get}</div>`;
+                
+                // Test 3: Authentication status
+                try {
+                    const isAuth = window.APIClient.isAuthenticated();
+                    output += `<div>🔐 Is Authenticated: ${isAuth}</div>`;
+                    
+                    if (isAuth) {
+                        // Test 4: Get current user
+                        try {
+                            const user = await window.APIClient.getCurrentUser();
+                            output += `<div>👤 Current User Full Object:</div>`;
+                            output += `<div style="margin-left: 20px; font-family: monospace; font-size: 12px;">${JSON.stringify(user, null, 2)}</div>`;
+                            
+                            // Extract username properly
+                            const username = user.username || user.name || user.email || 'Unknown';
+                            output += `<div>👤 Extracted Username: ${username}</div>`;
+                            
+                        } catch (userError) {
+                            output += `<div>❌ Failed to get current user: ${userError.message}</div>`;
+                        }
+                        
+                        // Test 5: API health check
+                        try {
+                            const health = await window.APIClient.get('/api/health');
+                            output += `<div>💚 API Health Check: ${health.healthy ? 'OK' : 'FAILED'}</div>`;
+                            output += `<div>📡 Response Time: ${health.responseTime}ms</div>`;
+                        } catch (healthError) {
+                            output += `<div>❌ API Health Check Failed: ${healthError.message}</div>`;
+                        }
+                        
+                    } else {
+                        output += `<div>🔓 User not authenticated</div>`;
+                    }
+                } catch (authError) {
+                    output += `<div>❌ Authentication check failed: ${authError.message}</div>`;
+                }
+            } else {
+                output += `<div>❌ APIClient not available</div>`;
+            }
+            
+        } catch (error) {
+            output += `<div>❌ Test failed: ${error.message}</div>`;
+        }
+        
+        testOutput.innerHTML = output;
+        console.log('🧪 Settings APIClient test completed');
+    }
 }
 
 // Global modal functions
@@ -978,9 +1084,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         window.settingsModule = new SettingsModule();
         await window.settingsModule.initialize();
-        logger.info('Settings Module ready');
+        console.log('Settings Module ready');
     } catch (error) {
-        logger.error('Failed to initialize Settings Module:', error);
+        console.error('Failed to initialize Settings Module:', error);
     }
 });
 
