@@ -1,6 +1,7 @@
 /**
  * MODULAR QUIZ APP - API CLIENT
  * Centralizovaná komunikace s backend službami
+ * Cache-bust: 2025-08-07 Admin Fix
  */
 
 class ModularAPIClient {
