@@ -340,26 +340,51 @@ class AdminModule {
         this.setLoading('usersTable', true);
         
         try {
-            const users = this.loadFromStorage('users') || {};
+            let allUsers = {};
+            
+            // Try to load users from API first (real registered users)
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                try {
+                    // TODO: Add API endpoint to get all users
+                    console.log('🔄 Attempting to load users from API...');
+                    // const apiUsers = await window.APIClient.getAllUsers();
+                    // if (apiUsers) allUsers = {...allUsers, ...apiUsers};
+                } catch (error) {
+                    console.log('📝 API users not available, using localStorage only');
+                }
+            }
+            
+            // Load local users (created via admin)
+            const localUsers = this.loadFromStorage('users') || {};
+            allUsers = {...allUsers, ...localUsers};
+            
             const userHistory = this.loadFromStorage('user_answer_history') || {};
             
             tableBody.innerHTML = '';
             
-            Object.entries(users).forEach(([username, userData]) => {
+            if (Object.keys(allUsers).length === 0) {
+                // Add demo users if no users exist
+                this.addDemoUsers();
+                return;
+            }
+            
+            Object.entries(allUsers).forEach(([username, userData]) => {
                 const userAnswers = userHistory[username] || [];
                 const lastActivity = this.getLastActivity(userAnswers);
                 const role = userData.role || 'user';
+                const source = localUsers[username] ? '🏠 Lokální' : '☁️ Cloud';
                 
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>
                         <strong>${username}</strong>
                         ${userData.email ? `<br><small>${userData.email}</small>` : ''}
+                        <br><small style="color: var(--text-secondary);">${source}</small>
                     </td>
                     <td>
                         <span class="role-badge ${role}">${role}</span>
                     </td>
-                    <td>${userData.createdAt || 'Neznámé'}</td>
+                    <td>${userData.createdAt || userData.created_at || 'Neznámé'}</td>
                     <td>${lastActivity}</td>
                     <td>
                         <span style="color: var(--admin-success)">${userData.totalCorrect || 0}</span> / 
@@ -368,17 +393,14 @@ class AdminModule {
                     <td>
                         <button class="action-btn" onclick="adminModule.editUser('${username}')">✏️ Upravit</button>
                         <button class="action-btn" onclick="adminModule.viewUserStats('${username}')">📊 Statistiky</button>
+                        ${localUsers[username] ? `
                         <button class="action-btn danger" onclick="adminModule.deleteUser('${username}')">🗑️ Smazat</button>
+                        ` : '<small>Jen API uživatel</small>'}
                     </td>
                 `;
                 
                 tableBody.appendChild(row);
             });
-            
-            // Add demo users if no users exist
-            if (Object.keys(users).length === 0) {
-                this.addDemoUsers();
-            }
             
         } catch (error) {
             console.error('Failed to load users data', error);
@@ -1123,6 +1145,8 @@ Informace o systému:
         const resultsDiv = document.getElementById('testAdminResults');
         if (!resultsDiv) return;
         
+        // Show results div and clear previous content
+        resultsDiv.style.display = 'block';
         resultsDiv.innerHTML = '<h4>🧪 Admin APIClient Test Results:</h4>';
         
         try {
@@ -1151,6 +1175,10 @@ Informace o systému:
                 const hasAccess = this.hasAdminAccess();
                 resultsDiv.innerHTML += `<p>🛠️ Admin access: ${hasAccess ? '✅ Has admin access' : '❌ No admin access'}</p>`;
                 console.log('🛠️ Admin access:', hasAccess);
+                
+                // Test 5: Show admin current settings
+                resultsDiv.innerHTML += `<p>👤 Admin user: ${this.currentUser}</p>`;
+                resultsDiv.innerHTML += `<p>🛠️ Admin role: ${this.userRole}</p>`;
             }
             
             resultsDiv.innerHTML += '<p><strong>✅ Admin APIClient test completed!</strong></p>';
