@@ -297,6 +297,11 @@ class QuizModule {
     }
     
     setupEventListeners() {
+        // 🧪 TESTOVACÍ TLAČÍTKO
+        document.getElementById('testBtn')?.addEventListener('click', () => {
+            this.runAPIClientTest();
+        });
+        
         // Table selection
         const tableSelect = document.getElementById('tableSelect');
         tableSelect?.addEventListener('change', (e) => {
@@ -1235,6 +1240,64 @@ class QuizModule {
         } catch (error) {
             Logger.warning(`Failed to save to storage: ${key}`, error);
         }
+    }
+    
+    // 🧪 TESTOVACÍ FUNKCE PRO APIClient
+    async runAPIClientTest() {
+        const testResults = document.getElementById('testResults');
+        const testOutput = document.getElementById('testOutput');
+        
+        if (!testResults || !testOutput) return;
+        
+        testResults.style.display = 'block';
+        
+        let output = '';
+        
+        // Test 1: APIClient existence
+        output += `<div>✅ APIClient exists: ${!!window.APIClient}</div>`;
+        
+        if (window.APIClient) {
+            // Test 2: APIClient methods
+            output += `<div>🔍 APIClient methods:</div>`;
+            output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
+            output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
+            output += `<div>- get: ${typeof window.APIClient.get}</div>`;
+            
+            // Test 3: Authentication status
+            try {
+                const isAuth = window.APIClient.isAuthenticated();
+                output += `<div>🔐 Is Authenticated: ${isAuth}</div>`;
+                
+                if (isAuth) {
+                    // Test 4: Get current user
+                    try {
+                        const user = await window.APIClient.getCurrentUser();
+                        output += `<div>👤 Current User: ${JSON.stringify(user)}</div>`;
+                    } catch (error) {
+                        output += `<div>❌ getCurrentUser error: ${error.message}</div>`;
+                    }
+                }
+            } catch (error) {
+                output += `<div>❌ isAuthenticated error: ${error.message}</div>`;
+            }
+            
+            // Test 5: Try API call
+            try {
+                output += `<div>🌐 Testing API call to /api/health...</div>`;
+                const healthResponse = await window.APIClient.get('/api/health');
+                output += `<div>✅ Health check: ${JSON.stringify(healthResponse, null, 2)}</div>`;
+            } catch (error) {
+                output += `<div>❌ API call error: ${error.message}</div>`;
+            }
+            
+            // Test 6: localStorage tokens
+            const token = localStorage.getItem('modular_quiz_token');
+            output += `<div>🎫 Token in localStorage: ${token ? 'YES (length: ' + token.length + ')' : 'NO'}</div>`;
+        }
+        
+        testOutput.innerHTML = output;
+        
+        console.log('🧪 TEST COMPLETED - Check test results panel');
     }
 }
 
