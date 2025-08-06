@@ -28,7 +28,7 @@ class QuizModule {
             showHints: false,
             autoNext: false,
             backendMode: 'local',
-            serverUrl: 'https://quiz-web-app-wpls.onrender.com'
+            serverUrl: 'https://quiz-modular-backend.onrender.com'  // Updated to new backend
         };
         
         // Demo data (from original generateSampleQuestions)
@@ -110,12 +110,38 @@ class QuizModule {
     
     async checkAuthentication() {
         // Check if user is logged in (from auth module or previous session)
+        
+        // NEW: First check APIClient authentication
+        if (window.APIClient && window.APIClient.isLoggedIn()) {
+            try {
+                const userInfo = await window.APIClient.getCurrentUser();
+                this.currentUser = userInfo.username || userInfo.user || 'authenticated_user';
+                Logger.info('User authenticated via APIClient', { user: this.currentUser });
+                this.updateUserDisplay();
+                return;
+            } catch (error) {
+                Logger.warning('APIClient user info failed, trying fallback', error);
+            }
+        }
+        
+        // Fallback to old method
         const currentUser = this.getCurrentUser();
         
-        if (currentUser) {
+        if (currentUser instanceof Promise) {
+            // Handle async getCurrentUser
+            try {
+                this.currentUser = await currentUser;
+                Logger.info('User authenticated', { user: this.currentUser });
+            } catch (error) {
+                Logger.warning('Failed to get current user', error);
+                this.currentUser = null;
+            }
+        } else if (currentUser) {
             this.currentUser = currentUser;
             Logger.info('User authenticated', { user: currentUser });
-        } else {
+        }
+        
+        if (!this.currentUser) {
             // Redirect to auth module if not authenticated
             Logger.warning('User not authenticated, redirecting to auth');
             const shouldRedirect = confirm('Pro použití kvízu se musíte přihlásit. Chcete přejít na přihlášení?');
@@ -131,20 +157,28 @@ class QuizModule {
     getCurrentUser() {
         // Try to get current user from various sources
         
-        // 1. URL parameter (from auth redirect)
+        // 1. NEW: Check APIClient authentication first
+        if (window.APIClient && window.APIClient.isLoggedIn()) {
+            // Try to get user info from APIClient
+            return window.APIClient.getCurrentUser()
+                .then(user => user.username || user.user || 'authenticated_user')
+                .catch(() => 'authenticated_user');
+        }
+        
+        // 2. URL parameter (from auth redirect)
         const urlParams = new URLSearchParams(window.location.search);
         const userFromUrl = urlParams.get('user');
         if (userFromUrl) {
             return userFromUrl;
         }
         
-        // 2. Session storage
+        // 3. Session storage
         const userFromSession = sessionStorage.getItem('currentUser');
         if (userFromSession) {
             return userFromSession;
         }
         
-        // 3. Local storage (remember me)
+        // 4. Local storage (remember me)
         const savedCredentials = localStorage.getItem('modular_quiz_credentials');
         if (savedCredentials) {
             try {
@@ -155,7 +189,7 @@ class QuizModule {
             }
         }
         
-        // 4. Legacy quiz app storage
+        // 5. Legacy quiz app storage
         const lastUser = this.loadFromStorage('last_user');
         if (lastUser && lastUser.username) {
             return lastUser.username;
@@ -215,7 +249,7 @@ class QuizModule {
     
     async loadServerTables() {
         try {
-            const response = await APIClient.get('/api/tables');
+            const response = await window.APIClient.get('/api/tables');
             if (response.success && response.data) {
                 const tableSelect = document.getElementById('tableSelect');
                 
@@ -384,7 +418,7 @@ class QuizModule {
         // Try server first if available
         if (this.settings.backendMode === 'server') {
             try {
-                const response = await APIClient.get(`/api/questions/${this.currentTable}`);
+                const response = await window.APIClient.get(`/api/questions/${this.currentTable}`);
                 if (response.success && response.data) {
                     this.questions = response.data.map(q => ({
                         id: q.id,
@@ -877,7 +911,7 @@ class QuizModule {
         
         // Update API client if needed
         if (this.settings.backendMode === 'server') {
-            APIClient.updateBaseUrl(this.settings.serverUrl);
+            window.APIClient.updateBaseUrl(this.settings.serverUrl);
         }
         
         // Apply font sizes

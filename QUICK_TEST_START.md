@@ -36,12 +36,12 @@ Otevřete browser a jděte na:
 https://quiz-modular-backend.onrender.com/api/health
 ```
 
-**Očekávaný výstup:**
+**✅ ÚSPĚŠNÝ výstup:**
 ```json
 {
   "status": "healthy",
-  "database": "connected",    // ← Mělo by být "connected"!
-  "monica_ai": "disabled",
+  "database": "connected",    // ✅ WORKING!
+  "monica_ai": "enabled",
   "timestamp": "2025-08-06T...",
   "version": "2.0.0-modular"
 }
