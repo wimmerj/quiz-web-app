@@ -77,7 +77,7 @@ class User(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False, index=True)
-    email = db.Column(db.String(100), unique=True, nullable=False, index=True)
+    email = db.Column(db.String(100), unique=True, nullable=True, index=True)  # Allow NULL emails
     password_hash = db.Column(db.String(255), nullable=False)
     salt = db.Column(db.String(32), nullable=False)
     role = db.Column(db.String(20), default='student', nullable=False)
@@ -405,14 +405,24 @@ def register():
     """User registration"""
     data = request.get_json()
     
-    if not data or not all(k in data for k in ('username', 'email', 'password')):
-        return jsonify({'error': 'Missing required fields'}), 400
+    if not data or not all(k in data for k in ('username', 'password')):
+        return jsonify({'error': 'Username and password are required'}), 400
+    
+    # Email is optional but if provided, must be valid
+    email = data.get('email', '').strip()
+    if email and '@' not in email:
+        return jsonify({'error': 'Invalid email format'}), 400
+    
+    # If email is empty, set it to None to avoid unique constraint issues
+    if not email:
+        email = None
     
     # Check if user exists
     if User.query.filter_by(username=data['username']).first():
         return jsonify({'error': 'Username already exists'}), 409
     
-    if User.query.filter_by(email=data['email']).first():
+    # Check email only if provided
+    if email and User.query.filter_by(email=email).first():
         return jsonify({'error': 'Email already exists'}), 409
     
     # Create new user
@@ -421,7 +431,7 @@ def register():
     
     user = User(
         username=data['username'],
-        email=data['email'],
+        email=email,  # Use the processed email (can be None)
         password_hash=password_hash,
         salt=salt,
         avatar=data.get('avatar', '👤')
