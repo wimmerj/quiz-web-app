@@ -311,22 +311,33 @@ class OralExamModule {
         });
         
         // Logout
-        document.getElementById('logoutBtn')?.addEventListener('click', () => {
+        document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+            console.log('🚪 Logout button clicked in oral exam');
+            
             if (this.examState.isActive) {
                 if (confirm('Opravdu se chcete odhlásit během aktivní zkoušky? Váš pokrok bude ztracen.')) {
                     this.endExam();
-                    // Use APIClient logout if available
+                    
+                    // Use APIClient logout
                     if (window.APIClient) {
-                        window.APIClient.logout();
+                        console.log('📡 Using APIClient logout');
+                        await window.APIClient.logout();
                     }
-                    navigation.logout();
+                    
+                    // Redirect to login
+                    console.log('🔄 Redirecting to login page');
+                    window.location.href = '../auth/login.html';
                 }
             } else {
-                // Use APIClient logout if available
+                // Use APIClient logout
                 if (window.APIClient) {
-                    window.APIClient.logout();
+                    console.log('📡 Using APIClient logout');
+                    await window.APIClient.logout();
                 }
-                navigation.logout();
+                
+                // Redirect to login
+                console.log('🔄 Redirecting to login page');
+                window.location.href = '../auth/login.html';
             }
         });
 
