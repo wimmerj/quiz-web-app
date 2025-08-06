@@ -171,7 +171,7 @@ class QuizModule {
         // Try to get current user from various sources
         
         // 1. NEW: Check APIClient authentication first
-        if (window.APIClient && window.APIClient.isLoggedIn()) {
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
             // Try to get user info from APIClient
             return window.APIClient.getCurrentUser()
                 .then(user => user.username || user.user || 'authenticated_user')
@@ -1244,60 +1244,73 @@ class QuizModule {
     
     // 🧪 TESTOVACÍ FUNKCE PRO APIClient
     async runAPIClientTest() {
+        console.log('🧪 TEST BUTTON CLICKED!'); // Debug
+        
         const testResults = document.getElementById('testResults');
         const testOutput = document.getElementById('testOutput');
         
-        if (!testResults || !testOutput) return;
+        if (!testResults || !testOutput) {
+            console.error('❌ Test elements not found!');
+            alert('❌ Test elements not found!');
+            return;
+        }
         
         testResults.style.display = 'block';
         
         let output = '';
         
-        // Test 1: APIClient existence
-        output += `<div>✅ APIClient exists: ${!!window.APIClient}</div>`;
-        
-        if (window.APIClient) {
-            // Test 2: APIClient methods
-            output += `<div>🔍 APIClient methods:</div>`;
-            output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
-            output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
-            output += `<div>- get: ${typeof window.APIClient.get}</div>`;
+        try {
+            // Test 1: APIClient existence
+            output += `<div>✅ APIClient exists: ${!!window.APIClient}</div>`;
             
-            // Test 3: Authentication status
-            try {
-                const isAuth = window.APIClient.isAuthenticated();
-                output += `<div>🔐 Is Authenticated: ${isAuth}</div>`;
+            if (window.APIClient) {
+                // Test 2: APIClient methods
+                output += `<div>🔍 APIClient methods:</div>`;
+                output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
+                output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
+                output += `<div>- get: ${typeof window.APIClient.get}</div>`;
                 
-                if (isAuth) {
-                    // Test 4: Get current user
-                    try {
-                        const user = await window.APIClient.getCurrentUser();
-                        output += `<div>👤 Current User: ${JSON.stringify(user)}</div>`;
-                    } catch (error) {
-                        output += `<div>❌ getCurrentUser error: ${error.message}</div>`;
+                // Test 3: Authentication status
+                try {
+                    const isAuth = window.APIClient.isAuthenticated();
+                    output += `<div>🔐 Is Authenticated: ${isAuth}</div>`;
+                    
+                    if (isAuth) {
+                        // Test 4: Get current user
+                        try {
+                            const user = await window.APIClient.getCurrentUser();
+                            output += `<div>👤 Current User: ${JSON.stringify(user)}</div>`;
+                        } catch (error) {
+                            output += `<div>❌ getCurrentUser error: ${error.message}</div>`;
+                        }
                     }
+                } catch (error) {
+                    output += `<div>❌ isAuthenticated error: ${error.message}</div>`;
                 }
-            } catch (error) {
-                output += `<div>❌ isAuthenticated error: ${error.message}</div>`;
+                
+                // Test 5: Try API call
+                try {
+                    output += `<div>🌐 Testing API call to /api/health...</div>`;
+                    const healthResponse = await window.APIClient.get('/api/health');
+                    output += `<div>✅ Health check: ${JSON.stringify(healthResponse, null, 2)}</div>`;
+                } catch (error) {
+                    output += `<div>❌ API call error: ${error.message}</div>`;
+                }
+                
+                // Test 6: localStorage tokens
+                const token = localStorage.getItem('modular_quiz_token');
+                output += `<div>🎫 Token in localStorage: ${token ? 'YES (length: ' + token.length + ')' : 'NO'}</div>`;
             }
             
-            // Test 5: Try API call
-            try {
-                output += `<div>🌐 Testing API call to /api/health...</div>`;
-                const healthResponse = await window.APIClient.get('/api/health');
-                output += `<div>✅ Health check: ${JSON.stringify(healthResponse, null, 2)}</div>`;
-            } catch (error) {
-                output += `<div>❌ API call error: ${error.message}</div>`;
-            }
-            
-            // Test 6: localStorage tokens
-            const token = localStorage.getItem('modular_quiz_token');
-            output += `<div>🎫 Token in localStorage: ${token ? 'YES (length: ' + token.length + ')' : 'NO'}</div>`;
+        } catch (error) {
+            output += `<div>🚨 CRITICAL ERROR: ${error.message}</div>`;
+            console.error('🚨 Test function error:', error);
         }
         
         testOutput.innerHTML = output;
         
         console.log('🧪 TEST COMPLETED - Check test results panel');
+        alert('🧪 Test completed! Check results in red panel.');
     }
 }
 
