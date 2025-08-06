@@ -48,6 +48,8 @@ Flask-Migrate==4.0.5
 Flask-Limiter==3.5.0
 PyJWT==2.8.0
 psycopg2-binary==2.9.9
+requests==2.31.0
+python-dotenv==1.0.0
 gunicorn==21.2.0
 ```
 
@@ -59,9 +61,14 @@ services:
   - type: web
     name: quiz-api
     runtime: python3
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install Flask==3.1.0 Flask-CORS==4.0.0 Flask-SQLAlchemy==3.1.1 Flask-Migrate==4.0.5 Flask-Limiter==3.5.0 PyJWT==2.8.0 requests==2.31.0 python-dotenv==1.0.0 gunicorn==21.2.0 && pip install psycopg2==2.9.10 --no-binary psycopg2
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 4 --timeout 120
     plan: free
+```
+
+**⚠️ NEBO použijte tento Build Command v Render dashboardu:**
+```bash
+pip install Flask==3.1.0 Flask-CORS==4.0.0 Flask-SQLAlchemy==3.1.1 Flask-Migrate==4.0.5 Flask-Limiter==3.5.0 PyJWT==2.8.0 requests==2.31.0 python-dotenv==1.0.0 gunicorn==21.2.0 && pip install psycopg2==2.9.10 --no-binary psycopg2
 ```
 
 ---
