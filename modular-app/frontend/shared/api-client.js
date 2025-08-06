@@ -24,7 +24,7 @@ class ModularAPIClient {
             submitAnswer: '/api/quiz/answer',
             
             // User endpoints
-            profile: '/api/user/profile',
+            profile: '/api/auth/profile',
             updateProfile: '/api/user/update',
             
             // Admin endpoints

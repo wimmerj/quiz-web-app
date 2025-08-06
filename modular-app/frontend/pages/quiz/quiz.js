@@ -120,7 +120,16 @@ class QuizModule {
                 console.log('✅ APIClient is authenticated, getting user info...');
                 const userInfo = await window.APIClient.getCurrentUser();
                 console.log('✅ User info received:', userInfo);
-                this.currentUser = userInfo.username || userInfo.user || 'authenticated_user';
+                
+                // Extract username properly from the response
+                if (userInfo && userInfo.username) {
+                    this.currentUser = userInfo.username;
+                } else if (userInfo && userInfo.user && userInfo.user.username) {
+                    this.currentUser = userInfo.user.username;
+                } else {
+                    this.currentUser = 'authenticated_user'; // fallback
+                }
+                
                 Logger.info('User authenticated via APIClient', { user: this.currentUser });
                 this.updateUserDisplay();
                 return;
@@ -174,7 +183,15 @@ class QuizModule {
         if (window.APIClient && window.APIClient.isAuthenticated()) {
             // Try to get user info from APIClient
             return window.APIClient.getCurrentUser()
-                .then(user => user.username || user.user || 'authenticated_user')
+                .then(userInfo => {
+                    if (userInfo && userInfo.username) {
+                        return userInfo.username;
+                    } else if (userInfo && userInfo.user && userInfo.user.username) {
+                        return userInfo.user.username;
+                    } else {
+                        return 'authenticated_user';
+                    }
+                })
                 .catch(() => 'authenticated_user');
         }
         
@@ -1279,7 +1296,17 @@ class QuizModule {
                         // Test 4: Get current user
                         try {
                             const user = await window.APIClient.getCurrentUser();
-                            output += `<div>👤 Current User: ${JSON.stringify(user)}</div>`;
+                            output += `<div>👤 Current User Full Object:</div>`;
+                            output += `<div style="margin-left: 20px; font-family: monospace; font-size: 12px;">${JSON.stringify(user, null, 2)}</div>`;
+                            
+                            // Extract username properly
+                            let extractedUsername = 'unknown';
+                            if (user && user.username) {
+                                extractedUsername = user.username;
+                            } else if (user && user.user && user.user.username) {
+                                extractedUsername = user.user.username;
+                            }
+                            output += `<div>👤 Extracted Username: <strong>${extractedUsername}</strong></div>`;
                         } catch (error) {
                             output += `<div>❌ getCurrentUser error: ${error.message}</div>`;
                         }
