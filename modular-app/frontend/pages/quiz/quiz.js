@@ -249,7 +249,7 @@ class QuizModule {
     
     async loadServerTables() {
         try {
-            const response = await window.APIClient.get('/api/tables');
+            const response = await window.APIClient.get('/api/quiz/tables');
             if (response.success && response.data) {
                 const tableSelect = document.getElementById('tableSelect');
                 
@@ -418,7 +418,7 @@ class QuizModule {
         // Try server first if available
         if (this.settings.backendMode === 'server') {
             try {
-                const response = await window.APIClient.get(`/api/questions/${this.currentTable}`);
+                const response = await window.APIClient.get(`/api/quiz/questions/${this.currentTable}`);
                 if (response.success && response.data) {
                     this.questions = response.data.map(q => ({
                         id: q.id,
@@ -1019,9 +1019,15 @@ class QuizModule {
         
         Logger.action('User logout', { user: this.currentUser });
         
+        // Clear APIClient authentication
+        if (window.APIClient) {
+            window.APIClient.logout();
+        }
+        
         // Clear user data
         this.currentUser = null;
         sessionStorage.removeItem('currentUser');
+        localStorage.removeItem('modular_quiz_credentials');
         
         // End current quiz
         if (this.isQuizActive) {
