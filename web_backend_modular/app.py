@@ -96,7 +96,7 @@ class User(db.Model):
     
     # Relationships
     quiz_progress = db.relationship('QuizProgress', backref='user', lazy='dynamic', cascade='all, delete-orphan')
-    battle_history = db.relationship('BattleResult', backref='user', lazy='dynamic', cascade='all, delete-orphan')
+    battle_history = db.relationship('BattleResult', foreign_keys='BattleResult.user_id', backref='user', lazy='dynamic', cascade='all, delete-orphan')
     oral_exams = db.relationship('OralExam', backref='user', lazy='dynamic', cascade='all, delete-orphan')
 
 class Question(db.Model):
@@ -144,6 +144,9 @@ class BattleResult(db.Model):
     is_winner = db.Column(db.Boolean, default=False)
     rating_change = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Explicit relationships
+    opponent = db.relationship('User', foreign_keys=[opponent_id], post_update=True)
 
 class OralExam(db.Model):
     __tablename__ = 'oral_exams'
