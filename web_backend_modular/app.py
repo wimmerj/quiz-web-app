@@ -333,10 +333,12 @@ monica_ai = MonicaAIService(MONICA_API_KEY)
 def health_check():
     """Health check endpoint"""
     try:
-        # Test database connection
-        db.session.execute('SELECT 1')
+        # Test database connection with PostgreSQL compatible query
+        db.session.execute(db.text('SELECT 1'))
+        db.session.commit()
         db_status = "connected"
-    except Exception:
+    except Exception as e:
+        print(f"Database connection error: {e}")
         db_status = "disconnected"
     
     return jsonify({
@@ -346,6 +348,27 @@ def health_check():
         "timestamp": datetime.utcnow().isoformat(),
         "version": "2.0.0-modular"
     })
+
+@app.route('/api/debug', methods=['GET'])
+def debug_info():
+    """Debug endpoint for troubleshooting"""
+    try:
+        db_url = os.environ.get('DATABASE_URL', 'Not set')
+        # Mask password for security
+        if db_url and db_url != 'Not set':
+            masked_url = db_url.split('@')[0] + '@***' + db_url.split('@')[1] if '@' in db_url else db_url
+        else:
+            masked_url = db_url
+            
+        return jsonify({
+            "database_url_set": db_url != 'Not set',
+            "database_url_masked": masked_url,
+            "sqlalchemy_uri": app.config.get('SQLALCHEMY_DATABASE_URI', 'Not set')[:50] + '...',
+            "environment": os.environ.get('FLASK_ENV', 'Not set'),
+            "cors_origins": os.environ.get('CORS_ORIGINS', 'Not set')
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/info', methods=['GET'])
 def app_info():
