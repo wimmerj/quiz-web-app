@@ -17,32 +17,47 @@ class EnhancedQuizIntegration {
     }
     
     async init() {
-        console.log('🔧 Initializing Enhanced Quiz Integration...');
+        this.log('🔧 Initializing Enhanced Quiz Integration...', 'system', 'integration_init');
         
         // Kontrola, jestli uživatel již vybral preferenci
         const preference = localStorage.getItem('authPreference');
-        console.log('📋 Auth preference from localStorage:', preference);
+        this.log(`📋 Auth preference from localStorage: ${preference}`, 'info');
         
         if (preference === 'server') {
             this.useServerAuth = true;
-            console.log('🌐 Using server auth, checking backend...');
+            this.log('🌐 Using server auth, checking backend...', 'info');
             await this.checkBackendAvailability();
         } else if (preference === 'local') {
             this.useServerAuth = false;
-            console.log('💾 Using local auth mode');
+            this.log('💾 Using local auth mode', 'info');
         } else {
-            console.log('❓ No auth preference set - will show dialog in 2 seconds...');
+            this.log('❓ No auth preference set - will show dialog in 2 seconds...', 'warning');
             // Uživatel ještě nevybral, zobrazit dialog s delším zpožděním
             setTimeout(() => {
-                console.log('⏰ Timeout reached, showing auth preference dialog...');
+                this.log('⏰ Timeout reached, showing auth preference dialog...', 'warning');
                 this.showAuthPreferenceDialog();
             }, 2000); // Zvýšené zpoždění na 2 sekundy
         }
     }
     
+    // Helper method for logging that uses enhanced logger if available
+    log(message, type = 'info', action = null, metadata = {}) {
+        if (window.enhancedLogger) {
+            if (action) {
+                enhancedLogger.logAction(action, { message, ...metadata });
+            } else {
+                enhancedLogger.log(message, type);
+            }
+        } else if (window.debugLogger) {
+            debugLogger.log(message, type);
+        } else {
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+    }
+    
     // Metoda pro aktualizaci backend URL při změně nastavení
     updateBackendUrl(newUrl) {
-        console.log('🔄 Updating backend URL from', this.backendUrl, 'to', newUrl);
+        this.log(`🔄 Updating backend URL from ${this.backendUrl} to ${newUrl}`, 'info', 'backend_update');
         this.backendUrl = newUrl;
         
         // Aktualizuj URL v aplikaci také
@@ -50,19 +65,19 @@ class EnhancedQuizIntegration {
             this.app.settings.serverUrl = newUrl;
         }
         
-        // Restartuj monitorování s novou URL
-        if (this.useServerAuth) {
+        // Restartuj monitorování pouze pokud je server režim aktivní
+        if (this.useServerAuth && this.app.settings.backendMode === 'server') {
             this.checkBackendAvailability();
         }
     }
     
     showAuthPreferenceDialog() {
-        console.log('🔒 Showing auth preference dialog...');
+        this.log('🔒 Showing auth preference dialog...', 'info', 'dialog_show');
         
         // Zkontrolovat, jestli už dialog neexistuje
         const existingDialog = document.querySelector('.auth-preference-dialog');
         if (existingDialog) {
-            console.log('⚠️ Dialog already exists, removing old one...');
+            this.log('⚠️ Dialog already exists, removing old one...', 'warning');
             existingDialog.remove();
         }
         
@@ -328,48 +343,85 @@ class EnhancedQuizIntegration {
     }
     
     startBackendMonitoring() {
+        // Zastavit jakékoliv existující monitorování
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
+        }
+        
+        // Spustit pouze pokud používáme server režim
+        if (!this.useServerAuth || this.app.settings.backendMode !== 'server') {
+            console.log('Monitorování zastaveno - lokální režim');
+            return;
         }
         
         // Kontrola každých 30 sekund
         this.checkInterval = setInterval(() => {
-            this.checkBackendAvailability();
+            if (this.useServerAuth && this.app.settings.backendMode === 'server') {
+                this.checkBackendAvailability();
+            } else {
+                // Zastavit monitoring pokud se změnil režim
+                this.stopBackendMonitoring();
+            }
         }, 30000);
     }
     
     startIntensiveMonitoring() {
+        // Zastavit jakékoliv existující monitorování
         if (this.checkInterval) {
             clearInterval(this.checkInterval);
         }
         
+        // Spustit pouze pokud používáme server režim
+        if (!this.useServerAuth || this.app.settings.backendMode !== 'server') {
+            console.log('Intenzivní monitorování zastaveno - lokální režim');
+            return;
+        }
+        
         // Intenzivní kontrola každé 3 sekundy
         this.checkInterval = setInterval(async () => {
-            const available = await this.checkBackendAvailability();
-            if (available) {
-                // Přepnout na běžné monitorování
-                this.startBackendMonitoring();
+            if (this.useServerAuth && this.app.settings.backendMode === 'server') {
+                const available = await this.checkBackendAvailability();
+                if (available) {
+                    // Přepnout na běžné monitorování
+                    this.startBackendMonitoring();
+                }
+            } else {
+                // Zastavit monitoring pokud se změnil režim
+                this.stopBackendMonitoring();
             }
         }, 3000);
     }
     
-    async registerUser(username, password) {
+    stopBackendMonitoring() {
+        if (this.checkInterval) {
+            clearInterval(this.checkInterval);
+            this.checkInterval = null;
+            console.log('Backend monitoring stopped');
+        }
+    }
+    
+    async registerUser(username, password, email = '') {
         console.log('Register user called with server auth:', this.useServerAuth);
         
         if (this.useServerAuth && this.backendAvailable) {
             try {
-                const response = await fetch(`${this.backendUrl}/api/register`, {
+                // Email je povinný pro server registraci
+                if (!email) {
+                    email = `${username}@local.quiz`; // Fallback email
+                }
+                
+                const response = await fetch(`${this.backendUrl}/api/auth/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username, password }),
+                    body: JSON.stringify({ username, password, email }),
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
-                    this.authToken = data.access_token;
+                    this.authToken = data.token; // Backend vrací 'token', ne 'access_token'
                     this.app.showNotification('✅ Registrace úspěšná!', 'success');
                     
                     // Trigger event for GUI monitoring (v4.0)
@@ -397,7 +449,7 @@ class EnhancedQuizIntegration {
         
         if (this.useServerAuth && this.backendAvailable) {
             try {
-                const response = await fetch(`${this.backendUrl}/api/login`, {
+                const response = await fetch(`${this.backendUrl}/api/auth/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -408,12 +460,24 @@ class EnhancedQuizIntegration {
                 const data = await response.json();
 
                 if (response.ok) {
-                    this.authToken = data.access_token;
+                    this.authToken = data.token; // Backend vrací 'token', ne 'access_token'
                     this.app.showNotification('✅ Přihlášení úspěšné!', 'success');
                     
-                    // Aktualizovat UI pro přihlášeného uživatele
-                    this.app.currentUser = { username };
-                    this.app.updateUserInterface();
+                    // Aktualizovat UI pro přihlášeného uživatele - OPRAVA: správně nastavit currentUser
+                    this.app.currentUser = username; // Původní problém byl zde
+                    
+                    // Uložit přihlašovací údaje pro auto-login
+                    this.app.saveToStorage('last_user', { username, password });
+                    
+                    // Aktualizovat UI
+                    this.app.updateUI();
+                    this.app.updateScore();
+                    this.app.updateWindowTitle();
+                    
+                    // Pokud je už vybraná tabulka, načti otázky
+                    if (this.app.currentTable) {
+                        this.app.loadQuestionsForTable(this.app.currentTable);
+                    }
                     
                     // Trigger event for GUI monitoring (v4.0)
                     this.notifyServerEvent('user_login', { username });
@@ -441,9 +505,13 @@ class EnhancedQuizIntegration {
         this.useServerAuth = false;
         
         // Zastavit monitoring
-        if (this.checkInterval) {
-            clearInterval(this.checkInterval);
-            this.checkInterval = null;
+        this.stopBackendMonitoring();
+        
+        // Aktualizovat nastavení aplikace
+        if (this.app && this.app.settings) {
+            this.app.settings.backendMode = 'local';
+            this.app.saveSettings();
+            this.app.updateMainStatusBar('local');
         }
         
         // Zavřít všechny dialogy

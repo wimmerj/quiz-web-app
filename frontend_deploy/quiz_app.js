@@ -1,6 +1,125 @@
 // Quiz Application JavaScript
+
+// Lightweight logging system - integrated directly
+const SimpleLogger = {
+    logs: [],
+    maxLogs: 1000,
+    
+    log(type, message, data = null) {
+        const entry = {
+            timestamp: new Date().toISOString(),
+            type: type,
+            message: message,
+            data: data
+        };
+        
+        this.logs.push(entry);
+        if (this.logs.length > this.maxLogs) {
+            this.logs.shift();
+        }
+        
+        this.updateDebugPanel(entry);
+        console.log(`[${type.toUpperCase()}] ${message}`, data || '');
+    },
+    
+    updateDebugPanel(entry) {
+        const debugLog = document.getElementById('debugLog');
+        const debugStats = document.getElementById('debugStats');
+        
+        if (debugLog) {
+            const logEntry = document.createElement('div');
+            logEntry.className = `debug-entry ${entry.type}`;
+            
+            const timestamp = document.createElement('span');
+            timestamp.className = 'timestamp';
+            timestamp.textContent = `[${new Date(entry.timestamp).toLocaleTimeString()}]`;
+            
+            const type = document.createElement('span');
+            type.className = 'type';
+            type.textContent = entry.type.toUpperCase();
+            
+            const message = document.createElement('span');
+            message.className = 'message';
+            message.textContent = entry.message;
+            
+            logEntry.appendChild(timestamp);
+            logEntry.appendChild(type);
+            logEntry.appendChild(message);
+            
+            debugLog.appendChild(logEntry);
+            debugLog.scrollTop = debugLog.scrollHeight;
+            
+            // Limit visible entries
+            if (debugLog.children.length > 100) {
+                debugLog.removeChild(debugLog.firstChild);
+            }
+        }
+        
+        if (debugStats) {
+            debugStats.textContent = `Logů: ${this.logs.length}`;
+        }
+    },
+    
+    downloadLogs() {
+        const data = {
+            session_id: Date.now(),
+            timestamp: new Date().toISOString(),
+            logs: this.logs,
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        };
+        
+        try {
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `quiz-debug-log-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            this.log('system', 'Debug log stažen');
+        } catch (error) {
+            console.error('Error downloading log:', error);
+            this.log('error', `Chyba při stahování logu: ${error.message}`);
+        }
+    },
+    
+    clear() {
+        this.logs = [];
+        const debugLog = document.getElementById('debugLog');
+        if (debugLog) {
+            debugLog.innerHTML = '';
+        }
+        this.log('system', 'Debug log vymazán');
+    }
+};
+
+// Debug panel functions
+function toggleDebugPanel() {
+    const panel = document.getElementById('debugPanel');
+    if (panel) {
+        if (panel.style.display === 'none') {
+            panel.style.display = 'block';
+            SimpleLogger.log('system', 'Debug panel otevřen');
+        } else {
+            panel.style.display = 'none';
+            SimpleLogger.log('system', 'Debug panel zavřen');
+        }
+    }
+}
+
+function clearDebugLog() {
+    SimpleLogger.clear();
+}
+
+function downloadDebugLog() {
+    SimpleLogger.downloadLogs();
+}
+
 class QuizApp {
     constructor() {
+        SimpleLogger.log('system', 'QuizApp inicializace začíná');
+        
         this.currentUser = null;
         this.questions = [];
         this.currentQuestionIndex = -1;
@@ -28,23 +147,30 @@ class QuizApp {
         this.init();
         this.createDemoUsers();
         
+        SimpleLogger.log('success', 'QuizApp základní inicializace dokončena');
+        
         // Initialize additional systems
-        this.notifications = new NotificationSystem();
-        this.accessibility = new AccessibilityManager();
-        this.statistics = new StatisticsManager();
+        try {
+            this.notifications = new NotificationSystem();
+            this.accessibility = new AccessibilityManager();
+            this.statistics = new StatisticsManager();
+            SimpleLogger.log('success', 'Pomocné systémy inicializovány');
+        } catch (error) {
+            SimpleLogger.log('warning', `Některé pomocné systémy se nepodařilo načíst: ${error.message}`);
+        }
         
         // Initialize oral exam system after a short delay to avoid circular dependency
         setTimeout(() => {
             try {
                 if (typeof OralExamSystem !== 'undefined') {
                     this.oralExamSystem = new OralExamSystem();
-                    console.log('Oral exam system initialized successfully');
+                    SimpleLogger.log('success', 'Oral exam system initialized successfully');
                 } else {
-                    console.warn('OralExamSystem class not found - oral exam will be initialized on demand');
+                    SimpleLogger.log('warning', 'OralExamSystem class not found - oral exam will be initialized on demand');
                     this.oralExamSystem = null;
                 }
             } catch (error) {
-                console.error('Failed to initialize oral exam system:', error);
+                SimpleLogger.log('error', `Failed to initialize oral exam system: ${error.message}`);
                 this.oralExamSystem = null;
             }
         }, 500); // Prodloužené zpoždění
@@ -954,13 +1080,31 @@ class QuizApp {
 
     // User Authentication with better validation
     async loginUser(username, password, showMessages = true) {
-        // Pokud je dostupná enhanced integrace, použij ji
-        if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
-            return await enhancedIntegration.loginUser(username, password);
-        }
+        SimpleLogger.log('action', `Pokus o přihlášení uživatele: ${username}`);
         
-        // Jinak použij původní lokální přihlášení
-        return this.loginUserLocal(username, password, showMessages);
+        try {
+            // Pokud je dostupná enhanced integrace, použij ji
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                const result = await enhancedIntegration.loginUser(username, password);
+                SimpleLogger.log('success', `Úspěšné přihlášení uživatele: ${username}`);
+                return result;
+            }
+            
+            // Jinak použij původní lokální přihlášení
+            const result = this.loginUserLocal(username, password, showMessages);
+            if (result) {
+                SimpleLogger.log('success', `Lokální přihlášení úspěšné: ${username}`);
+            } else {
+                SimpleLogger.log('warning', `Lokální přihlášení neúspěšné: ${username}`);
+            }
+            return result;
+        } catch (error) {
+            SimpleLogger.log('error', `Chyba při přihlášení: ${error.message}`, error);
+            if (showMessages) {
+                this.showNotification(`Chyba při přihlášení: ${error.message}`, 'error');
+            }
+            throw error;
+        }
     }
     
     loginUserLocal(username, password, showMessages = true) {
@@ -1041,20 +1185,52 @@ class QuizApp {
         }
     }
 
-    async registerUser(username, password) {
-        // Pokud je dostupná enhanced integrace, použij ji
-        if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
-            return await enhancedIntegration.registerUser(username, password);
-        }
+    async registerUser(username, password, email = '') {
+        SimpleLogger.log('action', `Pokus o registraci uživatele: ${username} (${email})`);
         
-        // Jinak použij původní lokální registraci
-        return this.registerUserLocal(username, password);
+        try {
+            // Always try server registration first, regardless of current mode
+            SimpleLogger.log('info', 'Vynucená serverová registrace - přepínání na server');
+            
+            const originalMode = this.settings.backendMode;
+            
+            // Temporarily switch to server mode for registration
+            this.settings.backendMode = 'server';
+            
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                await enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+                SimpleLogger.log('info', `Backend URL aktualizována na: ${this.settings.serverUrl}`);
+                
+                const result = await enhancedIntegration.registerUser(username, password, email);
+                SimpleLogger.log('success', `Server registrace úspěšná pro uživatele: ${username}`);
+                
+                // Show success message
+                this.showNotification(`Registrace proběhla úspěšně!\nUživatel: ${username}\nEmail: ${email}\nÚdaje byly uloženy na server.`, 'success');
+                
+                return result;
+            } else {
+                throw new Error('Enhanced integration není dostupná');
+            }
+            
+        } catch (error) {
+            SimpleLogger.log('error', `Chyba při serverové registraci: ${error.message}`, error);
+            
+            // Show error message
+            this.showNotification(`Registrace se nezdařila!\nChyba: ${error.message}\n\nZkontrolujte internetové připojení a zkuste to znovu.`, 'error');
+            
+            throw error;
+        }
     }
     
-    registerUserLocal(username, password) {
+    registerUserLocal(username, password, email = '') {
         // Input validation
         if (!username || !password) {
             this.showNotification("Uživatelské jméno a heslo jsou povinné.", 'error');
+            return false;
+        }
+
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            this.showNotification("Neplatný formát emailu.", 'error');
             return false;
         }
 
@@ -1149,7 +1325,7 @@ class QuizApp {
         const endBtn = document.getElementById('endTestBtn');
         
         if (startBtn) {
-            startBtn.disabled = !hasQuestions; // Enable when logged in AND has table AND has questions
+            startBtn.disabled = !isLoggedIn || !hasTable; // Enable when logged in AND has table
         }
         if (endBtn) {
             endBtn.disabled = true; // Initially disabled, enabled when quiz starts
@@ -1635,13 +1811,25 @@ class QuizApp {
         });
 
         // Register form
-        document.getElementById('registerForm').addEventListener('submit', (e) => {
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            SimpleLogger.log('action', 'Register form submitted');
+            
             const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
             const password = document.getElementById('registerPassword').value;
-            this.registerUser(username, password);
-            this.closeModal('registerModal');
-            e.target.reset();
+            
+            SimpleLogger.log('info', `Form data: username=${username}, email=${email}`);
+            
+            try {
+                await this.registerUser(username, password, email);
+                SimpleLogger.log('success', 'Registration completed successfully');
+                this.closeModal('registerModal');
+                e.target.reset();
+            } catch (error) {
+                SimpleLogger.log('error', `Registration failed: ${error.message}`);
+                // Don't close modal on error, let user try again
+            }
         });
 
         // Change password form
@@ -1729,12 +1917,32 @@ class QuizApp {
         // Aktualizuj URL serveru z formuláře před testem
         if (serverUrlInput && serverUrlInput.value.trim()) {
             this.settings.serverUrl = serverUrlInput.value.trim();
+            
+            // Synchronizovat URL s enhanced integration
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+            }
         }
         
         // Aktualizuj backend mode z formuláře před testem
         if (backendModeSelect) {
             this.settings.backendMode = backendModeSelect.value;
             this.saveSettings(); // Uložit nastavení
+            
+            // Synchronizovat s enhanced integration
+            if (typeof enhancedIntegration !== 'undefined' && enhancedIntegration) {
+                enhancedIntegration.updateBackendUrl(this.settings.serverUrl);
+                
+                // Aktualizovat režim enhanced integration
+                if (this.settings.backendMode === 'server') {
+                    enhancedIntegration.useServerAuth = true;
+                    localStorage.setItem('authPreference', 'server');
+                } else {
+                    enhancedIntegration.useServerAuth = false;
+                    enhancedIntegration.stopBackendMonitoring();
+                    localStorage.setItem('authPreference', 'local');
+                }
+            }
         }
         
         // Aktualizuj status bar okamžitě podle režimu
@@ -2112,8 +2320,18 @@ function toggleDebugPanel() {
 }
 
 function clearDebugLog() {
-    if (window.debugLogger) {
+    if (window.enhancedLogger) {
+        enhancedLogger.clearLogs();
+    } else if (window.debugLogger) {
         debugLogger.clear();
+    }
+}
+
+function downloadDebugLog() {
+    if (window.enhancedLogger) {
+        enhancedLogger.downloadLogs();
+    } else {
+        console.warn('Enhanced logger not available for download');
     }
 }
 
@@ -2206,37 +2424,72 @@ let serverStatusManager = null;
 let debugLogger = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize debug logger first
-    debugLogger = new DebugLogger();
-    window.debugLogger = debugLogger;
+    // Initialize SimpleLogger
+    SimpleLogger.log('system', 'Quiz Application DOMContentLoaded - SimpleLogger ready');
+    SimpleLogger.log('info', 'Inicializace aplikace začíná...');
     
-    // Initialize server status manager
-    serverStatusManager = new ServerStatusManager();
-    window.serverStatusManager = serverStatusManager;
+    // Make SimpleLogger globally available for compatibility
+    window.debugLogger = SimpleLogger;
+    window.enhancedLogger = SimpleLogger;
     
-    debugLogger.log('UI enhancement systémy inicializovány', 'system');
-    debugLogger.log('Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test', 'info');
+    // Initialize server status manager if available
+    try {
+        if (typeof ServerStatusManager !== 'undefined') {
+            serverStatusManager = new ServerStatusManager();
+            window.serverStatusManager = serverStatusManager;
+            SimpleLogger.log('success', 'ServerStatusManager inicializován');
+        } else {
+            SimpleLogger.log('warning', 'ServerStatusManager není dostupný');
+        }
+    } catch (error) {
+        SimpleLogger.log('error', `Chyba při inicializaci ServerStatusManager: ${error.message}`);
+    }
     
-    // Override original server communication methods to add logging
+    // Log workflow info
+    SimpleLogger.log('info', 'Quiz workflow: Vyberte tabulku → Spustit kvíz → Odpovídejte na otázky → Ukončit test');
+    
+    // Override enhanced integration if available
     if (window.enhancedIntegration) {
+        SimpleLogger.log('success', 'Enhanced integration detected - setting up logging override');
         const originalNotifyServer = enhancedIntegration.notifyServerEvent;
         enhancedIntegration.notifyServerEvent = function(eventType, data) {
-            debugLogger.log(`Odesílání události: ${eventType}`, 'info');
-            serverStatusManager.setConnecting();
+            SimpleLogger.log('info', `Odesílání události: ${eventType}`);
+            
+            if (window.serverStatusManager) {
+                serverStatusManager.setConnecting();
+            }
             
             const result = originalNotifyServer.call(this, eventType, data);
             
             if (result && typeof result.then === 'function') {
                 result.then(() => {
-                    debugLogger.log(`Událost ${eventType} úspěšně odeslána`, 'success');
+                    SimpleLogger.log('success', `Událost ${eventType} úspěšně odeslána`);
                 }).catch((error) => {
-                    debugLogger.log(`Chyba při odesílání události ${eventType}: ${error.message}`, 'error');
+                    SimpleLogger.log('error', `Chyba při odesílání události ${eventType}: ${error.message}`);
                 });
             }
             
             return result;
         };
+    } else {
+        SimpleLogger.log('warning', 'Enhanced integration not available yet');
     }
+    
+    // Initialize the application after DOM is ready
+    SimpleLogger.log('system', 'Inicializuji QuizApp...');
+    app = new QuizApp();
+    window.app = app; // Make it globally accessible
+    
+    // Initialize enhanced integration if available
+    if (typeof EnhancedQuizIntegration !== 'undefined') {
+        enhancedIntegration = new EnhancedQuizIntegration(app);
+        window.enhancedIntegration = enhancedIntegration; // Make it globally accessible
+        SimpleLogger.log('success', 'Enhanced integration initialized');
+    } else {
+        SimpleLogger.log('warning', 'Enhanced integration not available - using local mode only');
+    }
+    
+    SimpleLogger.log('success', 'Aplikace úspěšně inicializována!');
 });
 
 // Cleanup on page unload
@@ -2246,15 +2499,6 @@ window.addEventListener('beforeunload', function() {
     }
 });
 
-// Initialize the application
-const app = new QuizApp();
-
-// Initialize enhanced integration if available
+// Global variables
+let app = null;
 let enhancedIntegration = null;
-if (typeof EnhancedQuizIntegration !== 'undefined') {
-    enhancedIntegration = new EnhancedQuizIntegration(app);
-    window.enhancedIntegration = enhancedIntegration; // Make it globally accessible
-    console.log('Enhanced integration initialized');
-} else {
-    console.warn('Enhanced integration not available - using local mode only');
-}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Modulární Architektura</title>
+    <link rel="stylesheet" href="shared/common.css">
+    <style>
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .module-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .module-card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .module-card p {
+            margin: 0;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .status.ready { background: rgba(76, 175, 80, 0.3); }
+        .status.development { background: rgba(255, 193, 7, 0.3); }
+        .status.planning { background: rgba(156, 39, 176, 0.3); }
+        
+        .auth { background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); }
+        .quiz { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+        .oral-exam { background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); }
+        .battle { background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%); }
+        .admin { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
+        .settings { background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); }
+        
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            margin-bottom: 0;
+        }
+        
+        .progress {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 2rem;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            background: #4CAF50;
+            height: 100%;
+            width: 15%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Quiz App - Modulární Architektura</h1>
+        <p>Nová modulární verze s vylepšenou architekturou a lepší maintainability</p>
+        
+        <div class="progress">
+            <h3>📊 Progress Migrace</h3>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>60% dokončeno (Infrastructure + Auth + Quiz + Admin Modules)</p>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        
+        <!-- Auth Module -->
+        <a href="pages/auth/login.html" class="module-card auth">
+            <h3>🔐 Autentifikace</h3>
+            <p>Přihlášení, registrace a správa hesel. Centralizovaný auth systém s JWT tokeny a zabezpečeným session managementem.</p>
+            <span class="status ready">Hotovo</span>
+        </a>
+
+        <!-- Quiz Module -->
+        <a href="pages/quiz/quiz.html" class="module-card quiz">
+            <h3>📝 Hlavní Quiz</h3>
+            <p>Čistý quiz interface bez zbytečností. Optimalizovaný pro rychlost a snadné používání s pokročilými funkcemi.</p>
+            <span class="status ready">Hotovo</span>
+        </a>
+
+        <!-- Oral Exam Module -->
+        <a href="pages/oral-exam/oral-exam.html" class="module-card oral-exam">
+            <h3>🎤 Ústní Zkoušení</h3>
+            <p>TTS a STT integrace s AI vyhodnocováním. Specializované otázky optimalizované pro mluvené odpovědi.</p>
+            <span class="status ready">Hotovo</span>
+        </a>
+
+        <!-- Battle Module -->
+        <a href="pages/battle/battle.html" class="module-card battle">
+            <h3>⚔️ Multiplayer Battle</h3>
+            <p>Real-time multiplayer soutěže s live leaderboards. WebSocket komunikace pro okamžité aktualizace.</p>
+            <span class="status planning">Plánováno</span>
+        </a>
+
+        <!-- Admin Module -->
+        <a href="pages/admin/admin.html" class="module-card admin">
+            <h3>👨‍💼 Admin Portal</h3>
+            <p>Správa uživatelů, systémové statistiky a monitoring. Pokročilé nástroje pro administrátory.</p>
+            <span class="status ready">Hotovo</span>
+        </a>
+
+        <!-- Settings Module -->
+        <a href="pages/settings/settings.html" class="module-card settings">
+            <h3>⚙️ Nastavení</h3>
+            <p>Konfigurace aplikace, uživatelské preference a backend připojení. Centralizované nastavení pro všechny moduly.</p>
+            <span class="status planning">Plánováno</span>
+        </a>
+
+    </div>
+
+    <div style="text-align: center; padding: 2rem; background: #f5f5f5;">
+        <h3>🔄 Současná Verze</h3>
+        <p>Pro běžné používání prozatím použijte <a href="../frontend_deploy/quiz_app.html" style="color: #2196F3;">současnou verzi aplikace</a></p>
+        
+        <h3>📋 Status Modulů</h3>
+        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
+            <div>✅ <strong>Infrastructure:</strong> Hotovo</div>
+            <div>✅ <strong>Auth Module:</strong> Hotovo</div>
+            <div>✅ <strong>Quiz Module:</strong> Hotovo</div>
+            <div>✅ <strong>Admin Module:</strong> Hotovo</div>
+            <div>✅ <strong>Oral Exam:</strong> Hotovo</div>
+            <div>📋 <strong>Battle Mode:</strong> Plánováno</div>
+        </div>
+    </div>
+
+    <script src="shared/navigation.js"></script>
+    <script src="shared/logger.js"></script>
+    <script>
+        // Basic analytics
+        Logger.log('system', 'Modular app dashboard loaded');
+        
+        // Update progress based on completed modules
+        function updateProgress() {
+            const total = 6; // Total modules
+            const completed = 5; // Completed modules: Infrastructure, Auth, Quiz, Admin, Oral Exam
+            const inProgress = 0; // No modules in progress
+            
+            const progressPercent = ((completed + inProgress * 0.5) / total) * 100;
+            document.querySelector('.progress-fill').style.width = progressPercent + '%';
+        }
+        
+        updateProgress();
+        
+        // Navigation handling
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const href = card.getAttribute('href');
+                const moduleName = card.querySelector('h3').textContent;
+                
+                // Check if module is ready
+                const status = card.querySelector('.status');
+                if (status.classList.contains('planning')) {
+                    e.preventDefault();
+                    alert(`Modul "${moduleName}" je ještě v plánování. Bude dostupný v dalších fázích vývoje.`);
+                    return;
+                }
+                
+                Logger.log('navigation', `Navigating to module: ${moduleName}`);
+            });
+        });
+    </script>
+</body>
+</html>

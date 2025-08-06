@@ -75,13 +75,12 @@
             </div>
             <div class="debug-content">
                 <div class="debug-controls">
-                    <button type="button" onclick="clearDebugLog()" class="debug-clear">Vymazat log</button>
-                    <label>
-                        <input type="checkbox" id="autoScrollDebug" checked> Auto-scroll
-                    </label>
+                    <button type="button" onclick="clearDebugLog()" class="debug-clear">Vymazat</button>
+                    <button type="button" onclick="downloadDebugLog()" class="debug-download">📥 Stáhnout</button>
+                    <span id="debugStats">Logů: 0</span>
                 </div>
                 <div class="debug-log" id="debugLog">
-                    <div class="debug-entry system">Debug panel inicializován</div>
+                    <!-- SimpleLogger will populate this -->
                 </div>
             </div>
         </div>
@@ -182,6 +181,10 @@
                 <div class="form-group">
                     <label for="registerUsername">Uživatelské jméno:</label>
                     <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
                 </div>
                 <div class="form-group">
                     <label for="registerPassword">Heslo:</label>
@@ -306,16 +309,27 @@
         </div>
     </div>
 
+    <!-- Only load essential scripts -->
     <script src="quiz_data.js"></script>
-    <script src="security_improvements.js"></script>
-    <script src="ux_improvements.js"></script>
-    <script src="data_management.js"></script>
-    <script src="accessibility.js"></script>
-    <script src="statistics.js"></script>
-    <script src="oral_exam_system.js"></script>
     <script src="quiz_app.js"></script>
     <script src="enhanced_integration.js"></script>
+    
+    <!-- Optional scripts - load only if they exist -->
+    <script>
+        // Load optional scripts safely
+        function loadOptionalScript(src) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onerror = () => console.log(`Optional script ${src} not found - skipping`);
+            document.head.appendChild(script);
+        }
+        
+        // Load optional enhancements only if needed
+        if (window.location.hash === '#oral-exam') {
+            loadOptionalScript('oral_exam_system.js');
+        }
+    </script>
+    
     <link rel="stylesheet" href="advanced_styles.css">
-    <link rel="stylesheet" href="oral_exam_styles.css">
 </body>
 </html>

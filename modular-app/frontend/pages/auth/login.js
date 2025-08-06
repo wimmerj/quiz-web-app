@@ -181,9 +181,9 @@ class AuthManager {
             // Try server login first
             let success = false;
             
-            if (this.serverStatus === 'online' && window.APIClient) {
+            if (this.serverStatus === 'online') {
                 Logger.info('Attempting server login');
-                const response = await window.APIClient.login(username, password);
+                const response = await APIClient.login(username, password);
                 
                 if (response.success) {
                     success = true;
@@ -255,25 +255,21 @@ class AuthManager {
         this.setFormLoading(form, true);
         
         try {
-            // Try server registration if APIClient is available
-            if (window.APIClient) {
-                Logger.info('Attempting server registration');
-                const response = await window.APIClient.register(username, password, email);
+            // Always try server registration first (server-forced registration)
+            Logger.info('Attempting server registration');
+            const response = await APIClient.register(username, password, email);
+            
+            if (response.success) {
+                this.showNotification('Registrace úspěšná! Můžete se nyní přihlásit.', 'success');
                 
-                if (response.success) {
-                    this.showNotification('Registrace úspěšná! Můžete se nyní přihlásit.', 'success');
-                    
-                    // Switch to login tab and prefill username
-                    this.switchTab('login');
-                    document.getElementById('loginUsername').value = username;
-                    document.getElementById('loginPassword').focus();
-                    
-                } else {
-                    Logger.error('Server registration failed', response.error);
-                    this.showNotification(`Registrace se nezdařila: ${response.error}`, 'error');
-                }
+                // Switch to login tab and prefill username
+                this.switchTab('login');
+                document.getElementById('loginUsername').value = username;
+                document.getElementById('loginPassword').focus();
+                
             } else {
-                this.showNotification('Server není dostupný, registrace momentálně není možná.', 'warning');
+                Logger.error('Server registration failed', response.error);
+                this.showNotification(`Registrace se nezdařila: ${response.error}`, 'error');
             }
             
         } catch (error) {
@@ -422,15 +418,7 @@ class AuthManager {
         Logger.info('Checking server status...');
         this.updateServerStatus('checking', '🟡 Kontroluji...');
         
-        // Ensure APIClient is available
-        if (!window.APIClient) {
-            console.warn('APIClient not yet available, falling back to offline mode');
-            this.serverStatus = 'offline';
-            this.updateServerStatus('offline', '🔴 Offline Mode');
-            return;
-        }
-        
-        const isOnline = await window.APIClient.healthCheck();
+        const isOnline = await APIClient.healthCheck();
         
         if (isOnline) {
             this.serverStatus = 'online';

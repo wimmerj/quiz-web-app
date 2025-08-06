@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Mode - Modular Quiz App</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="battle.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications-container"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>⚔️ Battle Mode</h1>
+            <div class="user-info">
+                <span id="userDisplay">👤 Loading...</span>
+                <div class="user-stats">
+                    <span id="userRank">🏆 Rank: --</span>
+                    <span id="userRating">⭐ Rating: --</span>
+                </div>
+                <button id="logoutBtn" class="btn btn-secondary">Odhlásit</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../../index.html">🏠 Dashboard</a>
+            <span class="separator">›</span>
+            <span class="current">⚔️ Battle Mode</span>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Battle Menu -->
+        <section class="battle-menu" id="battleMenu">
+            <div class="menu-grid">
+                
+                <!-- Quick Battle -->
+                <div class="battle-card quick-battle">
+                    <div class="card-header">
+                        <h3>⚡ Rychlý Souboj</h3>
+                        <div class="difficulty-indicator easy">SNADNÉ</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Okamžité spojení s náhodným protivníkem. Rychlé 5-minutové souboje pro začátečníky.</p>
+                        <div class="battle-stats">
+                            <span>👥 Online: <span id="quickBattlePlayers">--</span></span>
+                            <span>⏱️ Průměrný čas: 2min</span>
+                        </div>
+                    </div>
+                    <button id="quickBattleBtn" class="btn btn-primary btn-large">
+                        🚀 Začít Rychlý Souboj
+                    </button>
+                </div>
+
+                <!-- Ranked Battle -->
+                <div class="battle-card ranked-battle">
+                    <div class="card-header">
+                        <h3>🏆 Hodnocený Souboj</h3>
+                        <div class="difficulty-indicator medium">STŘEDNÍ</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Souboje ovlivňující váš rank a rating. Delší formát s 10 otázkami pro pokročilé hráče.</p>
+                        <div class="battle-stats">
+                            <span>👥 Online: <span id="rankedBattlePlayers">--</span></span>
+                            <span>⏱️ Průměrný čas: 8min</span>
+                        </div>
+                    </div>
+                    <button id="rankedBattleBtn" class="btn btn-success btn-large">
+                        🎯 Začít Hodnocený Souboj
+                    </button>
+                </div>
+
+                <!-- Tournament -->
+                <div class="battle-card tournament">
+                    <div class="card-header">
+                        <h3>🏅 Turnaj</h3>
+                        <div class="difficulty-indicator hard">TĚŽKÉ</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Eliminační turnaje s více hráči. Vítěz bere všechno! Prestižní soutěže s velkými odměnami.</p>
+                        <div class="battle-stats">
+                            <span>🏆 Aktivní turnaje: <span id="activeTournaments">--</span></span>
+                            <span>💰 Výhry: XP + Achievementy</span>
+                        </div>
+                    </div>
+                    <button id="tournamentBtn" class="btn btn-warning btn-large">
+                        🎪 Připojit se k Turnaji
+                    </button>
+                </div>
+
+                <!-- Custom Battle -->
+                <div class="battle-card custom-battle">
+                    <div class="card-header">
+                        <h3>🎨 Vlastní Souboj</h3>
+                        <div class="difficulty-indicator custom">VLASTNÍ</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Vytvořte souboj s vlastními pravidly nebo se připojte k souboji přátel pomocí kódu místnosti.</p>
+                        <div class="custom-options">
+                            <input type="text" id="roomCodeInput" class="form-input" placeholder="Kód místnosti (volitelné)">
+                        </div>
+                    </div>
+                    <div class="custom-actions">
+                        <button id="createRoomBtn" class="btn btn-secondary">
+                            🏗️ Vytvořit Místnost
+                        </button>
+                        <button id="joinRoomBtn" class="btn btn-secondary">
+                            🚪 Připojit se
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Battle History & Stats -->
+            <div class="battle-sidebar">
+                
+                <!-- Recent Battles -->
+                <div class="sidebar-card">
+                    <h4>📜 Nedávné Souboje</h4>
+                    <div id="recentBattles" class="recent-list">
+                        <div class="recent-item win">
+                            <div class="battle-result">🏆 VÝHRA</div>
+                            <div class="battle-details">
+                                <span>vs TestUser123</span>
+                                <span class="battle-score">8:6</span>
+                            </div>
+                            <div class="battle-time">před 2h</div>
+                        </div>
+                        <div class="recent-item loss">
+                            <div class="battle-result">❌ PROHRA</div>
+                            <div class="battle-details">
+                                <span>vs QuizMaster</span>
+                                <span class="battle-score">4:9</span>
+                            </div>
+                            <div class="battle-time">před 1d</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard Preview -->
+                <div class="sidebar-card">
+                    <h4>🏆 Top Hráči</h4>
+                    <div id="leaderboardPreview" class="leaderboard-mini">
+                        <div class="leader-item">
+                            <span class="rank">1.</span>
+                            <span class="name">QuizGod</span>
+                            <span class="rating">2847</span>
+                        </div>
+                        <div class="leader-item">
+                            <span class="rank">2.</span>
+                            <span class="name">BrainMaster</span>
+                            <span class="rating">2756</span>
+                        </div>
+                        <div class="leader-item">
+                            <span class="rank">3.</span>
+                            <span class="name">QuickThink</span>
+                            <span class="rating">2689</span>
+                        </div>
+                        <div class="leader-item current">
+                            <span class="rank">47.</span>
+                            <span class="name">You</span>
+                            <span class="rating">1842</span>
+                        </div>
+                    </div>
+                    <button id="fullLeaderboardBtn" class="btn btn-small btn-secondary">
+                        📊 Plný Žebříček
+                    </button>
+                </div>
+
+                <!-- Achievements -->
+                <div class="sidebar-card">
+                    <h4>🎯 Achievementy</h4>
+                    <div id="achievements" class="achievements-mini">
+                        <div class="achievement unlocked">
+                            <span class="icon">🏆</span>
+                            <span class="name">První Výhra</span>
+                        </div>
+                        <div class="achievement unlocked">
+                            <span class="icon">⚡</span>
+                            <span class="name">Rychlá Ruka</span>
+                        </div>
+                        <div class="achievement locked">
+                            <span class="icon">🔥</span>
+                            <span class="name">Série 10</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Matchmaking Screen -->
+        <section class="matchmaking" id="matchmaking" style="display: none;">
+            <div class="matchmaking-container">
+                <div class="matchmaking-header">
+                    <h2>🔍 Hledání Protivníka...</h2>
+                    <button id="cancelMatchmakingBtn" class="btn btn-danger">
+                        ❌ Zrušit
+                    </button>
+                </div>
+                
+                <div class="matchmaking-animation">
+                    <div class="search-radar">
+                        <div class="radar-sweep"></div>
+                        <div class="radar-dot dot-1"></div>
+                        <div class="radar-dot dot-2"></div>
+                        <div class="radar-dot dot-3"></div>
+                    </div>
+                </div>
+                
+                <div class="matchmaking-info">
+                    <div class="search-status">
+                        <span id="searchStatus">Připojování k serveru...</span>
+                    </div>
+                    <div class="search-stats">
+                        <span>⏱️ Čas hledání: <span id="searchTime">0:00</span></span>
+                        <span>👥 Hráči online: <span id="onlineCount">--</span></span>
+                    </div>
+                    <div class="search-tips">
+                        <h4>💡 Tipy během čekání:</h4>
+                        <ul id="searchTips">
+                            <li>Připravte si klávesové zkratky A, B, C pro rychlé odpovídání</li>
+                            <li>Rychlost odpovědi ovlivňuje konečné skóre</li>
+                            <li>Při stejném počtu správných odpovědí vyhrává rychlejší hráč</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Battle Arena -->
+        <section class="battle-arena" id="battleArena" style="display: none;">
+            
+            <!-- Battle Header -->
+            <div class="battle-header">
+                <div class="battle-timer">
+                    <div class="timer-circle">
+                        <span id="battleTimeRemaining">5:00</span>
+                    </div>
+                </div>
+                
+                <div class="battle-info">
+                    <div class="battle-mode">⚔️ Rychlý Souboj</div>
+                    <div class="question-progress">
+                        <span id="battleQuestionCounter">Otázka 1/10</span>
+                    </div>
+                </div>
+                
+                <div class="battle-actions">
+                    <button id="surrenderBtn" class="btn btn-small btn-danger">
+                        🏳️ Vzdát se
+                    </button>
+                </div>
+            </div>
+
+            <!-- Players Display -->
+            <div class="players-section">
+                <div class="player-card player-you">
+                    <div class="player-header">
+                        <div class="player-avatar">👤</div>
+                        <div class="player-info">
+                            <div class="player-name" id="yourName">Vy</div>
+                            <div class="player-rank" id="yourRank">Rank: Bronze</div>
+                        </div>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value" id="yourScore">0</span>
+                            <span class="stat-label">Skóre</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="yourCorrect">0</span>
+                            <span class="stat-label">Správně</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="yourStreak">0</span>
+                            <span class="stat-label">Série</span>
+                        </div>
+                    </div>
+                    <div class="player-status">
+                        <div id="yourStatus" class="status-indicator ready">Připraven</div>
+                    </div>
+                </div>
+
+                <div class="vs-indicator">
+                    <div class="vs-text">VS</div>
+                    <div class="vs-lightning">⚡</div>
+                </div>
+
+                <div class="player-card player-opponent">
+                    <div class="player-header">
+                        <div class="player-avatar">🎯</div>
+                        <div class="player-info">
+                            <div class="player-name" id="opponentName">Protivník</div>
+                            <div class="player-rank" id="opponentRank">Rank: Silver</div>
+                        </div>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value" id="opponentScore">0</span>
+                            <span class="stat-label">Skóre</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="opponentCorrect">0</span>
+                            <span class="stat-label">Správně</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="opponentStreak">0</span>
+                            <span class="stat-label">Série</span>
+                        </div>
+                    </div>
+                    <div class="player-status">
+                        <div id="opponentStatus" class="status-indicator ready">Připraven</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Section -->
+            <div class="question-section">
+                <div class="question-header">
+                    <h3>📝 Otázka</h3>
+                    <div class="question-difficulty">
+                        <span id="questionDifficulty" class="difficulty-badge easy">SNADNÁ</span>
+                    </div>
+                </div>
+                
+                <div class="question-content">
+                    <p id="battleQuestionText" class="question-text">
+                        Příprava souboje...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Answers Section -->
+            <div class="answers-section">
+                <div class="answers-grid">
+                    <button id="battleAnswerA" class="battle-answer" data-letter="A" disabled>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Odpověď A</span>
+                        <div class="answer-feedback"></div>
+                    </button>
+                    
+                    <button id="battleAnswerB" class="battle-answer" data-letter="B" disabled>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Odpověď B</span>
+                        <div class="answer-feedback"></div>
+                    </button>
+                    
+                    <button id="battleAnswerC" class="battle-answer" data-letter="C" disabled>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Odpověď C</span>
+                        <div class="answer-feedback"></div>
+                    </button>
+                </div>
+                
+                <!-- Battle Controls -->
+                <div class="battle-controls">
+                    <div class="response-timer">
+                        <div class="timer-bar">
+                            <div id="responseTimeBar" class="timer-fill"></div>
+                        </div>
+                        <span id="responseTimeText">15s</span>
+                    </div>
+                    
+                    <div class="keyboard-hint">
+                        ⌨️ Klávesy A, B, C pro rychlé odpovídání
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Feed -->
+            <div class="live-feed">
+                <h4>📢 Live Komentář</h4>
+                <div id="liveFeedMessages" class="feed-messages">
+                    <div class="feed-message system">
+                        <span class="timestamp">00:00</span>
+                        <span class="message">Souboj začíná! Hodně štěstí!</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Battle Results -->
+        <section class="battle-results" id="battleResults" style="display: none;">
+            <div class="results-container">
+                
+                <!-- Victory/Defeat Banner -->
+                <div id="resultBanner" class="result-banner victory">
+                    <div class="banner-icon">🏆</div>
+                    <div class="banner-text">
+                        <h2 id="resultTitle">VÍTĚZSTVÍ!</h2>
+                        <p id="resultSubtitle">Skvělá práce! Porazili jste protivníka.</p>
+                    </div>
+                </div>
+
+                <!-- Final Scores -->
+                <div class="final-scores">
+                    <div class="score-comparison">
+                        <div class="your-final-score">
+                            <div class="score-header">
+                                <h3>👤 Vaše výsledky</h3>
+                            </div>
+                            <div class="score-stats">
+                                <div class="main-score" id="yourFinalScore">1250</div>
+                                <div class="score-breakdown">
+                                    <span>✅ Správně: <span id="yourFinalCorrect">8</span></span>
+                                    <span>❌ Špatně: <span id="yourFinalWrong">2</span></span>
+                                    <span>⚡ Avg. čas: <span id="yourAvgTime">3.2s</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="opponent-final-score">
+                            <div class="score-header">
+                                <h3>🎯 Protivník</h3>
+                            </div>
+                            <div class="score-stats">
+                                <div class="main-score" id="opponentFinalScore">980</div>
+                                <div class="score-breakdown">
+                                    <span>✅ Správně: <span id="opponentFinalCorrect">6</span></span>
+                                    <span>❌ Špatně: <span id="opponentFinalWrong">4</span></span>
+                                    <span>⚡ Avg. čas: <span id="opponentAvgTime">4.8s</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rewards & Rating Changes -->
+                <div class="rewards-section">
+                    <h3>🎁 Odměny</h3>
+                    <div class="rewards-grid">
+                        <div class="reward-item">
+                            <div class="reward-icon">⭐</div>
+                            <div class="reward-info">
+                                <span class="reward-name">Rating</span>
+                                <span class="reward-value" id="ratingChange">+25</span>
+                            </div>
+                        </div>
+                        <div class="reward-item">
+                            <div class="reward-icon">💎</div>
+                            <div class="reward-info">
+                                <span class="reward-name">XP</span>
+                                <span class="reward-value" id="xpGained">+150</span>
+                            </div>
+                        </div>
+                        <div class="reward-item">
+                            <div class="reward-icon">🏆</div>
+                            <div class="reward-info">
+                                <span class="reward-name">Achievement</span>
+                                <span class="reward-value" id="achievementEarned">Série 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Battle Review -->
+                <div class="battle-review">
+                    <h3>📊 Přehled Souboje</h3>
+                    <div id="questionReview" class="question-review-list">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="results-actions">
+                    <button id="rematchBtn" class="btn btn-primary">
+                        🔄 Odveta
+                    </button>
+                    <button id="newBattleBtn" class="btn btn-secondary">
+                        ⚔️ Nový Souboj
+                    </button>
+                    <button id="shareResultBtn" class="btn btn-secondary">
+                        📤 Sdílet Výsledek
+                    </button>
+                    <button id="backToMenuBtn" class="btn btn-secondary">
+                        🏠 Zpět do Menu
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Room Modal -->
+    <div id="customRoomModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏗️ Vytvořit Vlastní Místnost</h3>
+                <button class="modal-close" onclick="closeModal('customRoomModal')">×</button>
+            </div>
+            
+            <form id="customRoomForm" class="modal-body">
+                <div class="form-group">
+                    <label for="roomName">📛 Název místnosti:</label>
+                    <input type="text" id="roomName" class="form-input" placeholder="Můj Epic Souboj">
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomPassword">🔒 Heslo (volitelné):</label>
+                    <input type="password" id="roomPassword" class="form-input" placeholder="Ponechte prázdné pro veřejnou místnost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="maxPlayers">👥 Maximum hráčů:</label>
+                    <select id="maxPlayers" class="form-select">
+                        <option value="2" selected>2 hráči (1v1)</option>
+                        <option value="4">4 hráči (Battle Royale)</option>
+                        <option value="8">8 hráčů (Tournament)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="battleMode">⚔️ Herní režim:</label>
+                    <select id="battleMode" class="form-select">
+                        <option value="classic" selected>Klasický (první na 10 správných)</option>
+                        <option value="timed">Časový (5 minut)</option>
+                        <option value="elimination">Eliminační (vypadávání)</option>
+                        <option value="survival">Survival (nekonečný)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="questionCategory">📚 Kategorie otázek:</label>
+                    <select id="questionCategory" class="form-select">
+                        <option value="all" selected>Všechny kategorie</option>
+                        <option value="programming">Programování</option>
+                        <option value="science">Věda</option>
+                        <option value="history">Historie</option>
+                        <option value="custom">Vlastní sada</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="difficultyLevel">📊 Úroveň obtížnosti:</label>
+                    <select id="difficultyLevel" class="form-select">
+                        <option value="mixed" selected>Smíšená</option>
+                        <option value="easy">Snadná</option>
+                        <option value="medium">Střední</option>
+                        <option value="hard">Těžká</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="allowSpectators" checked>
+                        <span class="checkmark"></span>
+                        Povolit diváky
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showLiveStats" checked>
+                        <span class="checkmark"></span>
+                        Zobrazovat živé statistiky
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="recordBattle">
+                        <span class="checkmark"></span>
+                        Nahrávat souboj pro replay
+                    </label>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('customRoomModal')">
+                    Zrušit
+                </button>
+                <button id="createCustomRoomBtn" class="btn btn-primary">
+                    🚀 Vytvořit Místnost
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>🏆 Žebříček Nejlepších</h3>
+                <button class="modal-close" onclick="closeModal('leaderboardModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="leaderboard-tabs">
+                    <button class="tab-button active" data-tab="global">🌍 Globální</button>
+                    <button class="tab-button" data-tab="weekly">📅 Týdenní</button>
+                    <button class="tab-button" data-tab="friends">👥 Přátelé</button>
+                </div>
+                
+                <div class="leaderboard-content">
+                    <div id="globalTab" class="tab-content active">
+                        <div class="leaderboard-table">
+                            <div class="table-header">
+                                <span>Pozice</span>
+                                <span>Hráč</span>
+                                <span>Rating</span>
+                                <span>W/L</span>
+                                <span>Série</span>
+                            </div>
+                            <div id="globalLeaderboard" class="table-body">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="weeklyTab" class="tab-content">
+                        <div class="leaderboard-table">
+                            <div class="table-header">
+                                <span>Pozice</span>
+                                <span>Hráč</span>
+                                <span>Body tento týden</span>
+                                <span>Souboje</span>
+                                <span>Winrate</span>
+                            </div>
+                            <div id="weeklyLeaderboard" class="table-body">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="friendsTab" class="tab-content">
+                        <div class="friends-leaderboard">
+                            <div class="add-friend-section">
+                                <input type="text" id="friendSearchInput" class="form-input" placeholder="Hledat přítele podle jména...">
+                                <button id="addFriendBtn" class="btn btn-primary">
+                                    ➕ Přidat
+                                </button>
+                            </div>
+                            <div id="friendsLeaderboard" class="friends-list">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tournament Browser Modal -->
+    <div id="tournamentModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>🏅 Aktivní Turnaje</h3>
+                <button class="modal-close" onclick="closeModal('tournamentModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="tournament-filters">
+                    <select id="tournamentFilter" class="form-select">
+                        <option value="all">Všechny turnaje</option>
+                        <option value="starting-soon">Začínají brzy</option>
+                        <option value="in-progress">Probíhající</option>
+                        <option value="registration">Registrace otevřena</option>
+                    </select>
+                </div>
+                
+                <div id="tournamentList" class="tournament-list">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../shared/logger.js"></script>
+    <script src="../../shared/api-client.js"></script>
+    <script src="../../shared/navigation.js"></script>
+    <script src="battle.js"></script>
+</body>
+</html>
