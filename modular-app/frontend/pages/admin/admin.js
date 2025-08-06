@@ -22,7 +22,7 @@ class AdminModule {
     }
     
     async init() {
-        Logger.system('AdminModule initializing...');
+        console.log('AdminModule initializing...');
         
         // Check authentication and admin access
         await this.checkAdminAccess();
@@ -41,18 +41,36 @@ class AdminModule {
         // Load initial tab
         this.switchTab(this.activeTab);
         
-        Logger.success('AdminModule initialized successfully');
+        console.log('AdminModule initialized successfully');
     }
     
     async checkAdminAccess() {
-        // Check if user is logged in and has admin role
-        this.currentUser = this.getCurrentUser();
-        this.userRole = this.getUserRole();
+        console.log('🔍 Checking admin access...');
         
-        Logger.info('Admin access check', { 
-            user: this.currentUser, 
-            role: this.userRole 
-        });
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
+            console.log('✅ APIClient is authenticated, getting user info...');
+            try {
+                const user = await window.APIClient.getCurrentUser();
+                console.log('✅ User info received for admin:', user);
+                
+                if (user) {
+                    this.currentUser = user.username || user.name || user.email || 'Unknown';
+                    this.userRole = user.role || 'user';
+                    console.log('✅ User authenticated via APIClient for admin', { 
+                        user: this.currentUser, 
+                        role: this.userRole 
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to get user info for admin:', error);
+                this.currentUser = null;
+                this.userRole = null;
+            }
+        } else {
+            console.log('❌ No APIClient authentication, redirecting to login...');
+            window.location.href = '../auth/login.html';
+            return;
+        }
         
         this.updateUserDisplay();
     }
@@ -72,31 +90,11 @@ class AdminModule {
                 const credentials = JSON.parse(savedCredentials);
                 return credentials.username;
             } catch (e) {
-                Logger.warning('Failed to parse saved credentials', e);
+                console.warning('Failed to parse saved credentials', e);
             }
         }
         
         return null;
-    }
-    
-    getUserRole() {
-        if (!this.currentUser) return null;
-        
-        // Check if user is in admin list
-        const adminUsers = ['admin', 'root', 'administrator'];
-        if (adminUsers.includes(this.currentUser.toLowerCase())) {
-            return 'admin';
-        }
-        
-        // Check stored user data
-        const users = this.loadFromStorage('users') || {};
-        const userData = users[this.currentUser];
-        if (userData && userData.role) {
-            return userData.role;
-        }
-        
-        // Default to user role
-        return 'user';
     }
     
     hasAdminAccess() {
@@ -110,23 +108,26 @@ class AdminModule {
         if (warning) warning.style.display = 'block';
         if (content) content.style.display = 'none';
         
-        Logger.warning('Admin access denied', { 
+        console.warning('Admin access denied', { 
             user: this.currentUser, 
             role: this.userRole 
         });
     }
     
     updateUserDisplay() {
+        console.log('Updating user display for admin...');
         const userDisplay = document.getElementById('userDisplay');
         const userRole = document.getElementById('userRole');
         
         if (userDisplay) {
             userDisplay.textContent = this.currentUser ? `👤 ${this.currentUser}` : '👤 Nepřihlášen';
+            console.log('Updated user display for admin:', this.currentUser);
         }
         
         if (userRole) {
             userRole.textContent = this.userRole === 'admin' ? '🛠️ Admin' : '👤 User';
             userRole.className = `user-role ${this.userRole}`;
+            console.log('Updated role display for admin:', this.userRole);
         }
     }
     
@@ -223,7 +224,12 @@ class AdminModule {
             this.handleAddQuestion(e);
         });
         
-        Logger.debug('Admin event listeners setup complete');
+        // Test APIClient integration
+        document.getElementById('testAdminBtn')?.addEventListener('click', () => {
+            this.runAdminAPIClientTest();
+        });
+        
+        console.debug('Admin event listeners setup complete');
     }
     
     switchTab(tabName) {
@@ -246,7 +252,7 @@ class AdminModule {
         // Load tab data
         this.loadTabData(tabName);
         
-        Logger.action('Admin tab switched', { tab: tabName });
+        console.log('Admin tab switched', { tab: tabName });
     }
     
     async loadTabData(tabName) {
@@ -284,10 +290,10 @@ class AdminModule {
             // Update dashboard display
             this.updateDashboardStats();
             
-            Logger.info('Dashboard data loaded', this.analytics);
+            console.log('Dashboard data loaded', this.analytics);
             
         } catch (error) {
-            Logger.error('Failed to load dashboard data', error);
+            console.error('Failed to load dashboard data', error);
             this.showNotification('Chyba při načítání dat dashboardu', 'error');
         }
     }
@@ -375,7 +381,7 @@ class AdminModule {
             }
             
         } catch (error) {
-            Logger.error('Failed to load users data', error);
+            console.error('Failed to load users data', error);
             this.showNotification('Chyba při načítání uživatelů', 'error');
         } finally {
             this.setLoading('usersTable', false);
@@ -455,7 +461,7 @@ class AdminModule {
             });
             
         } catch (error) {
-            Logger.error('Failed to load questions data', error);
+            console.error('Failed to load questions data', error);
             this.showNotification('Chyba při načítání otázek', 'error');
         } finally {
             this.setLoading('questionsTable', false);
@@ -570,7 +576,7 @@ class AdminModule {
             });
             
         } catch (error) {
-            Logger.error('Failed to load tables data', error);
+            console.error('Failed to load tables data', error);
             this.showNotification('Chyba při načítání tabulek', 'error');
         } finally {
             this.setLoading('tablesGrid', false);
@@ -622,7 +628,7 @@ class AdminModule {
             this.loadTopUsers();
             
         } catch (error) {
-            Logger.error('Failed to load analytics data', error);
+            console.error('Failed to load analytics data', error);
             this.showNotification('Chyba při načítání analytiky', 'error');
         }
     }
@@ -709,7 +715,7 @@ class AdminModule {
             this.checkServerStatus();
             
         } catch (error) {
-            Logger.error('Failed to load system data', error);
+            console.error('Failed to load system data', error);
             this.showNotification('Chyba při načítání systémových dat', 'error');
         }
     }
@@ -846,10 +852,10 @@ class AdminModule {
             this.loadUsersData();
             this.loadDashboardData();
             
-            Logger.action('User created', { username: userData.username, role: userData.role });
+            console.log('User created', { username: userData.username, role: userData.role });
             
         } catch (error) {
-            Logger.error('Failed to create user', error);
+            console.error('Failed to create user', error);
             this.showNotification('Chyba při vytváření uživatele', 'error');
         }
     }
@@ -885,10 +891,10 @@ class AdminModule {
             this.loadQuestionsData();
             this.loadDashboardData();
             
-            Logger.action('Question created', { id: questionData.id, table: questionData.table });
+            console.log('Question created', { id: questionData.id, table: questionData.table });
             
         } catch (error) {
-            Logger.error('Failed to create question', error);
+            console.error('Failed to create question', error);
             this.showNotification('Chyba při vytváření otázky', 'error');
         }
     }
@@ -940,10 +946,10 @@ Registrace: ${user.createdAt || 'Neznámé'}
             this.loadUsersData();
             this.loadDashboardData();
             
-            Logger.action('User deleted', { username });
+            console.log('User deleted', { username });
             
         } catch (error) {
-            Logger.error('Failed to delete user', error);
+            console.error('Failed to delete user', error);
             this.showNotification('Chyba při mazání uživatele', 'error');
         }
     }
@@ -984,10 +990,10 @@ Informace o systému:
             this.saveToStorage('user_answer_history', history);
             
             this.showNotification('Data byla vyčištěna', 'success');
-            Logger.action('Data cleanup completed');
+            console.log('Data cleanup completed');
             
         } catch (error) {
-            Logger.error('Failed to cleanup data', error);
+            console.error('Failed to cleanup data', error);
             this.showNotification('Chyba při čištění dat', 'error');
         }
     }
@@ -1012,10 +1018,10 @@ Informace o systému:
             link.click();
             
             this.showNotification('Záloha byla stažena', 'success');
-            Logger.action('Database backup created');
+            console.log('Database backup created');
             
         } catch (error) {
-            Logger.error('Failed to backup database', error);
+            console.error('Failed to backup database', error);
             this.showNotification('Chyba při vytváření zálohy', 'error');
         }
     }
@@ -1066,16 +1072,30 @@ Informace o systému:
             }
         }, 5000);
         
-        Logger.info(`Notification: ${type}`, { message });
+        console.log(`Notification: ${type}`, { message });
     }
     
-    logout() {
+    async logout() {
         const confirmed = confirm('Opravdu se chcete odhlásit?');
         if (!confirmed) return;
         
-        Logger.action('Admin logout', { user: this.currentUser });
+        console.log('Admin logout initiated', { user: this.currentUser });
         
-        sessionStorage.removeItem('currentUser');
+        try {
+            if (window.APIClient && typeof window.APIClient.logout === 'function') {
+                console.log('🔓 Logging out via APIClient...');
+                await window.APIClient.logout();
+                console.log('✅ APIClient logout successful');
+            } else {
+                console.log('❌ APIClient not available, clearing session storage only');
+                sessionStorage.removeItem('currentUser');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            sessionStorage.removeItem('currentUser');
+        }
+        
+        console.log('🔄 Redirecting to login page...');
         window.location.href = '../auth/login.html';
     }
     
@@ -1084,7 +1104,7 @@ Informace o systému:
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            Logger.warning(`Failed to load from storage: ${key}`, error);
+            console.warning(`Failed to load from storage: ${key}`, error);
             return null;
         }
     }
@@ -1093,7 +1113,52 @@ Informace o systému:
         try {
             localStorage.setItem(key, JSON.stringify(data));
         } catch (error) {
-            Logger.warning(`Failed to save to storage: ${key}`, error);
+            console.warning(`Failed to save to storage: ${key}`, error);
+        }
+    }
+    
+    // Test funkcia pre APIClient integráciu
+    async runAdminAPIClientTest() {
+        console.log('🧪 Starting Admin APIClient integration test...');
+        const resultsDiv = document.getElementById('testAdminResults');
+        if (!resultsDiv) return;
+        
+        resultsDiv.innerHTML = '<h4>🧪 Admin APIClient Test Results:</h4>';
+        
+        try {
+            // Test 1: Check APIClient availability
+            if (window.APIClient) {
+                resultsDiv.innerHTML += '<p>✅ APIClient is available</p>';
+                console.log('✅ APIClient is available');
+            } else {
+                resultsDiv.innerHTML += '<p>❌ APIClient is NOT available</p>';
+                console.error('❌ APIClient is NOT available');
+                return;
+            }
+            
+            // Test 2: Check authentication status
+            const isAuth = window.APIClient.isAuthenticated();
+            resultsDiv.innerHTML += `<p>🔐 Authentication status: ${isAuth ? '✅ Authenticated' : '❌ Not authenticated'}</p>`;
+            console.log('🔐 Authentication status:', isAuth);
+            
+            // Test 3: Get current user
+            if (isAuth) {
+                const user = await window.APIClient.getCurrentUser();
+                resultsDiv.innerHTML += `<p>👤 Current user: ${user ? '✅ ' + JSON.stringify(user) : '❌ No user data'}</p>`;
+                console.log('👤 Current user:', user);
+                
+                // Test 4: Admin access check
+                const hasAccess = this.hasAdminAccess();
+                resultsDiv.innerHTML += `<p>🛠️ Admin access: ${hasAccess ? '✅ Has admin access' : '❌ No admin access'}</p>`;
+                console.log('🛠️ Admin access:', hasAccess);
+            }
+            
+            resultsDiv.innerHTML += '<p><strong>✅ Admin APIClient test completed!</strong></p>';
+            console.log('✅ Admin APIClient test completed!');
+            
+        } catch (error) {
+            resultsDiv.innerHTML += `<p>❌ Error during test: ${error.message}</p>`;
+            console.error('❌ Error during admin test:', error);
         }
     }
 }
@@ -1111,5 +1176,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const adminModule = new AdminModule();
     window.adminModule = adminModule; // Make globally available
     
-    Logger.success('Admin module loaded successfully');
+    console.log('Admin module loaded successfully');
 });
