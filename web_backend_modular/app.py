@@ -52,11 +52,11 @@ CORS(app, origins=cors_origins, supports_credentials=True)
 
 # Rate limiting
 limiter = Limiter(
-    app,
     key_func=get_remote_address,
     default_limits=["1000 per day", "100 per hour"],
     storage_uri="memory://"
 )
+limiter.init_app(app)
 
 # Monica AI configuration
 MONICA_API_URL = "https://openapi.monica.im/v1/chat/completions"

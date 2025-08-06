@@ -83,8 +83,8 @@ python app.py
 2. **Konfigurace na Render.com:**
    - Vytvořte Web Service z Git repository
    - Nastavte `web_backend_modular` jako Root Directory
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 4`
+   - Build Command: `pip install --upgrade pip && pip install -r requirements.txt`
+   - Start Command: `python -c "from app import init_database; init_database()" && gunicorn app:app`
 
 3. **Environment Variables:**
    ```
