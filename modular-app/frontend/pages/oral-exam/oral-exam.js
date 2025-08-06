@@ -96,7 +96,7 @@ class OralExamModule {
             }
         ];
         
-        logger.info('OralExamModule constructor completed');
+        console.log('✅ OralExamModule constructor completed');
         
         // 🧪 DEBUG: Log that changes are loaded
         console.log('🧪 ORAL EXAM MODULE v2.0 - JavaScript changes loaded successfully!');
@@ -104,7 +104,7 @@ class OralExamModule {
 
     async initialize() {
         try {
-            logger.info('Initializing Oral Exam Module...');
+            console.log('🔧 Initializing Oral Exam Module...');
             
             // Initialize user session
             await this.initializeUserSession();
@@ -125,10 +125,10 @@ class OralExamModule {
             await this.loadAvailableTables();
             
             this.isInitialized = true;
-            logger.info('Oral Exam Module initialized successfully');
+            console.log('✅ Oral Exam Module initialized successfully');
             
         } catch (error) {
-            logger.error('Failed to initialize Oral Exam Module:', error);
+            console.error('❌ Failed to initialize Oral Exam Module:', error);
             this.showNotification('Chyba při inicializaci ústní zkoušky', 'error');
         }
     }
@@ -154,11 +154,11 @@ class OralExamModule {
                     }
                     
                     document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
-                    logger.info('User authenticated via APIClient for oral exam', { user: this.currentUser.username });
+                    console.log('✅ User authenticated via APIClient for oral exam', { user: this.currentUser.username });
                     return;
                 } catch (error) {
                     console.error('❌ APIClient user info failed in oral exam:', error);
-                    logger.warning('APIClient user info failed, trying fallback', error);
+                    console.log('⚠️ APIClient user info failed, trying fallback', error);
                 }
             }
             
@@ -168,7 +168,7 @@ class OralExamModule {
                 document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
             } else {
                 // Redirect to auth if not authenticated
-                logger.warning('User not authenticated, redirecting to auth');
+                console.log('⚠️ User not authenticated, redirecting to auth');
                 const shouldRedirect = confirm('Pro použití ústní zkoušky se musíte přihlásit. Chcete přejít na přihlášení?');
                 if (shouldRedirect) {
                     window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.href);
@@ -176,7 +176,7 @@ class OralExamModule {
                 }
             }
         } catch (error) {
-            logger.error('Failed to initialize user session:', error);
+            console.error('❌ Failed to initialize user session:', error);
         }
     }
 
@@ -1773,9 +1773,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         window.oralExamModule = new OralExamModule();
         await window.oralExamModule.initialize();
-        logger.info('Oral Exam Module ready');
+        console.log('✅ Oral Exam Module ready');
     } catch (error) {
-        logger.error('Failed to initialize Oral Exam Module:', error);
+        console.error('❌ Failed to initialize Oral Exam Module:', error);
     }
 });
 
