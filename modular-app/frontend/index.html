@@ -31,6 +31,11 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
+        .module-card:hover p {
+            opacity: 1;
+            color: white;
+        }
+        
         .module-card h3 {
             margin: 0 0 1rem 0;
             font-size: 1.5rem;
@@ -133,7 +138,6 @@
         <a href="pages/battle/battle.html" class="module-card battle">
             <h3>⚔️ Multiplayer Battle</h3>
             <p>Real-time multiplayer soutěže s live leaderboards. WebSocket komunikace pro okamžité aktualizace.</p>
-            <span class="status planning">Plánováno</span>
         </a>
 
         <!-- Admin Module -->
@@ -146,7 +150,6 @@
         <a href="pages/settings/settings.html" class="module-card settings">
             <h3>⚙️ Nastavení</h3>
             <p>Konfigurace aplikace, uživatelské preference a backend připojení. Centralizované nastavení pro všechny moduly.</p>
-            <span class="status planning">Plánováno</span>
         </a>
 
     <script src="shared/navigation.js"></script>
@@ -158,7 +161,7 @@
         // Update progress based on completed modules
         function updateProgress() {
             const total = 6; // Total modules
-            const completed = 5; // Completed modules: Infrastructure, Auth, Quiz, Admin, Oral Exam
+            const completed = 6; // Completed modules: Infrastructure, Auth, Quiz, Admin, Oral Exam, Battle, Settings
             const inProgress = 0; // No modules in progress
             
             const progressPercent = 80; // Set to 80% as requested
@@ -172,14 +175,6 @@
             card.addEventListener('click', (e) => {
                 const href = card.getAttribute('href');
                 const moduleName = card.querySelector('h3').textContent;
-                
-                // Check if module is ready
-                const status = card.querySelector('.status');
-                if (status.classList.contains('planning')) {
-                    e.preventDefault();
-                    alert(`Modul "${moduleName}" je ještě v plánování. Bude dostupný v dalších fázích vývoje.`);
-                    return;
-                }
                 
                 Logger.log('navigation', `Navigating to module: ${moduleName}`);
             });
