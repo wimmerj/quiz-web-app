@@ -44,9 +44,22 @@ class AuthManager {
             this.handleRegister(e);
         });
         
-        document.getElementById('resetForm').addEventListener('submit', (e) => {
+        // Reset form handlers - multiple forms now
+        document.getElementById('forgotPasswordForm')?.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.handlePasswordReset(e);
+            this.handleForgotPassword(e);
+        });
+        
+        document.getElementById('changePasswordForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleChangePassword(e);
+        });
+        
+        // Reset type switching
+        document.querySelectorAll('input[name="resetType"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                this.switchResetType(e.target.value);
+            });
         });
         
         // Demo account buttons
@@ -171,6 +184,21 @@ class AuthManager {
         document.getElementById(`${tabName}-form`).classList.add('active');
         
         Logger.action(`Switched to ${tabName} tab`);
+    }
+    
+    switchResetType(type) {
+        const forgotForm = document.getElementById('forgot-password-form');
+        const changeForm = document.getElementById('change-password-form');
+        
+        if (type === 'forgot') {
+            forgotForm.style.display = 'block';
+            changeForm.style.display = 'none';
+        } else {
+            forgotForm.style.display = 'none';
+            changeForm.style.display = 'block';
+        }
+        
+        Logger.action(`Switched reset type to: ${type}`);
     }
     
     async handleLogin(event) {
@@ -358,7 +386,13 @@ class AuthManager {
             return false;
         }
         
-        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        // Email is now required
+        if (!email) {
+            this.showNotification('Email je povinný', 'error');
+            return false;
+        }
+        
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             this.showNotification('Neplatný formát emailu', 'error');
             return false;
         }
@@ -508,9 +542,9 @@ class AuthManager {
     }
     
     redirectAfterLogin() {
-        // Redirect to quiz module
-        const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || '../quiz/quiz.html';
-        Logger.info('Redirecting after login', { redirectUrl });
+        // Redirect to dashboard (index.html) instead of quiz module
+        const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || '../../index.html';
+        Logger.info('Redirecting after login to dashboard', { redirectUrl });
         window.location.href = redirectUrl;
     }
     
@@ -691,6 +725,105 @@ class AuthManager {
         // Restore focus for accessibility
         termsModal.setAttribute('aria-hidden', 'true');
         document.querySelector('[data-navigate="terms"]').focus();
+    }
+    
+    async handleForgotPassword(event) {
+        const form = event.target;
+        const emailOrUsername = document.getElementById('resetEmail').value;
+        
+        Logger.action('Forgot password attempt', { emailOrUsername });
+        
+        if (!emailOrUsername) {
+            this.showNotification('Zadejte email nebo uživatelské jméno', 'error');
+            return;
+        }
+        
+        this.setFormLoading(form, true);
+        
+        try {
+            if (window.APIClient) {
+                const response = await window.APIClient.resetPassword(emailOrUsername);
+                
+                if (response.success) {
+                    this.showNotification('Reset link byl odeslán na váš email', 'success');
+                    form.reset();
+                } else {
+                    this.showNotification(`Reset se nezdařil: ${response.error}`, 'error');
+                }
+            } else {
+                this.showNotification('Reset link byl odeslán na váš email (demo mode)', 'success');
+                form.reset();
+            }
+            
+        } catch (error) {
+            Logger.error('Forgot password error', error);
+            this.showNotification(`Chyba při resetu hesla: ${error.message}`, 'error');
+        } finally {
+            this.setFormLoading(form, false);
+        }
+    }
+    
+    async handleChangePassword(event) {
+        const form = event.target;
+        const username = document.getElementById('currentUsername').value;
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const newPasswordConfirm = document.getElementById('newPasswordConfirm').value;
+        
+        Logger.action('Change password attempt', { username });
+        
+        // Validation
+        if (!username || !currentPassword || !newPassword || !newPasswordConfirm) {
+            this.showNotification('Vyplňte všechna pole', 'error');
+            return;
+        }
+        
+        if (newPassword.length < 6) {
+            this.showNotification('Nové heslo musí mít alespoň 6 znaků', 'error');
+            return;
+        }
+        
+        if (newPassword !== newPasswordConfirm) {
+            this.showNotification('Nová hesla se neshodují', 'error');
+            return;
+        }
+        
+        if (currentPassword === newPassword) {
+            this.showNotification('Nové heslo musí být odlišné od současného', 'error');
+            return;
+        }
+        
+        this.setFormLoading(form, true);
+        
+        try {
+            if (window.APIClient) {
+                const response = await window.APIClient.changePassword(username, currentPassword, newPassword);
+                
+                if (response.success) {
+                    this.showNotification('Heslo bylo úspěšně změněno. Budete přesměrováni na přihlášení.', 'success');
+                    form.reset();
+                    
+                    // Switch to login tab after delay
+                    setTimeout(() => {
+                        this.switchTab('login');
+                    }, 2000);
+                } else {
+                    this.showNotification(`Změna hesla se nezdařila: ${response.error}`, 'error');
+                }
+            } else {
+                this.showNotification('Heslo bylo změněno (demo mode)', 'success');
+                form.reset();
+                setTimeout(() => {
+                    this.switchTab('login');
+                }, 2000);
+            }
+            
+        } catch (error) {
+            Logger.error('Change password error', error);
+            this.showNotification(`Chyba při změně hesla: ${error.message}`, 'error');
+        } finally {
+            this.setFormLoading(form, false);
+        }
     }
 }
 

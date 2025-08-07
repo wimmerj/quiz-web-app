@@ -3,16 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Přihlášení - Quiz App</title>
+    <title>Login - Offline Test</title>
     <link rel="stylesheet" href="../../shared/common.css">
     <link rel="stylesheet" href="login.css">
+    
+    <style>
+        /* Test specific styles */
+        .test-overlay {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            z-index: 10000;
+            max-width: 300px;
+        }
+        
+        .test-overlay h4 {
+            margin: 0 0 0.5rem 0;
+            color: #ff5722;
+        }
+        
+        .test-changes {
+            background: rgba(255, 87, 34, 0.1);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: white;
+        }
+        
+        .change-item {
+            margin: 0.5rem 0;
+            padding: 0.3rem 0;
+            border-left: 3px solid #ff5722;
+            padding-left: 0.5rem;
+        }
+        
+        .demo-highlight {
+            animation: highlight 2s ease-in-out infinite;
+        }
+        
+        @keyframes highlight {
+            0%, 100% { background: rgba(255, 87, 34, 0.1); }
+            50% { background: rgba(255, 87, 34, 0.3); }
+        }
+    </style>
 </head>
 <body class="no-navigation no-breadcrumb">
+    <!-- Test info overlay -->
+    <div class="test-overlay">
+        <h4>🧪 OFFLINE TEST MODE</h4>
+        <p><strong>Změny k testování:</strong></p>
+        <ul style="font-size: 0.7rem; margin: 0.5rem 0; padding-left: 1rem;">
+            <li>Demo účty: delší hesla</li>
+            <li>Podmínky: GDPR modal</li>
+            <li>Reset: 2 varianty</li>
+            <li>Email: povinný</li>
+            <li>Redirect: na dashboard</li>
+        </ul>
+    </div>
+
     <div class="auth-container">
         <div class="auth-header">
             <h1>🎯 Quiz App</h1>
             <p>Modulární verze s vylepšenou architekturou</p>
             <a href="../../index.html" class="back-link">← Zpět na hlavní stránku</a>
+        </div>
+
+        <div class="test-changes">
+            <h3>🔧 Aktuálně testované změny:</h3>
+            <div class="change-item">✅ <strong>Demo účty:</strong> Bez admin, silná hesla (8+ znaků)</div>
+            <div class="change-item">📋 <strong>Podmínky:</strong> GDPR modal s plným obsahem</div>
+            <div class="change-item">🔑 <strong>Reset hesla:</strong> 2 varianty (zapomenutí vs změna)</div>
+            <div class="change-item">📧 <strong>Email povinný:</strong> Pro reset hesla</div>
+            <div class="change-item">🏠 <strong>Redirect:</strong> Po login na dashboard index.html</div>
         </div>
 
         <div class="auth-tabs">
@@ -55,23 +123,16 @@
                         >
                     </div>
 
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="rememberMe"> 
-                            Zapamatovat si přihlášení
-                        </label>
-                    </div>
-
                     <button type="submit" class="btn btn-large" style="width: 100%">
                         Přihlásit se
                     </button>
                 </form>
 
-                <div class="auth-demo">
+                <div class="auth-demo demo-highlight">
                     <h4>Demo účty pro testování:</h4>
                     <div class="demo-accounts">
                         <button class="btn btn-small btn-outline demo-btn" data-username="testuser" data-password="testpass123">
-                            � Test User
+                            👤 Test User
                         </button>
                         <button class="btn btn-small btn-outline demo-btn" data-username="student" data-password="student2024">
                             🎓 Student
@@ -79,6 +140,9 @@
                         <button class="btn btn-small btn-outline demo-btn" data-username="demo" data-password="demouser2024">
                             🎯 Demo
                         </button>
+                    </div>
+                    <div style="background: rgba(76, 175, 80, 0.1); padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                        <small>✅ <strong>Změna:</strong> Delší hesla (8-13 znaků), žádný admin účet</small>
                     </div>
                 </div>
             </div>
@@ -109,7 +173,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="registerEmail" class="form-label">Email *</label>
+                        <label for="registerEmail" class="form-label">Email <span style="color: #ff5722;">*</span></label>
                         <input 
                             type="email" 
                             id="registerEmail" 
@@ -117,7 +181,9 @@
                             required
                             placeholder="vas@email.com"
                         >
-                        <small class="form-help">Povinný pro reset hesla a notifikace</small>
+                        <small class="form-help" style="color: #ff5722;">
+                            ✅ <strong>Změna:</strong> Email je nyní povinný pro reset hesla
+                        </small>
                     </div>
 
                     <div class="form-group">
@@ -143,21 +209,24 @@
                         >
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group demo-highlight">
                         <label class="checkbox-label">
                             <input type="checkbox" id="agreeTerms" required> 
-                            Souhlasím s <a href="#" data-navigate="terms">podmínkami použití</a>
+                            Souhlasím s <a href="#" data-navigate="terms" style="color: #ff5722;">podmínkami použití</a>
                         </label>
+                        <div style="background: rgba(76, 175, 80, 0.1); padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                            <small>✅ <strong>Změna:</strong> Kliknutím otevřete GDPR compliant podmínky</small>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-large btn-secondary" style="width: 100%">
+                    <button type="submit" class="btn btn-large" style="width: 100%">
                         Zaregistrovat se
                     </button>
                 </form>
             </div>
         </div>
 
-        <!-- RESET PASSWORD FORM -->
+        <!-- RESET FORM -->
         <div id="reset-form" class="auth-form">
             <div class="card">
                 <div class="card-header">
@@ -166,7 +235,7 @@
                 </div>
 
                 <!-- Reset Type Selection -->
-                <div class="reset-type-selection">
+                <div class="reset-type-selection demo-highlight">
                     <h4>Vyberte typ reset hesla:</h4>
                     <div class="radio-group">
                         <label class="radio-label">
@@ -179,6 +248,9 @@
                             <span class="radio-custom"></span>
                             🔄 Chci změnit heslo
                         </label>
+                    </div>
+                    <div style="background: rgba(76, 175, 80, 0.1); padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                        <small>✅ <strong>Změna:</strong> 2 varianty - zapomenuté vs změna hesla</small>
                     </div>
                 </div>
 
@@ -268,44 +340,34 @@
 
         <!-- TERMS OF SERVICE MODAL -->
         <div id="termsModal" class="modal-overlay" style="display: none;">
-            <div class="modal">
+            <div class="modal demo-highlight">
                 <div class="modal-header">
                     <h3>📋 Podmínky použití a ochrana osobních údajů</h3>
                     <button class="modal-close" id="closeTermsModal">&times;</button>
                 </div>
                 <div class="modal-content">
                     <div class="terms-content">
+                        <div style="background: rgba(76, 175, 80, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                            <p style="margin: 0; font-weight: 600; color: #4caf50;">✅ Změna: Plně GDPR compliant podmínky</p>
+                        </div>
+                        
                         <h4>🎯 O aplikaci</h4>
                         <p>Toto je <strong>testovací verze</strong> modulární quizové aplikace vytvořené pro vzdělávací a demonstrační účely. Aplikace není dokončená a může obsahovat chyby nebo nedokončené funkcionality.</p>
                         
                         <h4>🔒 Ochrana osobních údajů (GDPR)</h4>
                         <ul>
-                            <li><strong>Zpracování dat:</strong> Zpracováváme pouze údaje nezbytné pro fungování aplikace (uživatelské jméno, email, hesla v zahashované podobě, výsledky kvízů)</li>
-                            <li><strong>Účel:</strong> Data používáme pouze pro poskytování funkcí quizové aplikace a sledování pokroku</li>
+                            <li><strong>Zpracování dat:</strong> Zpracováváme pouze údaje nezbytné pro fungování aplikace</li>
                             <li><strong>Bezpečnost:</strong> Hesla jsou hashována pomocí moderních kryptografických metod</li>
-                            <li><strong>Cookies:</strong> Používáme pouze technické cookies pro udržení přihlášení</li>
                             <li><strong>Sdílení:</strong> Vaše data nesdílíme s třetími stranami</li>
                             <li><strong>Práva:</strong> Máte právo na přístup, opravu nebo smazání svých dat</li>
                         </ul>
                         
                         <h4>⚠️ Testovací verze - omezení</h4>
                         <ul>
-                            <li>Aplikace je ve vývoji a může být kdykoli změněna nebo nedostupná</li>
-                            <li>Některé funkce mohou být nefunkční nebo experimentální</li>
-                            <li>Data mohou být při aktualizacích ztracena nebo resetována</li>
+                            <li>Aplikace je ve vývoji a může být kdykoli změněna</li>
+                            <li>Data mohou být při aktualizacích ztracena</li>
                             <li>Neručíme za spolehlivost či dostupnost služby</li>
                         </ul>
-                        
-                        <h4>🛡️ Zabezpečení a odpovědnost</h4>
-                        <ul>
-                            <li>Používejte silná hesla a nesdílejte své přihlašovací údaje</li>
-                            <li>Nepoužívejte citlivé nebo osobní informace v uživatelských jménech</li>
-                            <li>Za bezpečnost vašich přihlašovacích údajů neseme odpovědnost pouze my</li>
-                            <li>Aplikaci používáte na vlastní riziko</li>
-                        </ul>
-                        
-                        <h4>📞 Kontakt</h4>
-                        <p>Pro otázky ohledně ochrany osobních údajů nebo fungování aplikace nás můžete kontaktovat prostřednictvím GitHub repository tohoto projektu.</p>
                         
                         <div class="terms-footer">
                             <p><strong>Poslední aktualizace:</strong> 7. srpna 2025</p>
@@ -322,29 +384,114 @@
 
         <!-- STATUS SECTION -->
         <div class="auth-status">
-            <div class="server-status" id="serverStatus">
-                <span class="status-indicator" id="statusIndicator">🔴</span>
-                <span class="status-text" id="statusText">Offline Mode</span>
+            <div class="server-status demo-highlight">
+                <span class="status-indicator">🧪 OFFLINE TEST MODE</span>
+                <div style="background: rgba(255, 87, 34, 0.1); padding: 0.5rem; border-radius: 5px; margin-top: 0.5rem;">
+                    <small>Po úspěšném login: redirect na <strong>index.html</strong> (dashboard)</small>
+                </div>
             </div>
         </div>
-
-        <!-- API Test Section (for debugging) -->
-        <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(40, 44, 52, 0.95); border: 1px solid #61dafb; border-radius: 8px; padding: 10px; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <div class="status-indicator" id="loginStatusIndicator" style="padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔍 API Status</div>
-                <button id="testAuthBtn" style="background: #61dafb; color: #282c34; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer;">🧪 Test API</button>
-            </div>
-            <div id="testAuthResults" style="display: none; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 10px; color: #e4e4e4; line-height: 1.4;"></div>
-        </div>
-
-        <!-- NOTIFICATIONS -->
-        <div id="notifications" class="notifications-container"></div>
     </div>
 
-    <!-- Scripts -->
-    <script src="../../shared/logger.js"></script>
-    <script src="../../shared/navigation.js"></script>
-    <script src="../../shared/api-client.js?v=20250807-login"></script>
-    <script src="login.js"></script>
+    <!-- Demo JavaScript pro testování -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 OFFLINE LOGIN TEST MODE');
+            
+            // Demo tab switching
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                    
+                    e.target.classList.add('active');
+                    document.getElementById(e.target.dataset.tab + '-form').classList.add('active');
+                });
+            });
+            
+            // Demo reset type switching
+            document.querySelectorAll('input[name="resetType"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'forgot') {
+                        document.getElementById('forgot-password-form').style.display = 'block';
+                        document.getElementById('change-password-form').style.display = 'none';
+                    } else {
+                        document.getElementById('forgot-password-form').style.display = 'none';
+                        document.getElementById('change-password-form').style.display = 'block';
+                    }
+                });
+            });
+            
+            // Demo credentials buttons
+            document.querySelectorAll('.demo-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const username = e.target.dataset.username;
+                    const password = e.target.dataset.password;
+                    
+                    document.getElementById('loginUsername').value = username;
+                    document.getElementById('loginPassword').value = password;
+                    
+                    console.log(`Demo credentials filled: ${username} / ${password}`);
+                });
+            });
+            
+            // Terms modal
+            const termsLink = document.querySelector('[data-navigate="terms"]');
+            const termsModal = document.getElementById('termsModal');
+            const closeModalBtn = document.getElementById('closeTermsModal');
+            const acceptBtn = document.getElementById('acceptTerms');
+            const declineBtn = document.getElementById('declineTerms');
+            const agreeCheckbox = document.getElementById('agreeTerms');
+            
+            termsLink?.addEventListener('click', (e) => {
+                e.preventDefault();
+                termsModal.style.display = 'flex';
+            });
+            
+            closeModalBtn?.addEventListener('click', () => {
+                termsModal.style.display = 'none';
+            });
+            
+            acceptBtn?.addEventListener('click', () => {
+                agreeCheckbox.checked = true;
+                termsModal.style.display = 'none';
+                alert('✅ Souhlasili jste s podmínkami použití');
+            });
+            
+            declineBtn?.addEventListener('click', () => {
+                agreeCheckbox.checked = false;
+                termsModal.style.display = 'none';
+                alert('⚠️ Pro registraci je nutný souhlas s podmínkami');
+            });
+            
+            // Mock form submissions
+            document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('✅ DEMO: Po úspěšném přihlášení → redirect na index.html (dashboard)');
+            });
+            
+            document.getElementById('registerForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('✅ DEMO: Email je nyní povinný pro registraci');
+            });
+            
+            document.getElementById('forgotPasswordForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('✅ DEMO: Reset link byl odeslán na email');
+            });
+            
+            document.getElementById('changePasswordForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('✅ DEMO: Heslo bylo změněno');
+            });
+            
+            console.log('📋 Test changes loaded:');
+            console.log('1. Demo accounts: stronger passwords, no admin');
+            console.log('2. Terms: GDPR modal');
+            console.log('3. Reset: 2 variants (forgot/change)');
+            console.log('4. Email: required for registration');
+            console.log('5. Redirect: to dashboard after login');
+        });
+    </script>
 </body>
 </html>
