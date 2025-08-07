@@ -41,7 +41,16 @@ class ModularAPIClient {
     
     init() {
         this.setupInterceptors();
-        Logger.info('API Client initialized', { baseURL: this.baseURL });
+        this.safeLog('info', 'API Client initialized', { baseURL: this.baseURL });
+    }
+    
+    // Safe logging helper - fallback to console if Logger not available
+    safeLog(method, message, data = null) {
+        if (typeof Logger !== 'undefined' && Logger[method]) {
+            Logger[method](message, data);
+        } else {
+            console[method === 'warning' ? 'warn' : method](message, data);
+        }
     }
     
     detectBackendURL() {
@@ -81,7 +90,7 @@ class ModularAPIClient {
         
         // Log request
         if (this.logRequests) {
-            Logger.debug(`API Request: ${options.method || 'GET'} ${endpoint}`, {
+            this.safeLog('debug', `API Request: ${options.method || 'GET'} ${endpoint}`, {
                 url,
                 config: { ...config, headers: { ...config.headers } }
             });
@@ -92,7 +101,7 @@ class ModularAPIClient {
             const data = await this.parseResponse(response);
             
             // Log successful response
-            Logger.debug(`API Response: ${response.status} ${endpoint}`, {
+            this.safeLog('debug', `API Response: ${response.status} ${endpoint}`, {
                 status: response.status,
                 data: data
             });
@@ -105,7 +114,7 @@ class ModularAPIClient {
             };
             
         } catch (error) {
-            Logger.error(`API Error: ${endpoint}`, {
+            this.safeLog('error', `API Error: ${endpoint}`, {
                 error: error.message,
                 endpoint,
                 config
@@ -175,7 +184,7 @@ class ModularAPIClient {
         
         if (response.success && response.data.token) {
             this.setAuthToken(response.data.token);
-            Logger.success('Login successful', { username });
+            this.safeLog('success', 'Login successful', { username });
         }
         
         return response;
@@ -188,7 +197,7 @@ class ModularAPIClient {
         });
         
         if (response.success) {
-            Logger.success('Registration successful', { username, email });
+            this.safeLog('success', 'Registration successful', { username, email });
         }
         
         return response;
@@ -200,7 +209,7 @@ class ModularAPIClient {
         });
         
         this.clearAuthToken();
-        Logger.info('Logout completed');
+        this.safeLog('info', 'Logout completed');
         
         return response;
     }
@@ -274,20 +283,20 @@ class ModularAPIClient {
     setAuthToken(token) {
         this.authToken = token;
         localStorage.setItem('modular_quiz_token', token);
-        Logger.debug('Auth token set');
+        this.safeLog('debug', 'Auth token set');
     }
     
     clearAuthToken() {
         this.authToken = null;
         localStorage.removeItem('modular_quiz_token');
-        Logger.debug('Auth token cleared');
+        this.safeLog('debug', 'Auth token cleared');
     }
     
     loadAuthToken() {
         try {
             return localStorage.getItem('modular_quiz_token');
         } catch (error) {
-            Logger.warning('Failed to load auth token', error);
+            this.safeLog('warning', 'Failed to load auth token', error);
             return null;
         }
     }
@@ -299,7 +308,7 @@ class ModularAPIClient {
     // Configuration methods
     setBaseURL(url) {
         this.baseURL = url;
-        Logger.info('Base URL updated', { baseURL: url });
+        this.safeLog('info', 'Base URL updated', { baseURL: url });
     }
     
     setTimeout(ms) {
@@ -335,7 +344,7 @@ class ModularAPIClient {
     
     // Utility methods
     async testConnection() {
-        Logger.info('Testing API connection...');
+        this.safeLog('info', 'Testing API connection...');
         
         const startTime = Date.now();
         const isHealthy = await this.healthCheck();
@@ -348,9 +357,9 @@ class ModularAPIClient {
         };
         
         if (isHealthy) {
-            Logger.success('API connection successful', result);
+            this.safeLog('success', 'API connection successful', result);
         } else {
-            Logger.error('API connection failed', result);
+            this.safeLog('error', 'API connection failed', result);
         }
         
         return result;
