@@ -114,7 +114,45 @@
                     <h2>👥 Správa Uživatelů</h2>
                     <div class="tab-actions">
                         <button id="refreshUsersBtn" class="btn btn-secondary">🔄 Obnovit</button>
-                        <button id="addUserBtn" class="btn btn-primary">➕ Přidat uživatele</button>
+                    </div>
+                </div>
+                
+                <!-- Add User Panel - Collapsible -->
+                <div class="admin-panel collapsed" id="addUserPanel">
+                    <div class="panel-header" onclick="togglePanel('addUserPanel')">
+                        <h3>➕ Přidat nového uživatele</h3>
+                        <span class="panel-toggle">▼</span>
+                    </div>
+                    <div class="panel-content">
+                        <form id="addUserForm" class="panel-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="newUsername" class="form-label">Uživatelské jméno:</label>
+                                    <input type="text" id="newUsername" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newUserEmail" class="form-label">Email:</label>
+                                    <input type="email" id="newUserEmail" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newUserPassword" class="form-label">Heslo:</label>
+                                    <input type="password" id="newUserPassword" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="newUserRole" class="form-label">Role:</label>
+                                    <select id="newUserRole" class="form-select" required>
+                                        <option value="">Vyberte roli</option>
+                                        <option value="user">Uživatel</option>
+                                        <option value="admin">Administrátor</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">➕ Vytvořit uživatele</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 
@@ -146,8 +184,65 @@
                             <option value="">Všechny tabulky</option>
                         </select>
                         <button id="refreshQuestionsBtn" class="btn btn-secondary">🔄 Obnovit</button>
-                        <button id="addQuestionBtn" class="btn btn-primary">➕ Přidat otázku</button>
                         <button id="importQuestionsBtn" class="btn btn-primary">📁 Import</button>
+                    </div>
+                </div>
+                
+                <!-- Add Question Panel - Collapsible -->
+                <div class="admin-panel collapsed" id="addQuestionPanel">
+                    <div class="panel-header" onclick="togglePanel('addQuestionPanel')">
+                        <h3>➕ Přidat novou otázku</h3>
+                        <span class="panel-toggle">▼</span>
+                    </div>
+                    <div class="panel-content">
+                        <form id="addQuestionForm" class="panel-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="questionTable" class="form-label">Tabulka:</label>
+                                    <select id="questionTable" class="form-select" required>
+                                        <option value="">Vyberte tabulku</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="correctAnswer" class="form-label">Správná odpověď:</label>
+                                    <select id="correctAnswer" class="form-select" required>
+                                        <option value="">Vyberte</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="questionDifficulty" class="form-label">Obtížnost:</label>
+                                    <select id="questionDifficulty" class="form-select">
+                                        <option value="easy">Lehká</option>
+                                        <option value="medium">Střední</option>
+                                        <option value="hard">Těžká</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="questionText" class="form-label">Otázka:</label>
+                                <textarea id="questionText" class="form-textarea" rows="3" required placeholder="Zadejte text otázky..."></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="answerA" class="form-label">Odpověď A:</label>
+                                    <input type="text" id="answerA" class="form-input" required placeholder="Možnost A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="answerB" class="form-label">Odpověď B:</label>
+                                    <input type="text" id="answerB" class="form-input" required placeholder="Možnost B">
+                                </div>
+                                <div class="form-group">
+                                    <label for="answerC" class="form-label">Odpověď C:</label>
+                                    <input type="text" id="answerC" class="form-input" required placeholder="Možnost C">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">➕ Přidat otázku</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 

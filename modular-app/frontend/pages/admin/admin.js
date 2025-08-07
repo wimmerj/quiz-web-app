@@ -11,6 +11,7 @@ class AdminModule {
         this.users = new Map();
         this.questions = new Map();
         this.tables = new Map();
+        this.serverStatus = 'checking'; // Add server status tracking
         this.analytics = {
             totalUsers: 0,
             totalTables: 0,
@@ -39,6 +40,9 @@ class AdminModule {
         
         // Setup event listeners
         this.setupEventListeners();
+        
+        // Check server status
+        this.checkServerStatus();
         
         // Load initial data
         await this.loadDashboardData();
@@ -256,6 +260,64 @@ class AdminModule {
             user: this.currentUser, 
             role: this.userRole 
         });
+    }
+    
+    updateServerStatus(status, text) {
+        const indicator = document.getElementById('statusIndicator');
+        const statusText = document.getElementById('statusIndicatorText');
+        const statusMode = document.getElementById('statusMode');
+        
+        if (indicator && statusText) {
+            switch (status) {
+                case 'online':
+                    indicator.textContent = '🟢';
+                    statusText.textContent = text || 'Online';
+                    break;
+                case 'offline':
+                    indicator.textContent = '🔴';
+                    statusText.textContent = text || 'Offline';
+                    break;
+                case 'checking':
+                    indicator.textContent = '🟡';
+                    statusText.textContent = text || 'Checking...';
+                    break;
+                default:
+                    indicator.textContent = '🔴';
+                    statusText.textContent = 'Unknown';
+            }
+            
+            const statusElement = document.getElementById('serverStatus');
+            if (statusElement) {
+                statusElement.className = `server-status ${status}`;
+            }
+        }
+        
+        if (statusMode) {
+            statusMode.textContent = status === 'online' ? 'Server Mode' : 'Local Mode';
+        }
+    }
+    
+    async checkServerStatus() {
+        console.log('Checking server status...');
+        this.updateServerStatus('checking', 'Kontroluji...');
+        
+        // Ensure APIClient is available
+        if (!window.APIClient) {
+            console.warn('APIClient not yet available, falling back to offline mode');
+            this.serverStatus = 'offline';
+            this.updateServerStatus('offline', 'Offline');
+            return;
+        }
+        
+        const isOnline = await window.APIClient.healthCheck();
+        
+        if (isOnline) {
+            this.serverStatus = 'online';
+            this.updateServerStatus('online', 'Online');
+        } else {
+            this.serverStatus = 'offline';
+            this.updateServerStatus('offline', 'Offline');
+        }
     }
     
     updateUserDisplay() {
@@ -1453,4 +1515,22 @@ function runAdminAPIClientTest() {
         updateAdminStatusIndicator();
         
     }, 500);
+}
+
+// Panel Toggle Function for Collapsible Panels
+function togglePanel(panelId) {
+    const panel = document.getElementById(panelId);
+    if (!panel) {
+        console.error('Panel not found:', panelId);
+        return;
+    }
+    
+    panel.classList.toggle('collapsed');
+    
+    // Update toggle indicator
+    const toggle = panel.querySelector('.panel-toggle');
+    if (toggle) {
+        toggle.style.transform = panel.classList.contains('collapsed') ? 
+            'rotate(-90deg)' : 'rotate(0deg)';
+    }
 }
