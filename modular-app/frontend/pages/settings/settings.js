@@ -1085,10 +1085,113 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.settingsModule = new SettingsModule();
         await window.settingsModule.initialize();
         console.log('Settings Module ready');
+        
+        // Update status indicator
+        updateSettingsStatusIndicator();
     } catch (error) {
         console.error('Failed to initialize Settings Module:', error);
     }
 });
+
+// Status indicator management
+function updateSettingsStatusIndicator() {
+    const indicator = document.getElementById('settingsStatusIndicator');
+    if (!indicator) return;
+    
+    try {
+        if (typeof APIClient !== 'undefined' && APIClient.isAuthenticated()) {
+            indicator.style.background = '#00ff00';
+            indicator.title = 'Online Mode - Authenticated';
+        } else if (typeof APIClient !== 'undefined') {
+            indicator.style.background = '#ffff00';
+            indicator.title = 'API Available - Ready to Configure';
+        } else {
+            indicator.style.background = '#ff8800';
+            indicator.title = 'Offline Mode - Local Settings Only';
+        }
+    } catch (error) {
+        indicator.style.background = '#ff0000';
+        indicator.title = 'Connection Error';
+    }
+}
+
+// Modern API Test Function
+function runSettingsAPIClientTest() {
+    const resultsDiv = document.getElementById('api-test-results');
+    if (!resultsDiv) return;
+    
+    resultsDiv.innerHTML = `
+        <div style="color: #00ff00; margin-bottom: 10px;">
+            🚀 Starting Settings APIClient Test...
+        </div>
+    `;
+    
+    setTimeout(() => {
+        let testResults = [];
+        
+        // Test 1: APIClient availability
+        testResults.push(`<div style="color: #00aaff;">📡 APIClient Check:</div>`);
+        if (typeof APIClient !== 'undefined') {
+            testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ APIClient object found</div>`);
+            
+            // Test 2: Authentication status
+            testResults.push(`<div style="color: #00aaff;">🔐 Authentication Check:</div>`);
+            try {
+                const isAuth = APIClient.isAuthenticated();
+                if (isAuth) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ User is authenticated</div>`);
+                    
+                    // Test 3: User info
+                    const userInfo = APIClient.getCurrentUser();
+                    if (userInfo) {
+                        testResults.push(`<div style="color: #00aaff;">👤 User Info:</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">📋 Username: ${userInfo.username || 'N/A'}</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">👑 Role: ${userInfo.role || 'N/A'}</div>`);
+                    }
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ User not authenticated</div>`);
+                }
+                
+                // Test 4: Settings module status
+                testResults.push(`<div style="color: #00aaff;">⚙️ Settings Module Check:</div>`);
+                if (window.settingsModule) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Settings Module loaded</div>`);
+                    testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🎛️ Module status: Ready</div>`);
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ Settings Module not loaded</div>`);
+                }
+                
+                // Test 5: Local storage check
+                testResults.push(`<div style="color: #00aaff;">💾 Local Storage Check:</div>`);
+                try {
+                    const testKey = 'test_storage';
+                    localStorage.setItem(testKey, 'test');
+                    localStorage.removeItem(testKey);
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Local storage available</div>`);
+                } catch (storageError) {
+                    testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Local storage error: ${storageError.message}</div>`);
+                }
+                
+            } catch (error) {
+                testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Test error: ${error.message}</div>`);
+            }
+            
+        } else {
+            testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ APIClient not found</div>`);
+            testResults.push(`<div style="color: #888; margin-left: 20px;">🔄 Running in offline mode</div>`);
+        }
+        
+        // Final status
+        testResults.push(`<div style="color: #00aaff; margin-top: 10px;">📈 Final Status:</div>`);
+        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🕒 Test completed at ${new Date().toLocaleTimeString()}</div>`);
+        
+        resultsDiv.innerHTML = testResults.join('');
+        
+        // Update status indicator after test
+        updateSettingsStatusIndicator();
+        
+    }, 500);
+}
 
 // Export for use by other modules
 if (typeof module !== 'undefined' && module.exports) {

@@ -63,6 +63,9 @@ class AuthManager {
             this.runAuthAPIClientTest();
         });
         
+        // Update status indicator
+        this.updateLoginStatusIndicator();
+        
         // Real-time validation
         this.setupRealTimeValidation();
     }
@@ -225,6 +228,9 @@ class AuthManager {
                 if (rememberMe) {
                     this.saveCredentials(username, password);
                 }
+                
+                // Update status indicator
+                this.updateLoginStatusIndicator();
                 
                 // Redirect to quiz
                 setTimeout(() => {
@@ -512,6 +518,34 @@ class AuthManager {
         } catch (error) {
             Logger.warning(`Failed to load from storage: ${key}`, error);
             return null;
+        }
+    }
+    
+    updateLoginStatusIndicator() {
+        const indicator = document.getElementById('loginStatusIndicator');
+        if (!indicator) return;
+        
+        // Check API status
+        const hasAPIClient = !!window.APIClient;
+        const isAuthenticated = hasAPIClient && window.APIClient.isAuthenticated();
+        const hasSession = sessionStorage.getItem('currentUser') || localStorage.getItem('modular_quiz_credentials');
+        
+        if (hasAPIClient && isAuthenticated) {
+            indicator.textContent = '🟢 Online Mode';
+            indicator.style.background = '#00ff88';
+            indicator.style.color = '#000';
+        } else if (hasAPIClient && hasSession) {
+            indicator.textContent = '🟡 API Available';
+            indicator.style.background = '#ffaa00';
+            indicator.style.color = '#000';
+        } else if (hasAPIClient) {
+            indicator.textContent = '🔵 Ready to Login';
+            indicator.style.background = '#61dafb';
+            indicator.style.color = '#000';
+        } else {
+            indicator.textContent = '🔴 Offline Mode';
+            indicator.style.background = '#ff4444';
+            indicator.style.color = '#fff';
         }
     }
     

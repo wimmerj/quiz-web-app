@@ -193,10 +193,15 @@
                 <span class="status-indicator" id="statusIndicator">🔴</span>
                 <span class="status-text" id="statusText">Offline Mode</span>
             </div>
-            <div class="api-test-section">
-                <button id="testAuthBtn" class="btn btn-secondary btn-small">🧪 Test API Connection</button>
-                <div id="testAuthResults" class="test-results" style="display: none;"></div>
+        </div>
+
+        <!-- API Test Section (for debugging) -->
+        <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(40, 44, 52, 0.95); border: 1px solid #61dafb; border-radius: 8px; padding: 10px; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <div class="status-indicator" id="loginStatusIndicator" style="padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔍 API Status</div>
+                <button id="testAuthBtn" style="background: #61dafb; color: #282c34; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer;">🧪 Test API</button>
             </div>
+            <div id="testAuthResults" style="display: none; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 10px; color: #e4e4e4; line-height: 1.4;"></div>
         </div>
 
         <!-- NOTIFICATIONS -->

@@ -1349,4 +1349,108 @@ document.addEventListener('DOMContentLoaded', function() {
     window.adminModule = adminModule; // Make globally available
     
     console.log('Admin module loaded successfully');
+    
+    // Update status indicator
+    updateAdminStatusIndicator();
 });
+
+// Status indicator management
+function updateAdminStatusIndicator() {
+    const indicator = document.getElementById('adminStatusIndicator');
+    if (!indicator) return;
+    
+    try {
+        if (typeof APIClient !== 'undefined' && APIClient.isAuthenticated()) {
+            const user = APIClient.getCurrentUser();
+            if (user && user.role === 'admin') {
+                indicator.style.background = '#00ff00';
+                indicator.title = 'Online Mode - Admin Authenticated';
+            } else {
+                indicator.style.background = '#ffaa00';
+                indicator.title = 'Authenticated - Not Admin';
+            }
+        } else if (typeof APIClient !== 'undefined') {
+            indicator.style.background = '#ffff00';
+            indicator.title = 'API Available - Admin Login Required';
+        } else {
+            indicator.style.background = '#ff8800';
+            indicator.title = 'Offline Mode - Limited Access';
+        }
+    } catch (error) {
+        indicator.style.background = '#ff0000';
+        indicator.title = 'Connection Error';
+    }
+}
+
+// Modern API Test Function
+function runAdminAPIClientTest() {
+    const resultsDiv = document.getElementById('api-test-results');
+    if (!resultsDiv) return;
+    
+    resultsDiv.innerHTML = `
+        <div style="color: #00ff00; margin-bottom: 10px;">
+            🚀 Starting Admin APIClient Test...
+        </div>
+    `;
+    
+    setTimeout(() => {
+        let testResults = [];
+        
+        // Test 1: APIClient availability
+        testResults.push(`<div style="color: #00aaff;">📡 APIClient Check:</div>`);
+        if (typeof APIClient !== 'undefined') {
+            testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ APIClient object found</div>`);
+            
+            // Test 2: Authentication status
+            testResults.push(`<div style="color: #00aaff;">🔐 Authentication Check:</div>`);
+            try {
+                const isAuth = APIClient.isAuthenticated();
+                if (isAuth) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ User is authenticated</div>`);
+                    
+                    // Test 3: User info and admin rights
+                    const userInfo = APIClient.getCurrentUser();
+                    if (userInfo) {
+                        testResults.push(`<div style="color: #00aaff;">👤 User Info:</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">📋 Username: ${userInfo.username || 'N/A'}</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">👑 Role: ${userInfo.role || 'N/A'}</div>`);
+                        
+                        if (userInfo.role === 'admin') {
+                            testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Admin access confirmed</div>`);
+                        } else {
+                            testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Admin access required</div>`);
+                        }
+                    }
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ User not authenticated</div>`);
+                }
+                
+                // Test 4: Admin module status
+                testResults.push(`<div style="color: #00aaff;">⚙️ Admin Module Check:</div>`);
+                if (window.adminModule) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Admin Module loaded</div>`);
+                    testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🎛️ Module status: Ready</div>`);
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ Admin Module not loaded</div>`);
+                }
+                
+            } catch (error) {
+                testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Test error: ${error.message}</div>`);
+            }
+            
+        } else {
+            testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ APIClient not found</div>`);
+            testResults.push(`<div style="color: #888; margin-left: 20px;">🔄 Running in offline mode</div>`);
+        }
+        
+        // Final status
+        testResults.push(`<div style="color: #00aaff; margin-top: 10px;">📈 Final Status:</div>`);
+        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🕒 Test completed at ${new Date().toLocaleTimeString()}</div>`);
+        
+        resultsDiv.innerHTML = testResults.join('');
+        
+        // Update status indicator after test
+        updateAdminStatusIndicator();
+        
+    }, 500);
+}

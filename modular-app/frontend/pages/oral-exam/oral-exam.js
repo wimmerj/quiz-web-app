@@ -303,6 +303,9 @@ class OralExamModule {
     }
 
     setupEventListeners() {
+        // Update status indicator
+        updateOralExamStatusIndicator();
+        
         // 🧪 TESTOVACÍ TLAČÍTKO PRO ORAL EXAM
         document.getElementById('testOralBtn')?.addEventListener('click', () => {
             console.log('🎯 Test button event listener triggered! v2.1');
@@ -1802,3 +1805,102 @@ window.addEventListener('beforeunload', (event) => {
         return event.returnValue;
     }
 });
+
+// Status indicator management
+function updateOralExamStatusIndicator() {
+    const indicator = document.getElementById('oralExamStatusIndicator');
+    if (!indicator) return;
+    
+    try {
+        if (typeof APIClient !== 'undefined' && APIClient.isAuthenticated()) {
+            indicator.style.background = '#00ff00';
+            indicator.title = 'Online Mode - Authenticated';
+        } else if (typeof APIClient !== 'undefined') {
+            indicator.style.background = '#ffff00';
+            indicator.title = 'API Available - Ready for Exam';
+        } else {
+            indicator.style.background = '#ff8800';
+            indicator.title = 'Offline Mode - Local Exam Only';
+        }
+    } catch (error) {
+        indicator.style.background = '#ff0000';
+        indicator.title = 'Connection Error';
+    }
+}
+
+// Modern API Test Function
+function runOralExamAPIClientTest() {
+    const resultsDiv = document.getElementById('api-test-results');
+    if (!resultsDiv) return;
+    
+    resultsDiv.innerHTML = `
+        <div style="color: #00ff00; margin-bottom: 10px;">
+            🚀 Starting Oral Exam APIClient Test...
+        </div>
+    `;
+    
+    setTimeout(() => {
+        let testResults = [];
+        
+        // Test 1: APIClient availability
+        testResults.push(`<div style="color: #00aaff;">📡 APIClient Check:</div>`);
+        if (typeof APIClient !== 'undefined') {
+            testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ APIClient object found</div>`);
+            
+            // Test 2: Authentication status
+            testResults.push(`<div style="color: #00aaff;">🔐 Authentication Check:</div>`);
+            try {
+                const isAuth = APIClient.isAuthenticated();
+                if (isAuth) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ User is authenticated</div>`);
+                    
+                    // Test 3: User info
+                    const userInfo = APIClient.getCurrentUser();
+                    if (userInfo) {
+                        testResults.push(`<div style="color: #00aaff;">👤 User Info:</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">📋 Username: ${userInfo.username || 'N/A'}</div>`);
+                        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">👑 Role: ${userInfo.role || 'N/A'}</div>`);
+                    }
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ User not authenticated</div>`);
+                }
+                
+                // Test 4: Speech synthesis check
+                testResults.push(`<div style="color: #00aaff;">🗣️ Speech System Check:</div>`);
+                if ('speechSynthesis' in window) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Speech synthesis available</div>`);
+                    const voices = speechSynthesis.getVoices();
+                    testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🔊 Voices available: ${voices.length}</div>`);
+                } else {
+                    testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Speech synthesis not supported</div>`);
+                }
+                
+                // Test 5: Exam module status
+                testResults.push(`<div style="color: #00aaff;">🎤 Exam Module Check:</div>`);
+                if (window.oralExamModule) {
+                    testResults.push(`<div style="color: #00ff00; margin-left: 20px;">✅ Oral Exam Module loaded</div>`);
+                    testResults.push(`<div style="color: #ffffff; margin-left: 20px;">📊 Exam Active: ${window.oralExamModule.examState?.isActive ? 'Yes' : 'No'}</div>`);
+                } else {
+                    testResults.push(`<div style="color: #ffaa00; margin-left: 20px;">⚠️ Oral Exam Module not loaded</div>`);
+                }
+                
+            } catch (error) {
+                testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ Test error: ${error.message}</div>`);
+            }
+            
+        } else {
+            testResults.push(`<div style="color: #ff4444; margin-left: 20px;">❌ APIClient not found</div>`);
+            testResults.push(`<div style="color: #888; margin-left: 20px;">🔄 Running in offline mode</div>`);
+        }
+        
+        // Final status
+        testResults.push(`<div style="color: #00aaff; margin-top: 10px;">📈 Final Status:</div>`);
+        testResults.push(`<div style="color: #ffffff; margin-left: 20px;">🕒 Test completed at ${new Date().toLocaleTimeString()}</div>`);
+        
+        resultsDiv.innerHTML = testResults.join('');
+        
+        // Update status indicator after test
+        updateOralExamStatusIndicator();
+        
+    }, 500);
+}
