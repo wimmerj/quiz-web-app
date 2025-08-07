@@ -100,12 +100,12 @@ class BattleModule {
         // Live feed messages
         this.liveFeedMessages = [];
         
-        logger.info('BattleModule constructor completed');
+        Logger.info('BattleModule constructor completed');
     }
 
     async initialize() {
         try {
-            logger.info('Initializing Battle Module...');
+            Logger.info('Initializing Battle Module...');
             
             // Initialize user session
             await this.checkAuthentication();
@@ -123,10 +123,10 @@ class BattleModule {
             this.updateBattleMenu();
             
             this.isInitialized = true;
-            logger.info('Battle Module initialized successfully');
+            Logger.info('Battle Module initialized successfully');
             
         } catch (error) {
-            logger.error('Failed to initialize Battle Module:', error);
+            Logger.error('Failed to initialize Battle Module:', error);
             this.showNotification('Chyba při inicializaci Battle modulu', 'error');
         }
     }
@@ -155,12 +155,12 @@ class BattleModule {
                     this.currentUser = 'authenticated_user'; // fallback
                 }
                 
-                logger.info('Battle user authenticated via APIClient', { user: this.currentUser });
+                Logger.info('Battle user authenticated via APIClient', { user: this.currentUser });
                 this.updateUserDisplay();
                 return;
             } catch (error) {
                 console.error('❌ Battle APIClient user info failed:', error);
-                logger.warning('Battle APIClient user info failed, trying fallback', error);
+                Logger.warning('Battle APIClient user info failed, trying fallback', error);
             }
         } else {
             console.log('⚠️ Battle APIClient not available or not authenticated');
@@ -176,14 +176,14 @@ class BattleModule {
             // Handle async getCurrentUser
             try {
                 this.currentUser = await currentUser;
-                logger.info('Battle user authenticated', { user: this.currentUser });
+                Logger.info('Battle user authenticated', { user: this.currentUser });
             } catch (error) {
-                logger.warning('Battle failed to get current user', error);
+                Logger.warning('Battle failed to get current user', error);
                 this.currentUser = null;
             }
         } else if (currentUser) {
             this.currentUser = currentUser;
-            logger.info('Battle user authenticated (fallback)', { user: this.currentUser });
+            Logger.info('Battle user authenticated (fallback)', { user: this.currentUser });
         } else {
             console.log('❌ No authentication found, redirecting to login...');
             window.location.href = '../auth/login.html';
@@ -234,7 +234,7 @@ class BattleModule {
                 const credentials = JSON.parse(savedCredentials);
                 return credentials.username;
             } catch (e) {
-                logger.warning('Battle failed to parse saved credentials', e);
+                Logger.warning('Battle failed to parse saved credentials', e);
             }
         }
         
@@ -251,20 +251,23 @@ class BattleModule {
                 userDisplay.textContent = '👤 Nepřihlášen';
             }
         }
+        
+        // Also update status indicator
+        this.updateBattleStatusIndicator();
     }
 
     async initializeConnection() {
         try {
             // Simulate WebSocket connection for demo
             this.isConnected = true;
-            logger.info('Demo connection established');
+            Logger.info('Demo connection established');
             
             // In real implementation, this would be:
             // this.socket = new WebSocket('wss://your-battle-server.com');
             // this.setupSocketEventListeners();
             
         } catch (error) {
-            logger.error('Failed to initialize connection:', error);
+            Logger.error('Failed to initialize connection:', error);
             this.isConnected = false;
         }
     }
@@ -324,6 +327,9 @@ class BattleModule {
         document.getElementById('testBattleBtn')?.addEventListener('click', () => {
             this.runBattleAPIClientTest();
         });
+
+        // Update API status indicator
+        this.updateBattleStatusIndicator();
     }
 
     loadUserStats() {
@@ -339,7 +345,7 @@ class BattleModule {
             document.getElementById('userRating').textContent = `⭐ ${this.userStats.rating}`;
             
         } catch (error) {
-            logger.error('Failed to load user stats:', error);
+            Logger.error('Failed to load user stats:', error);
         }
     }
 
@@ -417,7 +423,7 @@ class BattleModule {
 
     async startMatchmaking(mode) {
         try {
-            logger.info(`Starting matchmaking for ${mode} battle`);
+            Logger.info(`Starting matchmaking for ${mode} battle`);
             
             if (!this.isConnected) {
                 // Demo mode - simulate finding opponent
@@ -443,7 +449,7 @@ class BattleModule {
             // }));
             
         } catch (error) {
-            logger.error('Failed to start matchmaking:', error);
+            Logger.error('Failed to start matchmaking:', error);
             this.showNotification('Chyba při spouštění matchmakingu', 'error');
         }
     }
@@ -512,7 +518,7 @@ class BattleModule {
     }
 
     onOpponentFound(mode) {
-        logger.info('Opponent found, starting battle');
+        Logger.info('Opponent found, starting battle');
         
         // Stop matchmaking
         this.cancelMatchmaking(false);
@@ -583,7 +589,7 @@ class BattleModule {
             this.startBattleCountdown();
             
         } catch (error) {
-            logger.error('Failed to initialize battle:', error);
+            Logger.error('Failed to initialize battle:', error);
             this.showNotification('Chyba při inicializaci souboje', 'error');
         }
     }
@@ -1369,6 +1375,35 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
         }
     }
 
+    updateBattleStatusIndicator() {
+        const indicator = document.getElementById('battleStatusIndicator');
+        if (!indicator) return;
+        
+        // Check API status
+        const hasAPIClient = !!window.APIClient;
+        const isAuthenticated = hasAPIClient && window.APIClient.isAuthenticated();
+        const hasUser = !!this.currentUser;
+        const isConnected = this.isConnected;
+        
+        if (hasAPIClient && isAuthenticated && hasUser) {
+            indicator.textContent = '🟢 Online Mode';
+            indicator.style.background = '#00ff88';
+            indicator.style.color = '#000';
+        } else if (hasAPIClient && hasUser) {
+            indicator.textContent = '🟡 API Available';
+            indicator.style.background = '#ffaa00';
+            indicator.style.color = '#000';
+        } else if (hasUser) {
+            indicator.textContent = '🔴 Offline Mode';
+            indicator.style.background = '#ff4444';
+            indicator.style.color = '#fff';
+        } else {
+            indicator.textContent = '❌ Not Logged In';
+            indicator.style.background = '#666';
+            indicator.style.color = '#fff';
+        }
+    }
+
     async runBattleAPIClientTest() {
         console.log('🧪 Starting Battle APIClient integration test...');
         const resultsDiv = document.getElementById('testBattleResults');
@@ -1444,7 +1479,7 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
         const confirmed = confirm('Opravdu se chcete odhlásit?');
         if (!confirmed) return;
         
-        logger.action('Battle user logout', { user: this.currentUser });
+        Logger.action('Battle user logout', { user: this.currentUser });
         
         // Clear APIClient authentication
         if (window.APIClient) {
@@ -1479,9 +1514,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         window.battleModule = new BattleModule();
         await window.battleModule.initialize();
-        logger.info('Battle Module ready');
+        Logger.info('Battle Module ready');
     } catch (error) {
-        logger.error('Failed to initialize Battle Module:', error);
+        Logger.error('Failed to initialize Battle Module:', error);
     }
 });
 

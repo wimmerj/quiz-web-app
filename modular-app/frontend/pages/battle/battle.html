@@ -671,14 +671,17 @@
     </div>
 
     <!-- API Test Section (for debugging) -->
-    <div class="api-test-section" style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; font-size: 12px; max-width: 300px;">
-        <button id="testBattleBtn" class="btn btn-small" style="margin-bottom: 5px;">🧪 Test API</button>
-        <div id="testBattleResults" style="display: none; max-height: 200px; overflow-y: auto; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 3px; font-family: monospace; font-size: 10px;"></div>
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(40, 44, 52, 0.95); border: 1px solid #61dafb; border-radius: 8px; padding: 10px; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <div class="status-indicator" id="battleStatusIndicator" style="padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔍 API Status</div>
+            <button id="testBattleBtn" style="background: #61dafb; color: #282c34; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer;">🧪 Test API</button>
+        </div>
+        <div id="testBattleResults" style="display: none; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 10px; color: #e4e4e4; line-height: 1.4;"></div>
     </div>
 
     <!-- Scripts -->
     <script src="../../shared/logger.js"></script>
-    <script src="../../shared/api-client.js?v=20250807-battle-fixed"></script>
+    <script src="../../shared/api-client.js?v=20250807-battle-logger-fixed"></script>
     <script src="../../shared/navigation.js"></script>
     <script src="battle.js"></script>
 </body>
