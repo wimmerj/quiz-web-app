@@ -96,7 +96,7 @@
         }
     </style>
 </head>
-<body>
+<body class="no-navigation no-breadcrumb">
     <div class="header">
         <h1>🎯 Quiz App - Modulární Architektura</h1>
         <p>Nová modulární verze s vylepšenou architekturou a lepší maintainability</p>
@@ -106,31 +106,27 @@
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            <p>60% dokončeno (Infrastructure + Auth + Quiz + Admin Modules)</p>
+            <p>80% dokončeno (Infrastructure + Auth + Quiz + Admin + Oral Exam Modules)</p>
         </div>
     </div>
 
     <div class="dashboard">
-        
         <!-- Auth Module -->
         <a href="pages/auth/login.html" class="module-card auth">
             <h3>🔐 Autentifikace</h3>
             <p>Přihlášení, registrace a správa hesel. Centralizovaný auth systém s JWT tokeny a zabezpečeným session managementem.</p>
-            <span class="status ready">Hotovo</span>
         </a>
 
         <!-- Quiz Module -->
         <a href="pages/quiz/quiz.html" class="module-card quiz">
             <h3>📝 Hlavní Quiz</h3>
             <p>Čistý quiz interface bez zbytečností. Optimalizovaný pro rychlost a snadné používání s pokročilými funkcemi.</p>
-            <span class="status ready">Hotovo</span>
         </a>
 
         <!-- Oral Exam Module -->
         <a href="pages/oral-exam/oral-exam.html" class="module-card oral-exam">
             <h3>🎤 Ústní Zkoušení</h3>
             <p>TTS a STT integrace s AI vyhodnocováním. Specializované otázky optimalizované pro mluvené odpovědi.</p>
-            <span class="status ready">Hotovo</span>
         </a>
 
         <!-- Battle Module -->
@@ -144,7 +140,6 @@
         <a href="pages/admin/admin.html" class="module-card admin">
             <h3>👨‍💼 Admin Portal</h3>
             <p>Správa uživatelů, systémové statistiky a monitoring. Pokročilé nástroje pro administrátory.</p>
-            <span class="status ready">Hotovo</span>
         </a>
 
         <!-- Settings Module -->
@@ -153,23 +148,6 @@
             <p>Konfigurace aplikace, uživatelské preference a backend připojení. Centralizované nastavení pro všechny moduly.</p>
             <span class="status planning">Plánováno</span>
         </a>
-
-    </div>
-
-    <div style="text-align: center; padding: 2rem; background: #f5f5f5;">
-        <h3>🔄 Současná Verze</h3>
-        <p>Pro běžné používání prozatím použijte <a href="../frontend_deploy/quiz_app.html" style="color: #2196F3;">současnou verzi aplikace</a></p>
-        
-        <h3>📋 Status Modulů</h3>
-        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
-            <div>✅ <strong>Infrastructure:</strong> Hotovo</div>
-            <div>✅ <strong>Auth Module:</strong> Hotovo</div>
-            <div>✅ <strong>Quiz Module:</strong> Hotovo</div>
-            <div>✅ <strong>Admin Module:</strong> Hotovo</div>
-            <div>✅ <strong>Oral Exam:</strong> Hotovo</div>
-            <div>📋 <strong>Battle Mode:</strong> Plánováno</div>
-        </div>
-    </div>
 
     <script src="shared/navigation.js"></script>
     <script src="shared/logger.js"></script>
@@ -183,7 +161,7 @@
             const completed = 5; // Completed modules: Infrastructure, Auth, Quiz, Admin, Oral Exam
             const inProgress = 0; // No modules in progress
             
-            const progressPercent = ((completed + inProgress * 0.5) / total) * 100;
+            const progressPercent = 80; // Set to 80% as requested
             document.querySelector('.progress-fill').style.width = progressPercent + '%';
         }
         
