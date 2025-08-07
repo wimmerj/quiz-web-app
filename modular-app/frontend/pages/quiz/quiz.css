@@ -470,11 +470,13 @@ body {
 
 /* Progress Section */
 .progress-section {
-    background: white;
+    background-color: rgba(40, 53, 147, 0.8);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .progress-info {
@@ -483,6 +485,7 @@ body {
     align-items: center;
     margin-bottom: 1rem;
     font-weight: 500;
+    color: white;
 }
 
 .progress-bar {
@@ -503,12 +506,13 @@ body {
 
 /* Question Card */
 .question-card {
-    background: white;
+    background-color: rgba(40, 53, 147, 0.8);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .question-header {
@@ -564,6 +568,10 @@ body {
 /* Answer Options */
 .answers-section {
     margin-bottom: 1.5rem;
+    background-color: rgba(40, 53, 147, 0.8);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .answers-grid {
@@ -578,14 +586,15 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.5rem;
-    background: white;
-    border: 2px solid #E0E0E0;
+    background-color: #ff5722;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: left;
     font-size: 1rem;
     min-height: 60px;
+    color: white;
 }
 
 .answer-option:hover:not(:disabled) {
@@ -653,11 +662,12 @@ body {
 .keyboard-hint {
     text-align: center;
     font-size: 0.9rem;
-    color: var(--text-secondary);
-    padding: 0.5rem;
-    background: #F5F5F5;
-    border-radius: 6px;
+    color: white;
+    padding: 1rem;
+    background-color: rgba(40, 53, 147, 0.8);
+    border-radius: 8px;
     margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Explanation Panel */
