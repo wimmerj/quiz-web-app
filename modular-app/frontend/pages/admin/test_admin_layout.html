@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Layout Test</title>
+    <link rel="stylesheet" href="admin.css">
+    
+    <style>
+        /* Global gradient background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+        }
+        
+        .demo-button {
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        }
+        
+        /* Simulate header for testing */
+        .mock-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mock-breadcrumbs {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .mock-status-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .mock-navigation-container {
+            max-width: 280px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 0.8rem;
+            background: rgba(255, 87, 34, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+        }
+        
+        .mock-navigation-container a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.75rem;
+            margin: 0 0.2rem;
+        }
+        
+        .mock-right-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .mock-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🛠️ Admin Panel - Layout Fixes Test</h1>
+        
+        <div class="test-item">
+            <h3>🔧 Opravené problémy:</h3>
+            <ul>
+                <li><strong>Navigation panel šířka:</strong> Zmenšeno z 400px na 280px</li>
+                <li><strong>Font size:</strong> Zmenšen na 0.8rem pro container, 0.75rem pro odkazy</li>
+                <li><strong>Collapsible panely:</strong> "Přidat uživatele" a "Přidat otázku" již jsou collapsed by default</li>
+                <li><strong>Text overflow:</strong> Elipsa (...) při přetečení navigation textů</li>
+            </ul>
+        </div>
+        
+        <div class="test-item">
+            <h3>📱 Demo header layout:</h3>
+            <div class="mock-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="margin: 0; color: white;">🛠️ Admin Panel</h2>
+                    <div class="mock-right-buttons">
+                        <button class="mock-button">🔧 API Test</button>
+                        <button class="mock-button">Odhlásit</button>
+                    </div>
+                </div>
+                
+                <div class="mock-breadcrumbs">
+                    <div class="mock-status-left">
+                        <div class="mock-navigation-container">
+                            <a href="#">📝 Quiz</a> | 
+                            <a href="#">🎤 Ústní zkoušení</a> | 
+                            <a href="#">⚔️ Battle Mode</a> | 
+                            <a href="#">⚙️ Nastavení</a>
+                        </div>
+                        <span style="margin: 0 0.5rem; opacity: 0.6;">|</span>
+                        <span style="font-weight: 600; color: #ff5722;">🛠️ Admin Panel</span>
+                        <span style="margin: 0 0.5rem; opacity: 0.6;">|</span>
+                        <span style="color: rgba(255,255,255,0.8);">Admin systém - Monitoring</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;">
+                        <span style="color: #4caf50; font-size: 0.8rem;">🟢 Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>📦 Demo collapsible panels:</h3>
+            
+            <!-- Demo User Panel -->
+            <div class="admin-panel collapsed" id="demoUserPanel">
+                <div class="panel-header" onclick="toggleDemoPanel('demoUserPanel')">
+                    <h3>➕ Přidat nového uživatele</h3>
+                    <span class="panel-toggle">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Uživatelské jméno:</label>
+                                <input type="text" class="form-input" placeholder="novyuzivatel" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email:</label>
+                                <input type="email" class="form-input" placeholder="email@example.com" readonly>
+                            </div>
+                        </div>
+                        <button class="demo-button">➕ Vytvořit uživatele (Demo)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Demo Question Panel -->
+            <div class="admin-panel collapsed" id="demoQuestionPanel">
+                <div class="panel-header" onclick="toggleDemoPanel('demoQuestionPanel')">
+                    <h3>➕ Přidat novou otázku</h3>
+                    <span class="panel-toggle">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-form">
+                        <div class="form-group">
+                            <label class="form-label">Otázka:</label>
+                            <textarea class="form-textarea" rows="3" placeholder="Zadejte text otázky..." readonly></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Odpověď A:</label>
+                                <input type="text" class="form-input" placeholder="Možnost A" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Odpověď B:</label>
+                                <input type="text" class="form-input" placeholder="Možnost B" readonly>
+                            </div>
+                        </div>
+                        <button class="demo-button">➕ Přidat otázku (Demo)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 Testovací odkazy:</h3>
+            <p><a href="admin.html" style="color: #ff7043;">→ Otevřít Admin Panel</a></p>
+            <p><a href="../../index.html" style="color: #ff7043;">→ Zpět na Dashboard</a></p>
+        </div>
+        
+        <div class="test-item">
+            <h3>✅ Co testovat:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>☑️ Navigation již nepřekrývá tlačítka API test a Odhlásit</li>
+                <li>☑️ Panel "Přidat uživatele" je collapsed by default</li>
+                <li>☑️ Panel "Přidat otázku" je collapsed by default</li>
+                <li>☑️ Kliknutím na header panelu se rozbalí/sbalí</li>
+                <li>☑️ Glass morphism design konzistent s ostatními moduly</li>
+                <li>☑️ Orange akcenty (#ff5722) pro aktivní prvky</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleDemoPanel(panelId) {
+            const panel = document.getElementById(panelId);
+            if (!panel) return;
+            
+            panel.classList.toggle('collapsed');
+            
+            const toggle = panel.querySelector('.panel-toggle');
+            if (toggle) {
+                toggle.style.transform = panel.classList.contains('collapsed') ? 
+                    'rotate(-90deg)' : 'rotate(0deg)';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Admin Panel layout test loaded');
+            console.log('🎨 Navigation max-width: 280px (was 400px)');
+            console.log('📦 Collapsible panels: User & Question forms');
+        });
+    </script>
+</body>
+</html>

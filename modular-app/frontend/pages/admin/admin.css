@@ -96,9 +96,24 @@ body {
 }
 
 #navigation-links-container {
-    max-width: 400px; /* Limit width to prevent overlap */
+    max-width: 280px; /* Reduced from 400px to prevent overlap */
     overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+}
+
+#navigation-links-container a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.75rem;
+    margin: 0 0.2rem;
+}
+
+#navigation-links-container a:hover {
+    color: #ff5722;
+    text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
 }
 
 .status-right {
