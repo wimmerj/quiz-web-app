@@ -355,7 +355,11 @@ class AdminModule {
         });
         
         document.getElementById('addUserBtn')?.addEventListener('click', () => {
-            this.showAddUserModal();
+            // Open the "Add User" collapsible panel instead of modal
+            const panel = document.getElementById('addUserPanel');
+            if (panel && panel.style.display !== 'block') {
+                this.togglePanel('addUserPanel');
+            }
         });
         
         // Questions tab actions
@@ -364,7 +368,11 @@ class AdminModule {
         });
         
         document.getElementById('addQuestionBtn')?.addEventListener('click', () => {
-            this.showAddQuestionModal();
+            // Open the "Add Question" collapsible panel instead of modal
+            const panel = document.getElementById('addQuestionPanel');
+            if (panel && panel.style.display !== 'block') {
+                this.togglePanel('addQuestionPanel');
+            }
         });
         
         document.getElementById('importQuestionsBtn')?.addEventListener('click', () => {
@@ -427,17 +435,6 @@ class AdminModule {
         document.getElementById('addQuestionForm')?.addEventListener('submit', (e) => {
             e.preventDefault();
             this.handleAddQuestion(e);
-        });
-        
-        // Form submissions - Modal forms
-        document.getElementById('addUserModalForm')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleAddUserModal(e);
-        });
-        
-        document.getElementById('addQuestionModalForm')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleAddQuestionModal(e);
         });
         
         // Test APIClient integration
@@ -1035,27 +1032,6 @@ class AdminModule {
         }
     }
     
-    // Modal management
-    showAddUserModal() {
-        this.showModal('addUserModal');
-    }
-    
-    showAddQuestionModal() {
-        // Populate table dropdown
-        const tableSelect = document.getElementById('questionTable');
-        if (tableSelect) {
-            tableSelect.innerHTML = '<option value="">Vyberte tabulku</option>';
-            ['Tabulka1', 'Databáze'].forEach(tableName => {
-                const option = document.createElement('option');
-                option.value = tableName;
-                option.textContent = tableName;
-                tableSelect.appendChild(option);
-            });
-        }
-        
-        this.showModal('addQuestionModal');
-    }
-    
     // CRUD operations
     async handleAddUser(event) {
         const form = event.target;
@@ -1083,7 +1059,6 @@ class AdminModule {
             this.saveToStorage('users', users);
             
             this.showNotification(`Uživatel ${userData.username} byl vytvořen`, 'success');
-            this.closeModal('addUserModal');
             form.reset();
             
             // Reload users data
@@ -1122,7 +1097,6 @@ class AdminModule {
             this.saveToStorage('custom_questions', questions);
             
             this.showNotification('Otázka byla přidána', 'success');
-            this.closeModal('addQuestionModal');
             form.reset();
             
             // Reload questions data
@@ -1276,20 +1250,6 @@ Informace o systému:
         }
     }
     
-    showModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.style.display = 'flex';
-        }
-    }
-    
-    closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-    
     showNotification(message, type = 'info') {
         const container = document.getElementById('notifications');
         if (!container) return;
@@ -1404,108 +1364,6 @@ Informace o systému:
             resultsDiv.innerHTML += `<p>❌ Error during test: ${error.message}</p>`;
             console.error('❌ Error during admin test:', error);
         }
-    }
-    
-    // Modal form handlers
-    handleAddUserModal(event) {
-        const userData = {
-            username: document.getElementById('modalNewUsername').value,
-            email: document.getElementById('modalNewUserEmail').value,
-            password: document.getElementById('modalNewUserPassword').value,
-            role: document.getElementById('modalNewUserRole').value,
-            createdAt: new Date().toISOString().split('T')[0],
-            totalCorrect: 0,
-            totalWrong: 0
-        };
-        
-        Logger.action('Adding user from modal', userData);
-        
-        try {
-            const users = this.loadFromStorage('users') || {};
-            
-            if (users[userData.username]) {
-                this.showNotification('Uživatel již existuje', 'error');
-                return;
-            }
-            
-            users[userData.username] = userData;
-            this.saveToStorage('users', users);
-            
-            this.showNotification('Uživatel byl přidán', 'success');
-            event.target.reset();
-            
-            // Reload user list if on Users tab
-            if (document.querySelector('.admin-tab[data-tab="users"]').classList.contains('active')) {
-                this.loadUsers();
-            }
-            
-            // Close modal on success
-            setTimeout(() => {
-                closeModal('addUserModal');
-            }, 1000);
-            
-        } catch (error) {
-            Logger.error('Error adding user', error);
-            this.showNotification('Chyba při přidávání uživatele', 'error');
-        }
-    }
-    
-    handleAddQuestionModal(event) {
-        const questionData = {
-            table: document.getElementById('modalQuestionTable').value,
-            text: document.getElementById('modalQuestionText').value,
-            answerA: document.getElementById('modalAnswerA').value,
-            answerB: document.getElementById('modalAnswerB').value,
-            answerC: document.getElementById('modalAnswerC').value,
-            correct: document.getElementById('modalCorrectAnswer').value,
-            difficulty: document.getElementById('modalQuestionDifficulty').value
-        };
-        
-        Logger.action('Adding question from modal', questionData);
-        
-        if (!questionData.table || !questionData.text || !questionData.answerA || 
-            !questionData.answerB || !questionData.answerC || !questionData.correct) {
-            this.showNotification('Vyplňte všechna povinná pole', 'error');
-            return;
-        }
-        
-        try {
-            const questions = this.loadFromStorage(`questions_${questionData.table}`) || [];
-            
-            const newQuestion = {
-                id: Date.now(),
-                ...questionData,
-                createdAt: new Date().toISOString()
-            };
-            
-            questions.push(newQuestion);
-            this.saveToStorage(`questions_${questionData.table}`, questions);
-            
-            this.showNotification('Otázka byla přidána', 'success');
-            event.target.reset();
-            
-            // Reload questions if on Questions tab
-            if (document.querySelector('.admin-tab[data-tab="questions"]').classList.contains('active')) {
-                this.loadQuestions();
-            }
-            
-            // Close modal on success
-            setTimeout(() => {
-                closeModal('addQuestionModal');
-            }, 1000);
-            
-        } catch (error) {
-            Logger.error('Error adding question', error);
-            this.showNotification('Chyba při přidávání otázky', 'error');
-        }
-    }
-}
-
-// Global modal close function
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
     }
 }
 
