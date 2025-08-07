@@ -174,6 +174,21 @@ class NavigationManager {
             'settings': { icon: '⚙️', title: 'Nastavení' }
         };
         
+        // Pokud existuje kontejner pro horizontální navigaci, použij ho
+        const container = document.getElementById('navigation-links-container');
+        if (container) {
+            let links = [];
+            for (const [module, info] of Object.entries(moduleInfo)) {
+                if (module !== this.currentModule) { // Nezobrazuj aktuální modul
+                    const link = `<a href="#" data-navigate="${module}">${info.icon} ${info.title}</a>`;
+                    links.push(link);
+                }
+            }
+            container.innerHTML = links.join(' | ');
+            return container;
+        }
+        
+        // Fallback - původní vertikální navigace
         const nav = document.createElement('nav');
         nav.className = 'navigation-menu';
         
@@ -246,12 +261,19 @@ document.addEventListener('DOMContentLoaded', function() {
     Navigation = new NavigationManager();
     window.Navigation = Navigation; // Make globally available
     
-    // Add navigation menu to pages that don't have it
-    const existingNav = document.querySelector('.navigation-menu');
-    if (!existingNav && !document.body.classList.contains('no-navigation')) {
-        const header = document.querySelector('header') || document.body.firstElementChild;
-        if (header) {
-            header.appendChild(Navigation.createNavigationMenu());
+    // Add navigation menu to pages - prioritize breadcrumb container
+    const navigationContainer = document.getElementById('navigation-links-container');
+    if (navigationContainer) {
+        // Use horizontal breadcrumb navigation
+        Navigation.createNavigationMenu();
+    } else {
+        // Fallback to traditional vertical navigation
+        const existingNav = document.querySelector('.navigation-menu');
+        if (!existingNav && !document.body.classList.contains('no-navigation')) {
+            const header = document.querySelector('header') || document.body.firstElementChild;
+            if (header) {
+                header.appendChild(Navigation.createNavigationMenu());
+            }
         }
     }
     

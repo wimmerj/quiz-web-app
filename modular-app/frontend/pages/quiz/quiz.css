@@ -169,6 +169,20 @@ body {
     text-shadow: 0 0 5px rgba(255, 237, 74, 0.5);
 }
 
+/* Navigation links container */
+#navigation-links-container a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+#navigation-links-container a:hover {
+    color: #ffed4a;
+    text-shadow: 0 0 5px rgba(255, 237, 74, 0.5);
+}
+
 .separator {
     margin: 0 8px;
     color: rgba(255, 255, 255, 0.6);
