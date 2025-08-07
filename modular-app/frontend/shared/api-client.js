@@ -46,7 +46,7 @@ class ModularAPIClient {
     
     // Safe logging helper - fallback to console if Logger not available
     safeLog(method, message, data = null) {
-        if (typeof Logger !== 'undefined' && Logger[method]) {
+        if (typeof Logger !== 'undefined' && Logger !== null && Logger[method] && typeof Logger[method] === 'function') {
             Logger[method](message, data);
         } else {
             console[method === 'warning' ? 'warn' : method](message, data);
