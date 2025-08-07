@@ -23,11 +23,22 @@
             </div>
         </div>
         
-        <!-- Navigation Breadcrumbs -->
+        <!-- Navigation Breadcrumbs / Status Bar -->
         <nav class="breadcrumbs">
-            <a href="../../index.html">🏠 Dashboard</a>
-            <span class="separator">›</span>
-            <span class="current">🎤 Oral Exam</span>
+            <div class="status-left">
+                <div id="navigation-links-container"></div>
+                <span class="separator">|</span>
+                <span class="current">🎤 Oral Exam</span>
+                <span class="separator">|</span>
+                <span id="statusText">Nepřihlášený uživatel (0 odpovědí, celkem správně 0, celkem špatně 0)</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
         </nav>
     </header>
 

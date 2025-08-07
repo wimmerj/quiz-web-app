@@ -45,6 +45,116 @@ body {
     margin: 0 auto;
 }
 
+/* === BREADCRUMBS - STYLED AS STATUS BAR === */
+.breadcrumbs {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 8px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.status-right {
+    display: flex;
+    align-items: center;
+}
+
+.server-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.server-status.online {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.5);
+}
+
+.server-status.offline {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.5);
+}
+
+.server-status.checking {
+    background-color: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.5);
+}
+
+.status-indicator {
+    font-size: 12px;
+    animation: pulse 2s infinite;
+}
+
+.status-text {
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+}
+
+.status-mode {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 8px;
+}
+
+.current {
+    color: white;
+    font-weight: 600;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.breadcrumbs a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.breadcrumbs a:hover {
+    color: #ffed4a;
+    text-shadow: 0 0 5px rgba(255, 237, 74, 0.5);
+}
+
+/* Navigation links container */
+#navigation-links-container a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+#navigation-links-container a:hover {
+    color: #ffed4a;
+    text-shadow: 0 0 5px rgba(255, 237, 74, 0.5);
+}
+
 /* === EXAM SETUP === */
 .exam-setup {
     margin-bottom: 2rem;
