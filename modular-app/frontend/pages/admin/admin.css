@@ -154,16 +154,8 @@ body {
 }
 
 .status-indicator {
-    font-size: 0.7rem;
-}
-
-.status-text {
-    font-weight: 500;
-}
-
-.status-mode {
-    color: rgba(255, 255, 255, 0.7);
     font-size: 0.8rem;
+    font-weight: 500;
 }
 
 /* Access Warning - Glass Morphism */
