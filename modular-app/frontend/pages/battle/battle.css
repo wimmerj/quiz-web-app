@@ -2,16 +2,27 @@
 
 /* === THEME VARIABLES === */
 :root {
-    --battle-primary: #e74c3c;
-    --battle-secondary: #c0392b;
-    --battle-accent: #f39c12;
-    --battle-success: #27ae60;
-    --battle-warning: #f39c12;
+    --battle-primary: #ff5722;
+    --battle-secondary: #ff7043;
+    --battle-accent: #ff9800;
+    --battle-success: #4caf50;
+    --battle-warning: #ff9800;
     --battle-dark: #2c3e50;
     --battle-light: #ecf0f1;
     --battle-gradient: linear-gradient(135deg, var(--battle-primary), var(--battle-secondary));
-    --victory-gradient: linear-gradient(135deg, #27ae60, #2ecc71);
-    --defeat-gradient: linear-gradient(135deg, #e74c3c, #c0392b);
+    --victory-gradient: linear-gradient(135deg, #4caf50, #66bb6a);
+    --defeat-gradient: linear-gradient(135deg, #f44336, #e57373);
+    
+    /* Glass morphism variables */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --bg-secondary: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --warning-color: #ff9800;
 }
 
 /* === MAIN LAYOUT === */
@@ -27,6 +38,76 @@
     margin-left: 1rem;
     font-size: 0.9rem;
     color: var(--text-secondary);
+}
+
+/* === BREADCRUMBS NAVIGATION === */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.breadcrumbs a {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.breadcrumbs a:hover {
+    background: rgba(255, 87, 34, 0.2);
+    color: #ff5722;
+    transform: translateY(-1px);
+}
+
+.breadcrumbs .current {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(255, 87, 34, 0.3);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.status-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.server-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.status-indicator {
+    font-size: 0.8rem;
+}
+
+.status-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+}
+
+/* Server status indicators */
+.status-indicator.online {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.status-indicator.offline {
+    color: #f44336;
+    font-weight: 600;
 }
 
 /* === BATTLE MENU === */
@@ -144,10 +225,53 @@
     font-weight: bold;
     border-radius: 15px;
     transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--battle-primary), var(--battle-secondary));
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
 }
 
 .btn-large:hover {
-    transform: scale(1.02);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+}
+
+/* Button variations */
+.btn-primary {
+    background: linear-gradient(135deg, var(--battle-primary), var(--battle-secondary));
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--battle-secondary), var(--battle-primary));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 /* Custom Battle Card */

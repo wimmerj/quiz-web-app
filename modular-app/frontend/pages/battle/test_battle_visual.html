@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Module Test - Visual Updates</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        }
+        
+        .status-indicator.online {
+            color: #4caf50;
+            font-weight: 600;
+        }
+        
+        .status-indicator.offline {
+            color: #f44336;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎮 Battle Module - Visual Updates Test</h1>
+        
+        <div class="test-item">
+            <h3>✅ Implementované změny:</h3>
+            <ul>
+                <li><strong>Gradient pozadí:</strong> #667eea → #764ba2 (stejné jako ostatní moduly)</li>
+                <li><strong>Oranžové barevné téma:</strong> #ff5722 pro tlačítka a akcenty</li>
+                <li><strong>Glass morphism:</strong> průhledné panely s blur efektem</li>
+                <li><strong>Navigation breadcrumbs:</strong> odkazy na všechny moduly</li>
+                <li><strong>Server status:</strong> Online/Offline indikace</li>
+                <li><strong>Vylepšené tlačítka:</strong> gradientní pozadí s hover efekty</li>
+            </ul>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎨 Testované komponenty:</h3>
+            <button class="btn">Tlačítko s orange gradientem</button>
+            <button class="btn" onmouseover="this.style.transform='translateY(-3px)'"
+                    onmouseout="this.style.transform='translateY(0)'">Hover efekt</button>
+            <br><br>
+            <span class="status-indicator online">🟢 Online Server Status</span>
+            <span class="status-indicator offline">🔴 Offline Server Status</span>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 Testovací odkazy:</h3>
+            <p><a href="../battle/battle.html" style="color: #ff7043;">→ Otevřít Battle Module</a></p>
+            <p><a href="../../index.html" style="color: #ff7043;">→ Zpět na Dashboard</a></p>
+        </div>
+        
+        <div class="test-item">
+            <h3>📋 Checklist - Co testovat:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>☐ Gradient pozadí je stejné jako u quiz.html</li>
+                <li>☐ Battle karty mají glass morphism efekt</li>
+                <li>☐ Tlačítka používají orange (#ff5722) barvy</li>
+                <li>☐ Navigation breadcrumbs obsahují všechny moduly</li>
+                <li>☐ Server status se zobrazuje v navigation</li>
+                <li>☐ Hover efekty u tlačítek fungují správně</li>
+                <li>☐ Text je dobře čitelný na gradient pozadí</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Jednoduchý test interaktivity
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Battle Module visual test page loaded');
+            console.log('🎨 Gradient background: #667eea → #764ba2');
+            console.log('🧡 Orange theme: #ff5722');
+            console.log('💎 Glass morphism: rgba(255,255,255,0.1) + blur(20px)');
+        });
+    </script>
+</body>
+</html>

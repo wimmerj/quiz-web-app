@@ -122,6 +122,9 @@ class BattleModule {
             // Update UI with initial data
             this.updateBattleMenu();
             
+            // Initialize server status check
+            this.initializeServerStatus();
+            
             this.isInitialized = true;
             Logger.info('Battle Module initialized successfully');
             
@@ -1498,6 +1501,60 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
         
         // Redirect to login
         window.location.href = '../auth/login.html';
+    }
+
+    // === SERVER STATUS METHODS ===
+    
+    initializeServerStatus() {
+        this.checkServerStatus();
+        // Check server status every 30 seconds
+        setInterval(() => {
+            this.checkServerStatus();
+        }, 30000);
+    }
+
+    async checkServerStatus() {
+        try {
+            const serverStatusElement = document.getElementById('serverStatus');
+            if (!serverStatusElement) return;
+
+            // Try to check if APIClient is available and connected
+            let isOnline = false;
+            
+            if (window.APIClient && typeof window.APIClient.checkConnection === 'function') {
+                isOnline = await window.APIClient.checkConnection();
+            } else {
+                // Fallback: try to make a simple request to check connectivity
+                try {
+                    const response = await fetch('../../shared/api-config.js', { 
+                        method: 'HEAD',
+                        cache: 'no-cache' 
+                    });
+                    isOnline = response.ok;
+                } catch (error) {
+                    isOnline = false;
+                }
+            }
+
+            this.updateServerStatus(isOnline);
+            
+        } catch (error) {
+            console.error('Error checking server status:', error);
+            this.updateServerStatus(false);
+        }
+    }
+
+    updateServerStatus(isOnline) {
+        const serverStatusElement = document.getElementById('serverStatus');
+        if (!serverStatusElement) return;
+
+        if (isOnline) {
+            serverStatusElement.innerHTML = '🟢 Online';
+            serverStatusElement.className = 'status-indicator online';
+        } else {
+            serverStatusElement.innerHTML = '🔴 Offline';
+            serverStatusElement.className = 'status-indicator offline';
+        }
     }
 }
 
