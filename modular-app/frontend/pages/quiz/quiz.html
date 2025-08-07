@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="quiz.css">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 </head>
-<body>
+<body class="no-breadcrumb">
     <!-- Notifications Container -->
     <div id="notifications" class="notifications-container"></div>
     
@@ -46,9 +46,12 @@
     <main class="main-content">
         <!-- Quiz Setup Section -->
         <div class="nav-controls">
-            <select id="tableSelect" class="table-select">
-                <option value="">Vyberte tabulku...</option>
-            </select>
+            <div class="form-group">
+                <label for="tableSelect">📚 Výběr tabulky:</label>
+                <select id="tableSelect" class="table-select">
+                    <option value="">Vyberte tabulku...</option>
+                </select>
+            </div>
             
             <div class="form-group">
                 <label for="questionMode">🎲 Režim otázek:</label>
