@@ -105,6 +105,9 @@ class QuizModule {
         // Update UI
         this.updateUI();
         
+        // Update status text
+        this.updateStatusText();
+        
         Logger.success('QuizModule initialized successfully');
     }
     
@@ -690,6 +693,10 @@ class QuizModule {
         
         this.answeredCurrent = true;
         
+        // Update status text and progress
+        this.updateStatusText();
+        this.updateProgress();
+        
         // Save answer to user history
         this.saveAnswerToHistory(question.id, selectedLetter, isCorrect);
         
@@ -760,6 +767,17 @@ class QuizModule {
             const current = this.currentQuestionIndex + 1;
             const total = this.questions.length;
             counter.textContent = `Otázka: ${current}/${total}`;
+        }
+        
+        // Also update score display (like original quiz)
+        const progressInfo = document.querySelector('.progress-info');
+        if (progressInfo) {
+            const current = this.currentQuestionIndex + 1;
+            const total = this.questions.length;
+            progressInfo.innerHTML = `
+                <span>Otázka: ${current}/${total}</span>
+                <span>Správně: ${this.scoreCorrect} Špatně: ${this.scoreWrong}</span>
+            `;
         }
     }
     
@@ -1341,6 +1359,37 @@ class QuizModule {
         
         console.log('🧪 TEST COMPLETED - Check test results panel');
         alert('🧪 Test completed! Check results in red panel.');
+    }
+    
+    // Status text update (like original quiz)
+    updateStatusText() {
+        const statusText = document.getElementById('statusText');
+        if (!statusText) return;
+        
+        const totalAnswered = this.scoreCorrect + this.scoreWrong;
+        const userText = this.currentUser ? this.currentUser.username : 'Nepřihlášený uživatel';
+        
+        const statusMessage = `Quiz Application - ${userText} (${totalAnswered} odpovědí, celkem správně ${this.scoreCorrect}, celkem špatně ${this.scoreWrong})`;
+        statusText.textContent = statusMessage;
+    }
+    
+    // Update server status indicator
+    updateServerStatus(isOnline = false) {
+        const indicator = document.getElementById('statusIndicator');
+        const text = document.getElementById('statusIndicatorText');
+        const mode = document.getElementById('statusMode');
+        
+        if (indicator && text && mode) {
+            if (isOnline) {
+                indicator.textContent = '🟢';
+                text.textContent = 'Online';
+                mode.textContent = 'Server Mode';
+            } else {
+                indicator.textContent = '🔴';
+                text.textContent = 'Offline';
+                mode.textContent = 'Local Mode';
+            }
+        }
     }
 }
 

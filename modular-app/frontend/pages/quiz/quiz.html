@@ -23,29 +23,55 @@
             </div>
         </div>
         
-        <!-- Navigation Breadcrumbs -->
+        <!-- Navigation Breadcrumbs / Status Bar -->
         <nav class="breadcrumbs">
-            <a href="../../index.html">🏠 Dashboard</a>
-            <span class="separator">›</span>
-            <span class="current">🎯 Quiz</span>
+            <div class="status-left">
+                <a href="../../index.html">🏠 Dashboard</a>
+                <span class="separator">›</span>
+                <span class="current">🎯 Quiz</span>
+                <span class="separator">|</span>
+                <span id="statusText">Nepřihlášený uživatel (0 odpovědí, celkem správně 0, celkem špatně 0)</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Quiz Setup Panel -->
-        <section class="quiz-setup" id="quizSetup">
+        <!-- Navigation Controls - like original quiz -->
+        <div class="nav-controls">
+            <select id="tableSelect" class="table-select">
+                <option value="">Vyberte tabulku...</option>
+            </select>
+            
+            <button id="startQuizBtn" class="start-quiz-button" disabled>▶ Spustit kvíz</button>
+            
+            <button id="prevBtn" class="nav-button" disabled>Zpět</button>
+            <button id="nextBtn" class="nav-button" disabled>Vpřed</button>
+            <button id="randomBtn" class="nav-button" disabled>Random</button>
+            <button id="hardBtn" class="nav-button" disabled>Hard</button>
+            <button id="markIncorrectBtn" class="nav-button" disabled>Označit jako chybnou</button>
+            <button id="endQuizBtn" class="end-test-button" disabled>Ukončit test</button>
+            <button id="settingsBtn" class="nav-button">Nastavení</button>
+            
+            <label class="hint-checkbox">
+                <input type="checkbox" id="hintCheckbox" disabled>
+                Nápověda
+            </label>
+        </div>
+
+        <!-- Quiz Setup Panel - now hidden by default -->
+        <section class="quiz-setup" id="quizSetup" style="display: none;">
             <div class="setup-card">
                 <h2>🎮 Nastavení Kvízu</h2>
                 
                 <div class="setup-row">
-                    <div class="form-group">
-                        <label for="tableSelect">📚 Vyberte tabulku:</label>
-                        <select id="tableSelect" class="form-select">
-                            <option value="">-- Vyberte tabulku --</option>
-                        </select>
-                    </div>
-                    
                     <div class="form-group">
                         <label for="questionMode">🎲 Režim otázek:</label>
                         <select id="questionMode" class="form-select">
@@ -55,18 +81,6 @@
                             <option value="random">Náhodný výběr</option>
                         </select>
                     </div>
-                </div>
-                
-                <div class="setup-actions">
-                    <button id="startQuizBtn" class="btn btn-primary" disabled>
-                        🚀 Spustit Kvíz
-                    </button>
-                    <button id="endQuizBtn" class="btn btn-danger" disabled>
-                        🛑 Ukončit Kvíz
-                    </button>
-                    <button id="settingsBtn" class="btn btn-secondary">
-                        ⚙️ Nastavení
-                    </button>
                 </div>
             </div>
         </section>
