@@ -1054,3 +1054,36 @@ body {
         font-size: 0.8rem;
     }
 }
+
+/* Enhanced Panel Visual Hierarchy - August 2025 */
+.admin-panel.collapsed .panel-header {
+    background: rgba(255, 87, 34, 0.05) !important;
+    border-bottom: none !important;
+}
+
+.admin-panel.collapsed .panel-header:hover {
+    background: rgba(255, 87, 34, 0.1) !important;
+}
+
+.admin-panel.collapsed .panel-header h3::after {
+    content: " (klikněte pro rozbalení)";
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-weight: normal;
+}
+
+.admin-panel .panel-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-panel .panel-header h3::before {
+    content: "⚙️";
+    font-size: 0.9rem;
+}
+
+.admin-panel.collapsed {
+    margin-bottom: 0.8rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
