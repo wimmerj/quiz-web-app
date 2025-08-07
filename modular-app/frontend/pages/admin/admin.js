@@ -418,7 +418,7 @@ class AdminModule {
             this.optimizeDatabase();
         });
         
-        // Form submissions
+        // Form submissions - Panel forms
         document.getElementById('addUserForm')?.addEventListener('submit', (e) => {
             e.preventDefault();
             this.handleAddUser(e);
@@ -427,6 +427,17 @@ class AdminModule {
         document.getElementById('addQuestionForm')?.addEventListener('submit', (e) => {
             e.preventDefault();
             this.handleAddQuestion(e);
+        });
+        
+        // Form submissions - Modal forms
+        document.getElementById('addUserModalForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleAddUserModal(e);
+        });
+        
+        document.getElementById('addQuestionModalForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleAddQuestionModal(e);
         });
         
         // Test APIClient integration
@@ -1392,6 +1403,100 @@ Informace o systému:
         } catch (error) {
             resultsDiv.innerHTML += `<p>❌ Error during test: ${error.message}</p>`;
             console.error('❌ Error during admin test:', error);
+        }
+    }
+    
+    // Modal form handlers
+    handleAddUserModal(event) {
+        const userData = {
+            username: document.getElementById('modalNewUsername').value,
+            email: document.getElementById('modalNewUserEmail').value,
+            password: document.getElementById('modalNewUserPassword').value,
+            role: document.getElementById('modalNewUserRole').value,
+            createdAt: new Date().toISOString().split('T')[0],
+            totalCorrect: 0,
+            totalWrong: 0
+        };
+        
+        Logger.action('Adding user from modal', userData);
+        
+        try {
+            const users = this.loadFromStorage('users') || {};
+            
+            if (users[userData.username]) {
+                this.showNotification('Uživatel již existuje', 'error');
+                return;
+            }
+            
+            users[userData.username] = userData;
+            this.saveToStorage('users', users);
+            
+            this.showNotification('Uživatel byl přidán', 'success');
+            event.target.reset();
+            
+            // Reload user list if on Users tab
+            if (document.querySelector('.admin-tab[data-tab="users"]').classList.contains('active')) {
+                this.loadUsers();
+            }
+            
+            // Close modal on success
+            setTimeout(() => {
+                closeModal('addUserModal');
+            }, 1000);
+            
+        } catch (error) {
+            Logger.error('Error adding user', error);
+            this.showNotification('Chyba při přidávání uživatele', 'error');
+        }
+    }
+    
+    handleAddQuestionModal(event) {
+        const questionData = {
+            table: document.getElementById('modalQuestionTable').value,
+            text: document.getElementById('modalQuestionText').value,
+            answerA: document.getElementById('modalAnswerA').value,
+            answerB: document.getElementById('modalAnswerB').value,
+            answerC: document.getElementById('modalAnswerC').value,
+            correct: document.getElementById('modalCorrectAnswer').value,
+            difficulty: document.getElementById('modalQuestionDifficulty').value
+        };
+        
+        Logger.action('Adding question from modal', questionData);
+        
+        if (!questionData.table || !questionData.text || !questionData.answerA || 
+            !questionData.answerB || !questionData.answerC || !questionData.correct) {
+            this.showNotification('Vyplňte všechna povinná pole', 'error');
+            return;
+        }
+        
+        try {
+            const questions = this.loadFromStorage(`questions_${questionData.table}`) || [];
+            
+            const newQuestion = {
+                id: Date.now(),
+                ...questionData,
+                createdAt: new Date().toISOString()
+            };
+            
+            questions.push(newQuestion);
+            this.saveToStorage(`questions_${questionData.table}`, questions);
+            
+            this.showNotification('Otázka byla přidána', 'success');
+            event.target.reset();
+            
+            // Reload questions if on Questions tab
+            if (document.querySelector('.admin-tab[data-tab="questions"]').classList.contains('active')) {
+                this.loadQuestions();
+            }
+            
+            // Close modal on success
+            setTimeout(() => {
+                closeModal('addQuestionModal');
+            }, 1000);
+            
+        } catch (error) {
+            Logger.error('Error adding question', error);
+            this.showNotification('Chyba při přidávání otázky', 'error');
         }
     }
 }

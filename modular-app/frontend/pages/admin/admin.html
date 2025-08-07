@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="../../shared/common.css">
     <link rel="stylesheet" href="admin.css">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    
-    <!-- Load Logger first, then APIClient -->
-    <script src="../../shared/logger.js"></script>
-    <script src="../../shared/api-client.js?v=20250807-admin-fixed"></script>
 </head>
 <body class="no-navigation no-breadcrumb">
     <!-- Notifications Container -->
@@ -386,22 +382,22 @@
                 <button class="modal-close" onclick="closeModal('addUserModal')">×</button>
             </div>
             
-            <form id="addUserForm" class="modal-body">
+            <form id="addUserModalForm" class="modal-body">
                 <div class="form-group">
-                    <label for="newUsername">Uživatelské jméno:</label>
-                    <input type="text" id="newUsername" class="form-input" required>
+                    <label for="modalNewUsername">Uživatelské jméno:</label>
+                    <input type="text" id="modalNewUsername" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="newUserEmail">Email:</label>
-                    <input type="email" id="newUserEmail" class="form-input">
+                    <label for="modalNewUserEmail">Email:</label>
+                    <input type="email" id="modalNewUserEmail" class="form-input">
                 </div>
                 <div class="form-group">
-                    <label for="newUserPassword">Heslo:</label>
-                    <input type="password" id="newUserPassword" class="form-input" required>
+                    <label for="modalNewUserPassword">Heslo:</label>
+                    <input type="password" id="modalNewUserPassword" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="newUserRole">Role:</label>
-                    <select id="newUserRole" class="form-select">
+                    <label for="modalNewUserRole">Role:</label>
+                    <select id="modalNewUserRole" class="form-select" required>
                         <option value="user">Uživatel</option>
                         <option value="admin">Administrátor</option>
                     </select>
@@ -427,35 +423,35 @@
                 <button class="modal-close" onclick="closeModal('addQuestionModal')">×</button>
             </div>
             
-            <form id="addQuestionForm" class="modal-body">
+            <form id="addQuestionModalForm" class="modal-body">
                 <div class="form-group">
-                    <label for="questionTable">Tabulka:</label>
-                    <select id="questionTable" class="form-select" required>
+                    <label for="modalQuestionTable">Tabulka:</label>
+                    <select id="modalQuestionTable" class="form-select" required>
                         <option value="">Vyberte tabulku</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="questionText">Otázka:</label>
-                    <textarea id="questionText" class="form-textarea" rows="3" required></textarea>
+                    <label for="modalQuestionText">Otázka:</label>
+                    <textarea id="modalQuestionText" class="form-textarea" rows="3" required placeholder="Zadejte text otázky..."></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="answerA">Odpověď A:</label>
-                        <input type="text" id="answerA" class="form-input" required>
+                        <label for="modalAnswerA">Odpověď A:</label>
+                        <input type="text" id="modalAnswerA" class="form-input" required placeholder="Možnost A">
                     </div>
                     <div class="form-group">
-                        <label for="answerB">Odpověď B:</label>
-                        <input type="text" id="answerB" class="form-input" required>
+                        <label for="modalAnswerB">Odpověď B:</label>
+                        <input type="text" id="modalAnswerB" class="form-input" required placeholder="Možnost B">
                     </div>
                     <div class="form-group">
-                        <label for="answerC">Odpověď C:</label>
-                        <input type="text" id="answerC" class="form-input" required>
+                        <label for="modalAnswerC">Odpověď C:</label>
+                        <input type="text" id="modalAnswerC" class="form-input" required placeholder="Možnost C">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="correctAnswer">Správná odpověď:</label>
-                        <select id="correctAnswer" class="form-select" required>
+                        <label for="modalCorrectAnswer">Správná odpověď:</label>
+                        <select id="modalCorrectAnswer" class="form-select" required>
                             <option value="">Vyberte</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -463,8 +459,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="questionDifficulty">Obtížnost:</label>
-                        <select id="questionDifficulty" class="form-select">
+                        <label for="modalQuestionDifficulty">Obtížnost:</label>
+                        <select id="modalQuestionDifficulty" class="form-select">
                             <option value="easy">Snadná</option>
                             <option value="medium" selected>Střední</option>
                             <option value="hard">Těžká</option>
