@@ -603,7 +603,7 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: left;
     font-size: 1rem;
     min-height: 60px;
@@ -611,9 +611,29 @@ body {
 }
 
 .answer-option:hover:not(:disabled) {
-    border-color: var(--answer-hover);
-    background: #F3F9FF;
-    transform: translateY(-1px);
+    background-color: #ff7043; /* Světlejší odstín oranžové */
+    border-color: #ffffff;
+    box-shadow: 
+        0 4px 15px rgba(255, 87, 34, 0.4), 
+        inset 0 0 20px rgba(255, 255, 255, 0.1),
+        0 0 0 3px rgba(255, 112, 67, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    animation: pulse-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 
+            0 4px 15px rgba(255, 87, 34, 0.4), 
+            inset 0 0 20px rgba(255, 255, 255, 0.1),
+            0 0 0 3px rgba(255, 112, 67, 0.3);
+    }
+    100% {
+        box-shadow: 
+            0 6px 20px rgba(255, 87, 34, 0.6), 
+            inset 0 0 25px rgba(255, 255, 255, 0.2),
+            0 0 0 5px rgba(255, 112, 67, 0.4);
+    }
 }
 
 .answer-option:disabled {
