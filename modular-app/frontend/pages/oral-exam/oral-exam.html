@@ -407,37 +407,33 @@
 
     </main>
 
-    <!-- Advanced Settings Modal -->
-    <div id="advancedSettingsModal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h3>⚙️ Pokročilé Nastavení Ústní Zkoušky</h3>
-                <button class="modal-close" onclick="closeModal('advancedSettingsModal')">×</button>
+    <!-- Advanced Settings Panel -->
+    <section class="advanced-settings" id="advancedSettings" style="display: none;">
+        <div class="setup-card">
+            <h2>⚙️ Pokročilé Nastavení Ústní Zkoušky</h2>
+            
+            <div class="settings-tabs">
+                <button class="tab-button active" data-tab="speech">🔊 Řeč</button>
+                <button class="tab-button" data-tab="recognition">🎤 Rozpoznávání</button>
+                <button class="tab-button" data-tab="evaluation">📊 Hodnocení</button>
+                <button class="tab-button" data-tab="interface">🎨 Rozhraní</button>
             </div>
             
-            <div class="modal-body">
-                <div class="settings-tabs">
-                    <button class="tab-button active" data-tab="speech">🔊 Řeč</button>
-                    <button class="tab-button" data-tab="recognition">🎤 Rozpoznávání</button>
-                    <button class="tab-button" data-tab="evaluation">📊 Hodnocení</button>
-                    <button class="tab-button" data-tab="interface">🎨 Rozhraní</button>
-                </div>
-                
-                <!-- Speech Settings Tab -->
-                <div id="speechTab" class="tab-content active">
-                    <h4>🔊 Nastavení Syntézy Řeči</h4>
-                    <div class="settings-grid">
-                        <div class="form-group">
-                            <label for="voiceSelect">Hlas:</label>
-                            <select id="voiceSelect" class="form-select">
-                                <option value="">-- Automatický výběr --</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" id="autoReadQuestions" checked>
-                                Automaticky číst otázky
-                            </label>
+            <!-- Speech Settings Tab -->
+            <div id="speechTab" class="tab-content active">
+                <h4>🔊 Nastavení Syntézy Řeči</h4>
+                <div class="settings-grid">
+                    <div class="form-group">
+                        <label for="voiceSelect">Hlas:</label>
+                        <select id="voiceSelect" class="form-select">
+                            <option value="">-- Automatický výběr --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="autoReadQuestions" checked>
+                            Automaticky číst otázky
+                        </label>
                         </div>
                         <div class="form-group">
                             <label>
@@ -563,9 +559,9 @@
                 </div>
             </div>
             
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('advancedSettingsModal')">
-                    Zrušit
+            <div class="setup-actions">
+                <button id="hideAdvancedSettingsBtn" class="btn btn-secondary">
+                    🔙 Skrýt Pokročilé Nastavení
                 </button>
                 <button id="resetSettingsBtn" class="btn btn-warning">
                     🔄 Obnovit Výchozí
@@ -575,66 +571,94 @@
                 </button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Help Modal -->
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>❓ Nápověda - Ústní Zkouška</h3>
-                <button class="modal-close" onclick="closeModal('helpModal')">×</button>
-            </div>
+    <!-- Help Panel -->
+    <section class="help-section-panel">
+        <div class="setup-card">
+            <h2>❓ Nápověda - Ústní Zkouška</h2>
             
-            <div class="modal-body">
-                <div class="help-section">
-                    <h4>🎤 Jak funguje rozpoznávání řeči?</h4>
-                    <ul>
-                        <li>Stiskněte tlačítko mikrofonu pro zahájení nahrávání</li>
-                        <li>Mluvte zřetelně a v přiměřené rychlosti</li>
-                        <li>Sledujte indikátor rozpoznávání a úroveň spolehlivosti</li>
-                        <li>Můžete přepnout na textový režim kdykoli</li>
-                    </ul>
+            <div class="help-accordion">
+                <div class="help-item">
+                    <div class="help-header" onclick="toggleHelpItem('help-speech')">
+                        <span>🎤 Jak funguje rozpoznávání řeči?</span>
+                        <span class="help-arrow">▼</span>
+                    </div>
+                    <div id="help-speech" class="help-content">
+                        <ul>
+                            <li>Stiskněte tlačítko mikrofonu pro zahájení nahrávání</li>
+                            <li>Mluvte zřetelně a v přiměřené rychlosti</li>
+                            <li>Sledujte indikátor rozpoznávání a úroveň spolehlivosti</li>
+                            <li>Můžete přepnout na textový režim kdykoli</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="help-section">
-                    <h4>🔊 Ovládání hlasového výstupu</h4>
-                    <ul>
-                        <li>Otázky jsou automaticky přečteny</li>
-                        <li>Použijte "Opakovat Otázku" pro znovupřehrání</li>
-                        <li>Upravte rychlost a výšku hlasu v nastavení</li>
-                        <li>Test hlasu ověří funkčnost před zkouškou</li>
-                    </ul>
+                <div class="help-item">
+                    <div class="help-header" onclick="toggleHelpItem('help-voice')">
+                        <span>🔊 Ovládání hlasového výstupu</span>
+                        <span class="help-arrow">▼</span>
+                    </div>
+                    <div id="help-voice" class="help-content">
+                        <ul>
+                            <li>Otázky jsou automaticky přečteny</li>
+                            <li>Použijte "Opakovat Otázku" pro znovupřehrání</li>
+                            <li>Upravte rychlost a výšku hlasu v nastavení</li>
+                            <li>Test hlasu ověří funkčnost před zkouškou</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="help-section">
-                    <h4>📊 Hodnocení odpovědí</h4>
-                    <ul>
-                        <li>Systém porovnává vaši odpověď s referenční</li>
-                        <li>Hodnotí se přesnost, srozumitelnost a rychlost</li>
-                        <li>Získáte podrobnou zpětnou vazbu po každé otázce</li>
-                        <li>Výsledky lze exportovat pro další analýzu</li>
-                    </ul>
+                <div class="help-item">
+                    <div class="help-header" onclick="toggleHelpItem('help-evaluation')">
+                        <span>📊 Hodnocení odpovědí</span>
+                        <span class="help-arrow">▼</span>
+                    </div>
+                    <div id="help-evaluation" class="help-content">
+                        <ul>
+                            <li>Systém porovnává vaši odpověď s referenční</li>
+                            <li>Hodnotí se přesnost, srozumitelnost a rychlost</li>
+                            <li>Získáte podrobnou zpětnou vazbu po každé otázce</li>
+                            <li>Výsledky lze exportovat pro další analýzu</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="help-section">
-                    <h4>⌨️ Klávesové zkratky</h4>
-                    <ul>
-                        <li><kbd>Space</kbd> - Zahájit/ukončit nahrávání</li>
-                        <li><kbd>R</kbd> - Opakovat otázku</li>
-                        <li><kbd>S</kbd> - Přeskočit otázku</li>
-                        <li><kbd>Enter</kbd> - Odeslat odpověď</li>
-                        <li><kbd>Esc</kbd> - Pauza/obnovení</li>
-                    </ul>
+                <div class="help-item">
+                    <div class="help-header" onclick="toggleHelpItem('help-shortcuts')">
+                        <span>⌨️ Klávesové zkratky</span>
+                        <span class="help-arrow">▼</span>
+                    </div>
+                    <div id="help-shortcuts" class="help-content">
+                        <ul>
+                            <li><kbd>Space</kbd> - Spustit/zastavit nahrávání</li>
+                            <li><kbd>Enter</kbd> - Potvrdit odpověď</li>
+                            <li><kbd>Tab</kbd> - Přepnout na textový režim</li>
+                            <li><kbd>R</kbd> - Opakovat otázku</li>
+                            <li><kbd>N</kbd> - Další otázka</li>
+                            <li><kbd>Esc</kbd> - Ukončit zkoušku</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="closeModal('helpModal')">
-                    Rozumím
-                </button>
+                
+                <div class="help-item">
+                    <div class="help-header" onclick="toggleHelpItem('help-tips')">
+                        <span>💡 Tipy pro lepší výsledky</span>
+                        <span class="help-arrow">▼</span>
+                    </div>
+                    <div id="help-tips" class="help-content">
+                        <ul>
+                            <li>Používejte kvalitní mikrofon a sluchátka</li>
+                            <li>Zkontrolujte úroveň hlasitosti před začátkem</li>
+                            <li>Mluvte do mikrofonu ze vzdálenosti 15-20 cm</li>
+                            <li>Vyvarujte se rušivých zvuků v pozadí</li>
+                            <li>Při problémech přepněte na textový režim</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- API Test Section -->
     <div id="api-test-section" style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.9); color: white; padding: 15px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 12px; z-index: 1000; width: 300px; border: 2px solid #00ff00; display: none;">
@@ -655,5 +679,63 @@
     <script src="../../shared/api-client.js"></script>
     <script src="../../shared/navigation.js"></script>
     <script src="oral-exam.js"></script>
+    
+    <script>
+        // Advanced Settings Panel Toggle
+        function toggleAdvancedSettings() {
+            const panel = document.getElementById('advancedSettings');
+            const isVisible = panel.style.display !== 'none';
+            panel.style.display = isVisible ? 'none' : 'block';
+        }
+        
+        // Hide Advanced Settings
+        document.getElementById('hideAdvancedSettingsBtn')?.addEventListener('click', function() {
+            document.getElementById('advancedSettings').style.display = 'none';
+        });
+        
+        // Update button event listener to show advanced settings instead of modal
+        document.getElementById('examSettingsBtn')?.addEventListener('click', function() {
+            toggleAdvancedSettings();
+        });
+        
+        // Help Accordion Toggle
+        function toggleHelpItem(helpId) {
+            const helpContent = document.getElementById(helpId);
+            const helpItem = helpContent.closest('.help-item');
+            const arrow = helpItem.querySelector('.help-arrow');
+            
+            const isExpanded = helpContent.classList.contains('expanded');
+            
+            if (isExpanded) {
+                helpContent.classList.remove('expanded');
+                helpItem.classList.remove('expanded');
+                helpContent.style.display = 'none';
+            } else {
+                helpContent.classList.add('expanded');
+                helpItem.classList.add('expanded');
+                helpContent.style.display = 'block';
+            }
+        }
+        
+        // Tab Switching for Advanced Settings
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab + 'Tab').classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

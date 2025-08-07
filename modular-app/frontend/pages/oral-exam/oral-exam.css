@@ -1120,3 +1120,182 @@ kbd {
     --oral-accent: #e74c3c;
     --oral-bg: linear-gradient(135deg, var(--oral-primary)10, var(--oral-secondary)10);
 }
+
+/* === ADVANCED SETTINGS PANEL === */
+.advanced-settings {
+    margin-bottom: 2rem;
+}
+
+.settings-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    background: rgba(255, 87, 34, 0.8);
+    border: 1px solid rgba(255, 87, 34, 0.5);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background: rgba(255, 87, 34, 1);
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: #ff5722;
+    border-color: #e64a19;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+
+.tab-content {
+    display: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h4 {
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* === HELP SECTION PANEL === */
+.help-section-panel {
+    margin-bottom: 2rem;
+}
+
+.help-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.help-item {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.help-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    background: rgba(255, 87, 34, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.help-header:hover {
+    background: rgba(255, 87, 34, 0.2);
+}
+
+.help-header span:first-child {
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.help-arrow {
+    transition: transform 0.3s ease;
+    color: #ff5722;
+    font-weight: bold;
+}
+
+.help-item.expanded .help-arrow {
+    transform: rotate(180deg);
+}
+
+.help-content {
+    display: none;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.help-content.expanded {
+    display: block;
+}
+
+.help-content ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.help-content li {
+    margin-bottom: 0.5rem;
+    color: white;
+    line-height: 1.5;
+}
+
+.help-content kbd {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #ff5722;
+    font-weight: bold;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.help-content {
+    animation: fadeIn 0.3s ease when expanding;
+}
+
+/* === RESPONSIVE DESIGN FOR NEW COMPONENTS === */
+@media (max-width: 768px) {
+    .settings-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        text-align: center;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .help-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .help-content {
+        padding: 1rem;
+    }
+}
