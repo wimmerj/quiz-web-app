@@ -58,6 +58,11 @@ class AuthManager {
             });
         });
         
+        // Test API connection button
+        document.getElementById('testAuthBtn')?.addEventListener('click', () => {
+            this.runAuthAPIClientTest();
+        });
+        
         // Real-time validation
         this.setupRealTimeValidation();
     }
@@ -507,6 +512,76 @@ class AuthManager {
         } catch (error) {
             Logger.warning(`Failed to load from storage: ${key}`, error);
             return null;
+        }
+    }
+    
+    // Test funkce pro APIClient integraci
+    async runAuthAPIClientTest() {
+        console.log('🧪 Starting Auth APIClient integration test...');
+        const resultsDiv = document.getElementById('testAuthResults');
+        if (!resultsDiv) return;
+        
+        // Show results div and clear previous content
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = '<h4>🧪 Auth APIClient Test Results:</h4>';
+        
+        try {
+            // Test 1: Check APIClient availability
+            if (window.APIClient) {
+                resultsDiv.innerHTML += '<p>✅ APIClient is available</p>';
+                console.log('✅ APIClient is available');
+                
+                // Test 2: Check base URL
+                resultsDiv.innerHTML += `<p>🌐 Base URL: ${window.APIClient.baseURL}</p>`;
+                console.log('🌐 Base URL:', window.APIClient.baseURL);
+            } else {
+                resultsDiv.innerHTML += '<p>❌ APIClient is NOT available</p>';
+                console.error('❌ APIClient is NOT available');
+                return;
+            }
+            
+            // Test 3: Check connection status
+            const connectionStatus = window.APIClient.getConnectionStatus();
+            resultsDiv.innerHTML += `<p>🔗 Connection Status: ${JSON.stringify(connectionStatus)}</p>`;
+            console.log('🔗 Connection Status:', connectionStatus);
+            
+            // Test 4: Test health check
+            const startTime = Date.now();
+            try {
+                const isHealthy = await window.APIClient.healthCheck();
+                const responseTime = Date.now() - startTime;
+                resultsDiv.innerHTML += `<p>🏥 Health Check: ${isHealthy ? '✅ Healthy' : '❌ Unhealthy'} (${responseTime}ms)</p>`;
+                console.log('🏥 Health Check:', { healthy: isHealthy, responseTime });
+            } catch (error) {
+                const responseTime = Date.now() - startTime;
+                resultsDiv.innerHTML += `<p>🏥 Health Check: ❌ Failed - ${error.message} (${responseTime}ms)</p>`;
+                console.error('🏥 Health Check failed:', error);
+            }
+            
+            // Test 5: Test connection
+            try {
+                const testResult = await window.APIClient.testConnection();
+                resultsDiv.innerHTML += `<p>🧪 Connection Test: ${testResult.healthy ? '✅ Success' : '❌ Failed'} (${testResult.responseTime}ms)</p>`;
+                console.log('🧪 Connection Test:', testResult);
+            } catch (error) {
+                resultsDiv.innerHTML += `<p>🧪 Connection Test: ❌ Failed - ${error.message}</p>`;
+                console.error('🧪 Connection Test failed:', error);
+            }
+            
+            // Test 6: Authentication status
+            const isAuth = window.APIClient.isAuthenticated();
+            resultsDiv.innerHTML += `<p>🔐 Authentication: ${isAuth ? '✅ Authenticated' : '❌ Not authenticated'}</p>`;
+            console.log('🔐 Authentication:', isAuth);
+            
+            // Test 7: Current server status from AuthManager
+            resultsDiv.innerHTML += `<p>📡 Server Status: ${this.serverStatus}</p>`;
+            
+            resultsDiv.innerHTML += '<p><strong>✅ Auth APIClient test completed!</strong></p>';
+            console.log('✅ Auth APIClient test completed!');
+            
+        } catch (error) {
+            resultsDiv.innerHTML += `<p>❌ Error during test: ${error.message}</p>`;
+            console.error('❌ Error during auth test:', error);
         }
     }
 }
