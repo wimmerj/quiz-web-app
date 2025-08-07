@@ -12,7 +12,7 @@
     <script src="../../shared/logger.js"></script>
     <script src="../../shared/api-client.js?v=20250807-admin-fixed"></script>
 </head>
-<body>
+<body class="no-navigation no-breadcrumb">
     <!-- Notifications Container -->
     <div id="notifications" class="notifications-container"></div>
     
@@ -28,11 +28,22 @@
             </div>
         </div>
         
-        <!-- Navigation Breadcrumbs -->
+        <!-- Navigation Breadcrumbs / Status Bar -->
         <nav class="breadcrumbs">
-            <a href="../../index.html">🏠 Dashboard</a>
-            <span class="separator">›</span>
-            <span class="current">🛠️ Admin Panel</span>
+            <div class="status-left">
+                <div id="navigation-links-container"></div>
+                <span class="separator">|</span>
+                <span class="current">🛠️ Admin Panel</span>
+                <span class="separator">|</span>
+                <span id="statusText">Admin systém - Monitoring a správa</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
         </nav>
     </header>
 
