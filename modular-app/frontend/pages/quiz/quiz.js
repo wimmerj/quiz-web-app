@@ -411,8 +411,6 @@ class QuizModule {
         
         // Update UI
         this.updateUI();
-        
-        this.showNotification(`Vybrána tabulka: ${tableName}`, 'info');
     }
     
     async startQuiz() {
