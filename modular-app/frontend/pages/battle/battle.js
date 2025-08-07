@@ -108,7 +108,7 @@ class BattleModule {
             logger.info('Initializing Battle Module...');
             
             // Initialize user session
-            await this.initializeUserSession();
+            await this.checkAuthentication();
             
             // Setup event listeners
             this.setupEventListeners();
@@ -131,14 +131,125 @@ class BattleModule {
         }
     }
 
-    async initializeUserSession() {
-        try {
-            this.currentUser = navigation.getCurrentUser();
-            if (this.currentUser) {
-                document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
+    async checkAuthentication() {
+        // Check if user is logged in (from auth module or previous session)
+        
+        console.log('🔍 Checking authentication in Battle...');
+        console.log('🔍 window.APIClient:', window.APIClient);
+        
+        // First check APIClient authentication
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
+            try {
+                console.log('✅ APIClient is authenticated, getting user info...');
+                const userInfo = await window.APIClient.getCurrentUser();
+                console.log('✅ Battle user info received:', userInfo);
+                
+                // Extract username properly from the response
+                if (userInfo && userInfo.username) {
+                    this.currentUser = userInfo.username;
+                } else if (userInfo && userInfo.user && userInfo.user.username) {
+                    this.currentUser = userInfo.user.username;
+                } else if (userInfo && userInfo.email) {
+                    this.currentUser = userInfo.email;
+                } else {
+                    this.currentUser = 'authenticated_user'; // fallback
+                }
+                
+                logger.info('Battle user authenticated via APIClient', { user: this.currentUser });
+                this.updateUserDisplay();
+                return;
+            } catch (error) {
+                console.error('❌ Battle APIClient user info failed:', error);
+                logger.warning('Battle APIClient user info failed, trying fallback', error);
             }
-        } catch (error) {
-            logger.error('Failed to initialize user session:', error);
+        } else {
+            console.log('⚠️ Battle APIClient not available or not authenticated');
+            console.log('⚠️ APIClient exists:', !!window.APIClient);
+            console.log('⚠️ APIClient authenticated:', window.APIClient ? window.APIClient.isAuthenticated() : 'N/A');
+        }
+        
+        // Fallback to old method
+        const currentUser = this.getCurrentUser();
+        console.log('🔍 Battle fallback getCurrentUser result:', currentUser);
+        
+        if (currentUser instanceof Promise) {
+            // Handle async getCurrentUser
+            try {
+                this.currentUser = await currentUser;
+                logger.info('Battle user authenticated', { user: this.currentUser });
+            } catch (error) {
+                logger.warning('Battle failed to get current user', error);
+                this.currentUser = null;
+            }
+        } else if (currentUser) {
+            this.currentUser = currentUser;
+            logger.info('Battle user authenticated (fallback)', { user: this.currentUser });
+        } else {
+            console.log('❌ No authentication found, redirecting to login...');
+            window.location.href = '../auth/login.html';
+            return;
+        }
+        
+        this.updateUserDisplay();
+    }
+
+    getCurrentUser() {
+        // Try to get current user from various sources
+        
+        // 1. Check APIClient authentication first
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
+            // Try to get user info from APIClient
+            return window.APIClient.getCurrentUser()
+                .then(userInfo => {
+                    if (userInfo && userInfo.username) {
+                        return userInfo.username;
+                    } else if (userInfo && userInfo.user && userInfo.user.username) {
+                        return userInfo.user.username;
+                    } else if (userInfo && userInfo.email) {
+                        return userInfo.email;
+                    } else {
+                        return 'authenticated_user';
+                    }
+                })
+                .catch(() => 'authenticated_user');
+        }
+        
+        // 2. URL parameter (from auth redirect)
+        const urlParams = new URLSearchParams(window.location.search);
+        const userFromUrl = urlParams.get('user');
+        if (userFromUrl) {
+            return userFromUrl;
+        }
+        
+        // 3. Session storage
+        const userFromSession = sessionStorage.getItem('currentUser');
+        if (userFromSession) {
+            return userFromSession;
+        }
+        
+        // 4. Local storage (remember me)
+        const savedCredentials = localStorage.getItem('modular_quiz_credentials');
+        if (savedCredentials) {
+            try {
+                const credentials = JSON.parse(savedCredentials);
+                return credentials.username;
+            } catch (e) {
+                logger.warning('Battle failed to parse saved credentials', e);
+            }
+        }
+        
+        // 5. No user found
+        return null;
+    }
+
+    updateUserDisplay() {
+        const userDisplay = document.getElementById('userDisplay');
+        if (userDisplay) {
+            if (this.currentUser) {
+                userDisplay.textContent = `👤 ${this.currentUser}`;
+            } else {
+                userDisplay.textContent = '👤 Nepřihlášen';
+            }
         }
     }
 
@@ -164,10 +275,10 @@ class BattleModule {
             if (this.battleState.isActive) {
                 if (confirm('Opravdu se chcete odhlásit během aktivního souboje? Souboj bude ukončen.')) {
                     this.surrenderBattle();
-                    navigation.logout();
+                    this.logout();
                 }
             } else {
-                navigation.logout();
+                this.logout();
             }
         });
 
@@ -207,6 +318,11 @@ class BattleModule {
         // Tab navigation
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', this.switchTab.bind(this));
+        });
+
+        // API Test button
+        document.getElementById('testBattleBtn')?.addEventListener('click', () => {
+            this.runBattleAPIClientTest();
         });
     }
 
@@ -1251,6 +1367,102 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
                 }, 300);
             }, 3000);
         }
+    }
+
+    async runBattleAPIClientTest() {
+        console.log('🧪 Starting Battle APIClient integration test...');
+        const resultsDiv = document.getElementById('testBattleResults');
+        if (!resultsDiv) return;
+        
+        // Show results div and clear previous content
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = '<h4>🧪 Battle APIClient Test:</h4>';
+        
+        try {
+            // Test 1: Check APIClient availability
+            if (window.APIClient) {
+                resultsDiv.innerHTML += '<p>✅ APIClient available</p>';
+                console.log('✅ APIClient available');
+            } else {
+                resultsDiv.innerHTML += '<p>❌ APIClient NOT available</p>';
+                console.error('❌ APIClient NOT available');
+                return;
+            }
+            
+            // Test 2: Check base URL
+            if (window.APIClient.baseURL) {
+                resultsDiv.innerHTML += `<p>🌐 Base URL: ${window.APIClient.baseURL}</p>`;
+            }
+            
+            // Test 3: Health check
+            const startTime = Date.now();
+            try {
+                const isHealthy = await window.APIClient.healthCheck();
+                const responseTime = Date.now() - startTime;
+                resultsDiv.innerHTML += `<p>🏥 Health: ${isHealthy ? '✅ OK' : '❌ Failed'} (${responseTime}ms)</p>`;
+            } catch (error) {
+                resultsDiv.innerHTML += `<p>🏥 Health: ❌ Error - ${error.message}</p>`;
+            }
+            
+            // Test 4: Test connection
+            try {
+                await window.APIClient.testConnection();
+                resultsDiv.innerHTML += '<p>🔗 Connection: ✅ OK</p>';
+            } catch (error) {
+                resultsDiv.innerHTML += `<p>🔗 Connection: ❌ ${error.message}</p>`;
+            }
+            
+            // Test 5: Authentication status
+            const isAuth = window.APIClient.isAuthenticated();
+            resultsDiv.innerHTML += `<p>🔐 Auth: ${isAuth ? '✅ Authenticated' : '❌ Not authenticated'}</p>`;
+            
+            // Test 6: Current user (if authenticated)
+            if (isAuth) {
+                try {
+                    const user = await window.APIClient.getCurrentUser();
+                    resultsDiv.innerHTML += `<p>👤 User: ${user ? '✅ ' + JSON.stringify(user) : '❌ No data'}</p>`;
+                } catch (error) {
+                    resultsDiv.innerHTML += `<p>👤 User: ❌ ${error.message}</p>`;
+                }
+            }
+            
+            // Test 7: Battle-specific info
+            resultsDiv.innerHTML += `<p>⚔️ Current User: ${this.currentUser || 'None'}</p>`;
+            resultsDiv.innerHTML += `<p>⚔️ Battle Active: ${this.battleState.isActive}</p>`;
+            resultsDiv.innerHTML += `<p>⚔️ Connected: ${this.isConnected}</p>`;
+            
+            resultsDiv.innerHTML += '<p><strong>✅ Battle test completed!</strong></p>';
+            console.log('✅ Battle APIClient test completed!');
+            
+        } catch (error) {
+            resultsDiv.innerHTML += `<p>❌ Test error: ${error.message}</p>`;
+            console.error('❌ Battle test error:', error);
+        }
+    }
+
+    logout() {
+        const confirmed = confirm('Opravdu se chcete odhlásit?');
+        if (!confirmed) return;
+        
+        logger.action('Battle user logout', { user: this.currentUser });
+        
+        // Clear APIClient authentication
+        if (window.APIClient) {
+            window.APIClient.logout();
+        }
+        
+        // Clear user data
+        this.currentUser = null;
+        sessionStorage.removeItem('currentUser');
+        localStorage.removeItem('modular_quiz_credentials');
+        
+        // End current battle
+        if (this.battleState.isActive) {
+            this.finishBattle();
+        }
+        
+        // Redirect to login
+        window.location.href = '../auth/login.html';
     }
 }
 
