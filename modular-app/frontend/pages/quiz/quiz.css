@@ -187,7 +187,7 @@ body {
 
 /* Navigation Controls - based on original nav-controls */
 .nav-controls {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(40, 53, 147, 0.8);
     padding: 15px 20px;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -195,8 +195,9 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .table-select, .nav-controls select {
@@ -215,8 +216,8 @@ body {
 }
 
 .nav-controls button, .nav-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(40, 53, 147, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 8px 16px;
     border-radius: 6px;
@@ -226,7 +227,7 @@ body {
 }
 
 .nav-controls button:hover:not(:disabled), .nav-button:hover:not(:disabled) {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(40, 53, 147, 1);
     transform: translateY(-2px);
 }
 
@@ -268,12 +269,12 @@ body {
 
 /* Question Section - based on original design */
 .quiz-interface, .question-section {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(40, 53, 147, 0.8);
     border-radius: 15px;
     padding: 25px;
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 20px;
 }
 
@@ -408,15 +409,17 @@ body {
 }
 
 .setup-card {
-    background: white;
+    background: rgba(40, 53, 147, 0.8);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .setup-card h2 {
     margin: 0 0 1.5rem 0;
+    color: white;
     color: var(--text-primary);
     font-size: 1.5rem;
 }
@@ -482,13 +485,17 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 1rem;
+    background-color: rgba(40, 53, 147, 0.8);
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: white;
 }
 
 .question-header h3 {
     margin: 0;
-    color: var(--text-primary);
+    color: white;
 }
 
 .question-actions {
@@ -507,18 +514,19 @@ body {
 
 /* Hint Display */
 .hint-display {
-    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-    border: 1px solid #2196F3;
+    background-color: rgba(40, 53, 147, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     padding: 1rem;
     margin-top: 1rem;
+    color: white;
 }
 
 .hint-content {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--quiz-primary);
+    color: white;
     font-weight: 500;
 }
 
@@ -623,12 +631,13 @@ body {
 
 /* Explanation Panel */
 .explanation-panel {
-    background: white;
-    border: 1px solid #E0E0E0;
+    background-color: rgba(40, 53, 147, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     margin-bottom: 1.5rem;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    color: white;
 }
 
 .explanation-header {
@@ -640,6 +649,7 @@ body {
 .explanation-header h4 {
     margin: 0;
     font-size: 1.1rem;
+    color: white;
 }
 
 .explanation-content {
@@ -666,17 +676,18 @@ body {
 }
 
 .results-card {
-    background: white;
+    background-color: rgba(40, 53, 147, 0.8);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    border: 1px solid #E0E0E0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .results-card h2 {
     margin: 0 0 2rem 0;
-    color: var(--text-primary);
+    color: white;
     font-size: 1.8rem;
 }
 
