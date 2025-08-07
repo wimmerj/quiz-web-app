@@ -4,8 +4,8 @@
  */
 
 const API_CONFIG = {
-    // Produkční URL na Render.com (nahraďte XXX skutečnou URL)
-    PRODUCTION_URL: 'https://quiz-web-app-wpls.onrender.com',
+    // Produkční URL na Render.com - NOVÝ modular backend
+    PRODUCTION_URL: 'https://quiz-modular-backend.onrender.com',
     
     // Development URL pro lokální vývoj
     DEVELOPMENT_URL: 'http://localhost:5000',

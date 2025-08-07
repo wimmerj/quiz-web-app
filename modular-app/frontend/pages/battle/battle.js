@@ -188,9 +188,10 @@ class BattleModule {
             this.currentUser = currentUser;
             Logger.info('Battle user authenticated (fallback)', { user: this.currentUser });
         } else {
-            console.log('❌ No authentication found, redirecting to login...');
-            window.location.href = '../auth/login.html';
-            return;
+            console.log('❌ No authentication found, using guest mode...');
+            this.currentUser = 'Guest Player';
+            Logger.info('Battle module running in guest mode');
+            this.showNotification('Běžím v demo módu - přihlaste se pro full funkčnost', 'info');
         }
         
         this.updateUserDisplay();

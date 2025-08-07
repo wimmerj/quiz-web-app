@@ -167,13 +167,11 @@ class OralExamModule {
             if (this.currentUser) {
                 document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
             } else {
-                // Redirect to auth if not authenticated
-                console.log('⚠️ User not authenticated, redirecting to auth');
-                const shouldRedirect = confirm('Pro použití ústní zkoušky se musíte přihlásit. Chcete přejít na přihlášení?');
-                if (shouldRedirect) {
-                    window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.href);
-                    return;
-                }
+                // Use demo mode instead of redirect
+                console.log('⚠️ User not authenticated, using demo mode');
+                this.currentUser = { username: 'Oral Exam Demo User' };
+                document.getElementById('userDisplay').textContent = `👤 ${this.currentUser.username}`;
+                this.showNotification('Běžím v demo módu - přihlaste se pro ukládání výsledků', 'info');
             }
         } catch (error) {
             console.error('❌ Failed to initialize user session:', error);

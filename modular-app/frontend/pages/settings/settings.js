@@ -117,9 +117,10 @@ class SettingsModule {
                     console.log('✅ User authenticated via APIClient for settings', { user: username });
                 }
             } else {
-                console.log('❌ No APIClient authentication, redirecting to login...');
-                window.location.href = '../auth/login.html';
-                return;
+                console.log('❌ No APIClient authentication, using demo mode...');
+                this.accountData.username = 'Settings Demo User';
+                this.accountData.email = 'demo@example.com';
+                this.showNotification('Běžím v demo módu - některé nastavení mohou být jen pro zobrazení', 'info');
             }
         } catch (error) {
             console.error('Failed to initialize user session:', error);

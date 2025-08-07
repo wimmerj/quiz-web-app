@@ -171,13 +171,10 @@ class QuizModule {
         console.log('🔍 Final currentUser:', this.currentUser);
         
         if (!this.currentUser) {
-            // Redirect to auth module if not authenticated
-            Logger.warning('User not authenticated, redirecting to auth');
-            const shouldRedirect = confirm('Pro použití kvízu se musíte přihlásit. Chcete přejít na přihlášení?');
-            if (shouldRedirect) {
-                window.location.href = '../auth/login.html?redirect=' + encodeURIComponent(window.location.href);
-                return;
-            }
+            // Use demo mode instead of redirect
+            Logger.info('User not authenticated, using demo mode');
+            this.currentUser = 'Quiz Demo Player';
+            this.showNotification('Běžím v demo módu - přihlaste se pro ukládání výsledků', 'info');
         }
         
         this.updateUserDisplay();

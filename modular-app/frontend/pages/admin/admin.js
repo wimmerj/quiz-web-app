@@ -152,12 +152,11 @@ class AdminModule {
             }
         }
         
-        // If still no authentication found, ask user to login via redirect with return URL
+        // If still no authentication found, use guest/demo mode
         if (!this.currentUser) {
-            console.log('❌ No authentication found, redirecting to login with return URL...');
-            const currentURL = encodeURIComponent(window.location.href);
-            window.location.href = `../auth/login.html?returnUrl=${currentURL}`;
-            return;
+            console.log('❌ No authentication found, using admin demo mode...');
+            this.currentUser = 'Admin Demo User';
+            this.showNotification('Běžím v demo módu - některé funkce mohou být omezeny', 'warning');
         }
     }
     
