@@ -800,11 +800,9 @@ class QuizModule {
     }
     
     showResults() {
-        const setupSection = document.getElementById('quizSetup');
         const interfaceSection = document.getElementById('quizInterface');
         const resultsSection = document.getElementById('resultsSummary');
         
-        if (setupSection) setupSection.style.display = 'none';
         if (interfaceSection) interfaceSection.style.display = 'none';
         if (resultsSection) resultsSection.style.display = 'block';
         
@@ -835,12 +833,10 @@ class QuizModule {
         this.currentTable = null;
         this.updateUI();
         
-        // Show setup section
-        const setupSection = document.getElementById('quizSetup');
+        // Show interface sections
         const interfaceSection = document.getElementById('quizInterface');
         const resultsSection = document.getElementById('resultsSummary');
         
-        if (setupSection) setupSection.style.display = 'block';
         if (interfaceSection) interfaceSection.style.display = 'none';
         if (resultsSection) resultsSection.style.display = 'none';
         
@@ -872,14 +868,11 @@ class QuizModule {
         }
         
         // Show/hide sections based on quiz state
-        const setupSection = document.getElementById('quizSetup');
         const interfaceSection = document.getElementById('quizInterface');
         
         if (this.isQuizActive) {
-            if (setupSection) setupSection.style.display = 'none';
             if (interfaceSection) interfaceSection.style.display = 'block';
         } else {
-            if (setupSection) setupSection.style.display = 'block';
             if (interfaceSection) interfaceSection.style.display = 'none';
         }
         

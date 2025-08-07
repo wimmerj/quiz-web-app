@@ -50,6 +50,16 @@
                 <option value="">Vyberte tabulku...</option>
             </select>
             
+            <div class="form-group">
+                <label for="questionMode">🎲 Režim otázek:</label>
+                <select id="questionMode" class="form-select">
+                    <option value="normal">Všechny otázky</option>
+                    <option value="unanswered">Pouze nezodpovězené</option>
+                    <option value="wrong">Pouze chybné odpovědi</option>
+                    <option value="random">Náhodný výběr</option>
+                </select>
+            </div>
+            
             <button id="startQuizBtn" class="start-quiz-button" disabled>▶ Spustit kvíz</button>
             <button id="endQuizBtn" class="end-test-button" disabled>Ukončit test</button>
             
@@ -58,25 +68,6 @@
                 Nápověda
             </label>
         </div>
-
-        <!-- Quiz Setup Panel - now hidden by default -->
-        <section class="quiz-setup" id="quizSetup" style="display: none;">
-            <div class="setup-card">
-                <h2>🎮 Nastavení Kvízu</h2>
-                
-                <div class="setup-row">
-                    <div class="form-group">
-                        <label for="questionMode">🎲 Režim otázek:</label>
-                        <select id="questionMode" class="form-select">
-                            <option value="normal">Všechny otázky</option>
-                            <option value="unanswered">Pouze nezodpovězené</option>
-                            <option value="wrong">Pouze chybné odpovědi</option>
-                            <option value="random">Náhodný výběr</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Quiz Interface -->
         <section class="quiz-interface" id="quizInterface" style="display: none;">

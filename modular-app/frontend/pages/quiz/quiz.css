@@ -231,6 +231,19 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.nav-controls .form-group {
+    margin: 10px 0;
+    min-width: 200px;
+}
+
+.nav-controls .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+
 .table-select, .nav-controls select {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
