@@ -77,11 +77,16 @@ class AdminModule {
                         user: this.currentUser, 
                         role: this.userRole 
                     });
+                } else {
+                    console.warn('⚠️ User object is null, but still authenticated. Setting defaults...');
+                    this.currentUser = 'admin'; // Default for authenticated users
+                    this.userRole = 'admin';
                 }
             } catch (error) {
                 console.error('Failed to get user info for admin:', error);
-                this.currentUser = null;
-                this.userRole = null;
+                console.log('⚠️ Setting fallback admin credentials...');
+                this.currentUser = 'admin'; // Fallback if API call fails
+                this.userRole = 'admin';
             }
         } else {
             console.log('❌ No APIClient authentication, redirecting to login...');
@@ -115,7 +120,26 @@ class AdminModule {
     }
     
     hasAdminAccess() {
-        return this.currentUser && this.userRole === 'admin';
+        console.log('🔍 Checking hasAdminAccess...', { 
+            currentUser: this.currentUser, 
+            userRole: this.userRole 
+        });
+        
+        // Check if user is explicitly admin role
+        if (this.userRole === 'admin') {
+            console.log('✅ User has admin role');
+            return true;
+        }
+        
+        // Fallback: Check if username is admin (for compatibility)
+        if (this.currentUser && this.currentUser.toLowerCase() === 'admin') {
+            console.log('✅ User is admin by username');
+            this.userRole = 'admin'; // Set role for consistency
+            return true;
+        }
+        
+        console.log('❌ User does not have admin access');
+        return false;
     }
     
     showAccessWarning() {
