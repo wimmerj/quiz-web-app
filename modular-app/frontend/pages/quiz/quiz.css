@@ -610,7 +610,7 @@ body {
     color: white;
 }
 
-.answer-option:hover:not(:disabled) {
+.answer-option:hover:not(:disabled):not(.correct):not(.wrong) {
     background-color: #ff7043; /* Světlejší odstín oranžové */
     border-color: #ffffff;
     box-shadow: 
@@ -660,34 +660,45 @@ body {
     line-height: 1.4;
 }
 
-/* Answer States */
-.answer-option.correct {
-    border-color: var(--answer-correct);
-    background: #E8F5E8;
+/* Answer States - vyšší specificita pro přepsání hover efektů */
+.answer-option.correct,
+.answer-option.correct:hover {
+    border-color: #ffffff !important;
+    background-color: #4CAF50 !important; /* Zelená pro správnou odpověď */
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4) !important;
+    transform: none !important;
+    animation: none !important;
 }
 
 .answer-option.correct .answer-letter {
-    background: var(--answer-correct);
-    color: white;
+    background-color: #2E7D32 !important; /* Tmavší zelená pro písmeno */
+    color: white !important;
 }
 
-.answer-option.wrong {
-    border-color: var(--answer-wrong);
-    background: #FFEBEE;
+.answer-option.wrong,
+.answer-option.wrong:hover {
+    border-color: #ffffff !important;
+    background-color: #F44336 !important; /* Červená pro špatnou odpověď */
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.4) !important;
+    transform: none !important;
+    animation: none !important;
 }
 
 .answer-option.wrong .answer-letter {
-    background: var(--answer-wrong);
-    color: white;
+    background-color: #C62828 !important; /* Tmavší červená pro písmeno */
+    color: white !important;
 }
 
 .answer-option.selected {
     border-color: var(--quiz-primary);
-    background: #E3F2FD;
+    background-color: #2196F3; /* Modrá pro vybranou (ale ještě nevyhodnocenou) */
+    color: white;
 }
 
 .answer-option.selected .answer-letter {
-    background: var(--quiz-primary);
+    background-color: #1976D2;
     color: white;
 }
 
