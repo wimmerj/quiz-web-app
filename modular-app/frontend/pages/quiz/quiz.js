@@ -415,7 +415,7 @@ class QuizModule {
     
     async startQuiz() {
         if (!this.currentTable || !this.currentUser) {
-            this.showNotification('Vyberte tabulku a přihlaste se', 'error');
+            console.error('Vyberte tabulku a přihlaste se');
             return;
         }
         
@@ -429,7 +429,7 @@ class QuizModule {
             await this.loadQuestions();
             
             if (this.questions.length === 0) {
-                this.showNotification('Žádné otázky nenalezeny', 'error');
+                console.error('Žádné otázky nenalezeny');
                 return;
             }
             
@@ -444,11 +444,12 @@ class QuizModule {
             // Update UI
             this.updateUI();
             
-            this.showNotification(`Kvíz spuštěn: ${this.questions.length} otázek`, 'success');
-            
+            // Kvíz spuštěn - logging bez notifikace
+            Logger.success(`Quiz started with ${this.questions.length} questions`);
         } catch (error) {
             Logger.error('Failed to start quiz', error);
-            this.showNotification(`Chyba při spouštění kvízu: ${error.message}`, 'error');
+            // Chyby zobrazíme pouze v console, ne jako notifikace
+            console.error(`Chyba při spouštění kvízu: ${error.message}`);
         }
     }
     
@@ -622,18 +623,16 @@ class QuizModule {
         if (this.currentQuestionIndex < this.questions.length - 1) {
             this.currentQuestionIndex++;
             this.displayQuestion();
-        } else {
-            this.showNotification('Jste na poslední otázce', 'info');
         }
+        // Ticha operace - bez notifikace o poslední otázce
     }
     
     prevQuestion() {
         if (this.currentQuestionIndex > 0) {
             this.currentQuestionIndex--;
             this.displayQuestion();
-        } else {
-            this.showNotification('Jste na první otázce', 'info');
         }
+        // Ticha operace - bez notifikace o první otázce
     }
     
     randomQuestion() {
@@ -667,11 +666,11 @@ class QuizModule {
         // Update scores
         if (isCorrect) {
             this.scoreCorrect++;
-            this.showNotification('Správná odpověď! 🎉', 'success');
+            // Správná odpověď - bez notifikace, vizuální feedback stačí
         } else {
             this.scoreWrong++;
             this.wrongAnswers.add(question.id);
-            this.showNotification(`Špatná odpověď. Správně: ${correctLetter}`, 'error');
+            // Špatná odpověď - bez notifikace, vizuální feedback stačí
         }
         
         this.answeredCurrent = true;
@@ -794,7 +793,8 @@ class QuizModule {
         // Update UI
         this.updateUI();
         
-        this.showNotification('Kvíz ukončen', 'info');
+        Logger.action('Quiz ended by user');
+        // Kvíz ukončen - bez notifikace
     }
     
     showResults() {
@@ -903,7 +903,7 @@ class QuizModule {
         const hintToggle = document.getElementById('hintToggle');
         
         if (!hintDisplay || !this.settings.showHints) {
-            this.showNotification('Nápovědy jsou zakázané v nastavení', 'warning');
+            // Nápovědy jsou zakázané - bez notifikace, jen return
             return;
         }
         
@@ -931,7 +931,8 @@ class QuizModule {
             
             this.saveToStorage('incorrect_questions', incorrectQuestions);
             
-            this.showNotification('Otázka označena jako chybná', 'info');
+            Logger.action('Question marked as incorrect', { id: currentQuestion.id });
+            // Otázka označena jako chybná - bez notifikace
             Logger.action('Question marked incorrect', { questionId: question.id });
         }
     }
@@ -1119,31 +1120,7 @@ class QuizModule {
             modal.style.display = 'none';
         }
     }
-    
-    showNotification(message, type = 'info') {
-        const container = document.getElementById('notifications');
-        if (!container) return;
-        
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        
-        notification.innerHTML = `
-            ${message}
-            <button class="notification-close" onclick="this.parentElement.remove()">×</button>
-        `;
-        
-        container.appendChild(notification);
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-            if (notification.parentElement) {
-                notification.remove();
-            }
-        }, 5000);
-        
-        Logger.info(`Notification: ${type}`, { message });
-    }
-    
+
     loadFromStorage(key) {
         try {
             const data = localStorage.getItem(key);
