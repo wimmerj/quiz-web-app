@@ -71,7 +71,7 @@
         
         .header {
             text-align: center;
-            padding: 1.5rem 0; /* Reduced from 2rem */
+            padding: 1rem 0; /* Reduced from 1.5rem - více kompaktní */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             margin-bottom: 0;
@@ -80,8 +80,8 @@
         .progress {
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
-            padding: 1rem;
-            margin: 1.5rem auto; /* Reduced margin and centered */
+            padding: 0.8rem; /* Reduced padding */
+            margin: 1rem auto; /* Reduced margin - menší mezera */
             max-width: 600px; /* Limit width */
             text-align: center;
         }
@@ -287,16 +287,29 @@
         // Set initial progress to 80%
         progressManager.setProgress(80, '80% dokončeno (Infrastructure + Auth + Quiz + Admin + Oral Exam Modules)');
         
-        // Optional: Show loading animation on page load
-        // Uncomment the following lines to enable loading animation on startup:
-        /*
+        // DOM Content Loaded - setup all event handlers
         document.addEventListener('DOMContentLoaded', () => {
+            // Add click handler for progress bar - toggle loading animation
+            document.querySelector('.progress-bar').addEventListener('click', () => {
+                if (progressManager.isLoading) {
+                    progressManager.stopLoadingAnimation();
+                } else {
+                    progressManager.startLoadingAnimation('Simuluji načítání...');
+                    setTimeout(() => {
+                        progressManager.stopLoadingAnimation();
+                    }, 3000);
+                }
+            });
+            
+            // Optional: Show loading animation on page load
+            // Uncomment the following lines to enable loading animation on startup:
+            /*
             progressManager.startLoadingAnimation('Inicializuji moduly...');
             setTimeout(() => {
                 progressManager.simulateProgress();
             }, 1000);
+            */
         });
-        */
         
         // Navigation handling
         document.querySelectorAll('.module-card').forEach(card => {
@@ -309,18 +322,6 @@
                 // Optional: Show loading animation when navigating
                 // progressManager.startLoadingAnimation(`Načítám ${moduleName}...`);
             });
-        });
-        
-        // Add click handler for progress bar - toggle loading animation
-        document.querySelector('.progress-bar').addEventListener('click', () => {
-            if (progressManager.isLoading) {
-                progressManager.stopLoadingAnimation();
-            } else {
-                progressManager.startLoadingAnimation('Simuluji načítání...');
-                setTimeout(() => {
-                    progressManager.stopLoadingAnimation();
-                }, 3000);
-            }
         });
     </script>
 </body>

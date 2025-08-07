@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index.html - Fixes Test</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-progress {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .demo-progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-progress-bar:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+        
+        .demo-progress-bar::before {
+            content: 'Klikni pro loading animaci';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .demo-progress-bar:hover::before {
+            opacity: 1;
+        }
+        
+        .demo-progress-fill {
+            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+            height: 100%;
+            width: 80%;
+            transition: width 0.8s ease;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent
+            );
+            animation: progressShine 2s infinite;
+        }
+        
+        @keyframes progressShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .demo-progress-fill.loading {
+            width: 100% !important;
+            background: linear-gradient(90deg, 
+                #ff5722, #ff7043, #ff5722, #ff7043
+            );
+            background-size: 200% 100%;
+            animation: progressLoading 1.5s infinite linear;
+        }
+        
+        @keyframes progressLoading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .before, .after {
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .before {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        .after {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .demo-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .demo-module-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .demo-module-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🏠 Index.html - Opravy a vylepšení</h1>
+        
+        <div class="test-item">
+            <h3>✅ Opravené problémy:</h3>
+            <ul>
+                <li><strong>🎯 Progress Bar Click:</strong> Nyní funguje klikací event pro loading animaci</li>
+                <li><strong>📏 Header zmenšen:</strong> Padding zmenšen z 1.5rem na 1rem (33% úspora)</li>
+                <li><strong>📦 Progress margin:</strong> Zmenšen margin z 1.5rem na 1rem a padding z 1rem na 0.8rem</li>
+                <li><strong>🔧 JavaScript fix:</strong> Event handler přesunut do DOMContentLoaded</li>
+            </ul>
+        </div>
+        
+        <div class="test-item">
+            <h3>📊 Porovnání velikosti header:</h3>
+            <div class="comparison">
+                <div class="before">
+                    <h4>❌ PŘED (1.5rem padding)</h4>
+                    <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 1.5rem 0; border-radius: 10px; margin: 0.5rem 0;">
+                        <h3 style="margin: 0;">🎯 Quiz App</h3>
+                        <p style="margin: 0.5rem 0;">Větší header</p>
+                    </div>
+                    <p style="font-size: 0.8rem; margin: 0.5rem 0;">Zbytečně vysoký</p>
+                </div>
+                <div class="after">
+                    <h4>✅ PO (1rem padding)</h4>
+                    <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 1rem 0; border-radius: 10px; margin: 0.5rem 0;">
+                        <h3 style="margin: 0;">🎯 Quiz App</h3>
+                        <p style="margin: 0.5rem 0;">Kompaktní header</p>
+                    </div>
+                    <p style="font-size: 0.8rem; margin: 0.5rem 0;">Více místa pro moduly</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎮 Demo funkční progress bar:</h3>
+            <div class="demo-header">
+                <h1>🎯 Quiz App - Modulární Architektura</h1>
+                <p>Nová modulární verze s vylepšenou architekturou</p>
+                
+                <div class="demo-progress">
+                    <h3>📊 Progress Migrace</h3>
+                    <div class="demo-progress-bar" id="demoProgressBar">
+                        <div class="demo-progress-fill" id="demoProgressFill"></div>
+                    </div>
+                    <p id="demoProgressText">80% dokončeno (Infrastructure + Auth + Quiz + Admin + Oral Exam Modules)</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 1rem 0;">
+                <p><strong>👆 Klikni na progress bar pro test!</strong></p>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Spustí se loading animace na 3 sekundy</p>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>📦 Demo kompaktní layout:</h3>
+            <p>Header má nyní menší padding a progress bar menší margin - moduly jsou výš:</p>
+            <div class="demo-dashboard">
+                <div class="demo-module-card">
+                    <h4>🔐 Auth</h4>
+                    <p>Přihlášení</p>
+                </div>
+                <div class="demo-module-card">
+                    <h4>📝 Quiz</h4>
+                    <p>Hlavní quiz</p>
+                </div>
+                <div class="demo-module-card">
+                    <h4>⚔️ Battle</h4>
+                    <p>Souboje</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 Testovací odkazy:</h3>
+            <p><a href="index.html" style="color: #ff7043;">→ Otevřít hlavní index.html</a></p>
+            <p><a href="pages/quiz/quiz.html" style="color: #ff7043;">→ Test Quiz module</a></p>
+        </div>
+        
+        <div class="test-item">
+            <h3>✅ Co testovat na hlavní stránce:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>☑️ Header je nyní kompaktnější (menší padding)</li>
+                <li>☑️ Progress bar má menší margin a padding</li>
+                <li>☑️ Kliknutí na progress bar spustí loading animaci</li>
+                <li>☑️ Po 3 sekundách se animace zastaví</li>
+                <li>☑️ Moduly jsou díky kompaktnímu header výš na stránce</li>
+                <li>☑️ Tooltip "Klikni pro loading animaci" se zobrazí při hover</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let isLoading = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('demoProgressBar');
+            const progressFill = document.getElementById('demoProgressFill');
+            const progressText = document.getElementById('demoProgressText');
+            
+            progressBar.addEventListener('click', () => {
+                if (isLoading) {
+                    stopLoading();
+                } else {
+                    startLoading();
+                }
+            });
+            
+            function startLoading() {
+                isLoading = true;
+                progressFill.classList.add('loading');
+                progressText.textContent = 'Simuluji načítání...';
+                
+                setTimeout(() => {
+                    stopLoading();
+                }, 3000);
+            }
+            
+            function stopLoading() {
+                isLoading = false;
+                progressFill.classList.remove('loading');
+                progressText.textContent = '80% dokončeno (Infrastructure + Auth + Quiz + Admin + Oral Exam Modules)';
+            }
+            
+            console.log('✅ Index fixes test page loaded');
+            console.log('🎯 Progress bar click handler active');
+            console.log('📏 Header padding reduced: 1.5rem → 1rem');
+        });
+    </script>
+</body>
+</html>
