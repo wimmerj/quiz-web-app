@@ -133,6 +133,22 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.server-status.online {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.5);
+}
+
+.server-status.offline {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.5);
+}
+
+.server-status.checking {
+    background-color: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.5);
 }
 
 .status-indicator {
@@ -143,6 +159,7 @@ body {
 .status-text {
     font-weight: bold;
     font-size: 12px;
+    color: white;
 }
 
 .status-mode {

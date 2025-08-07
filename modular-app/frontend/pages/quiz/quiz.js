@@ -17,6 +17,7 @@ class QuizModule {
         this.showOnlyWrong = false;
         this.originalQuestions = null;
         this.isQuizActive = false;
+        this.serverStatus = 'checking'; // Add server status tracking
         
         // Settings from original app
         this.settings = {
@@ -92,6 +93,9 @@ class QuizModule {
         
         // Check authentication
         await this.checkAuthentication();
+        
+        // Check server status
+        this.checkServerStatus();
         
         // Load settings
         this.loadSettings();
@@ -1374,21 +1378,53 @@ class QuizModule {
     }
     
     // Update server status indicator
-    updateServerStatus(isOnline = false) {
+    updateServerStatus(status, text) {
         const indicator = document.getElementById('statusIndicator');
-        const text = document.getElementById('statusIndicatorText');
+        const statusText = document.getElementById('statusIndicatorText');
         const mode = document.getElementById('statusMode');
         
-        if (indicator && text && mode) {
-            if (isOnline) {
+        if (indicator && statusText && mode) {
+            statusText.textContent = text;
+            
+            const statusElement = document.getElementById('serverStatus');
+            if (statusElement) {
+                statusElement.className = `server-status ${status}`;
+            }
+            
+            // Update indicator icon based on status
+            if (status === 'online') {
                 indicator.textContent = '🟢';
-                text.textContent = 'Online';
                 mode.textContent = 'Server Mode';
+            } else if (status === 'checking') {
+                indicator.textContent = '🟡';
+                mode.textContent = 'Checking...';
             } else {
                 indicator.textContent = '🔴';
-                text.textContent = 'Offline';
                 mode.textContent = 'Local Mode';
             }
+        }
+    }
+    
+    async checkServerStatus() {
+        Logger.info('Checking server status...');
+        this.updateServerStatus('checking', 'Kontroluji...');
+        
+        // Ensure APIClient is available
+        if (!window.APIClient) {
+            console.warn('APIClient not yet available, falling back to offline mode');
+            this.serverStatus = 'offline';
+            this.updateServerStatus('offline', 'Offline');
+            return;
+        }
+        
+        const isOnline = await window.APIClient.healthCheck();
+        
+        if (isOnline) {
+            this.serverStatus = 'online';
+            this.updateServerStatus('online', 'Online');
+        } else {
+            this.serverStatus = 'offline';
+            this.updateServerStatus('offline', 'Offline');
         }
     }
 }
