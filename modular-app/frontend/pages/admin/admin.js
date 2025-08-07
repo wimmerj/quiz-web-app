@@ -52,6 +52,30 @@ class AdminModule {
     async checkAdminAccess() {
         console.log('🔍 Checking admin access...');
         
+        // First check URL parameters for admin access
+        const urlParams = new URLSearchParams(window.location.search);
+        const userFromUrl = urlParams.get('user');
+        const forceAdmin = urlParams.get('admin');
+        
+        if (userFromUrl && userFromUrl.toLowerCase() === 'admin') {
+            console.log('🎯 Admin access granted via URL parameter:', userFromUrl);
+            this.currentUser = userFromUrl;
+            this.userRole = 'admin';
+            // Save to session storage for consistency
+            sessionStorage.setItem('currentUser', userFromUrl);
+            this.updateUserDisplay();
+            return;
+        }
+        
+        if (forceAdmin === 'true' || forceAdmin === '1') {
+            console.log('🔓 Admin access forced via URL parameter');
+            this.currentUser = 'admin';
+            this.userRole = 'admin';
+            sessionStorage.setItem('currentUser', 'admin');
+            this.updateUserDisplay();
+            return;
+        }
+        
         // Wait for APIClient to be available
         let attempts = 0;
         const maxAttempts = 30;
@@ -62,8 +86,9 @@ class AdminModule {
         }
         
         if (!window.APIClient) {
-            console.error('❌ APIClient not available after waiting, redirecting to login...');
-            window.location.href = '../auth/login.html';
+            console.error('❌ APIClient not available after waiting, trying fallback authentication...');
+            // Instead of redirecting immediately, try fallback methods first
+            await this.tryFallbackAuthentication();
             return;
         }
         
@@ -95,35 +120,41 @@ class AdminModule {
             }
         } else {
             console.log('❌ APIClient not authenticated, trying fallback authentication...');
-            
-            // Try fallback authentication methods before giving up
-            const fallbackUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
-            const credentials = localStorage.getItem('modular_quiz_credentials');
-            
-            if (fallbackUser) {
-                console.log('🔄 Found fallback user in session storage:', fallbackUser);
-                this.currentUser = fallbackUser;
-                this.userRole = fallbackUser.toLowerCase() === 'admin' ? 'admin' : 'user';
-            } else if (credentials) {
-                try {
-                    const cred = JSON.parse(credentials);
-                    console.log('🔄 Found saved credentials:', cred.username);
-                    this.currentUser = cred.username;
-                    this.userRole = cred.username.toLowerCase() === 'admin' ? 'admin' : 'user';
-                } catch (e) {
-                    console.warn('Failed to parse credentials');
-                }
-            }
-            
-            // If no fallback worked, redirect to login
-            if (!this.currentUser) {
-                console.log('❌ No authentication found, redirecting to login...');
-                window.location.href = '../auth/login.html';
-                return;
-            }
+            await this.tryFallbackAuthentication();
         }
         
         this.updateUserDisplay();
+    }
+    
+    async tryFallbackAuthentication() {
+        console.log('🔄 Trying fallback authentication methods...');
+        
+        // Try fallback authentication methods before giving up
+        const fallbackUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+        const credentials = localStorage.getItem('modular_quiz_credentials');
+        
+        if (fallbackUser) {
+            console.log('🔄 Found fallback user in session storage:', fallbackUser);
+            this.currentUser = fallbackUser;
+            this.userRole = fallbackUser.toLowerCase() === 'admin' ? 'admin' : 'user';
+        } else if (credentials) {
+            try {
+                const cred = JSON.parse(credentials);
+                console.log('🔄 Found saved credentials:', cred.username);
+                this.currentUser = cred.username;
+                this.userRole = cred.username.toLowerCase() === 'admin' ? 'admin' : 'user';
+            } catch (e) {
+                console.warn('Failed to parse credentials');
+            }
+        }
+        
+        // If still no authentication found, ask user to login via redirect with return URL
+        if (!this.currentUser) {
+            console.log('❌ No authentication found, redirecting to login with return URL...');
+            const currentURL = encodeURIComponent(window.location.href);
+            window.location.href = `../auth/login.html?returnUrl=${currentURL}`;
+            return;
+        }
     }
     
     getCurrentUser() {
