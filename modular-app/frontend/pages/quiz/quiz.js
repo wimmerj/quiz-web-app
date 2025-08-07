@@ -344,10 +344,6 @@ class QuizModule {
             this.endQuiz();
         });
         
-        document.getElementById('settingsBtn')?.addEventListener('click', () => {
-            this.showSettings();
-        });
-        
         // Navigation
         document.getElementById('prevBtn')?.addEventListener('click', () => {
             this.prevQuestion();
@@ -382,12 +378,6 @@ class QuizModule {
             this.logout();
         });
         
-        // Settings form
-        document.getElementById('settingsForm')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.saveSettingsFromForm();
-        });
-        
         // Results actions
         document.getElementById('restartQuizBtn')?.addEventListener('click', () => {
             this.restartQuiz();
@@ -404,15 +394,6 @@ class QuizModule {
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             this.handleKeyboard(e);
-        });
-        
-        // Font size ranges
-        document.getElementById('questionFontSize')?.addEventListener('input', (e) => {
-            this.updateFontSizeDisplay('question', e.target.value);
-        });
-        
-        document.getElementById('answerFontSize')?.addEventListener('input', (e) => {
-            this.updateFontSizeDisplay('answer', e.target.value);
         });
         
         Logger.debug('Event listeners setup complete');
@@ -912,100 +893,6 @@ class QuizModule {
         if (prevBtn) prevBtn.disabled = !hasQuestions || this.currentQuestionIndex <= 0;
         if (nextBtn) nextBtn.disabled = !hasQuestions || this.currentQuestionIndex >= this.questions.length - 1;
         if (randomBtn) randomBtn.disabled = !hasQuestions;
-    }
-    
-    // Settings and preferences
-    showSettings() {
-        this.loadSettingsToForm();
-        this.showModal('settingsModal');
-    }
-    
-    loadSettingsToForm() {
-        const form = document.getElementById('settingsForm');
-        if (!form) return;
-        
-        // Font sizes
-        const questionFontSize = form.querySelector('#questionFontSize');
-        const answerFontSize = form.querySelector('#answerFontSize');
-        
-        if (questionFontSize) {
-            questionFontSize.value = this.settings.maxQuestionFontSize;
-            this.updateFontSizeDisplay('question', this.settings.maxQuestionFontSize);
-        }
-        
-        if (answerFontSize) {
-            answerFontSize.value = this.settings.maxAnswerFontSize;
-            this.updateFontSizeDisplay('answer', this.settings.maxAnswerFontSize);
-        }
-        
-        // Checkboxes
-        const checkboxes = ['shuffleAnswers', 'showHints', 'autoNext'];
-        checkboxes.forEach(id => {
-            const checkbox = form.querySelector(`#${id}`);
-            if (checkbox) {
-                checkbox.checked = this.settings[id];
-            }
-        });
-        
-        // Select boxes
-        const backendMode = form.querySelector('#backendMode');
-        const serverUrl = form.querySelector('#serverUrl');
-        
-        if (backendMode) backendMode.value = this.settings.backendMode;
-        if (serverUrl) serverUrl.value = this.settings.serverUrl;
-    }
-    
-    saveSettingsFromForm() {
-        const form = document.getElementById('settingsForm');
-        if (!form) return;
-        
-        // Font sizes
-        const questionFontSize = form.querySelector('#questionFontSize');
-        const answerFontSize = form.querySelector('#answerFontSize');
-        
-        if (questionFontSize) this.settings.maxQuestionFontSize = parseInt(questionFontSize.value);
-        if (answerFontSize) this.settings.maxAnswerFontSize = parseInt(answerFontSize.value);
-        
-        // Checkboxes
-        const checkboxes = ['shuffleAnswers', 'showHints', 'autoNext'];
-        checkboxes.forEach(id => {
-            const checkbox = form.querySelector(`#${id}`);
-            if (checkbox) {
-                this.settings[id] = checkbox.checked;
-            }
-        });
-        
-        // Select boxes
-        const backendMode = form.querySelector('#backendMode');
-        const serverUrl = form.querySelector('#serverUrl');
-        
-        if (backendMode) this.settings.backendMode = backendMode.value;
-        if (serverUrl) this.settings.serverUrl = serverUrl.value.trim();
-        
-        // Save settings
-        this.saveSettings();
-        
-        // Update API client if needed
-        if (this.settings.backendMode === 'server') {
-            window.APIClient.updateBaseUrl(this.settings.serverUrl);
-        }
-        
-        // Apply font sizes
-        this.updateFontSizes();
-        
-        // Close modal
-        this.closeModal('settingsModal');
-        
-        this.showNotification('Nastavení uloženo', 'success');
-        
-        Logger.action('Settings saved', this.settings);
-    }
-    
-    updateFontSizeDisplay(type, value) {
-        const display = document.getElementById(`${type}FontDisplay`);
-        if (display) {
-            display.textContent = `${value}px`;
-        }
     }
     
     updateFontSizes() {

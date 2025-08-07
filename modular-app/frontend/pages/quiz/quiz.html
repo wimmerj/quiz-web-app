@@ -52,7 +52,6 @@
             
             <button id="startQuizBtn" class="start-quiz-button" disabled>▶ Spustit kvíz</button>
             <button id="endQuizBtn" class="end-test-button" disabled>Ukončit test</button>
-            <button id="settingsBtn" class="nav-button">Nastavení</button>
             
             <label class="hint-checkbox">
                 <input type="checkbox" id="hintCheckbox" disabled>
@@ -208,80 +207,6 @@
         </section>
 
     </main>
-
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>⚙️ Nastavení Kvízu</h3>
-                <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
-            </div>
-            
-            <form id="settingsForm" class="modal-body">
-                <div class="settings-section">
-                    <h4>🎨 Vzhled</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="questionFontSize">Velikost písma otázky:</label>
-                            <input type="range" id="questionFontSize" min="12" max="24" value="16">
-                            <span id="questionFontDisplay">16px</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="answerFontSize">Velikost písma odpovědí:</label>
-                            <input type="range" id="answerFontSize" min="12" max="20" value="14">
-                            <span id="answerFontDisplay">14px</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h4>🎮 Chování</h4>
-                    <div class="form-row">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="shuffleAnswers">
-                            <span class="checkmark"></span>
-                            Zamíchat pořadí odpovědí
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="showHints">
-                            <span class="checkmark"></span>
-                            Zobrazovat nápovědy
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="autoNext">
-                            <span class="checkmark"></span>
-                            Automaticky pokračovat na další otázku
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="settings-section">
-                    <h4>🔧 Pokročilé</h4>
-                    <div class="form-group">
-                        <label for="backendMode">Backend režim:</label>
-                        <select id="backendMode" class="form-select">
-                            <option value="local">Lokální (offline)</option>
-                            <option value="server">Server (online)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="serverUrl">URL serveru:</label>
-                        <input type="url" id="serverUrl" class="form-input" 
-                               placeholder="https://quiz-web-app-wpls.onrender.com">
-                    </div>
-                </div>
-            </form>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('settingsModal')">
-                    Zrušit
-                </button>
-                <button type="submit" form="settingsForm" class="btn btn-primary">
-                    💾 Uložit Nastavení
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- API Test Section -->
     <div id="api-test-section" style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.9); color: white; padding: 15px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 12px; z-index: 1000; width: 300px; border: 2px solid #00ff00; display: none;">
