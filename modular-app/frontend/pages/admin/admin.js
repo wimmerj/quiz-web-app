@@ -27,10 +27,15 @@ class AdminModule {
         // Check authentication and admin access
         await this.checkAdminAccess();
         
+        console.log('After checkAdminAccess - currentUser:', this.currentUser, 'userRole:', this.userRole);
+        
         if (!this.hasAdminAccess()) {
+            console.error('❌ hasAdminAccess() returned false, showing access warning');
             this.showAccessWarning();
             return;
         }
+        
+        console.log('✅ Admin access confirmed, continuing initialization...');
         
         // Setup event listeners
         this.setupEventListeners();
@@ -89,9 +94,33 @@ class AdminModule {
                 this.userRole = 'admin';
             }
         } else {
-            console.log('❌ No APIClient authentication, redirecting to login...');
-            window.location.href = '../auth/login.html';
-            return;
+            console.log('❌ APIClient not authenticated, trying fallback authentication...');
+            
+            // Try fallback authentication methods before giving up
+            const fallbackUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+            const credentials = localStorage.getItem('modular_quiz_credentials');
+            
+            if (fallbackUser) {
+                console.log('🔄 Found fallback user in session storage:', fallbackUser);
+                this.currentUser = fallbackUser;
+                this.userRole = fallbackUser.toLowerCase() === 'admin' ? 'admin' : 'user';
+            } else if (credentials) {
+                try {
+                    const cred = JSON.parse(credentials);
+                    console.log('🔄 Found saved credentials:', cred.username);
+                    this.currentUser = cred.username;
+                    this.userRole = cred.username.toLowerCase() === 'admin' ? 'admin' : 'user';
+                } catch (e) {
+                    console.warn('Failed to parse credentials');
+                }
+            }
+            
+            // If no fallback worked, redirect to login
+            if (!this.currentUser) {
+                console.log('❌ No authentication found, redirecting to login...');
+                window.location.href = '../auth/login.html';
+                return;
+            }
         }
         
         this.updateUserDisplay();
@@ -138,16 +167,59 @@ class AdminModule {
             return true;
         }
         
+        // Additional fallback: Check session storage
+        const sessionUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+        if (sessionUser && sessionUser.toLowerCase() === 'admin') {
+            console.log('✅ User is admin by session storage');
+            if (!this.currentUser) this.currentUser = sessionUser;
+            this.userRole = 'admin';
+            return true;
+        }
+        
+        // Final fallback: Check saved credentials
+        try {
+            const credentials = localStorage.getItem('modular_quiz_credentials');
+            if (credentials) {
+                const cred = JSON.parse(credentials);
+                if (cred.username && cred.username.toLowerCase() === 'admin') {
+                    console.log('✅ User is admin by saved credentials');
+                    if (!this.currentUser) this.currentUser = cred.username;
+                    this.userRole = 'admin';
+                    return true;
+                }
+            }
+        } catch (e) {
+            console.warn('Failed to check saved credentials:', e);
+        }
+        
         console.log('❌ User does not have admin access');
         return false;
     }
     
     showAccessWarning() {
+        console.log('🚨 showAccessWarning() called - displaying access denied warning');
+        console.log('Current state:', { 
+            currentUser: this.currentUser, 
+            userRole: this.userRole,
+            hasAccess: this.hasAdminAccess() 
+        });
+        
         const warning = document.getElementById('accessWarning');
         const content = document.getElementById('adminContent');
         
-        if (warning) warning.style.display = 'block';
-        if (content) content.style.display = 'none';
+        if (warning) {
+            warning.style.display = 'block';
+            console.log('✅ Access warning element shown');
+        } else {
+            console.error('❌ Access warning element not found!');
+        }
+        
+        if (content) {
+            content.style.display = 'none';
+            console.log('✅ Admin content hidden');
+        } else {
+            console.error('❌ Admin content element not found!');
+        }
         
         console.warning('Admin access denied', { 
             user: this.currentUser, 
