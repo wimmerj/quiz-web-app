@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Modals Test - Glass Morphism</title>
+    <link rel="stylesheet" href="battle.css">
+    
+    <style>
+        /* Global gradient background */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test-header {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        
+        .test-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-button {
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        }
+        
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>🎮 Battle Module - Glass Morphism Modals Test</h1>
+        <p>Testování nových glass morphism stylů pro modály</p>
+    </div>
+    
+    <div class="test-buttons">
+        <button class="demo-button" onclick="showCustomRoomModal()">
+            🏗️ Vlastní Místnost
+        </button>
+        <button class="demo-button" onclick="showLeaderboardModal()">
+            🏆 Žebříček Nejlepších
+        </button>
+        <button class="demo-button" onclick="showTournamentModal()">
+            🏅 Aktivní Turnaje
+        </button>
+    </div>
+    
+    <div class="features-list">
+        <h2>✅ Implementované prvky:</h2>
+        <ul>
+            <li><strong>Glass morphism modals:</strong> průhledné panely s blur efektem</li>
+            <li><strong>Oranžové téma:</strong> #ff5722 pro akcenty a tlačítka</li>
+            <li><strong>Form elementy:</strong> průhledné inputy a selecty s focus efekty</li>
+            <li><strong>Checkbox styly:</strong> vlastní checkboxy s check marky</li>
+            <li><strong>Leaderboard tabulky:</strong> glass morphism s hover efekty</li>
+            <li><strong>Tournament karty:</strong> elegantní cards s hover animacemi</li>
+            <li><strong>Animace:</strong> smooth slide-in efekty při otevření</li>
+        </ul>
+        
+        <h2>🎨 Design features:</h2>
+        <ul>
+            <li>Konzistentní gradient pozadí #667eea → #764ba2</li>
+            <li>Glass morphism s backdrop-filter: blur(20px)</li>
+            <li>Orange akcenty (#ff5722) pro interaktivní prvky</li>
+            <li>Smooth hover animace a transitions</li>
+            <li>Responsive grid layouts</li>
+        </ul>
+    </div>
+
+    <!-- Custom Room Modal -->
+    <div id="customRoomModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏗️ Vytvořit Vlastní Místnost</h3>
+                <button class="modal-close" onclick="closeModal('customRoomModal')">×</button>
+            </div>
+            
+            <form id="customRoomForm" class="modal-body">
+                <div class="form-group">
+                    <label for="roomName">📛 Název místnosti:</label>
+                    <input type="text" id="roomName" class="form-input" placeholder="Můj Epic Souboj">
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomPassword">🔒 Heslo (volitelné):</label>
+                    <input type="password" id="roomPassword" class="form-input" placeholder="Ponechte prázdné pro veřejnou místnost">
+                </div>
+                
+                <div class="form-group">
+                    <label for="maxPlayers">👥 Maximum hráčů:</label>
+                    <select id="maxPlayers" class="form-select">
+                        <option value="2" selected>2 hráči (1v1)</option>
+                        <option value="4">4 hráči (Battle Royale)</option>
+                        <option value="8">8 hráčů (Tournament)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="allowSpectators" checked>
+                        <span class="checkmark"></span>
+                        Povolit diváky
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showLiveStats" checked>
+                        <span class="checkmark"></span>
+                        Zobrazovat živé statistiky
+                    </label>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('customRoomModal')">
+                    Zrušit
+                </button>
+                <button class="btn btn-primary">
+                    🚀 Vytvořit Místnost
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>🏆 Žebříček Nejlepších</h3>
+                <button class="modal-close" onclick="closeModal('leaderboardModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="leaderboard-tabs">
+                    <button class="tab-button active" data-tab="global">🌍 Globální</button>
+                    <button class="tab-button" data-tab="weekly">📅 Týdenní</button>
+                    <button class="tab-button" data-tab="friends">👥 Přátelé</button>
+                </div>
+                
+                <div class="leaderboard-content">
+                    <div id="globalTab" class="tab-content active">
+                        <div class="leaderboard-table">
+                            <div class="table-header">
+                                <span>Pozice</span>
+                                <span>Hráč</span>
+                                <span>Rating</span>
+                                <span>W/L</span>
+                                <span>Série</span>
+                            </div>
+                            <div class="table-body">
+                                <div class="table-row">
+                                    <span>1.</span>
+                                    <span>QuizGod</span>
+                                    <span>2847</span>
+                                    <span>156/23</span>
+                                    <span>12</span>
+                                </div>
+                                <div class="table-row">
+                                    <span>2.</span>
+                                    <span>BrainMaster</span>
+                                    <span>2756</span>
+                                    <span>134/31</span>
+                                    <span>8</span>
+                                </div>
+                                <div class="table-row current-user">
+                                    <span>47.</span>
+                                    <span>You</span>
+                                    <span>1842</span>
+                                    <span>23/15</span>
+                                    <span>3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="friendsTab" class="tab-content">
+                        <div class="friends-leaderboard">
+                            <div class="add-friend-section">
+                                <input type="text" class="form-input" placeholder="Hledat přítele podle jména...">
+                                <button class="btn btn-primary">➕ Přidat</button>
+                            </div>
+                            <div class="friends-list">
+                                <div class="friend-item">
+                                    <div class="friend-info">
+                                        <div class="friend-avatar">🎯</div>
+                                        <div class="friend-details">
+                                            <h5>QuizMaster</h5>
+                                            <div class="friend-stats">Rating: 2156 | W/L: 45/12</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tournament Modal -->
+    <div id="tournamentModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>🏅 Aktivní Turnaje</h3>
+                <button class="modal-close" onclick="closeModal('tournamentModal')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="tournament-filters">
+                    <select class="form-select" style="max-width: 250px;">
+                        <option value="all">Všechny turnaje</option>
+                        <option value="starting-soon">Začínají brzy</option>
+                        <option value="in-progress">Probíhající</option>
+                    </select>
+                </div>
+                
+                <div class="tournament-list">
+                    <div class="tournament-card">
+                        <div class="tournament-header">
+                            <h4 class="tournament-title">🏆 Weekly Champions Cup</h4>
+                            <div class="tournament-status registration">Registrace</div>
+                        </div>
+                        <div class="tournament-info">
+                            <div class="tournament-stat">
+                                <span class="tournament-stat-value">64</span>
+                                <span class="tournament-stat-label">Hráči</span>
+                            </div>
+                            <div class="tournament-stat">
+                                <span class="tournament-stat-value">2h 15m</span>
+                                <span class="tournament-stat-label">Začíná za</span>
+                            </div>
+                            <div class="tournament-stat">
+                                <span class="tournament-stat-value">5000</span>
+                                <span class="tournament-stat-label">Odměna</span>
+                            </div>
+                        </div>
+                        <div class="tournament-actions">
+                            <button class="btn btn-primary">🎯 Přihlásit se</button>
+                            <button class="btn btn-secondary">👁️ Sledovat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCustomRoomModal() {
+            document.getElementById('customRoomModal').style.display = 'block';
+        }
+        
+        function showLeaderboardModal() {
+            document.getElementById('leaderboardModal').style.display = 'block';
+        }
+        
+        function showTournamentModal() {
+            document.getElementById('tournamentModal').style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.getAttribute('data-tab');
+                    
+                    // Remove active from all tabs and contents
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active to clicked tab and corresponding content
+                    button.classList.add('active');
+                    document.getElementById(tabName + 'Tab')?.classList.add('active');
+                });
+            });
+            
+            // Close modal on outside click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
