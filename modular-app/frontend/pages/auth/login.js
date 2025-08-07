@@ -8,9 +8,9 @@ class AuthManager {
         this.currentUser = null;
         this.serverStatus = 'checking';
         this.demoUsers = {
-            'admin': { password: 'admin123', role: 'admin' },
-            'test': { password: 'test', role: 'user' },
-            'demo': { password: 'demo', role: 'user' }
+            'testuser': { password: 'testpass123', role: 'user' },
+            'student': { password: 'student2024', role: 'user' },
+            'demo': { password: 'demouser2024', role: 'user' }
         };
         
         this.init();
@@ -57,6 +57,9 @@ class AuthManager {
                 this.fillDemoCredentials(username, password);
             });
         });
+
+        // Terms of Service modal handlers
+        this.setupTermsModal();
         
         // Test API connection button
         document.getElementById('testAuthBtn')?.addEventListener('click', () => {
@@ -617,6 +620,77 @@ class AuthManager {
             resultsDiv.innerHTML += `<p>❌ Error during test: ${error.message}</p>`;
             console.error('❌ Error during auth test:', error);
         }
+    }
+    
+    setupTermsModal() {
+        // Terms link click handler
+        const termsLink = document.querySelector('[data-navigate="terms"]');
+        const termsModal = document.getElementById('termsModal');
+        const closeModalBtn = document.getElementById('closeTermsModal');
+        const acceptBtn = document.getElementById('acceptTerms');
+        const declineBtn = document.getElementById('declineTerms');
+        const agreeCheckbox = document.getElementById('agreeTerms');
+        
+        if (!termsLink || !termsModal) return;
+        
+        // Open modal when terms link is clicked
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openTermsModal();
+        });
+        
+        // Close modal handlers
+        closeModalBtn.addEventListener('click', () => {
+            this.closeTermsModal();
+        });
+        
+        // Click outside modal to close
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                this.closeTermsModal();
+            }
+        });
+        
+        // Accept terms button
+        acceptBtn.addEventListener('click', () => {
+            agreeCheckbox.checked = true;
+            this.closeTermsModal();
+            this.showNotification('Souhlasili jste s podmínkami použití', 'success');
+        });
+        
+        // Decline terms button
+        declineBtn.addEventListener('click', () => {
+            agreeCheckbox.checked = false;
+            this.closeTermsModal();
+            this.showNotification('Pro registraci je nutný souhlas s podmínkami', 'warning');
+        });
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && termsModal.style.display !== 'none') {
+                this.closeTermsModal();
+            }
+        });
+    }
+    
+    openTermsModal() {
+        const termsModal = document.getElementById('termsModal');
+        termsModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        
+        // Focus on modal for accessibility
+        termsModal.setAttribute('aria-hidden', 'false');
+        document.getElementById('acceptTerms').focus();
+    }
+    
+    closeTermsModal() {
+        const termsModal = document.getElementById('termsModal');
+        termsModal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+        
+        // Restore focus for accessibility
+        termsModal.setAttribute('aria-hidden', 'true');
+        document.querySelector('[data-navigate="terms"]').focus();
     }
 }
 

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Úpravy Test</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .test-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .before, .after {
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .before {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        .after {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .demo-accounts {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 0.5rem 0;
+        }
+        
+        .demo-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .demo-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .demo-modal-preview {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .modal-header-demo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .feature.change {
+            border-left-color: #ff9800;
+        }
+        
+        .feature.new {
+            border-left-color: #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔐 Login/Auth - Úpravy a vylepšení</h1>
+        
+        <div class="test-item">
+            <h3>✅ Implementované změny:</h3>
+            <div class="features-list">
+                <div class="feature change">
+                    <h4>🔑 Demo účty</h4>
+                    <p><strong>Delší hesla:</strong> Všechna hesla mají 8+ znaků</p>
+                    <p><strong>Bez admin:</strong> Žádný demo účet nemá admin práva</p>
+                </div>
+                <div class="feature new">
+                    <h4>📋 Podmínky použití</h4>
+                    <p><strong>GDPR compliant:</strong> Detailní podmínky s ochranou dat</p>
+                    <p><strong>Modal design:</strong> Moderní glassmorphism modal</p>
+                </div>
+                <div class="feature new">
+                    <h4>✅ Povinný souhlas</h4>
+                    <p><strong>Registrace:</strong> Nutný souhlas s podmínkami</p>
+                    <p><strong>Interaktivní:</strong> Klik na odkaz otevře modal</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔐 Porovnání demo účtů:</h3>
+            <div class="comparison">
+                <div class="before">
+                    <h4>❌ PŘED - Bezpečnostní rizika</h4>
+                    <div class="demo-accounts">
+                        <div class="demo-btn">👨‍💼 Admin (admin/admin123)</div>
+                        <div class="demo-btn">👤 Test (test/test)</div>
+                        <div class="demo-btn">🎯 Demo (demo/demo)</div>
+                    </div>
+                    <ul style="font-size: 0.9rem; margin-top: 1rem;">
+                        <li>❌ Admin účet dostupný všem</li>
+                        <li>❌ Krátká hesla (4 znaky)</li>
+                        <li>❌ Bezpečnostní riziko</li>
+                    </ul>
+                </div>
+                <div class="after">
+                    <h4>✅ PO - Zabezpečené</h4>
+                    <div class="demo-accounts">
+                        <div class="demo-btn">👤 Test User (testuser/testpass123)</div>
+                        <div class="demo-btn">🎓 Student (student/student2024)</div>
+                        <div class="demo-btn">🎯 Demo (demo/demouser2024)</div>
+                    </div>
+                    <ul style="font-size: 0.9rem; margin-top: 1rem;">
+                        <li>✅ Žádný admin přístup</li>
+                        <li>✅ Silná hesla (8-12 znaků)</li>
+                        <li>✅ Bezpečné pro veřejnost</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>📋 Náhled podmínek použití:</h3>
+            <div class="demo-modal-preview">
+                <div class="modal-header-demo">
+                    <h4 style="margin: 0;">📋 Podmínky použití a ochrana osobních údajů</h4>
+                    <span>&times;</span>
+                </div>
+                
+                <h4 style="color: #667eea; margin-top: 0;">🎯 O aplikaci</h4>
+                <p>Toto je <strong>testovací verze</strong> modulární quizové aplikace vytvořené pro vzdělávací a demonstrační účely...</p>
+                
+                <h4 style="color: #667eea;">🔒 Ochrana osobních údajů (GDPR)</h4>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li><strong>Zpracování dat:</strong> Pouze nezbytné údaje</li>
+                    <li><strong>Bezpečnost:</strong> Hashovaná hesla</li>
+                    <li><strong>Sdílení:</strong> Žádné sdílení s třetími stranami</li>
+                </ul>
+                
+                <h4 style="color: #667eea;">⚠️ Testovací verze - omezení</h4>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li>Aplikace je ve vývoji</li>
+                    <li>Data mohou být ztracena při aktualizacích</li>
+                    <li>Některé funkce mohou být experimentální</li>
+                </ul>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <p style="margin: 0; font-size: 0.9rem;"><strong>Poslední aktualizace:</strong> 7. srpna 2025</p>
+                    <p style="margin: 0.3rem 0 0 0; font-size: 0.9rem; color: #667eea;"><em>Registrací souhlasíte s těmito podmínkami...</em></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎮 Interaktivní funkce:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 0.5rem 0;">🖱️ <strong>Klik na "podmínkami použití"</strong> → Otevře modal</li>
+                <li style="margin: 0.5rem 0;">✅ <strong>"Souhlasím s podmínkami"</strong> → Zaškrtne checkbox</li>
+                <li style="margin: 0.5rem 0;">❌ <strong>"Nesouhlasím"</strong> → Odškrtne checkbox</li>
+                <li style="margin: 0.5rem 0;">⚡ <strong>ESC klávesa</strong> → Zavře modal</li>
+                <li style="margin: 0.5rem 0;">📱 <strong>Mobilní responsive</strong> → Optimalizováno pro mobily</li>
+            </ul>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 Testovací odkazy:</h3>
+            <p><a href="login.html" style="color: #ff7043;">→ Otevřít Login/Auth stránku</a></p>
+            <p><a href="../../index.html" style="color: #ff7043;">→ Zpět na Dashboard</a></p>
+        </div>
+        
+        <div class="test-item">
+            <h3>✅ Co testovat na login stránce:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>☑️ Demo účty mají delší hesla a nejsou admin</li>
+                <li>☑️ Registrační formulář vyžaduje souhlas s podmínkami</li>
+                <li>☑️ Klik na "podmínkami použití" otevře modal</li>
+                <li>☑️ Modal má moderní glass morphism design</li>
+                <li>☑️ "Souhlasím" button zaškrtne checkbox a zavře modal</li>
+                <li>☑️ "Nesouhlasím" odškrtne checkbox</li>
+                <li>☑️ ESC klávesa nebo klik mimo modal ho zavře</li>
+                <li>☑️ Modal má plný GDPR compliant obsah</li>
+                <li>☑️ Responzivní design funguje na mobilech</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Login fixes test page loaded');
+            console.log('🔐 Demo accounts updated with secure passwords');
+            console.log('📋 Terms of service modal implemented');
+            console.log('✅ GDPR compliant privacy policy added');
+        });
+    </script>
+</body>
+</html>

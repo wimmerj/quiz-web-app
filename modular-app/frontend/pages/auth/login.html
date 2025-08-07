@@ -70,13 +70,13 @@
                 <div class="auth-demo">
                     <h4>Demo účty pro testování:</h4>
                     <div class="demo-accounts">
-                        <button class="btn btn-small btn-outline demo-btn" data-username="admin" data-password="admin123">
-                            👨‍💼 Admin
+                        <button class="btn btn-small btn-outline demo-btn" data-username="testuser" data-password="testpass123">
+                            � Test User
                         </button>
-                        <button class="btn btn-small btn-outline demo-btn" data-username="test" data-password="test">
-                            👤 Test User
+                        <button class="btn btn-small btn-outline demo-btn" data-username="student" data-password="student2024">
+                            🎓 Student
                         </button>
-                        <button class="btn btn-small btn-outline demo-btn" data-username="demo" data-password="demo">
+                        <button class="btn btn-small btn-outline demo-btn" data-username="demo" data-password="demouser2024">
                             🎯 Demo
                         </button>
                     </div>
@@ -183,6 +183,60 @@
 
                 <div class="notification notification-info">
                     <strong>Info:</strong> Reset link bude odeslán na váš email (pokud byl zadán při registraci).
+                </div>
+            </div>
+        </div>
+
+        <!-- TERMS OF SERVICE MODAL -->
+        <div id="termsModal" class="modal-overlay" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>📋 Podmínky použití a ochrana osobních údajů</h3>
+                    <button class="modal-close" id="closeTermsModal">&times;</button>
+                </div>
+                <div class="modal-content">
+                    <div class="terms-content">
+                        <h4>🎯 O aplikaci</h4>
+                        <p>Toto je <strong>testovací verze</strong> modulární quizové aplikace vytvořené pro vzdělávací a demonstrační účely. Aplikace není dokončená a může obsahovat chyby nebo nedokončené funkcionality.</p>
+                        
+                        <h4>🔒 Ochrana osobních údajů (GDPR)</h4>
+                        <ul>
+                            <li><strong>Zpracování dat:</strong> Zpracováváme pouze údaje nezbytné pro fungování aplikace (uživatelské jméno, email, hesla v zahashované podobě, výsledky kvízů)</li>
+                            <li><strong>Účel:</strong> Data používáme pouze pro poskytování funkcí quizové aplikace a sledování pokroku</li>
+                            <li><strong>Bezpečnost:</strong> Hesla jsou hashována pomocí moderních kryptografických metod</li>
+                            <li><strong>Cookies:</strong> Používáme pouze technické cookies pro udržení přihlášení</li>
+                            <li><strong>Sdílení:</strong> Vaše data nesdílíme s třetími stranami</li>
+                            <li><strong>Práva:</strong> Máte právo na přístup, opravu nebo smazání svých dat</li>
+                        </ul>
+                        
+                        <h4>⚠️ Testovací verze - omezení</h4>
+                        <ul>
+                            <li>Aplikace je ve vývoji a může být kdykoli změněna nebo nedostupná</li>
+                            <li>Některé funkce mohou být nefunkční nebo experimentální</li>
+                            <li>Data mohou být při aktualizacích ztracena nebo resetována</li>
+                            <li>Neručíme za spolehlivost či dostupnost služby</li>
+                        </ul>
+                        
+                        <h4>🛡️ Zabezpečení a odpovědnost</h4>
+                        <ul>
+                            <li>Používejte silná hesla a nesdílejte své přihlašovací údaje</li>
+                            <li>Nepoužívejte citlivé nebo osobní informace v uživatelských jménech</li>
+                            <li>Za bezpečnost vašich přihlašovacích údajů neseme odpovědnost pouze my</li>
+                            <li>Aplikaci používáte na vlastní riziko</li>
+                        </ul>
+                        
+                        <h4>📞 Kontakt</h4>
+                        <p>Pro otázky ohledně ochrany osobních údajů nebo fungování aplikace nás můžete kontaktovat prostřednictvím GitHub repository tohoto projektu.</p>
+                        
+                        <div class="terms-footer">
+                            <p><strong>Poslední aktualizace:</strong> 7. srpna 2025</p>
+                            <p><em>Registrací souhlasíte s těmito podmínkami a se zpracováním osobních údajů v souladu s GDPR.</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" id="declineTerms">Nesouhlasím</button>
+                    <button class="btn btn-primary" id="acceptTerms">Souhlasím s podmínkami</button>
                 </div>
             </div>
         </div>
