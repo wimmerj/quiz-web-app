@@ -31,6 +31,9 @@ class ModularAPIClient {
             // Admin endpoints
             adminUsers: '/api/admin/users',
             adminStats: '/api/admin/statistics',
+            adminTables: '/api/admin/tables',
+            adminQuestions: '/api/admin/questions',
+            adminImport: '/api/admin/import-database',
             
             // Health check
             health: '/api/health'
@@ -371,6 +374,95 @@ class ModularAPIClient {
             authenticated: this.isAuthenticated(),
             timeout: this.timeout
         };
+    }
+    
+    // Table Management Methods
+    async createTable(tableData) {
+        try {
+            const response = await this.request(this.endpoints.adminTables, {
+                method: 'POST',
+                body: JSON.stringify(tableData)
+            });
+            
+            this.safeLog('success', 'Table created successfully', { name: tableData.name });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Table creation failed', error);
+            throw error;
+        }
+    }
+    
+    async updateTable(tableName, updateData) {
+        try {
+            const response = await this.request(`${this.endpoints.adminTables}/${tableName}`, {
+                method: 'PUT',
+                body: JSON.stringify(updateData)
+            });
+            
+            this.safeLog('success', 'Table updated successfully', { name: tableName });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Table update failed', error);
+            throw error;
+        }
+    }
+    
+    async deleteTable(tableName) {
+        try {
+            const response = await this.request(`${this.endpoints.adminTables}/${tableName}`, {
+                method: 'DELETE'
+            });
+            
+            this.safeLog('success', 'Table deleted successfully', { name: tableName });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Table deletion failed', error);
+            throw error;
+        }
+    }
+    
+    async createQuestion(questionData) {
+        try {
+            const response = await this.request(this.endpoints.adminQuestions, {
+                method: 'POST',
+                body: JSON.stringify(questionData)
+            });
+            
+            this.safeLog('success', 'Question created successfully', { table: questionData.table_name });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Question creation failed', error);
+            throw error;
+        }
+    }
+    
+    async getTables() {
+        try {
+            const response = await this.request(this.endpoints.tables, {
+                method: 'GET'
+            });
+            
+            this.safeLog('success', 'Tables loaded successfully', { count: response.length });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Failed to load tables', error);
+            throw error;
+        }
+    }
+    
+    async importDatabase(importData) {
+        try {
+            const response = await this.request(this.endpoints.adminImport, {
+                method: 'POST',
+                body: JSON.stringify(importData)
+            });
+            
+            this.safeLog('success', 'Database imported successfully', { tables: importData.tables?.length });
+            return response;
+        } catch (error) {
+            this.safeLog('error', 'Database import failed', error);
+            throw error;
+        }
     }
 }
 

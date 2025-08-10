@@ -777,45 +777,112 @@ class AdminModule {
         this.setLoading('tablesGrid', true);
         
         try {
-            const demoTables = [
-                {
-                    name: 'Tabulka1',
-                    description: 'Demo tabulka s otázkami z programování',
-                    questionCount: 3,
-                    difficulty: 'medium',
-                    category: 'Demo'
-                },
-                {
-                    name: 'Databáze',
-                    description: 'Demo tabulka s otázkami z databází',
-                    questionCount: 2,
-                    difficulty: 'easy',
-                    category: 'Demo'
+            let allTables = [];
+            
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                try {
+                    // Load tables from API
+                    const apiTables = await window.APIClient.getTables();
+                    
+                    // Convert API format to UI format
+                    allTables = apiTables.map(table => ({
+                        name: table.name,
+                        description: table.description || 'Popis není k dispozici',
+                        questionCount: table.question_count || 0,
+                        difficulty: table.difficulty || 'medium',
+                        category: table.created_by ? 'Custom' : 'System',
+                        createdAt: table.created_at,
+                        createdBy: table.created_by,
+                        isFromAPI: true
+                    }));
+                    
+                    console.log('Loaded tables from API', { count: allTables.length });
+                    
+                } catch (apiError) {
+                    console.error('Failed to load from API, using localStorage fallback:', apiError);
+                    allTables = this.loadTablesFromLocalStorage();
                 }
-            ];
+            } else {
+                // Load from localStorage if API not available
+                allTables = this.loadTablesFromLocalStorage();
+            }
             
-            const customTables = this.loadFromStorage('custom_tables') || {};
-            
+            // Clear and populate grid
             tablesGrid.innerHTML = '';
             
-            // Add demo tables
-            demoTables.forEach(table => {
-                const tableCard = this.createTableCard(table);
-                tablesGrid.appendChild(tableCard);
-            });
-            
-            // Add custom tables
-            Object.entries(customTables).forEach(([name, table]) => {
-                const tableCard = this.createTableCard({ name, ...table });
-                tablesGrid.appendChild(tableCard);
-            });
+            if (allTables.length === 0) {
+                tablesGrid.innerHTML = `
+                    <div class="col-12">
+                        <div class="card bg-dark border-warning">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-warning">Žádné tabulky</h5>
+                                <p class="card-text">Vytvořte novou tabulku nebo importujte existující databázi.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Add all tables
+                allTables.forEach(table => {
+                    const tableCard = this.createTableCard(table);
+                    tablesGrid.appendChild(tableCard);
+                });
+            }
             
         } catch (error) {
             console.error('Failed to load tables data', error);
             this.showNotification('Chyba při načítání tabulek', 'error');
+            
+            // Show error state
+            tablesGrid.innerHTML = `
+                <div class="col-12">
+                    <div class="card bg-danger border-danger">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Chyba při načítání</h5>
+                            <p class="card-text">Nepodařilo se načíst tabulky. Zkuste aktualizovat stránku.</p>
+                            <button class="btn btn-light" onclick="adminModule.loadTablesData()">Zkusit znovu</button>
+                        </div>
+                    </div>
+                </div>
+            `;
         } finally {
             this.setLoading('tablesGrid', false);
         }
+    }
+    
+    loadTablesFromLocalStorage() {
+        // Fallback method for localStorage
+        const demoTables = [
+            {
+                name: 'Tabulka1',
+                description: 'Demo tabulka s otázkami z programování',
+                questionCount: 3,
+                difficulty: 'medium',
+                category: 'Demo'
+            },
+            {
+                name: 'Databáze',
+                description: 'Demo tabulka s otázkami z databází',
+                questionCount: 2,
+                difficulty: 'easy',
+                category: 'Demo'
+            }
+        ];
+        
+        const customTables = this.loadFromStorage('custom_tables') || {};
+        const allTables = [...demoTables];
+        
+        // Add custom tables from localStorage
+        Object.entries(customTables).forEach(([name, table]) => {
+            allTables.push({ 
+                name, 
+                ...table,
+                isFromAPI: false
+            });
+        });
+        
+        console.log('Loaded tables from localStorage', { count: allTables.length });
+        return allTables;
     }
     
     createTableCard(table) {
@@ -1530,7 +1597,7 @@ Informace o systému:
         });
     }
     
-    saveManualTable() {
+    async saveManualTable() {
         const tableName = document.getElementById('tableName').value.trim();
         const tableDescription = document.getElementById('tableDescription').value.trim();
         const tableDifficulty = document.getElementById('tableDifficulty').value;
@@ -1552,16 +1619,13 @@ Informace o systému:
         for (let i = 0; i < questionRows.length; i++) {
             const row = questionRows[i];
             const question = {
-                id: Date.now() + i,
                 question: row.querySelector('.question-text').value.trim(),
                 answer_a: row.querySelector('.answer-a').value.trim(),
                 answer_b: row.querySelector('.answer-b').value.trim(),
                 answer_c: row.querySelector('.answer-c').value.trim(),
                 correct_answer: row.querySelector('.correct-answer').value,
                 difficulty: row.querySelector('.question-difficulty').value,
-                explanation: row.querySelector('.question-explanation').value.trim(),
-                createdAt: new Date().toISOString(),
-                createdBy: this.currentUser
+                explanation: row.querySelector('.question-explanation').value.trim()
             };
             
             // Validate question
@@ -1574,38 +1638,77 @@ Informace o systému:
             questions.push(question);
         }
         
-        // Save table
+        // Prepare API data
         const tableData = {
             name: tableName,
             description: tableDescription,
             difficulty: tableDifficulty,
-            questionCount: questions.length,
-            category: 'Custom',
-            createdAt: new Date().toISOString(),
-            createdBy: this.currentUser,
             questions: questions
         };
         
-        // Check if table already exists
+        try {
+            // Show loading
+            this.showNotification('Vytvářím tabulku...', 'info');
+            
+            // Call API to create table
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                const response = await window.APIClient.createTable(tableData);
+                
+                this.showNotification(`✅ Tabulka "${tableName}" byla vytvořena s ${questions.length} otázkami`, 'success');
+                
+                // Close modal and refresh
+                document.getElementById('manualTableModal').remove();
+                this.loadTablesData();
+                this.loadDashboardData();
+                
+                console.log('Table created via API', { name: tableName, questions: questions.length });
+            } else {
+                // Fallback to localStorage if API not available
+                this.saveTableToLocalStorage(tableData);
+                this.showNotification(`📦 Tabulka "${tableName}" byla uložena lokálně (${questions.length} otázek)`, 'warning');
+                
+                document.getElementById('manualTableModal').remove();
+                this.loadTablesData();
+                this.loadDashboardData();
+            }
+            
+        } catch (error) {
+            console.error('Failed to create table:', error);
+            
+            // Try localStorage fallback
+            try {
+                this.saveTableToLocalStorage(tableData);
+                this.showNotification(`⚠️ Tabulka uložena lokálně (server nedostupný)`, 'warning');
+                
+                document.getElementById('manualTableModal').remove();
+                this.loadTablesData();
+                this.loadDashboardData();
+            } catch (fallbackError) {
+                this.showNotification('Chyba při ukládání tabulky', 'error');
+                console.error('Fallback save failed:', fallbackError);
+            }
+        }
+    }
+    
+    saveTableToLocalStorage(tableData) {
+        // Fallback method for localStorage
         const existingTables = this.loadFromStorage('custom_tables') || {};
-        if (existingTables[tableName]) {
-            this.showNotification('Tabulka s tímto názvem již existuje', 'error');
-            return;
+        
+        if (existingTables[tableData.name]) {
+            throw new Error('Tabulka s tímto názvem již existuje');
         }
         
-        // Save table and questions
-        existingTables[tableName] = tableData;
+        const tableWithMeta = {
+            ...tableData,
+            category: 'Custom',
+            createdAt: new Date().toISOString(),
+            createdBy: this.currentUser,
+            questionCount: tableData.questions.length
+        };
+        
+        existingTables[tableData.name] = tableWithMeta;
         this.saveToStorage('custom_tables', existingTables);
-        this.saveToStorage(`questions_${tableName}`, questions);
-        
-        this.showNotification(`Tabulka "${tableName}" byla vytvořena s ${questions.length} otázkami`, 'success');
-        
-        // Close modal and refresh
-        document.getElementById('manualTableModal').remove();
-        this.loadTablesData();
-        this.loadDashboardData();
-        
-        console.log('Table created', { name: tableName, questions: questions.length });
+        this.saveToStorage(`questions_${tableData.name}`, tableData.questions);
     }
     
     showDatabaseImport() {
@@ -1779,7 +1882,7 @@ Informace o systému:
         });
     }
     
-    importSelectedTables() {
+    async importSelectedTables() {
         const selectedTables = [];
         document.querySelectorAll('#availableTables input[type="checkbox"]:checked').forEach(cb => {
             selectedTables.push(cb.dataset.table);
@@ -1790,15 +1893,81 @@ Informace o systému:
             return;
         }
         
-        // Simulate import process
+        try {
+            // Show loading
+            this.showNotification(`Importuji ${selectedTables.length} tabulek...`, 'info');
+            
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                // Prepare data for API import
+                const importData = {
+                    filename: 'database_import',
+                    tables: {}
+                };
+                
+                // Create demo data for each selected table for API import
+                selectedTables.forEach(tableName => {
+                    const demoQuestions = [
+                        {
+                            question: `Importovaná otázka z tabulky ${tableName}`,
+                            answer_a: 'Možnost A',
+                            answer_b: 'Možnost B', 
+                            answer_c: 'Možnost C',
+                            correct_answer: 'A',
+                            difficulty: 'medium',
+                            explanation: `Tato otázka byla importována z ${tableName}`
+                        }
+                    ];
+                    
+                    importData.tables[tableName] = {
+                        name: tableName,
+                        description: `Importována z databáze`,
+                        difficulty: 'medium',
+                        questions: demoQuestions
+                    };
+                });
+                
+                const response = await window.APIClient.importDatabase(importData);
+                
+                this.showNotification(`✅ Import dokončen: ${response.imported || selectedTables.length} tabulek naimportováno`, 'success');
+                
+                // Close modal and refresh
+                document.getElementById('databaseImportModal').remove();
+                this.loadTablesData();
+                this.loadDashboardData();
+                
+                console.log('Import completed via API', { imported: selectedTables.length });
+            } else {
+                // Fallback to localStorage simulation
+                this.simulateTablesImportToLocal(selectedTables);
+            }
+            
+        } catch (error) {
+            console.error('Failed to import via API:', error);
+            
+            // Try localStorage fallback
+            try {
+                this.simulateTablesImportToLocal(selectedTables);
+                this.showNotification(`⚠️ Tabulky importovány lokálně (server nedostupný)`, 'warning');
+            } catch (fallbackError) {
+                this.showNotification('Chyba při importu tabulek', 'error');
+                console.error('Fallback import failed:', fallbackError);
+            }
+        }
+    }
+    
+    simulateTablesImportToLocal(selectedTables) {
+        // Fallback method for localStorage
         selectedTables.forEach((tableName, index) => {
             setTimeout(() => {
                 this.simulateTableImport(tableName);
             }, index * 1000);
         });
         
-        this.showNotification(`Spouštím import ${selectedTables.length} tabulek...`, 'info');
         document.getElementById('databaseImportModal').remove();
+        this.loadTablesData();
+        this.loadDashboardData();
+        
+        console.log('Import completed locally', { imported: selectedTables.length });
     }
     
     simulateTableImport(tableName) {
@@ -2007,30 +2176,57 @@ Informace o systému:
         console.log('Table exported', { tableName, questionCount: questions.length });
     }
     
-    deleteTable(tableName) {
+    async deleteTable(tableName) {
         if (!confirm(`Opravdu chcete smazat tabulku "${tableName}" a všechny její otázky?`)) {
             return;
         }
         
         try {
-            // Remove from custom tables
-            const tables = this.loadFromStorage('custom_tables') || {};
-            delete tables[tableName];
-            this.saveToStorage('custom_tables', tables);
+            // Show loading
+            this.showNotification('Mažu tabulku...', 'info');
             
-            // Remove questions
-            localStorage.removeItem(`quiz_questions_${tableName}`);
-            
-            this.showNotification(`Tabulka "${tableName}" byla smazána`, 'success');
-            this.loadTablesData();
-            this.loadDashboardData();
-            
-            console.log('Table deleted', { tableName });
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                // Delete via API
+                await window.APIClient.deleteTable(tableName);
+                
+                this.showNotification(`✅ Tabulka "${tableName}" byla smazána`, 'success');
+                this.loadTablesData();
+                this.loadDashboardData();
+                
+                console.log('Table deleted via API', { tableName });
+            } else {
+                // Fallback to localStorage
+                this.deleteTableFromLocalStorage(tableName);
+                this.showNotification(`📦 Tabulka "${tableName}" byla smazána lokálně`, 'warning');
+            }
             
         } catch (error) {
             console.error('Delete error:', error);
-            this.showNotification('Chyba při mazání tabulky', 'error');
+            
+            // Try localStorage fallback
+            try {
+                this.deleteTableFromLocalStorage(tableName);
+                this.showNotification(`⚠️ Tabulka smazána lokálně (server nedostupný)`, 'warning');
+            } catch (fallbackError) {
+                this.showNotification('Chyba při mazání tabulky', 'error');
+                console.error('Fallback delete failed:', fallbackError);
+            }
         }
+    }
+    
+    deleteTableFromLocalStorage(tableName) {
+        // Fallback method for localStorage
+        const tables = this.loadFromStorage('custom_tables') || {};
+        delete tables[tableName];
+        this.saveToStorage('custom_tables', tables);
+        
+        // Remove questions
+        localStorage.removeItem(`quiz_questions_${tableName}`);
+        
+        this.loadTablesData();
+        this.loadDashboardData();
+        
+        console.log('Table deleted locally', { tableName });
     }
     
     manageTableQuestions(tableName) {

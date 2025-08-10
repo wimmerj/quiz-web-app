@@ -642,6 +642,340 @@ def monica_evaluate():
         }), 200
 
 # ===============================================
+# TABLE MANAGEMENT API (Admin Only)
+# ===============================================
+
+@app.route('/api/admin/tables', methods=['POST'])
+@require_auth
+@require_admin
+def create_table():
+    """Create a new table with questions"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+            
+        table_name = data.get('name', '').strip()
+        description = data.get('description', '')
+        difficulty = data.get('difficulty', 'medium')
+        questions = data.get('questions', [])
+        
+        if not table_name:
+            return jsonify({'error': 'Table name is required'}), 400
+            
+        if not questions:
+            return jsonify({'error': 'At least one question is required'}), 400
+        
+        # Check if table already exists
+        existing_questions = Question.query.filter_by(table_name=table_name).first()
+        if existing_questions:
+            return jsonify({'error': 'Table with this name already exists'}), 400
+        
+        # Validate questions
+        created_questions = []
+        for i, q_data in enumerate(questions):
+            if not all(key in q_data for key in ['question', 'answer_a', 'answer_b', 'answer_c', 'correct_answer']):
+                return jsonify({'error': f'Question {i+1} is missing required fields'}), 400
+                
+            if q_data['correct_answer'] not in ['A', 'B', 'C']:
+                return jsonify({'error': f'Question {i+1} has invalid correct answer'}), 400
+        
+        # Create questions
+        for q_data in questions:
+            question = Question(
+                table_name=table_name,
+                question_text=q_data['question'],
+                option_a=q_data['answer_a'],
+                option_b=q_data['answer_b'], 
+                option_c=q_data['answer_c'],
+                correct_answer=q_data['correct_answer'],
+                explanation=q_data.get('explanation', ''),
+                difficulty=q_data.get('difficulty', difficulty),
+                created_at=datetime.utcnow()
+            )
+            db.session.add(question)
+            created_questions.append(question)
+        
+        # Commit all changes
+        db.session.commit()
+        
+        # Log the action
+        log_entry = SystemLog(
+            user_id=g.current_user.id,
+            action='create_table',
+            details=f'Created table "{table_name}" with {len(questions)} questions',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent', ''),
+            severity='info'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        return jsonify({
+            'message': f'Table "{table_name}" created successfully',
+            'table_name': table_name,
+            'questions_count': len(created_questions),
+            'created_at': datetime.utcnow().isoformat()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to create table: {str(e)}'}), 500
+
+@app.route('/api/admin/tables/<table_name>', methods=['PUT'])
+@require_auth
+@require_admin
+def update_table(table_name):
+    """Update table metadata and questions"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        new_name = data.get('name', table_name).strip()
+        description = data.get('description', '')
+        difficulty = data.get('difficulty', 'medium')
+        
+        # Get existing questions
+        existing_questions = Question.query.filter_by(table_name=table_name).all()
+        
+        if not existing_questions:
+            return jsonify({'error': 'Table not found'}), 404
+        
+        # Update table name if changed
+        if new_name != table_name:
+            # Check if new name already exists
+            name_conflict = Question.query.filter_by(table_name=new_name).first()
+            if name_conflict:
+                return jsonify({'error': 'Table with new name already exists'}), 400
+                
+            # Update all questions with new table name
+            for question in existing_questions:
+                question.table_name = new_name
+        
+        # Update default difficulty for questions if provided
+        if 'questions' in data:
+            questions_data = data['questions']
+            for i, q_data in enumerate(questions_data):
+                if i < len(existing_questions):
+                    question = existing_questions[i]
+                    if 'difficulty' in q_data:
+                        question.difficulty = q_data['difficulty']
+        
+        db.session.commit()
+        
+        # Log the action
+        log_entry = SystemLog(
+            user_id=g.current_user.id,
+            action='update_table',
+            details=f'Updated table from "{table_name}" to "{new_name}"',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent', ''),
+            severity='info'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        return jsonify({
+            'message': f'Table updated successfully',
+            'old_name': table_name,
+            'new_name': new_name,
+            'questions_count': len(existing_questions),
+            'updated_at': datetime.utcnow().isoformat()
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to update table: {str(e)}'}), 500
+
+@app.route('/api/admin/tables/<table_name>', methods=['DELETE'])
+@require_auth
+@require_admin
+def delete_table(table_name):
+    """Delete a table and all its questions"""
+    try:
+        # Get all questions for this table
+        questions = Question.query.filter_by(table_name=table_name).all()
+        
+        if not questions:
+            return jsonify({'error': 'Table not found'}), 404
+        
+        questions_count = len(questions)
+        
+        # Delete all user answers for these questions first
+        question_ids = [q.id for q in questions]
+        UserAnswer.query.filter(UserAnswer.question_id.in_(question_ids)).delete(synchronize_session=False)
+        
+        # Delete all questions
+        Question.query.filter_by(table_name=table_name).delete()
+        
+        db.session.commit()
+        
+        # Log the action
+        log_entry = SystemLog(
+            user_id=g.current_user.id,
+            action='delete_table',
+            details=f'Deleted table "{table_name}" with {questions_count} questions',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent', ''),
+            severity='warning'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        return jsonify({
+            'message': f'Table "{table_name}" deleted successfully',
+            'table_name': table_name,
+            'questions_deleted': questions_count,
+            'deleted_at': datetime.utcnow().isoformat()
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to delete table: {str(e)}'}), 500
+
+@app.route('/api/admin/questions', methods=['POST'])
+@require_auth
+@require_admin
+def create_question():
+    """Add a single question to an existing table"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        # Required fields
+        required_fields = ['table_name', 'question', 'answer_a', 'answer_b', 'answer_c', 'correct_answer']
+        for field in required_fields:
+            if field not in data or not str(data[field]).strip():
+                return jsonify({'error': f'Field "{field}" is required'}), 400
+        
+        if data['correct_answer'] not in ['A', 'B', 'C']:
+            return jsonify({'error': 'correct_answer must be A, B, or C'}), 400
+        
+        # Create new question
+        question = Question(
+            table_name=data['table_name'],
+            question_text=data['question'],
+            option_a=data['answer_a'],
+            option_b=data['answer_b'],
+            option_c=data['answer_c'],
+            correct_answer=data['correct_answer'],
+            explanation=data.get('explanation', ''),
+            difficulty=data.get('difficulty', 'medium'),
+            created_at=datetime.utcnow()
+        )
+        
+        db.session.add(question)
+        db.session.commit()
+        
+        # Log the action
+        log_entry = SystemLog(
+            user_id=g.current_user.id,
+            action='create_question',
+            details=f'Added question to table "{data["table_name"]}"',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent', ''),
+            severity='info'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Question created successfully',
+            'question_id': question.id,
+            'table_name': question.table_name,
+            'created_at': question.created_at.isoformat()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to create question: {str(e)}'}), 500
+
+@app.route('/api/admin/import-database', methods=['POST'])
+@require_auth
+@require_admin 
+def import_database():
+    """Import questions from uploaded database file"""
+    try:
+        # This is a placeholder for database import functionality
+        # In a real implementation, you would:
+        # 1. Parse the uploaded file (SQLite, JSON, etc.)
+        # 2. Extract table structures and questions
+        # 3. Validate the data
+        # 4. Insert into the database
+        
+        # For now, we'll simulate this process
+        data = request.get_json()
+        
+        if not data or 'tables' not in data:
+            return jsonify({'error': 'No tables data provided'}), 400
+        
+        imported_tables = []
+        total_questions = 0
+        
+        for table_info in data['tables']:
+            table_name = table_info.get('name', '')
+            questions = table_info.get('questions', [])
+            
+            if not table_name or not questions:
+                continue
+                
+            # Check if table already exists
+            existing = Question.query.filter_by(table_name=table_name).first()
+            if existing:
+                continue  # Skip existing tables
+            
+            # Create questions for this table
+            for q_data in questions:
+                if not all(key in q_data for key in ['question', 'answer_a', 'answer_b', 'answer_c', 'correct_answer']):
+                    continue
+                    
+                question = Question(
+                    table_name=table_name,
+                    question_text=q_data['question'],
+                    option_a=q_data['answer_a'],
+                    option_b=q_data['answer_b'],
+                    option_c=q_data['answer_c'],
+                    correct_answer=q_data['correct_answer'],
+                    explanation=q_data.get('explanation', ''),
+                    difficulty=q_data.get('difficulty', 'medium'),
+                    created_at=datetime.utcnow()
+                )
+                db.session.add(question)
+                total_questions += 1
+            
+            imported_tables.append(table_name)
+        
+        db.session.commit()
+        
+        # Log the action
+        log_entry = SystemLog(
+            user_id=g.current_user.id,
+            action='import_database',
+            details=f'Imported {len(imported_tables)} tables with {total_questions} questions',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent', ''),
+            severity='info'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        return jsonify({
+            'message': f'Successfully imported {len(imported_tables)} tables',
+            'imported_tables': imported_tables,
+            'total_questions': total_questions,
+            'imported_at': datetime.utcnow().isoformat()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to import database: {str(e)}'}), 500
+
+# ===============================================
 # STARTUP & MAIN
 # ===============================================
 
