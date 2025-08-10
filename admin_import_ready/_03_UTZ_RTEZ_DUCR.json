@@ -1,0 +1,1782 @@
+{
+  "name": "_03_UTZ_RTEZ_DUCR",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (222 otázek)",
+  "questions": [
+    {
+      "question": "01. Musí být lana (kolejnicové propojky) izolovaná?",
+      "answer_a": "Ano, musí být izolovaná z výroby",
+      "answer_b": "Nemusí být izolovaná",
+      "answer_c": "Nezáleží, zda jsou izolována z výroby nebo dodatečně, důležité je, že musí být pokryta izolací.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2614 ed.3, čl.8.6, str.15) Lanová propojení musí být izolována. Použití dodatečných návlekových izolací se nedoporučuje a při použití lan z korodujících materiálů se zakazuje. Důvodem je možné urychlené zkorodování ocelového materiálu ve vlhku, uvnitř návlekové trubice. +Kolejnicové propojky.PDF"
+    },
+    {
+      "question": "02. Čím lze nahradit lana v kolejišti?",
+      "answer_a": "ne hliníkem, jen mědí nebo železem o průměru 5, 9, 14 a 20 mm.",
+      "answer_b": "ne Al, jen mědí (Cu) nebo železem (Fe) o průměru 10, 12, 14 a 20 mm.",
+      "answer_c": "Hliníkem (Al), (Cu) nebo železem (Fe) o průměru 6, 9, 14 a 20 mm.",
+      "correct_answer": "A",
+      "explanation": "(Předpis SŽDC S3 XIV (14.), K.VI(6).80,4.znak - Železniční svršek) U ocelových (Fe) vodičů jmenovitý průměr v mm (5 - drát, 9 - lanko, 14 a 20 mm - lano); u měděných (Cu) vodičů průřezová plocha jednoho vodiče v mm2  (16, 50, 70, 95 mm2). + Kolejnicové propojky.PDF"
+    },
+    {
+      "question": "03. Jaká ochrana se používá pro světelná návěstidla?",
+      "answer_a": "krytí min. IP53, Ochrana před trakcí: izolační pevnost živých částí proti kostře 4 kV",
+      "answer_b": "el. oddělení, krytí IPX4",
+      "answer_c": "el. oddělení, krytí IP44",
+      "correct_answer": "A",
+      "explanation": "(TNŽ 34 2610 -> ČSN 33 0330). Min IP53, prostředí venkovní a otřesy v mírném klimatu, na nehořlavém podkladu. Umožňuje připojení ukolejňovacího vodiče a místo pro připevnění průrazky. Dále TNŽ 2606 (PORUCHY); ČSN 34 2600 (Ochrana před Ud); Ochrana živých částí: krytím nebo izolací. Ochrana než.: izolací; ČSN 34 2040 + 34 1500 (Ochrana před trakcí). Náv. na elektrizovaných tratích musí mít izolační pevnost živých částí proti kostře 4 kV, bez ohledu na způsob ochrany před Ud. IS živých částí mezi sebou a mezi kostrou nesmí při odpojeném kabelu klesnout pod 60 MOhm."
+    },
+    {
+      "question": "04. Jaká ochrana se používá pro ochranu výstražníků?",
+      "answer_a": "krytí min. IP53; ochrana malým napětím",
+      "answer_b": "krytí min. IPX4; elektrické oddělení",
+      "answer_c": "krytí min. IP44; SELV a FELV",
+      "correct_answer": "A",
+      "explanation": "(GateSWing AZD-97.PDF) El. pevnost mezi živými částmi a kostrou: 4 kV a mezi galvanicky oddělenými obvody 500 V; Teplotní rozsah –40 °C až +70 °C; Krytí: IP 53; Napájení žárovky jednotlivých světel: 12 V (–25 %), LED 9–24 V (–25 %), akustická výstraha 24 V (+25 %, –10 %). Dále (ČSN 34 2650) Vstupní napětí pro systém PZZ-K se odebírá z napájecího nestabilizovaného DC systému, který tvoří baterie o U=24 V a vhodný řízený dobíječ. Napájení žárovek návěstních svítilen výstražníků je zajištěno pomocí elektronického doplňku SMN01 (SMN01.1) tvořeného dvojicí konvertorů DC napětí na svých výstupních svorkách zajišťujících dvě stabilizovaná nastavitelná DC napětí v rozsahu 12 V až 18 V. NŽ ve skříni výstražníku vyhovuje i pro klimatickou třídu T2 a při umístění v buňce (reléový domek) bez regulace teploty pro klimatické třídy T1 a T2 (– 25°C až +70°C pro IZKP+KDK a ve skříni výstražníku –40°C až +70°C, relativní vlhkost až 100 %). Prvky NŽ, IZKP a KDK vyhovují z hlediska znečištění úrovni nízké 4C1, 4B1, 4S1, z hlediska vibrací a rázů pro umístění ve vzdálenost větší než 3 m od kolejnice. Výstražník s NŽ, reléová skříň nebo reléový domek s IZKP+KDK se umísťují do vzdálenosti min. 4 m od osy krajních kolejnic, tj. na vzdálenost vždy větší než 3 m od kolejnice. Z hlediska EMC obvody náhrady žárovky pozitivního signálu výkonovými LED splňují požadavky ČSN EN 50121‐4."
+    },
+    {
+      "question": "05. Musí být ukolejňovací lana pokryta izolací?",
+      "answer_a": "Jen na trati se stejnosměrnou trakční soustavou.",
+      "answer_b": "Jen na trati se střídavou trakční soustavou.",
+      "answer_c": "Na všech tratích s AC/DC trakčním vedením.",
+      "correct_answer": "A",
+      "explanation": "(Předpis SŽDC S3 XIV (14.), K.V(5) - Železniční svršek) Vodič pro individuální ukolejnění: Ocelový pozinkovaný drát o průměru >10 mm. Na trati s DC trakční soustavou musí být vodič izolován od země (navlečením do trubky z izolačního materiálu..)."
+    },
+    {
+      "question": "06. Jaký průřez se používá pro ochranné pospojování?",
+      "answer_a": "Cu 6 mm2 / Al 16 mm2 / ocel 50 mm2",
+      "answer_b": "Cu 2,5 mm2 / Al 16 mm2 / ocel 50 mm2",
+      "answer_c": "Cu 6 mm2 / Al 16 mm2 / ocel se nesmí používat",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, čl.544)"
+    },
+    {
+      "question": "07. Jaká může být max. hodnota odporu ochranného vodiče PE, u prodlužovacího přívodu? (Měřeno mezi ochrannou zdířkou vidlice a ochr. kontaktem na druhém konci.)",
+      "answer_a": "0,2 ohmu při délce do 3m, k tomu se připočte 0,1 ohmu na každé další 3 m. V žádném případě však nesmí být překročena hodnota 1 ohm",
+      "answer_b": "0,2 ohmu při délce do 3m, k tomu se připočte 0,1 ohmu na každé další 3 m. V žádném případě však nesmí být překročena hodnota 2 ohm",
+      "answer_c": "0,1 ohmu při délce do 3m, k tomu se připočte 0,1 ohmu na každé další 3 m. V žádném případě však nesmí být překročena hodnota 2 ohm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1600 ed.2, čl.6.4.3) Ochranný vodič musí být spolehlivé připojen. Odpor ochranného vodiče, měřený mezi ochrannou zdířkou vidlice a přístupnými vodivými neživými částmi spojenými s ochranným vodičem (u prodlužovacích a odpojitelných přívodů mezi ochrannou zdířkou vidlice a ochranným kontaktem na druhém konci), nesmí být větší než 0,2 Ohm při délce přívodu do 3 m. K tomuto odporu se připočte 0,1 Ohm na každé další 3 m délky přívodu. V žádném případě však nesmí být překročena hodnota 1 Ohm. Během měření se doporučuje s kabelem pohybovat, a to zejména u konců, a kontroluje se, jestli přitom naměřená hodnota nevykazuje výrazné změny.(Dříve ed.1, čl.5.4)"
+    },
+    {
+      "question": "08. Mohou mít baterie Pb a NiFe společné nářadí a nádobí?",
+      "answer_a": "Společné baterie Olovnaté Pb (kyselina sírová) + Nikl-železné Nife (hydroxid draselný) - nesmí mít společné nářadí, ani nádobí.",
+      "answer_b": "Společné baterie Olovnaté Pb (kyselina sírová) + Nikl-železné Nife (hydroxid draselný) - můžou mít společné nářadí i nádobí.",
+      "answer_c": "Společné baterie Pb a Nife, můžou i nemusí mít společné nářadí i nádobí. Jejich elektrolyt je stejný a nemůže dojít k žádným nežádoucím reakcím.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 50272-2-X-, čl.10.5 nebo nová ČSN EN 62485-2, čl.9.6) Z důvodu chemické reakce kyseliny sírové a hydroxidu draselného, by mohlo dojít, jak k poškození baterií (například nalití nesprávného elektrolytu do jiné baterie), tak k úrazu osob, které baterie udržují. Olověné a nikl-kadmiové a nikl-metalhydridové baterie, musí být pokud možno umístěny v oddělených prostorech. Jestliže umístěny v jednom prostoru, musí být přijata preventivní opatření k zabránění záměny nářadí používaného při údržbě a vzájemné kontaminaci elektrolytu a vody pro doplňování."
+    },
+    {
+      "question": "09. Musí být označeny póly baterie?",
+      "answer_a": "Ano, musí být označeny oba póly.",
+      "answer_b": "Nemusí, musí být označen pól \"+\".",
+      "answer_c": "Nemusí, musí být označen pól \"-\".",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN IEC 60086-1 ed.6, čl.4.1.6.1) Ano. Norma pojednává pouze o kladném pólu. Dále (ČSN EN 62485-1, čl.11) Články, baterie a bateriové sady musí být opatřeny značením, např. polarity a plastickým značením, štítky."
+    },
+    {
+      "question": "10. Na jakou hodnotu snížíme měřicí napětí a jaký musí být nejnižší IS u měření rozvodu s přepěťovou ochranou?",
+      "answer_a": "Snížíme napětí na 250V a IS musí být min. 1 MOhm",
+      "answer_b": "Při snížení napětí na 250V musí být 0,5 MOhmu.",
+      "answer_c": "Při snížení napětí na 100V musí být 0,5 MOhmu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6 ed.2, čl.6.4.3.3) Jestliže je pravděpodobné, že výsledky měření mohou být ovlivněny přepěťovými ochranami (SPD) nebo jinými přístroji, nebo jestliže takové přístroje mohou být měřením poškozeny, musí se tyto přístroje před měřením izolačního odporu odpojit. Pokud však odpojeni těchto přístrojů není prakticky proveditelné (např. v případě pevných zásuvek obsahujících přepěťově ochrany), je možno zkušební napětí pro takové obvody snížit na DC 250 V, ale izolační odpor musí vykazovat hodnotu nejméně 1 MOhm."
+    },
+    {
+      "question": "11. Jaké požadavky jsou na ochranu při poruše u obvodu FELV, jestliže je vstupní obvod chráněn automatickým odpojením od zdroje?",
+      "answer_a": "Neživé části zařízení obvodu FELV musí být chráněny buď základní izolací, odpovídající jmenovitému napětí vstupního obvodu nebo přepážkami, nebo kryty.",
+      "answer_b": "Zdroj obvodu FELV musí být ochranný oddělovací transformátor s dvojitou izolací. Jestliže zdroj obvodu FELV nemá dvojitou (nebo jí rovnocennou) izolaci, považuje se výstupní obvod za pokračování vstupního obvodu a musí být chráněn ochranným opatřením, které je uplatněno na vstupní obvod.",
+      "answer_c": "Neživé části zařízení obvodu FELV musí být spojeny s ochranným vodičem vstupního obvodu.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.411.7) FELV (Functional Extra Low Voltage): Nejde o druh ochrany bezpečným napětím. Obvod sice pracuje s napětím spadajícím do kategorie MN, ale nikoliv z bezp., ale z funkčních důvodů. Živé části obvodu FELV musí být chráněny kryty, přepážkami, nebo izolací. Ochrana při poruše se provádí: spojením neživých částí obvodu s ochranným vodičem, přičemž se předpokládá, že vstupní obvod je chráněn automatickým odpojením od zdroje, což je důvod, proč je FELV dnes přiřazeno k ochraně automatickým odpojením od zdroje; zdrojem malého napětí, kterým je transformátor zajišťující alespoň jednoduché oddělení vinutí vstupní strany od strany výstupní."
+    },
+    {
+      "question": "12. Jak musí být provedeno napájení zab.zař.?",
+      "answer_a": "Musí být ze dvou zdrojů.",
+      "answer_b": "Nesmí být z náhradních zdrojů.",
+      "answer_c": "Musí mít alespoň dva náhradní zdroje v případě výpadku hlavní sítě.",
+      "correct_answer": "A",
+      "explanation": "(TNŽ 34 2620, čl.19 - napájení) 19.1.3 Napájení zab.zař. musí být zajištěno alespoň ze dvou nezávislých zdrojů, z nichž jeden je označen jako základní a ostatní jako náhradní. Dále také nap. PZZ dle (TNŽ 34 2650 ed.2, čl.5.3.11)."
+    },
+    {
+      "question": "13. Jaký musí být min. průřez závitu šroubu ochranné svorky v místě připojení ochranného vodiče el. předmětu, se jmenovitým proudem nad hodnotu 63A?",
+      "answer_a": "U vnitřního i vnějšího místa připojení ochranného vodiče je to M6.",
+      "answer_b": "U vnitřního místa připojení ochranného vodiče M6, u vnějšího místa připojení ochranného vodiče M8.",
+      "answer_c": "U vnitřního místa připojení ochranného vodiče M4, u vnějšího místa připojení ochranného vodiče M6.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0360 ed.2, čl.5, tab.1, str.9) 63A až 100A: min. průměr závitu: M6; rozsah jmenovitých průřezů ochranných vodičů: 10 - 25 mm2. (dále dle 33 2000-4-41 tab.41N0: U VN pozinkovaný ocelový pásek 50mm2, Cu drát 6mm"
+    },
+    {
+      "question": "14. Za jakých podmínek lze při revizi místo měření Zs, provést pouze ověření spojitosti ochranných vodičů?",
+      "answer_a": "Pokud je možno provést výpočet Zs nebo odporu ochranných vodičů a pokud uspořádání instalace umožňuje ověření délky a průřezu vodičů.",
+      "answer_b": "Pokud je možno provést výpočet Zs a pokud uspořádání instalace umožňuje ověření délky a průřezu vodičů. Vyhovující stav musí být ověřen měřením odporu ochranných vodičů. -špatně",
+      "answer_c": "Pokud je možno provést výpočet Zs od ochranného prvku jistícího příslušný obvod ke spotřebiči a pokud uspořádání instalace umožňuje ověření délky a průřezu vodičů mezi ochranným prvkem a spotřebičem. Vyhovující stav musí být ověřen měřením odporu ochranných vodičů.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-6 ed.2, čl.6.4.3.7.3) Předtím, než se provede měření impedance poruchové smyčky, je třeba: Zkouška el. spojitosti a tím především spojitosti ochranného vodiče. Provádí se z bezpečnostních důvodů. Toto měření spojitosti však není třeba provádět, je-li měřicí přístroj vybaven automatickou kontrolou dotykového napětí vyvolaného měřicím procesem zajišťujícím automatické přerušení měřicího procesu a hlášení závady, dosáhne-li napětí nebezpečné hodnoty. Tím se považuje zkouška el. spojitosti za provedenou. Výpočet impedance poruchové smyčky, je zásadní pro zajištění, že v případě poruchy bude proud správně omezen a ochranné zař. bude řádně fungovat. Dále podmínka umožňuje ověření fyzických vlastností instalace, jako jsou délka a průřez ochranných vodičů, což jsou klíčové parametry pro určení impedance smyčky. Nakonec zdůrazňuje potřebu ověření vyhovujícího stavu měřením odporu ochranných vodičů, což je praktický způsob, jak zajistit kontinuitu a integritu ochranného vedení."
+    },
+    {
+      "question": "15. Jak se označuje el. zař. sloužící k výrobě, přeměně, přenosu a rozvodu el. energie a k její přeměně v práci nebo jiný druh energie?",
+      "answer_a": "Jednoduchá zařízení",
+      "answer_b": "Silnoproudá zařízení",
+      "answer_c": "Silová zařízení",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 0010 ed.2, čl.4.1.1) / tato otázka byla formulována dost jinak. /"
+    },
+    {
+      "question": "16. Jak nazýváme prostory (prostředí), kde hrozí stálé nebezpečí úrazu el. proudem?",
+      "answer_a": "Prostory nebezpečné",
+      "answer_b": "Prostory normální",
+      "answer_c": "Zvlášť nebezpečné",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-4-41 ed.2-X-) Může být dle kritérií i \"Nebezpečné\"."
+    },
+    {
+      "question": "17. Jakou musí mít ochranu venkovní prvky zab.zař. na přejezdu?",
+      "answer_a": "kombinace SELV, automatické odpojení a el. oddělení",
+      "answer_b": "pouze SELV",
+      "answer_c": "automatické odpojení a el. oddělení",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.6.1.2 až 6.2.3) PZS před místem el. oddělení od veřejné distribuční sítě, musí mít stejné ochranné opatření, jaké je u lokální distribuční sítě, na kterou je PZS napojeno. Doporučuje se za místem el. oddělení od veřejné distribuční sítě použít některé z následujících ochranných opatření: dvojitou nebo zesílenou izolaci (zařízení třídy ochrany II); automatické odpojení vybraných částí obvodů od zdroje v síti IT; ochranu malým napětím SELV. U neživých částí výstražníků a pohonů závor se provádí ochrana před nebezpečným dotykem neživých částí podle použitého způsobu ochrany v ČSN 33 2000-4-41, čl.6.2.2."
+    },
+    {
+      "question": "18. Jak je řešena ochrana v domku přejezdu před oddělovacím transformátorem?",
+      "answer_a": "Musí být řešena stejně jako přípojka. Je-li přípojka v TN, tak automatické odpojení musí být také v síti TN.",
+      "answer_b": "Musí být řešena rozdílně než přípojka, z důvodu zachování bezpečnosti rozdílnými ochranami. Je-li přípojka v TN, tak automatické odpojení musí být např. v IT.",
+      "answer_c": "Ochrana domku PZZ před oddělovacím transformátorem není důležitá, důležité je řešení za oddělovacím transformátorem, které musí být provedeno dle ČSN 33 2000-4-41.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.6.2.1) PZS před místem el. oddělení od veřejné distribuční sítě, musí mít stejné ochranné opatření, jaké je u lokální distribuční sítě, na kterou je PZS napojeno."
+    },
+    {
+      "question": "19. Jak je řešeno ukolejnění v POTV [Prostor ohrožení trolejovým vedením]?",
+      "answer_a": "Buď individuálně nebo skupinově",
+      "answer_b": "Vždy individuálně",
+      "answer_c": "Pouze skupinově",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 1500 ed.2, čl.5.4.3 + 5.4.5.2) Ochrana ukolejněním spočívá ve vodivém spojení neživých částí TV a ostatních vodivých částí v POTV se zpětným kolejnicovým vedením, při současném zajištění automatického odpojení vadné části nebo úseku TV od zdroje. Způsoby ukolejnění jsou buď individuální nebo skupinové. Pokud je celková délka ukolejňovacího vodiče od chráněné konstrukce k místu připojení menší než 50 m, dotyková napětí se nezjišťují. Ukolejnění může být připojeno buď přímo nebo nepřímo (oba typy přes průrazku). Pro připojení chráněné konstrukce se použije vodič s vodivostí nejméně plného drátu FeZn o průměru 10 mm. U drah s AC i DC trakční soustavou s dvoupásovými kolejovými obvody, musí být ochranný (ukolejňovací) vodič izolován proti zemi. Uložení ochranného vodiče musí umožňovat kontrolu jeho celistvosti. Na tratích s jednopásovými kolejovými obvody se ukolejňovací vodič připojí na kolejnici vedoucí zpětný trakční proud."
+    },
+    {
+      "question": "20. Čím mohou být nahrazena Cu lana u KO a za jakých podmínek?",
+      "answer_a": "Hliníkovými",
+      "answer_b": "U KO do 500 Hz – Ocelovými, vodivost průřezu musí být stejná jako původní měď",
+      "answer_c": "Al i Fe, vodivost průřezu musí být stejná jako původní Cu",
+      "correct_answer": "B",
+      "explanation": "(ČSN 34 2613 ed.3, čl.7.1.9 + Kolejnicové propojky.PDF) U KO se signálním kmitočtem nižším než 500 Hz, mohou být měděná lanová propojení a propojky nahrazeny ocelovými lanovými propojeními a propojkami, alespoň o stejné vodivosti nebo způsobem stanoveným provozovatelem dráhy."
+    },
+    {
+      "question": "21. Jsou-li v akumulátorovně uloženy baterie olověné Pb a NiCd musí být zabráněno",
+      "answer_a": "záměně pomůcek (nádoby s elektrolytem)",
+      "answer_b": "záměně baterií",
+      "answer_c": "Přisunu čerstvého vzduchu, z důvodu možného vzplanutí díky kyslíku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 50272-2-X-, čl.10.5 nebo ČSN EN 62485-2, čl.9.6) Z důvodu chemické reakce kyseliny sírové a hydroxidu draselného, by mohlo dojít, jak k poškození baterií (například nalití nesprávného elektrolytu do jiné baterie), tak k úrazu osob, které baterie udržují. Olověné a nikl-kadmiové a nikl-metalhydridové baterie, musí být pokud možno umístěny v oddělených prostorech. Jestliže umístěny v jednom prostoru, musí být přijata preventivní opatření k zabránění záměny nářadí používaného při údržbě a vzájemné kontaminaci elektrolytu a vody pro doplňování."
+    },
+    {
+      "question": "22. Pospojování plášťů kabelů v ústředně",
+      "answer_a": "musí být každý kabel/plášť samostatně na zemnič",
+      "answer_b": "může být přes sběrnici/můstek vodičem min CYA 1,5 mm",
+      "answer_c": "může být přes sběrnici/můstek vodičem min CYA 2,5 mm",
+      "correct_answer": "C",
+      "explanation": "(ČSN 34 2040 ed.2, čl.7.4.5) Kovové obaly návěstních kabelů musí být navzájem mezi sebou galvanicky propojeny; spojují se v místech jejich ukončení navzájem přímo Cu lankem 2,5 mm2 nebo přes uzemňovací sběrnici. Aby se uplatnil redukční činitel kabelového pláště, musí být kovový obal kabelu na obou koncích uzemněn. Dále v (ČSN 33 2000-5-54 čl.NA.18.4.3.4) (+ed.1, čl.543.2.3.N1-> tab.41NN;547.N3)"
+    },
+    {
+      "question": "23. Krytí venkovních prvků zab.zař. musí být min.",
+      "answer_a": "IPX7",
+      "answer_b": "IPX4",
+      "answer_c": "IP44",
+      "correct_answer": "B",
+      "explanation": "(ČSN 34 2600 ed.2, čl.4.22) El. zař. venkovních prvků musí odpovídat stupni ochrany krytem IPX4 podle ČSN EN 60529."
+    },
+    {
+      "question": "24. V jakých podmínkách je schopen pracovat přestavník EP600?",
+      "answer_a": "Rozsah teplot T1 a T2 (-40°C až +70°C); vlhkost 5 % až 100 %; úroveň znečištění 4C3, 4B1 a 4S3",
+      "answer_b": "Rozsah teplot T3 a T4 (-40°C až +70°C); vlhkost 5 % až 100 %; úroveň znečištění 4C3, 4B1 a 4S3",
+      "answer_c": "Rozsah teplot T1 a T2 (-40°C až +40°C); vlhkost 0 % až 25 %; úroveň znečištění 4C3, 4B1 a 4S3",
+      "correct_answer": "C",
+      "explanation": "(ČSN EN 50125-3) Prostředí: Rozsah teplot T1 a T2, vně -40 - +40, uvnitř -40 - +70; vlhkost vně 15 % - 100 %, uvnitř 5 % - 100 %; úroveň znečištění 4C3, 4B1 a 4S3 (tab.4). Dále dle ČSN EN 60529: krytím: IP54."
+    },
+    {
+      "question": "25. Co musí udělat zaměstnanec před ručním přestavením výhybky?",
+      "answer_a": "Domluvit se s výpravčím.",
+      "answer_b": "Zajistit vypnutí na přestavné desce.",
+      "answer_c": "Zajistit odpojení energie pohonu přestavníku",
+      "correct_answer": "A",
+      "explanation": "(SŽ předpis D1) [\"Zajistit odpojení energie..\" odpojí se po nasunutí kliky automaticky, zvednutím klikového vypínače.]"
+    },
+    {
+      "question": "26.Jaký má být odpor uzemnění u uzlu zdroje v síti TN ve ztížených půdních podmínkách?",
+      "answer_a": "15 ohmů",
+      "answer_b": "5 ohmů, není však nutné klást zemnící pásek delší než 50 m",
+      "answer_c": "10 Ohmů",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ED.?, čl. 413.1.3.N12) a dle doporučení !ČSN EN 62305 ?ed.1?! - nižší než 10 ohmů, měřený při nízké frekvenci. (ČSN 33 2000-4-41 ed.2, př.NB.2) 5 Ohmů a ve ztížených půdních podmínkách 15 Ohmů. POZNÁMKA K NORMĚ: Pro síť provozovatele distribuční soustavy platí: U kabelového vedení se uzemní vodič PEN (PE) tak, aby žádná kabelová rozvodná skříň nebyla vzdálena více než 100 m od nejbližšího místa uzemněni v distribuční síti. Jednotlivá uzemnění vodiče PEN (PE) v trase kabelového vedení, máji mít odpor uzemnění nejvýše 15 Ohm, není však třeba klást zemnicí pásky o celkové délce větší než 20 m nebo jiné rovnocenné zemnice. Jednotlivá uzemněni vodiče PEN v šiti TN-C nebo vodiče PE v šiti TN-S máji mít odpor uzemnění nejvýše 15 Ohm: není však třeba klást zemnici pásky o celkově délce větší než 20 m nebo jiné rovnocenné zemnice. Na konci vedení a odboček sítě a v uzlu zdroje má být odpor uzemněni nejvýše 5 Ohm: není však třeba klást zemnici pásky o celkové délce větší než 50 m nebo jiné rovnocenné zemníce."
+    },
+    {
+      "question": "27. Jaký význam má první číslice v IP kódu?",
+      "answer_a": "Ochrana před vniknutím cizích pevných těles, doplňkové písmeno charakterizuje ochranu osob.",
+      "answer_b": "Ochrana před vniknutím cizích pevných těles a prachů, před dotykem nebezpečných živých částí. Ve spojení s doplňkovým/přídavným písmenem charakterizuje ochranu osob.",
+      "answer_c": "Stupeň ochrany proti vnikání vody, v souladu s uvedeným kódem IP.",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 60529, čl.5) Stupně ochrany před dotykem nebezpečných částí a před vniknutím cizích pevných těles udávané první charakteristickou číslicí."
+    },
+    {
+      "question": "28. Jaká má být barva společného neprosvětleného tlačítka pro zapnutí i vypnutí?",
+      "answer_a": "Černá, šedá nebo bílá. Nesmí se používat červená, žlutá a zelená.",
+      "answer_b": "Černá, šedá nebo zelená, přednostně bílá, nesmí být červená.",
+      "answer_c": "Červená, zelená nebo černá. Nesmí se používat bílá a žlutá.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.3, čl.10.2.1) Barvy BÍLÁ, ŠEDÁ a ČERNÁ, se používají přednostně pro ovládací prvky, které střídavě fungují jako ovl. prvky START/ZAP a STOP/VYP. Nesmí se používat barva ČERVENÁ, ŽLUTÁ nebo ZELENÁ."
+    },
+    {
+      "question": "29. Jak často musí chodit revizní technik na lékařské prohlídky?",
+      "answer_a": "Každých 5 let, pokud lékař v posudku nestanoví jinak.",
+      "answer_b": "Každé 4 roky",
+      "answer_c": "Každé 3 roky",
+      "correct_answer": "A",
+      "explanation": "(vyhl.101/1995 Sb., odst.(4)-b)5. §6) [18-50 každých 4 nebo 5 let, pokud může nebo nemůže samostatně vstupovat na dopravní cestu.]"
+    },
+    {
+      "question": "30. Jak dlouho musí být u provozovatele uloženy protokoly o měření, opravách apod.?",
+      "answer_a": "nejméně 5 let",
+      "answer_b": "10 let",
+      "answer_c": "Až do konce životnosti zařízení.",
+      "correct_answer": "A",
+      "explanation": "(vyhl.177/1995 Sb., §25 čl.17)"
+    },
+    {
+      "question": "31. Může být označení el.zař. jmenovitými údaji na odnímatelných krytech zařízení?",
+      "answer_a": "Označení nesmí být umístěno na odnímatelných částech, zejména na krytech, které se demontují při instalaci zařízení.",
+      "answer_b": "Výjimku tvoří barevné označení štítku u malých zařízení.",
+      "answer_c": "Výjimku tvoří kryty, které se snímají při instalaci zařízení a opět se umisťují na své místo.",
+      "correct_answer": "C",
+      "explanation": "(ČSN EN IEC 61293 ed.2, čl.4) Značení nesmí být umístěno na odnímatelných částech, které mají být odstraněny, s výjimkou případů, kdy je označení umístěno na krytu, který má být odstraněn při instalaci zařízení, a po instalaci zařízení se vrací zpět na místo."
+    },
+    {
+      "question": "32. Může se odpojovat nadproudovým prvkem střední vodič sítě IT, je-li použit proudový chránič s vybavovacím proudem 30 mA?",
+      "answer_a": "Všechny fázové vodiče i střední vyvedený izolovaný vodič, musí být současně vypínány a jištěny proti přetížení a zkratu.",
+      "answer_b": "Všechny fázové vodiče kromě středního vyvedeného izolovaného vodiče, musí být současně vypínány a jištěny proti přetížení a zkratu.",
+      "answer_c": "Záleží na konkrétní instalaci. Zvlášť důležitý vliv má druh prostředí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41, pozn.N, str.31) Všechny fázové vodiče i střední vyvedený izolovaný vodič, musí být současně vypínány a jištěny proti přetížení a zkratu."
+    },
+    {
+      "question": "33. Musí být v příkazu „B“ uvedena jména osob zajišťujících a odjišťujících pracoviště, pokud je příkaz vydán jen na práci?",
+      "answer_a": "ANO",
+      "answer_b": "NE",
+      "answer_c": "Pouze v případě, že nebyl zvolen OZOV.",
+      "correct_answer": "A",
+      "explanation": "(TNŽ 34 3109 čl. 6.1.1) Citace: Příkaz „B“ se vydává na zajištění a odjištění pracoviště a/nebo provedení prací pro práce v blízkosti živých částí TV podle 6.1.3.3a."
+    },
+    {
+      "question": "34. Kdy musí být svorka PE opatřena pružícím prvkem?",
+      "answer_a": "vždy",
+      "answer_b": "venku vždy, uvnitř jenom někdy",
+      "answer_c": "Nesmí být venku, z důvodu prasknutí v mrazech.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0360 ed.2, čl.4.2.2) Rozebíratelné propojení ochranného vodiče se provede jako svorka šroubová a musí mít pracovní rozsah pro propojení ochranného vodiče podle tab.1. Pro dlouhodobé zachování kontaktního tlaku a pro zajištění šroubového spoje proti samovolnému uvolnění se použije pružícího prvku, např. podložky. Rozebíratelná místa připojení elektroinstalačních výrobků pro jmenovité proudy nad 25 A musí mít podložku a pružící prvek. [Svorka PE (ochranná zemní svorka) musí být opatřena pružícím prvkem v situacích, kde je očekáváno mechanické zatížení nebo vibrace, které by mohly vést k oslabení kontaktu mezi svorkou a připojeným vodičem. Pružící prvek zajišťuje, že i při působení vnějších sil nebo dlouhodobém stárnutí materiálu dochází k udržení spolehlivého a bezpečného elektrického spojení.]"
+    },
+    {
+      "question": "35. Jaký má být izolační odpor svítidla drženého v ruce?",
+      "answer_a": "4 MOhm",
+      "answer_b": "7 MOhm",
+      "answer_c": "2 MOhm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1610 Pozn.1 pod tab.2, str.11) Pro svítidla dostačuje hodnota 4 MOhm."
+    },
+    {
+      "question": "36. Vnější místa připojení PE",
+      "answer_a": "Musí být umístěna na přístupném místě vnějšího povrchu el. předmětu a pokud možno na nejspodnější části. Nesmí být umístěno na odnímatelných částech.",
+      "answer_b": "Musí být umístěna na odnímatelných částech.",
+      "answer_c": "Musí být na nepřístupném místě vnitřní části předmětu z důvodu vandalismu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0360 ed.2, čl.4.5) Vnější místo připojení (vnější ochranná svorka) musí být umístěno na přístupném místě vnějšího povrchu elektrického předmětu, pokud možno na nejspodnější části tak, aby se k ní ochranný vodič dal snadno připojit. Musí být umístěno vždy na hlavní neživé části (např. na kostře) a nikoliv na odnímatelných částech."
+    },
+    {
+      "question": "37. Jaké spotřebiče musí mít přívod a vidlici spojené neoddělitelně?",
+      "answer_a": "třídy I.",
+      "answer_b": "třídy I. a II.",
+      "answer_c": "třídy II. a III.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 34 0350 ed.2, čl.5.3.2) Pohyblivé přívody pro el. předměty/zařízení třídy ochrany II nebo III (tj. bez ochranného vodiče), mají být opatřeny vidlicí a pohyblivou zásuvkou předepsaného vzoru neoddělitelně (nerozebíratelně) spojenými s kabelem nebo se šňůrou. Ostatní prodlužovací pohyblivé přívody musí mít PE vodič a musí být opatřeny vidlicí a pohyblivou zásuvkou s ochranným kontaktem. Třída I: spotřebiče, které jsou závislé na ochraně proti úrazu el. proudem tím, že mají uzemňovací vodič. Třída II: Spotřebiče, které mají dvojitou izolaci – nemají uzemňovací vodič. U těchto spotřebičů musí být přívodní kabely a vidlice spojeny neoddělitelně, aby se zachovala integrita izolace a minimalizovalo riziko úrazu."
+    },
+    {
+      "question": "38. Jaký odpor zař. se považuje za dostačující pro svedení elektrostatického náboje?",
+      "answer_a": "10 na 6",
+      "answer_b": "10 na -8",
+      "answer_c": "10 na -6",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2030(3) Čl.11.2.2) Hodnota 10 na šestou je dostačující ve všech případech."
+    },
+    {
+      "question": "39. Jakou délku praxe musí mít osoba se středním odborným vzděláním, jde-li o osobu znalou s vyšší kvalifikací?",
+      "answer_a": "3 roky",
+      "answer_b": "7 let",
+      "answer_c": "5 let",
+      "correct_answer": "A",
+      "explanation": "(vyhl.100/1995 Sb. př.4 čl.5)"
+    },
+    {
+      "question": "40. Musí být náhradní zdroj vždy připojen na samostatné uzemnění?",
+      "answer_a": "Ne, náhradní zdroj nemusí být vždy připojen na samostatné uzemnění.",
+      "answer_b": "Náhradní zdroj musí být zpravidla připojen na samostatné uzemnění.",
+      "answer_c": "ANO, musí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 1090 ed.2, čl.5.11.5) Za náhradní zdroje el. se považují stabilní nebo pojízdné generátory poháněné naftovými nebo benzinovými motory. V případě použití náhradního zdroje musí být spolehlivě odděleny od veřejné distribuční nebo lokální sítě. (odpověď, že jen přenosný, je chybná) Společné uzemnění s hlavním zdrojem: V některých případech může být náhradní zdroj připojen na společné uzemnění s hlavním zdrojem. To je obvyklé pro přenosné generátory, které jsou připojeny k el. rozvodu budovy nebo domu. V takovém případě se zajišťuje, že uzemnění je společné a bezpečné. Samostatné uzemnění: V jiných situacích, zejména pokud je náhradní zdroj izolovaný od hlavního rozvodu nebo je používán v místech, kde může být riziko el. úrazu zvýšené, může být vyžadováno samostatné uzemnění náhradního zdroje. Toto samostatné uzemnění zajišťuje bezpečnost a minimalizuje riziko úrazu."
+    },
+    {
+      "question": "41. Co musí být uvedeno na štítku rozváděče?",
+      "answer_a": "Označení výrobce, typu a výrobního čísla.",
+      "answer_b": "Krytí IP a krytí IK, které je i součástí dokumentace",
+      "answer_c": "Jmenovité napětí, které je i součástí dokumentace",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 61439-1 ed.2, čl.6.1) Označení nebo ochranná známka výrobce; typové označení nebo identifikační číslo, nebo jakékoliv jiné prostředky identifikace umožňující obdržet příslušné informace od výrobce; prostředky určení data výroby; IEC 61439-X (specifická část „X“ musí být uvedena). Nemusí tam být krytí a jmenovité napětí, pokud je v dokumentaci. + PŠIS TESTY. Samolepka na rozváděči je důležitým prvkem elektrické instalace a obsahuje klíčové informace o zařízení. Na štítku by měly být uvedeny identifikační údaje, jako je název zařízení, umístění, identifikační číslo a jmenovité parametry, jako je napětí, proud a frekvence. Dále by měl štítek obsahovat seznam jističů nebo pojistek s jejich hodnotami, informace o ochranných vodičích, výrobci a výrobním čísle, datum instalace nebo revize, způsob odpojení a pokyny pro bezpečný provoz. Štítek by měl být čitelný, trvanlivý a dobře viditelný, což je klíčové pro bezpečnou obsluhu a údržbu elektrického rozváděče."
+    },
+    {
+      "question": "42. Musí se u el. zař., u kterých má přemístění na nové stanoviště za následek změnu el. vl., provést před znovuuvedením do provozu výchozí revize?",
+      "answer_a": "Ne, pokud ale dojde vlivem změny ke změně zapojení proti původní dokumentaci, musí se provézt výchozí revize.",
+      "answer_b": "Ne, postačí provedení kontroly a o této kontrole musí být vystaven doklad podepsaný pověřeným pracovníkem.",
+      "answer_c": "Ano.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 1500, čl.2.6) U el. zař., která mění svou dřívější polohu a u nichž přemístění na nové stanoviště, doprava nebo skladování mohou mít za následek změny el. a funkčních vlastností nebo změny zapojení proti původní dokumentaci, se musí před uvedením do provozu provést alespoň jejich kontrola a o této kontrole se musí vyhotovit záznam s podpisem pověřeného pracovníka. Pokud tato el. zař. jsou na místě sestavována z částí, musí se před uvedením do provozu provést jejich výchozí revize."
+    },
+    {
+      "question": "43. Jaký je průřez ochranného vodiče v síti, když je fázový 25 mm2?",
+      "answer_a": "16 mm2, přičemž se nemusí ověřovat zkratová odolnost.",
+      "answer_b": "16 mm2",
+      "answer_c": "25 mm2, přičemž se nemusí ověřovat zkratová odolnost.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, tab.54.2) Pro 16 mm² < S < 35 mm²: Nejmenší průřez odpovídajícího ochranného vodiče (SPE) je 16 mm²."
+    },
+    {
+      "question": "44. Je v ČR povoleno označovat PEN návlečkou zelená-žlutá a modrá?",
+      "answer_a": "ANO (v ČR z/ž po celé délce s modrou na koncích)",
+      "answer_b": "NE",
+      "answer_c": "ANO (v ČR modrou po celé délce a z/ž na koncích)",
+      "correct_answer": "A",
+      "explanation": "(podle ČSN EN 60445 ed.5:2018, čl. 6.3.3) Pokud jsou vodiče PEN izolované, musí být značeny jedním z následujících způsobů: zelenou a žlutou po celé jejich délce a s doplňkovým značením modrou na koncích vodiče; modrou po celé jejich délce a s doplňkovým značením zelená a žlutá na koncích vodiče. Volbu způsobu, který se má použít v rámci dané země, mají provést příslušné komise. Pro ČR bylo stanoveno z/ž po celé jejich délce a s doplňkovým značením modrou na koncích vodiče. Doplňkové značení modrou na koncích vodiče lze vynechat: u el. zař., jestliže příslušné požadavky jsou zahrnuté do zvláštních výrobkových norem, nebo v rámci dané země. Obecně platí, že se označuje tehdy, kdy je společná pracovní a ochranná funkce a hrozí záměna s vodičem PE."
+    },
+    {
+      "question": "45. Jak se ověřuje požární odolnost instalace?",
+      "answer_a": "Osoba provádějící výchozí revizi se přesvědčí, že k zamýšlenému uvedení do provozu, bylo vydáno potvrzení firmy, že tato opatření jsou provedena v souladu s příslušnými předpisy a technickými normami.",
+      "answer_b": "Provozovatel instalace se přesvědčí, že k zamýšlenému uvedení do provozu, bylo vydáno potvrzení firmy, že tato opatření jsou provedena v souladu s příslušnými předpisy a technickými normami.",
+      "answer_c": "Není nutné ověřovat požární odolnost.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6-61 ed.2, Pozn.N1+E, str.9)"
+    },
+    {
+      "question": "46. Mohou se spojovat obvody SELV a PELV?",
+      "answer_a": "Ne, živé části obvodů SELV a PELV musí být odděleny ochranným oddělením od sebe navzájem, od obvodů FELV a od obvodů vyšších napětí.",
+      "answer_b": "Ano, jsou to obvody o stejném napětí.",
+      "answer_c": "Pouze v případě, že mají společný ochranný vodič.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.414.1.1) Ochranné oddělení sítě SELV nebo PELV od všech ostatních sítí jiných než SELV a PELV a základní izolaci mezi sítí SELV nebo PELV a ostatními sítěmi SELV nebo PELV. Pouze u sítí SELV základní izolaci mezi sítí SELV a zemí."
+    },
+    {
+      "question": "47. Jak musí být izolovány obvody FELV?",
+      "answer_a": "Základní izolací nebo přepážkami nebo kryty a musí být spojeny s ochranným vodičem primáru, který je chráněn automatickým odpojením.",
+      "answer_b": "Základní izolací a přepážkami nebo kryty a musí být spojeny s ochranným vodičem primáru, který je chráněn automatickým odpojením.",
+      "answer_c": "Dvojitou nebo zesílenou izolací, přičemž nesmí být spojeny s ochranným vodičem. Vstupní (primární) obvod zdroje je chráněn automatickým odpojením od zdroje.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3) 411.7.2 Ochrana před přímým dotykem: Základní ochrana musí být zajištěna buď základní izolací podle kapitoly odpovídající jmenovitému napětí vstupního (primárního) obvodu, nebo přepážkami nebo kryty v souladu s kapitolou; 411.7.3 Ochranu při poruše (před nepřímým dotykem): Neživé části musí být spojeny s ochranným vodičem vstupního (primárního) obvodu zdroje, přičemž se předpokládá, že vstupní obvod je chráněn automatickým odpojením od zdroje."
+    },
+    {
+      "question": "48. Jaká je min. šířka chodby v rozvodně, když je na jedné straně stěna a na druhé živé části NN?",
+      "answer_a": "0,9 m",
+      "answer_b": "1 m",
+      "answer_c": "0,7 m",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-729, čl.729.410.3.7.1a) Pokud jsou nechráněné součásti el. zař. pod napětím, soustředěny v uličce na jedné její straně, jsou min. vzdálenosti 0,9 m od živé části a 0,7 od ovládací páky."
+    },
+    {
+      "question": "49. Protokol o určení vnějších vlivů je podkladem pro výchozí revizi nebo pravidelnou revizi nebo se nezpracovává? Musí se předkládat při pravidelné revizi?",
+      "answer_a": "ANO",
+      "answer_b": "Nezpracovává se.",
+      "answer_c": "Je důležitý pouze pro mimořádnou revizi.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-51 ed.3 (beze změn), čl.NA512.2.5, str.53) Řádné stanovení vnějších vlivů je základním podkladem pro odpovídající návrh, zhotovení a revizi elektroinstalace. Při pravidelných a mimořádných revizích se vychází z požadavků na elektroinstalaci, vyplývající z dokumentu o určení vnějších vlivů v době provedení této elektroinstalace."
+    },
+    {
+      "question": "50. O jaký prostor se jedná s vnějším vlivem AB8?",
+      "answer_a": "Prostor nebezpečný",
+      "answer_b": "Prostor normální",
+      "answer_c": "Prostor bezpečný",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-3 (zrušena 5/2011), tab.32-NM2, str.18) Venkovní prostory nechráněné před atmosférickými vlivy s nízkými i vysokými teplotami. (Prostory normální: tab.32-NM1; nebezpečné: tab.32-NM2; zvlášť nebezpečné: tab.32-NM3)"
+    },
+    {
+      "question": "51. Jaká veličina se měří u izolace sítě IT?",
+      "answer_a": "izolační odpor",
+      "answer_b": "elektrická pevnost",
+      "answer_c": "Pružnost / Pevnost",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6-61 ed.2, pozn.N, str.21) Izolační odpor (50 Ohm na jeden volt jmenovitého napětí)."
+    },
+    {
+      "question": "52. Jaké je nejvyšší trvalé DC dovolené Ud, při ochraně před nebezpečným dotykem neživých částí, v prostorech zvlášť nebezpečných?",
+      "answer_a": "60 V",
+      "answer_b": "120 V",
+      "answer_c": "25 V",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41, tab.41NL, str.20)"
+    },
+    {
+      "question": "53. Může být chráněn světelný obvod proudovým chráničem 100 mA?",
+      "answer_a": "Jmenovitý reziduální pracovní proud nesmí překročit 30 mA.",
+      "answer_b": "V průmyslových rozvodech musí být světelný obvod chráněn proudovým chráničem se jmenovitým reziduálním proudem nepřekračujícím 100 mA.",
+      "answer_c": "Ano.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.411.3.4) V prostorech určených pro samostatnou domácnost, musí být doplňková ochrana pomocí RCD, jehož jmenovitý reziduální pracovní proud nepřekračuje 30 mA, zajištěna pro AC koncové obvody napájející svítidla."
+    },
+    {
+      "question": "54. Kde se obvykle používá FELV?",
+      "answer_a": "Tam, kde se z funkčních důvodů používá napětí z napěťového pásma I., ale nebyly splněny požadavky pro SELV, ani PELV.",
+      "answer_b": "V bazénech (např. jako osvětlení pod hladinou)",
+      "answer_c": "Tam, kde se z funkčních důvodů používá napětí z napěťového pásma II., ale nebyly splněny požadavky pro SELV, ani PELV.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-47, čl.471.3) Tam, kde se z funkčních důvodů používá napětí z napěťového pásma I., ale nebyly splněny požadavky pro SELV, ani PELV. Tam se musí pro zajištění ochrany před nebezpečným dotykem živých i neživých částí provést doplňující opatření. Tato kombinace opatření se nazývá FELV. Takové podmínky mohou vzniknout např. tehdy, když obvod obsahuje zařízení (jako jsou transformátory, relé, dálkově ovládané spínače, stykače), jejichž izolace nesplňuje požadavky na ochranné oddělení."
+    },
+    {
+      "question": "55. Jaký průřez lze použít u šňůrového přívodu připojenému k oddělovacímu transformátoru se jmenovitým proudem 10 A?",
+      "answer_a": "Minimálně 1 mm2",
+      "answer_b": "Minimálně 1,5 mm2",
+      "answer_c": "Minimálně 0,75 mm2",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 0350 ed.2, tab.1 - Pohyblivé přívody) Jmenovitý průřez vodiče Cu pro jmenovitý proud 6 A až 10 A je 1 mm2 a pro 10 A až 16 A je 1,5 mm2."
+    },
+    {
+      "question": "56. Jaká má být použita svorka na proud více než 40A?",
+      "answer_a": "M5",
+      "answer_b": "M4",
+      "answer_c": "M8",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0360 ed.2, tab.1) Přiřazení velikosti závitů šroubů ochranných svorek a rozsahu připojení ochranných vodičů k jmenovitému proudu el. předmětů: 40A – 63A: M5 (s průřezem od 6 mm do 16 mm)"
+    },
+    {
+      "question": "57. Jak se jmenuje síť, kde je rozdělení vodiče PEN na PE a N provedeno na přívodu spotřebiče?",
+      "answer_a": "TN-C-S",
+      "answer_b": "TN-C",
+      "answer_c": "TN-S",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-1 ed.2:2009, čl. 312.2 a čl. 312.2.1.1) Napájecí TN sítě mají jeden bod přímo uzemněný u zdroje a neživé části el.inst. jsou připojeny k tomuto bodu pomocí ochranných vodičů. Rozlišují se tři typy sítě TN dle uspořádání nulových a ochranných vodičů: síť TN-S = síť, ve které se užívá odděleně vedeného ochranného vodiče PE a nulového N; síť TN-C-S = funkce středního a ochranného vodiče je v části sítě sloučena do jediného vodiče; síť TN-C = funkce středního a ochranného vodiče je v celé síti sloučena do jediného vodiče PEN."
+    },
+    {
+      "question": "58. V jaké vzdálenosti mohou být umístěny holé, pevné vodiče od stěny?",
+      "answer_a": "Alespoň 30 mm.",
+      "answer_b": "Maximálně 30 mm",
+      "answer_c": "Alespoň 10 mm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52 ed.2, NA.4.1.5.1) Neuzemněné holé vodiče do 1 000 V (vyjma nevypínatelné paralelní větve stejné polarity) mají být vzdáleny od sebe a od stěn aspoň 1/40 rozpětí, nejméně však 50 mm. U dostatečně tuhých vodičů vnitřních zař. jsou přípustné i menší vzdušné vzdálenosti, vyhovující při zkratových namáháních, což je nutno ověřit výpočtem. Nesmějí však být menší než 10 mm při napětí mezi vodiči do 300 V a než 20 mm při napětí vyšším, je-li vyloučeno, že by vnějšími příčinami (např. zapadlými předměty, nečistotou) mohl vzniknout zkrat mezi vodiči. Vzdálenosti vodičů a živých částí od stěn musí být aspoň 30 mm."
+    },
+    {
+      "question": "59. Musí být k zajištění samočinného odpojení u zdrojových zař. v sítích TN, TT a IT vždy použit proudový chránič?",
+      "answer_a": "ANO, s jmenovitým vybavovacím rozdílovým proudem do 30 mA",
+      "answer_b": "Nemusí",
+      "answer_c": "ANO, s jmenovitým vybavovacím rozdílovým proudem do 100 mA",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-551 ed.1 čl. 551.4.4.2) Ano, v těchto sítích musí být k zajištění samočinného odpojení, instalován proudový chránič s jmenovitým vybavovacím rozdílovým proudem do 30 mA. (V sítích IT nemusí dojít k vybavení RCD, pokud jedna ze zemních poruch není od chrániče na straně ke zdroji.)"
+    },
+    {
+      "question": "60. U mechanických sdělovačů s grafickými značkami či slovy VYPNUTO se doporučuje barevné řešení k vytvoření kontrastu mezi grafickými značkami nebo písmeny:",
+      "answer_a": "Pro značku nebo písmena BÍLÁ nebo světle přírodní barva, pozadí ČERNÁ.",
+      "answer_b": "pro značku nebo písmena ČERNÁ nebo světle přírodní barva, pozadí BÍLÁ.",
+      "answer_c": "Pro značku nebo písmena BÍLÁ nebo světle přírodní barva, pozadí ŠEDÁ.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60073 ed.2, čl. A.2.1.2) Pro polohu VYPNUTO: Značka nebo písmena: BÍLÁ nebo světlá přírodní barva a pozadí: ČERNÁ."
+    },
+    {
+      "question": "61. Může osoba poučená pracovat v blízkosti TV pod napětím ve vzdálenosti méně než 1,5 metru?",
+      "answer_a": "Ano, pokud podepíše \"Záznam o poučení\", může pracovat ve vzdálenosti vetší než 0,9 m.",
+      "answer_b": "Nemůže v žádném případě.",
+      "answer_c": "Ano, pokud má izolované ochranné pomůcky.",
+      "correct_answer": "A",
+      "explanation": "(TNŽ 34 3109, čl.6.4.3.3) Pro práce ve vzdálenosti větší než 1,5 m od živých částí TV není třeba zvláštních bezpečnostních opatření. Pro práci v blízkosti živých částí TV ve vzdálenosti menší než 1,5 m, ale větší než 0,9 m vyplní před zahájením práce vedoucí práce „Záznam o poučení“. Po seznámení s bezpečnostními opatřeními podepíší všechny osoby v pracovní skupině „Záznam o poučení“. Teprve poté může dát vedoucí práce příkaz k zahájení práce."
+    },
+    {
+      "question": "62. Ověřuje se v rámci výchozí revize při prohlídce, zda je zařízení vybaveno příslušnými varovnými nápisy nebo podobnými informacemi?",
+      "answer_a": "Ano",
+      "answer_b": "Ne",
+      "answer_c": "Pouze v jednoúčelových el. instalacích. V ostatních případech ověřuje osoba provádějící výchozí revizi kompletnost a dostupnost technické dokumentace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6 ed.2, čl.6.4.2.3 i) Činnosti při prohlídce při výchozí revizi: vybavení schématy, výstražnými nápisy nebo dalšími podobnými informacemi."
+    },
+    {
+      "question": "63. Jaká může být max. hodnota dotykového proudu u spotřebiče tř. II?",
+      "answer_a": "0,5 mA",
+      "answer_b": "1 mA",
+      "answer_c": "0,2 mA",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1610, čl.6.7.3) Dotykový proud na vodivých částech přístupných dotyku nesmí překročit hodnotu 0,5 mA."
+    },
+    {
+      "question": "64. Co znamená označení 2/M DC 220?",
+      "answer_a": "/Jedná se o třívodičovou síť./",
+      "answer_b": "Třívodičová stejnosměrná síť se středním vodičem 220V.",
+      "answer_c": "Dvouvodičová stejnosměrná síť s jedním vodičem modrým a napětím 220V.",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN IEC 61293 ed.2, tab.A1.10) 2/M DC 220 V je stejnosměrná síť se dvěma vodiči vedení a vodičem středního bodu 220 V."
+    },
+    {
+      "question": "65. Určuje inspektor v protokolu o prohlídce a zkoušce dobu provozování zařízení?",
+      "answer_a": "ANO",
+      "answer_b": "NE",
+      "answer_c": "Pouze ve výjimečných případech.",
+      "correct_answer": "A",
+      "explanation": "(vyhl.100/1995 Sb., §6 odst.3) Protokol o provedené prohlídce a zkoušce zař. v provozu, vyhotovený oprávněnou odborně způsobilou osobou, obsahuje vždy přesné označení, název provozovatele, umístění, popis provedené prohlídky a zkoušky, zjištěný stav, hodnocení rizik, vyjádření o provozní způsobilosti a stanovení její doby, jméno, příjmení a podpis oprávněné odborně způsobilé osoby, číslo jejího osvědčení a datum, kdy byla prohlídka a zkouška provedena."
+    },
+    {
+      "question": "66. Musí revizní technik uvádět ve zprávě o revizi použité měřící přístroje?",
+      "answer_a": "ANO",
+      "answer_b": "NE",
+      "answer_c": "Pouze v případě, že se jedná o neobvyklé měřicí přístroje nebo o přístroje, které nebyly použity pro výchozí revizi.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1500, čl.6.1) Zpráva o revizi musí obsahovat: určení (výchozí / pravidelná); vymezení rozsahu; soupis použitých přístrojů, úkonů, zjištěných závad; datum; jméno, podpis a ev.č.; naměřené hodnoty."
+    },
+    {
+      "question": "67. Po kolika metrech musí být chodba určená k obsluze nebo údržbě průchozí?",
+      "answer_a": "20 m",
+      "answer_b": "6 m",
+      "answer_c": "10 m",
+      "correct_answer": "A",
+      "explanation": "(ČSN 2000-4-481, čl. 481.2.4.3) Chodby určené k obsluze nebo údržbě, které jsou delší než 20 m, musí být přístupné z obou konců. (Už pro chodby delší jak 6 m, se přístup z obou konců chodby doporučuje). Pozor, u zař. o napětí vyšším, než kategorie II platí ČSN 33 3210 a ČSN 33 3220, kde je uvedeno 10m (+481.2.N5)."
+    },
+    {
+      "question": "68. Jak je definováno \"Elektrické oddělení\"?",
+      "answer_a": "Obvody mezi sebou nemají vodivé spojení s výjimkou ochranného vodiče a spojení se zemí.",
+      "answer_b": "Dokonalé izolační oddělení obvodů, ve kterém je připojen spotřebič, od napájecího obvodu rozvodné soustavy.",
+      "answer_c": "Oddělené umístění obvodů v jednom prostoru, v takové vzdálenosti, aby nedošlo ke styku soustav.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0010 ed.1, čl. 8.1 - zrušená) Odpověď je v tomto případě z ed.1. V ed.2 čl.6.1 by odpověď zněla: Ochranné opatření, kterým je nebezpečně živý obvod izolován od všech ostatních obvodů a částí, od země a kterým je chráněn před dotykem."
+    },
+    {
+      "question": "69. Kdy se musí dělat výchozí revize po přesunu zařízení?",
+      "answer_a": "Nemusí",
+      "answer_b": "Do jednoho měsíce od přesunu zařízení.",
+      "answer_c": "Před uplynutím lhůty pravidelné revize.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1500, čl.2.6) U el. zař., která mění svou dřívější polohu a u nichž přemístění na nové stanoviště, doprava nebo skladování mohou mít za následek změny el. a funkčních vlastností nebo změny zapojení proti původní dokumentaci, se musí před uvedením do provozu provést alespoň jejich kontrola a o této kontrole se musí vyhotovit záznam s podpisem pověřeného pracovníka. Pokud tato el. zař. jsou na místě sestavována z částí, musí se před uvedením do provozu provést jejich výchozí revize."
+    },
+    {
+      "question": "70. Od jakého výkonu musí být motor jištěn proti přetížení?",
+      "answer_a": "Nad 0,5kW",
+      "answer_b": "Nad 1 kW",
+      "answer_c": "Nad 2 000 W",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.3, čl.7.3) Ochrana motorů před nadměrným oteplením musí být zajištěna pro každý motor o jmenovitém výkonu vyšším než 0,5 kW. Výjimku tvoří aplikace, kde je automatické přerušení činnosti motoru nepřijatelné (protipožární čidla..), zde musí čidla vyslat výstražný signál, aby na něj mohla obsluha reagovat."
+    },
+    {
+      "question": "71. Do jaké hodnoty proudu a příkonu může být vidlice použita jako hlavní vypínač?",
+      "answer_a": "16 A a 3 kW",
+      "answer_b": "32 A / 3 650 W",
+      "answer_c": "20 A / 2 000 W",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.1 - zrušena, čl.5.3.2) Jako hlavní vypínač se musí použít jeden z těchto typů: d) zásuvka (nebo zástrčka) s vidlicí pro stroje se jmenovitým proudem nepřekračujícím 16 A a celkovým příkonem nepřekračujícím 3 kW. V nové ed.3, čl.5.3.2.e), nejsou stanoveny hodnoty, jen že je to možné."
+    },
+    {
+      "question": "72. Co se musí měřit u proudového chrániče?",
+      "answer_a": "Účinnost samočinného odpojení od zdroje: vybavovací a zkušební reziduální proud, čas vybavení a Ud na ochranném vodiči.",
+      "answer_b": "Že vodič PE skutečně prochází součtovým transformátorem.",
+      "answer_c": "Proud tekoucí obvodem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6-61, Př.NK) Příklad postupu ověřování RCD. Dále v (ČSN EN IEC 61557-6 ed.3) Generování reziduálního proudu až do velikosti Idn, při použití vhodného zkušebního přístroje, aniž by se při tomto ověřování měřil čas."
+    },
+    {
+      "question": "73. Může být odbočka od hlavního domovního vedení k elektroměru delší než 3m ?",
+      "answer_a": "NE",
+      "answer_b": "Ano, je-li uložena nehořlavě, lze jistit až jističem před měřícím zařízením, namontovaným na elektroměrové rozvodnici",
+      "answer_c": "Ano, ale musí být jištěna u hlavního domovního vedení v témže podlaží",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2130 ed.3, čl.7.4.7 - Vnitřní el. rozvody) Odbočka k měřícímu zařízení (elektroměru) delší než 3 m musí být jištěna u hlavního domovního vedení v témž podlaží, kde je elektroměr. Odbočku kratší než 3 m, je-li uložena nehořlavé, lze jistit až jističem před měřícím zařízením (elektroměrem) namontovaným na elektroměrové rozvodnici. Provedení HDV a odboček od HDV k měřícím zař. (elektroměrům) musí být provedeno a uloženo odděleně od ostatních měřených vedení a tak, aby byl ztížen neoprávněný odběr nebo neoprávněná dodávka elektřiny a aby bylo možno vodiče bez stavebních zásahů vyměnit (např. v trubkách, kanálech, protahovacích lištách, dutinách, konstrukcí)."
+    },
+    {
+      "question": "74. Jaká je min. vzdálenost kabelů NN a VN uložených na vzduchu?",
+      "answer_a": "25 cm",
+      "answer_b": "90 cm",
+      "answer_c": "50 cm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52 ed.2, čl.521.N11.10.6, str.107) Mezera 25 cm, nejsou-li odděleny přepážkou. Je přitom nutno uvážit případný vliv indukce."
+    },
+    {
+      "question": "75. Jak často chodí k lékaři revizní technik mezi 18 a 50 roky?",
+      "answer_a": "Každých 5 let, pokud lékař v posudku nestanoví jinak.",
+      "answer_b": "Každé 4 roky.",
+      "answer_c": "jednou za 3 roky.",
+      "correct_answer": "A",
+      "explanation": "(vyhl.101/1995 Sb., odst.(4)-b)5. §6)"
+    },
+    {
+      "question": "76. Barevné značení vodičů PEL, PEM",
+      "answer_a": "Kombinace barev zelená/žlutá po celé délce, se světlemodrým označením na koncích (PEL i PEM)",
+      "answer_b": "Kombinace barev zelená/žlutá po celé délce, bez označení na koncích (na koncích se označuje pouze PEN)",
+      "answer_c": "Kombinace barev zelená/žlutá po celé délce a PEM se světlemodrým označením na koncích.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0165 ed.2, čl.11.2) Značí se kombinací barev zelená/žlutá po celé délce, a navíc světlemodrým označením na koncích vodiče."
+    },
+    {
+      "question": "77. Jaké krytí se požaduje u lehké prašnosti se spadem prachu do 35mg/m2 za den?",
+      "answer_a": "AE4 (IP5X)",
+      "answer_b": "AB8 (IP5X)",
+      "answer_c": "AE4 (IP6X)",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-3, tab.321.5) AE4|Lehká prašnost| Lehké vrstvy prachu. Spad prachu větší než 10 mg/m2 a menší než 35 za den. Třída 3S2 a 4S2. Dle ČSN 33 2000-5-51 ed.3 - IP 5X, jestliže pronikání prachu není pro funkci zařízení škodlivé."
+    },
+    {
+      "question": "78. Jaké je dovolené Ud neživých částí, u DC zařízení v prostorech nebezpečných?",
+      "answer_a": "120V",
+      "answer_b": "60V",
+      "answer_c": "25V",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.411.6.2) V DC sítích se omezení dotykového napětí neuvažuje, protože hodnotu Id je možno považovat za zanedbatelně nízkou. (v sítích IT). Odpovědi jsou ze staré ed.1, tab.41NL - 120 V."
+    },
+    {
+      "question": "79. Musí být přepážky a kryty pevně zajištěny na svém místě?",
+      "answer_a": "Ano musí a mohou být demontovány jen s použitím nástroje.",
+      "answer_b": "Nemusí.",
+      "answer_c": "Musí být zajištěny tak, aby nebyly sejmuty náhodou.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, A.2.3) Přepážky a kryty musí být v daném místě řádně připevněny a musí mít dostatečnou stabilitu a trvanlivost, aby při známých podmínkách normálního provozu a vzhledem k vyskytujícím se vnějším vlivům zajišťovaly požadovaný stupeň ochrany krytem a přiměřené oddělení od živých částí."
+    },
+    {
+      "question": "80. Co znamená označení vodiče FB?",
+      "answer_a": "Vodič pracovního pospojování",
+      "answer_b": "Vodič středního bodu",
+      "answer_c": "Neuzemněný vodič ochranného pospojování",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60445 ed.5, Př.A + 7.3.11)"
+    },
+    {
+      "question": "81. Kdy se uvádí přídavné písmeno v IP kódu?",
+      "answer_a": "Je-li skutečná ochrana před dotykem nebezpečných částí vyšší než ochrana, kterou udává první charakteristická číslice.",
+      "answer_b": "Je-li skutečná ochrana před dotykem nebezpečných částí vyšší než ochrana, kterou udává druhá charakteristická číslice.",
+      "answer_c": "Podle nově vydané normy, se musí udávat vždy písmeno.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60529, kap.7 - Stupně ochrany krytem) Je-li skutečná ochrana před dotykem nebezpečných částí vyšší než ochrana, kterou udává první charakteristická číslice nebo jeli udána jen ochrana před dotykem neb. částí, první charakteristická číslice je potom nahrazena písmenem X. Kryt smí být označen přídavným písmenem pouze tehdy, jestliže vyhovuje všem nižším stupňům ochrany."
+    },
+    {
+      "question": "82. Jaký má být odpor ochranného vodiče el. ručního nářadí při délce pohyblivého přívodu do 3 m?",
+      "answer_a": "0,2 Ω",
+      "answer_b": "0,3 Ω",
+      "answer_c": "0,1 Ω",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1600 ed.2, čl.6.4.3) Ochranný vodič musí být spolehlivé připojen. Odpor ochranného vodiče, měřený mezi ochrannou zdířkou vidlice a přístupnými vodivými neživými částmi spojenými s ochranným vodičem (u prodlužovacích a odpojitelných přívodů mezi ochrannou zdířkou vidlice a ochranným kontaktem na druhém konci), nesmí být větší než 0,2 Ohm při délce přívodu do 3 m. K tomuto odporu se připočte 0,1 Ohm na každé další 3 m délky přívodu. V žádném případě však nesmí být překročena hodnota 1 Ohm. Během měření se doporučuje s kabelem pohybovat, a to zejména u konců, a kontroluje se, jestli přitom naměřená hodnota nevykazuje výrazné změny. (Dříve ed.1, čl.5.4)"
+    },
+    {
+      "question": "83. Co je prostorové oddělení obvodů?",
+      "answer_a": "oddělení obvodů úplným krytem, přepážkou, uložením jednoho z obvodů do trubky tak, aby se zabránilo jejich vzájemnému ohrožení.",
+      "answer_b": "Oddělení obvodů v kabelovém kolektoru nejméně 0,5 m od sebe.",
+      "answer_c": "Existuje jen pojem elektrické oddělení. Prostorové oddělení obvodů je neexistující pojem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0010 ed.2, čl.6.4) Prostorové oddělení obvodů – oddělení obvodů úplným krytem, přepážkou, uložením jednoho z obvodů do trubky tak, aby se zabránilo jejich vzájemnému ohrožení."
+    },
+    {
+      "question": "84. Považuje se za účinnou metodu pro vyloučení úrazu el. proudem od elektrostatického výboje uzemnění všech kovových a vodivých částí?",
+      "answer_a": "ANO",
+      "answer_b": "NE",
+      "answer_c": "Pouze za podmínek, kdy instalace neobsahuje proudový chránič.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2030, čl.10.4) Nejúčinnější metodou, která může být provedena pro vyloučení úrazu el. proudem je uzemnění všech kovových a vodivých částí strojů a technologií. To však není vždy možné, a i v případech, že uzemnění je možné, zůstává zde pořád problém s vysoce nabitými nevodivými (pevnými i kapalnými) materiály. Osoby mohou být chráněny před stykem s takovýmito částmi pomocí vhodné izolace, uzemněných krytů atd."
+    },
+    {
+      "question": "85. Jak musí být odděleny obvody FELV od ostatních obvodů?",
+      "answer_a": "Základní izolací.",
+      "answer_b": "Doplňkovou izolací.",
+      "answer_c": "Ochranným pospojováním.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-47 čl.471.3.1) Obvody FELV, včetně zdrojů, musí být od obvodů vyššího napětí odděleny základní izolací."
+    },
+    {
+      "question": "86. Jaké podmínky musí splňovat přepážky a kryty?",
+      "answer_a": "Musí bránit přístupu k nebezpečným živým částem zajištěním stupně ochrany před úrazem elektrickým proudem alespoň IPXXB (IP2X) podle ČSN 60529",
+      "answer_b": "Musí bránit přístupu k nebezpečným živým částem zajištěním stupně ochrany před úrazem elektrickým proudem alespoň IPXXA (IPX2) podle ČSN 60529",
+      "answer_c": "Musí bránit přístupu k nebezpečným živým částem zajištěním stupně ochrany před úrazem elektrickým proudem alespoň IP21A (IP21M) podle ČSN 60529",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, A.2.1)"
+    },
+    {
+      "question": "87. Co je to CE a jak souvisí s ES prohlášením o shodě",
+      "answer_a": "Označení CE na stanoveném výrobku vyjadřuje českou značku shody, na kterou se nevztahují předpisy Evropského společenství.",
+      "answer_b": "Označení CE na stanoveném výrobku vyjadřuje, že výrobek splňuje požadavky vlády, které se na něj vztahují a které toto označení umožňují a že byl při posouzení jeho shody dodržen stanovený postup.",
+      "answer_c": "Označení CE na stanoveném výrobku vyjadřuje, že výrobek splňuje požadavky všech nařízení vlády, uvedených v ES prohlášení o shodě stanoveném výrobku a že byl při posouzení jeho shody dodržen stanovený postup.",
+      "correct_answer": "C",
+      "explanation": "(zákona č.22/1997 Sb., §13 odst.3 a zákon č. 90/2016 Sb., §15 odst.1) Označení CE na stanoveném výrobku vyjadřuje, že výrobek splňuje technické požadavky stanovené ve všech nařízeních vlády, které se na něj vztahují a které toto označení stanovují nebo umožňují, a že byl při posouzení jeho shody dodržen stanovený postup. Označením CE smí být opatřen pouze výrobek, u kterého je umístění tohoto označení stanoveno nařízením vlády. \"CE\" (\"Conformité Européenne\") označuje, že výrobek splňuje harmonizované normy a předpisy Evropské unie (EU) týkající se zdraví, bezpečnosti, ochrany životního prostředí a dalších aspektů. Získání značky CE je povinné pro mnoho typů výrobků, které jsou uváděny na trh v EU. ES (Evropská společenství) prohlášení o shodě je důležitý dokument, který výrobci musí připravit a připojit k výrobku, který je určen pro trh EU. Toto prohlášení je součástí procesu zajišťování, že výrobek splňuje veškeré relevantní normy a předpisy EU. ES prohlášení o shodě obsahuje informace o výrobku, jeho výrobci, použitých normách a zkouškách, které byly provedeny pro ověření shody výrobku s evropskými požadavky. Značka CE na výrobku a ES prohlášení o shodě jsou vzájemně propojeny: Výrobce provádí hodnocení výrobku a zajistí, že splňuje všechny příslušné evropské normy a požadavky. Po ověření shody výrobku s normami a předpisy EU výrobce připraví ES prohlášení o shodě, které obsahuje veškeré potřebné informace. Výrobce na výrobek připevní značku CE, což je symbol označující shodu výrobku s evropskými požadavky. Značka CE by měla být viditelná a čitelná. ES prohlášení o shodě by mělo být k dispozici pro dohledové orgány a mělo by být uchováváno pro referenci. Tímto způsobem značka CE a ES prohlášení o shodě slouží jako důkaz, že výrobek splňuje evropské požadavky na bezpečnost a shodnost a je oprávněn být uváděn na trh v zemích EU."
+    },
+    {
+      "question": "88. Uličky – živé části po obou stranách (např. rozváděče)",
+      "answer_a": "1 300 mm / 1 100 mm / 900 mm",
+      "answer_b": "900 mm / 700 mm / 300 mm",
+      "answer_c": "1 200 mm / 1 000 mm / 700 mm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-729, čl.410.3.7.2) Jsou-li živé části na obou stranách uličky, jsou min. vzdálenosti: šíře uličky mezi součástmi pod napětím 1 300 mm; vzdálenost mezi přední částí rukojeti a součástí pod napětím na straně protilehlé 1 100 mm; volný prostor před ovládacími prvky (rukojeťmi, jističi v poloze vypnuto..) 900 mm; atd."
+    },
+    {
+      "question": "89. Jak se chrání zásuvky AC jejichž jmenovitý proud nepřekračuje 32 A (dříve 20 A), pokud jsou užívány laiky a jsou určeny pro obecné použití? (podmínky, jaký chránič)",
+      "answer_a": "Musí být provedena doplňková ochrana proudovými chrániči s ochranným opatřením automatickým odpojením od zdroje.",
+      "answer_b": "Musí být provedena ochrana PELV (musí být spojeno se zemí) s ochranným opatřením automatickým odpojením od zdroje.",
+      "answer_c": "Musí být provedena ochrana elektrickým oddělením, pro napájení více než jednoho spotřebiče.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed. 3, čl. 411.3.3) Ve střídavé (Asíti musí být doplňková ochrana proudovými chrániči (do 30 mA zajištěna: u AC mobilních zařízení určených pro venkovní použití, jejichž jmenovitý proud nepřesahuje 32 A; u AC zásuvek, jejichž jmenovitý proud nepřekračuje 32 A, které jsou určeny pro obecné použití a mohou být užívány laiky. (V předchozí normě byla uvedena hodnota 20 A!)"
+    },
+    {
+      "question": "90. Jaký má být minimální průřez drátového zemniče?",
+      "answer_a": "Pozink Fe 8 mm / holá (bez povlaku) 10 mm",
+      "answer_b": "/ 8/10/8 v betonu nebo 10 /",
+      "answer_c": "Ocelový 10 mm, Měděný 6 mm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, tab.ZB.54.1) Nejmenší průřez drátového zemniče 8 mm"
+    },
+    {
+      "question": "91. Co je to základní ochrana?",
+      "answer_a": "Ochrana před úrazem el. proudem v bezporuchovém stavu.",
+      "answer_b": "Ochrana před úrazem el. proudem v důsledku první poruchy.",
+      "answer_c": "Ochrana před úrazem el. proudem v důsledku druhé poruchy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 61140 ed.3, čl.3.1.1) Základní ochrana (basic protection) je ochrana před úrazem el. proudem v bezporuchovém stavu nebo dle (ČSN 33 2000-4-41 ed.3) Ochrana před přímým dotykem neboli před dotykem živých částí. Je zajištěna základní izolací živých částí (živé části musí být zcela pokryty izolací, kterou je možno odstranit pouze jejím zničením) nebo přepážkami nebo kryty; z.o. musí odpovídat ochraně před přímým dotykem (před dotykem živých částí a  musí být tvořena pomocí jednoho nebo více prostředků, které za normálních podmínek brání dotyku nebezpečných živých částí: základní izolace, přepážky a kryty, omezení ustáleného dotykového proudu a náboje; prostředky z.o.: zábrany, ochrana polohou (umístěním mimo dosah), omezení napětí)."
+    },
+    {
+      "question": "92. Co je to ochrana při poruše?",
+      "answer_a": "Ochrana před úrazem el. proudem při jedné poruše.",
+      "answer_b": "Ochrana před úrazem el. proudem v bezporuchovém stavu.",
+      "answer_c": "Ochrana před úrazem el. proudem v důsledku druhé poruchy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 61140 ed.3, čl.3.1.2) Ochrana při poruše (fault protection), je ochrana před úrazem el. proudem při jedné poruše. Musí být tvořena jedním nebo více prostředky, které na zákl.ochr. nezávisí ani ji nedoplňují. Mohou ji tvořit tyto prostředky: přídavná izolace; ochranné pospojování; ochranné stínění; indikace a odpojení ve vysokonapěťových instalacích a sítích; automatické (samočinné) odpojení od zdroje; jednoduché oddělení (obvodů); nevodivé okolí; řízení potenciálu; ostatní prostředky pro ochranu při poruše, která vyhovují základnímu pravidlu, že nebezpečné živé části nesmí být přístupné a přístupné vodivé části nesmí být nebezpečné živé ani za normálních podmínek, ani za podmínek jedné poruchy. (9 prostředků)"
+    },
+    {
+      "question": "93. Jakým podmínkám musí vyhovět pracovní charakteristika prvku jistícího chránícího vedení před přetížením?",
+      "answer_a": "Iz< In <Ib < a I2< 1,45 x Iz Kde Ib je proud použitý ve vedení, Iz dovolené proudové zatížení. In jmenovitý proud jistícího prvku. I2 proud zajišťující účinné zapůsobení ochranného přístroje ve smluvené době",
+      "answer_b": "Ib< In <Iz < a I2< 1,45 x Iz Kde Ib je proud použitý ve vedení, Iz dovolené proudové zatížení. In jmenovitý proud jistícího prvku. I2 proud zajišťující účinné zapůsobení ochranného přístroje ve smluvené době",
+      "answer_c": "Iz< In <Ib < a I2> 1,45 x Iz Kde Ib je proud použitý ve vedení, Iz dovolené proudové zatížení. In jmenovitý proud jistícího prvku. I2 proud zajišťující účinné zapůsobení ochranného přístroje ve smluvené době",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-43 ed.2, čl.433) Koordinace mezi vodiči a ochrannými přístroji jistícími před přetížením: Pracovní charakteristika prvku jistícího vedení před přetížením musí vyhovět těmto dvěma podmínkám."
+    },
+    {
+      "question": "94. Jaká má být vzdálenost tyčových zemničů od sebe?",
+      "answer_a": "nemá být menší než 2 m",
+      "answer_b": "maximálně 5 m",
+      "answer_c": "na délku tyčového zemniče",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, čl. NA.10.2.3) Použije-li se několik tyčových zemničů, nemá být s ohledem na jejich el. využití mezi nimi vzdálenost menší, než je délka tyčového zemniče."
+    },
+    {
+      "question": "95. Jak daleko mají být neživé části od Trakčního vedení (TV)?",
+      "answer_a": "Tak daleko, aby s nimi byl vyloučen dotyk bez použití zvláštních pomůcek.",
+      "answer_b": "4,5 metru",
+      "answer_c": "1,5 metru",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 1500 ed.2, čl.5.4.8) Ochrana polohou (vzdušnou izolací) spočívá v takovém umístění chráněných neživých částí TV a ostatních vodivých částí v POTV, aby dotyk s nimi byl vyloučen bez, použití zvláštních pomůcek."
+    },
+    {
+      "question": "96. Jaký je význam tvaru u tlačítek?",
+      "answer_a": "Pro rozlišení, pokud je použita stejná barva pro více funkcí, např. ZAP/VYP.",
+      "answer_b": "Pro bezpečné rozpoznání např. když je tl. na nepřehledném místě (pod stolem).",
+      "answer_c": "Pro bezpečné rozlišení pro nevidomé.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.3, čl.10.2.1) V případě, kdy je stejná barva (BÍLÁ, ŠEDÁ, ČERNÁ použita pro různé funkce, například START/ZAP. a STOP/VYP), musí být pro identifikaci ovládacích prvků použity doplňující prostředky kódování (např. tvar, poloha nebo značka)."
+    },
+    {
+      "question": "97. Jaké jsou průřezy vodičů HDV a odboček HDV?",
+      "answer_a": "u HDV Cu 4x10 a u odboček HDV stupně elektrizace A: Cu 6 mm2 a B: Cu 10 mm2",
+      "answer_b": "u HDV Cu 4x16 a u odboček HDV stupně elektrizace A: Cu 4 mm2 a B: Cu 6 mm2",
+      "answer_c": "u HDV Cu 4x16 a u odboček HDV stupně elektrizace A: Cu 10 mm2 a B: Cu 25 mm2",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, příloha C a D, str.38-39) Uvedený počet vodičů a jejich průřez platí pro vodiče CY (AY) v trubkách, pro proudovou soustavu AC 3 PEN ~ 50 Hz 400V/TN-C s ochranou automatickým odpojením od zdroje a jejíž vodorovná část vedení (tj. od přípojkové skříně k první odbočce k elektroměru) je do 20 m."
+    },
+    {
+      "question": "98. Jakou barvou jsou označovány holé vodiče, které mohou měnit polaritu nebo fázi?",
+      "answer_a": "Fázové: oranžová, Trakční: žlutá, Trolejová: fialová.",
+      "answer_b": "Fázové: černá, Trakční: oranžová, Trolejová: fialová.",
+      "answer_c": "Fázové: černá/hnědá/šedá, Trakční: oranžová, Trolejová: žlutá.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0165 ed.2, čl.4.3) Pracovní vodič, který při provozu mění polaritu nebo fázi, se označí poznávací barvou odpovídající polaritě nebo fázi za stavu provozu zařízení, který se pro dané zařízení zvolí jako základní. Značení holých vodičů: nulový – světlemodrá; ochranný - zelená/žlutá; fázové - oranžová a je-li třeba rozlišit jednotlivé fáze - Přednostně úzkými, příčnými, černými pruhy (jeden pruh pro 1. fázi, dva pruhy pro..); vodič připojený ke kolejovému vedení (odváděcí vodič) - žlutá; a k trolejovému vedení (napájecí vedení) - fialová. Značení se provádí na všech přístupných / kontrolních místech. Jak je to s PE?"
+    },
+    {
+      "question": "99. Jaká je barva spínače VYPNUTO?",
+      "answer_a": "ČERNÁ, ŠEDÁ nebo BÍLÁ, přednostně ČERNÁ. ZELENÁ se nesmí používat.",
+      "answer_b": "ČERNÁ, ŠEDÁ nebo BÍLÁ. Nesmí se používat ČERVENÁ, ZELENÁ a ŽLUTÁ.",
+      "answer_c": "ČERNÁ nebo ŠEDÁ. Nesmí se používat ČERVENÁ, ZELENÁ a BÍLÁ.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.3, čl.10.2.1) Pro ovl. prvky STOP/VYP mají být použity barvy ČERNÁ, ŠEDÁ nebo BÍLÁ, přednostně ČERNÁ. ZELENÁ se nesmí používat. ČERVENÁ je povolena, ale doporučuje se, aby se nepoužívala v blízkosti přístroje pro nouzovou činnost (protože pro nouzové vypnutí/zastavení se používá výhradně ČERVENÁ, případně na ŽLUTÉm pozadí)."
+    },
+    {
+      "question": "100. Za jakých podmínek je možno použít dotykového displeje k vypnutí zařízení?",
+      "answer_a": "Ovladače zobrazované na obrazovkách, musí být pro obsluhu z její pracovní a manipulační polohy viditelné a musí se s nimi snadno manipulovat.",
+      "answer_b": "Není dovoleno.",
+      "answer_c": "Pokud v systému není žádný jiný prvek pro vypnutí zařízení.",
+      "correct_answer": "A",
+      "explanation": "(EN 60073 ed.2, čl.5.2.3.2 + 4.2.1) Při nouzovém ovládání, musí být zajištěno, aby ovladače zobrazované na obrazovkách, byly pro obsluhu z její pracovní a manipulační polohy viditelné a aby s nimi mohla snadno manipulovat."
+    },
+    {
+      "question": "101. Mohou přes podložku z nehořlavého materiálu procházet kovové upevňovací šrouby?",
+      "answer_a": "Ano, nepokládají za nebezpečné z hlediska vedení tepla.",
+      "answer_b": "Ne, pokládají za nebezpečné z hlediska vedení tepla.",
+      "answer_c": "Jen, u hořlavých látek stupně hořlavosti B. U hořlavých látek stupně hořlavosti C1, C2, C3 nesmí nehořlavou tepelně izolační podložkou procházet žádné tepelně vodivé předměty, včetně upevňovacích šroubů a úchytů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2312 ed.2, čl.6.7) Upevňovací šrouby procházející tepelně izolační podložkou nebo vzduchovou mezerou se nepokládají za nebezpečné z hlediska vedení tepla."
+    },
+    {
+      "question": "102. Jak vysoko nad zónou 1 v koupelně v ČR je definována zóna 2?",
+      "answer_a": "Nad zónou 1 je zóna 2 až ke stropu nebo do výšky 300 cm, je-li výška stropu větší.",
+      "answer_b": "Zóna 2 navazuje nad zónou 1 a to v maximální výšce 225 cm (max. výška zóny 1) a je vysoká dalších 60 cm.",
+      "answer_c": "Zóna 2 není nad zónou 1 definována. Je definována pouze do 60 cm vedle zóny 1. Obě jsou do maximální výšky 225 cm a nad nimi je zóna 3.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-701 ed.2, čl.701.30.3.a) Nad zónou 1 je zóna 2 až ke stropu nebo do výšky 300 cm, je-li výška stropu větší (platí pro ČR)."
+    },
+    {
+      "question": "103. Mohou být v zóně 1 umístěny zásuvky?",
+      "answer_a": "Ne, kromě SELV a PELV max. AC 25 V nebo DC 60 V, zdroj napětí musí být umístěn mimo zóny 0,1 a 2.",
+      "answer_b": "Ano, ale pouze na malé napětí, nepřesahující 12 V (například holicí strojky, el. zubní kartáčky..)",
+      "answer_c": "Ne, se zónou 1 nesmí přijít do styku ani mobilní telefon držený v ruce kvůli EMC.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-701 ed.2, zvl. podmínky ČR) Pouze zař. a doplňky obvodu SELV nebo PELV s napětím nepřesahujícím AC 12 V nebo DC 30 V. Zdroj bezp. napětí musí být umístěn mimo zóny 0, 1 a 2."
+    },
+    {
+      "question": "104. Jak vzdálená musí být zásuvka od zóny, ve které je umyvadlo?",
+      "answer_a": "Pokud jsou alespoň 1,2 m nad podlahou, můžou být umístěny těsně u hranice umývacího prostoru. Jinak musí být alespoň 0,2 m od hranice prostoru.",
+      "answer_b": "Může být ve stejné zóně jako je umyvadlo, pokud je alespoň 20 cm spodním okrajem od hlavice baterie.",
+      "answer_c": "Zásuvka nemůže být ve stejné místnosti jako je umyvadlo.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, čl.7.8) Zásuvky a spínače mohou být umístěny pouze vně umývacího prostoru; jsou-li aspoň ve výši 1,2 m nad podlahou, mohou být umístěny těsně u hranice umývacího prostoru. Jsou-li umístěny níže, musí být vzdáleny svým nejbližším okrajem aspoň 0,2 m od hranice umývacího prostoru. Zás. a spínače mohou být umístěny v umývacím prostoru pouze tehdy, jsou-li součástí zařízení (zrcadlo, skříňka..) a bylo na ně výrobcem/dovozcem v souladu se zákonem 22/1997 Sb. vydáno ES prohlášení o shodě a v montážním návodu je výslovně uvedeno, že zař. je určeno i do umývacího prostoru. +(ČSN 33 2000-7-701 ed.1, čl. 701.53 N1-X-)"
+    },
+    {
+      "question": "105. Jaká je vzdálenost zásuvky od police, která je umístěna nad umyvadlem, tvořící s umyvadlem jeden celek?",
+      "answer_a": "Polici musíme brát jako součást umývacího prostoru, proto se na zásuvku vztahují stejné požadavky, jako kdyby tam bylo jen umyvadlo.",
+      "answer_b": "Za součást umyvadla se nepovažuje okolí umyvadla určené pouze pro odkládání věcí, přestože toto okolí spolu s umyvadlem tvoří jeden celek. Proto budeme počítat vzdálenost pouze od umyvadla.",
+      "answer_c": "Minimální vzdálenost je 0,25 cm nejbližším okrajem zásuvky k polici.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2130 ed.3) čl.7.8 Zásuvky a spínače mohou být umístěny pouze vně umývacího prostoru; jsou-li aspoň ve výši 1,2 m nad podlahou, mohou být umístěny těsně u hranice umývacího prostoru. Jsou-li umístěny níže, musí být vzdáleny svým nejbližším okrajem aspoň 0,2 m od hranice umývacího prostoru. Zás. a spínače mohou být umístěny v umývacím prostoru pouze tehdy, jsou-li součástí zařízení (zrcadlo, skříňka..) a bylo na ně výrobcem/dovozcem v souladu se zákonem 22/1997 Sb. vydáno ES prohlášení o shodě a v montážním návodu je výslovně uvedeno, že zař. je určeno i do umývacího prostoru. čl.7.8.1 Za součást umyvadla se nepovažuje okolí umyvadla určené pouze pro odkládání věcí, přestože toto okolí spolu s umyvadlem tvoří jeden celek. Dále (ČSN 33 2000-7-701 ed.1, čl. 701.53 N1 – zrušená)"
+    },
+    {
+      "question": "106. Jaká je dovolena ochrana pro podlahové topení v koupelně?",
+      "answer_a": "Pouze SELV, „elektrické oddělení“ není dovoleno.",
+      "answer_b": "Jakákoliv, protože podlahové topení je chráněno zábranou (pod izolovanou podlahou).",
+      "answer_c": "V koupelně není dovoleno podlahové vytápění.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-701 ed.2, čl.753) Pro elektrické podlahové vytápění mohou být použity pouze topné kabely nebo topné rohože, mající kovový vodivý oplet, ovinutý pásek či obal a zároveň tato topná tělesa vyhovují odpovídajícím normám. Tento kovový vodivý oplet, ovíjecí pásek či obal musí být připojen k ochrannému vodiči napájecího obvodu. Toto ustanovení spolu s dalšími ustanoveními pro toto zařízení není závazné, je-li jako bezpečnostního opatření použito k napájení SELV. Pro el. podlahové vytápění není dovoleno využití ochranného opatření „elektrické oddělení“."
+    },
+    {
+      "question": "107. Kde končí přípojka, pokud nemá zákazník na nemovitosti přípojkovou skříň?",
+      "answer_a": "Na přívodních svorkách hlavního jističe objektu nebo na přívodních svorkách v kabelové skříni uvnitř objektu.",
+      "answer_b": "V bytové rozvodnici.",
+      "answer_c": "Pokud zákazník nemá přípojkovou skříň, přípojka bude zřízena až po instalaci přípojkové skříně na nemovitost podle platných norem ČSN.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 3320 ed.2, čl.3.4.1) Přípojka NN končí v přípojkové skříni. Není-li na nemovitosti zákazníka zřízena přípojková skříň, končí el. přípojka NN na přívodních svorkách hlavního jističe objektu nebo na přívodních svorkách v kabelové skříni uvnitř objektu. Dříve dle ed.1: přípojkovou skříň lze umístit výjimečně i v blízkosti nemovitosti odběratele, přípojková skříň je součástí přípojky."
+    },
+    {
+      "question": "108. Jak má být provedeno jištění v přípojkové skříni?",
+      "answer_a": "Musí být alespoň o jeden stupeň vyšší, než je jištění před elektroměrem",
+      "answer_b": "Musí být alespoň o jeden stupeň nižší, než je jištění před elektroměrem",
+      "answer_c": "Alespoň o dva stupně vyšší, než je jištění před elektroměrem. V případě, že je delší než 3 m, může být se souhlasem odběratele jištění v přípojkové skříni před elektroměrem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 3320 ed.2, čl.4.1.7) Jištění v přípojkové skříni musí být alespoň o jeden stupeň vyšší, než je jištění před elektroměrem. Přitom nutno dodržet zásady pro volbu jistících prvků podle ČSN 33 2000-443. K jištění lze použít pojistek závitových, nožových apod."
+    },
+    {
+      "question": "109. Jaké jsou požadavky pro krytí zábranou?",
+      "answer_a": "mohou být odstraněny bez použití klíče nebo nástroje, ale musí být zajištěny tak, aby se zabránilo jejich neúmyslnému odstranění",
+      "answer_b": "mohou být odstraněny bez použití klíče nebo nástroje, avšak vzdálenost stanoviště od živých částí musí být 0,2 m",
+      "answer_c": "mohou být odstraněny pouze s použitím klíče nebo nástroje",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.410.3.5) Ochranná opatření představovaná zábranami a polohou se mohou použít pouze v instalacích, které jsou přístupné osobám znalým nebo poučeným, nebo v instalacích přístupných osobám bez el. kvalifikace pracujícím pod dozorem nebo dohledem osob znalých nebo poučených. A podle Př.B, čl.B2.1: Zábrany musí bránit neúmyslnému přiblížení těla k živým částem a nahodilému dotyku živých částí během činnosti zař. pod napětím v běžném provozu. Zábrany nejsou určeny k zabránění úmyslnému dotyku, při záměrném obejití zábrany. A podle Př.B, čl.B2.2: Zábrany mohou být odstraněny bez použití klíče nebo nástroje, ale musí být zajištěny tak, aby se zabránilo jejich neúmyslnému odstranění."
+    },
+    {
+      "question": "110. Mezi, kterými vodiči se musí při výchozí revizi měřit izolační odpor?",
+      "answer_a": "Izolační odpor se musí měřit mezi každým pracovním vodičem a ochranným vodičem spojeným se zemničem. Pro účely této zkoušky se mohou pracovní vodiče (fázové vodiče a nulový vodič spolu navzájem spojit)",
+      "answer_b": "Izolační odpor se musí měřit mezi každým pracovním vodičem a ochranným vodičem nebo zemí. Pro účel této zkoušky se mohou ochranné a nulové vodiče spolu navzájem spojit",
+      "answer_c": "Izolační odpor se musí měřit mezi každým pracovním vodičem a ochranným vodičem nebo zemí. Fázové vodiče a nulový vodič se při této zkoušce nesmí spojovat",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6 ed.2) IS se musí měřit mezi každým pracovním vodičem a ochranným vodičem spojeným se zemničem. Pro účely této zkoušky, se mohou pracovní vodiče (fázové vodiče a nulový vodič) spolu navzájem spojit."
+    },
+    {
+      "question": "111. Jaká je max. doba odpojení u AC obvodů do 32A v síti TT, pokud je napětí mezi 230V a 400V a není použit proudový chránič?",
+      "answer_a": "0,07 s",
+      "answer_b": "0,2 s",
+      "answer_c": "0,4 s",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 tab.41.1) Pokud je v síti TT dosaženo odpojení pomocí nadproudového ochranného přístroje a ochranné pospojování je spojeno se všemi cizími částmi v rámci instalace, je možno uplatnit maximální dobu odpojení předepsanou pro sítě TN."
+    },
+    {
+      "question": "112. Jakým způsobem se umisťují kabely na podklad?",
+      "answer_a": "Mohou se klást volně na nehořlavý podklad.",
+      "answer_b": "Nemohou se klást volně ani na nehořlavý podklad. Vždy musí být použito vhodných kovových nebo izolačních příchytek.",
+      "answer_c": "Mohou se klást volně na hořlavý podklad.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52, př.NA4.5.9.1.1) Kabely se upevňují (na zdi, stěny, stropy, desky, nosná lana apod.) vhodnými kovovými nebo izolačními příchytkami, které vyhovují i pro příslušné prostředí a v daném prostředí na vodič škodlivě nepůsobí; mohou se klást též volně na nehořlavý podklad."
+    },
+    {
+      "question": "113. Co znamená IP X9",
+      "answer_a": "Chráněno proti WAP",
+      "answer_b": "Úplné ponoření",
+      "answer_c": "Úplná prachotěsnost",
+      "correct_answer": "A",
+      "explanation": "(ČSN 60529 A2, čl.6) chráněno proti tryskající vysokotlaké horké vodě (voda o vysokém tlaku a vysoké teplotě tryskající z libovolného směru proti krytu nesmí způsobit žádné škodlivé účinky)"
+    },
+    {
+      "question": "114. Co znamená označení vodiče PBU?",
+      "answer_a": "Neuzemněný vodič ochranného pospojování",
+      "answer_b": "Uzemněný vodič ochranného pospojování",
+      "answer_c": "Přebarvený střední vodič na vodič PE",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60445 ed.5, čl.7.3.9) Pokud je nutné rozlišení mezi uzemněným vodičem ochranného pospojování a neuzemněným vodičem ochranného pospojování, pak písmeno-číslicové označení neuzemněného vodiče ochranného pospojování musí být „PBU“."
+    },
+    {
+      "question": "115. Může být u dvoužilového kabelu použita modrá?",
+      "answer_a": "ANO",
+      "answer_b": "Ne, tato kombinace je možná pouze v kombinaci s ochranným vodičem.",
+      "answer_c": "Pouze v kombinaci: zelená/žlutá a modrá.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0166 ed.2, tab.2) Kabely a šňůry bez z/ž žíly: 2ž modrá, hnědá."
+    },
+    {
+      "question": "116. Jakým způsobem je připojena vícenásobná zásuvka? Může nebo nesmí být ve více obvodech?",
+      "answer_a": "Nesmí",
+      "answer_b": "Smí",
+      "answer_c": "Nesmí. Smí, pouze ve zvláštním případě povrchové instalace.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2130 ed.3, čl.5.3.8 a 7.7.8) Vícenásobná zásuvka se považuje za jeden zásuvkový vývod, stejně tak jako více zásuvek zapojených ve stejném obvodu a umístěných ve spol. vícenásobné přístrojové krabici, se považuje za jeden zás. vývod. Zásuvky v prostorově oddělených přístrojových krabicích na povrchu pod spol. vícenásobným rámečkem, mohou být zapojeny do více než jednoho obvodu, avšak musí být vizuálně rozlišeny (označením, barevně)."
+    },
+    {
+      "question": "117. Je nutno při úpravách, provádět vždy revizi el. zařízení?",
+      "answer_a": "Ano",
+      "answer_b": "Není to nutné.",
+      "answer_c": "V případě, že dojde ke změně parametrů instalace, tak ano.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-6 ed.1, Př.F)"
+    },
+    {
+      "question": "118. Jaká je max. dovolená hodnota teploty přístupné kovové části zař. určené k dotýkání?",
+      "answer_a": "70 °C",
+      "answer_b": "60 °C",
+      "answer_c": "24 °C",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-42, tab.42.1)"
+    },
+    {
+      "question": "119. Je možné u zařízení použít pružící spojení s ochranným vodičem?",
+      "answer_a": "Ano, např. vějířovou podložkou.",
+      "answer_b": "Nesmí se použít.",
+      "answer_c": "Pouze u zařízení třídy ochrany II.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0360 ed.2, čl.4.2.2) Rozebíratelné propojení ochranného vodiče se provede jako svorka šroubová a musí mít pracovní rozsah pro propojení ochranného vodiče podle tab.1. Pro dlouhodobé zachování kontaktního tlaku a pro zajištění šroubového spoje proti samovolnému uvolnění se použije pružícího prvku, např. podložky. Rozebíratelná místa připojení elektroinstalačních výrobků pro jmenovité proudy nad 25 A musí mít podložku a pružící prvek."
+    },
+    {
+      "question": "120. Kolik lze připojit jednofázových zásuvkových vývodů na jeden zás. obvod?",
+      "answer_a": "max. 10 ks: max. 3680 VA při jištění 16 A nebo max. 2300 VA při 10 A.",
+      "answer_b": "10, přičemž vícezáskuvky se počítají každá zvlášť.",
+      "answer_c": "Počet není omezen, závisí jen na celkovém příkonu 3650 W",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, čl.5.3.6) Na jeden zásuvkový obvod lze připojit nejvýše 10 zás. vývodů (dvoj-zásuvka i vícenásobná zásuvka se považují za jeden zás. vývod), přičemž celkový instalovaný příkon nesmí překročit 3 680 VA při jištění 16 A (2 300 VA při jištění 10 A)."
+    },
+    {
+      "question": "121. Jaká je minimální velikost OK u mřížové soustavy hromosvodu pro třídu LPS II?",
+      "answer_a": "10 x 10 m",
+      "answer_b": "15 x 15 m",
+      "answer_c": "20 x 20 m",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 62305-3 ed.2, tab.2) LPS: I – 5x5, II 10x10, III 15x15, IV 20x20"
+    },
+    {
+      "question": "122. Jaký je dovolený průřez a délka vodiče PEN v neměřené části?",
+      "answer_a": "Cu: 6 mm2 nebo AI: 10 mm2 a nesmí být delší jak 15 m.",
+      "answer_b": "Cu: 2,5 mm2 nebo AI: 16 mm2 a nesmí být delší jak 25 m.",
+      "answer_c": "Cu: 4 mm2 nebo AI: 16 mm2 a nesmí být delší jak 15 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, NA.19.2) V neměřených částech pevných instalací připojených na sítě TN, je přípustné použít vodič PEN za předpokladu, že průřezy všech vodičů odboček k elektroměru a od elektroměru jsou shodné a nejsou menší než 6 mm2 Cu nebo 10 mm2 AI; rozdělení vodiče PEN na PE a N je provedeno v nejbližším vhodném místě rozvodu za elektroměrem (např. v bytové rozvodnici apod.); vodič PEN s tímto nižším průřezem není delší než 15 m."
+    },
+    {
+      "question": "123. Jaká musí být hodnota udržované světelnosti Em ve srovnávací rovině na nekrytém nástupišti regionální dráhy s nízkou frekvencí cestujících?",
+      "answer_a": "10 lx",
+      "answer_b": "15 lx",
+      "answer_c": "20 lx",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 12464-2, tab.5.12.6, r.v.2014) Nekrytá nástupiště, malý počet cestujících, např. regionální a místní vlaky. (Pozor v edici zrušené 2014 bylo 15 lx)"
+    },
+    {
+      "question": "124. Jaká je nejvyšší hodnota bezpečného malého DC napětí živých částí, v prostoru nebezpečném, dochází-li k dotyku krytů izolovaných od živých částí?",
+      "answer_a": "60 V",
+      "answer_b": "120 V",
+      "answer_c": "50 V",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-41 ed.2, tab.NA.3) Bezpečná jmenovitá napětí s ohledem na členění prostorů a na způsob dotyku: Normální i nebezpečné: AC 25/50 V, DC 60/120, Zvlášť nebezpečné (pouze krytů) AC 12 V / DC 25 (30) V."
+    },
+    {
+      "question": "125. Jaká je hodnota poloměru valící se koule u LPL III?",
+      "answer_a": "20 m",
+      "answer_b": "45 m",
+      "answer_c": "30 m",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 62305-1 ed.2, čl. 8.2 tabulka č. 4 a podle ČSN EN 62305-3 ed.2, čl. 5.2.2) V závislosti na min. hodnotě bleskového proudu jsou stanoveny poloměry valící se koule: LPL I–20 m; LPL II - 30 m; LPL III - 45 m; LPL IV - 60 m."
+    },
+    {
+      "question": "126. Jaké jsou hodnoty vzdáleností mezi svody u třídy LPS I?",
+      "answer_a": "10 m",
+      "answer_b": "15 m",
+      "answer_c": "20 m",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 62305-3 ed.2, čl. 5.3.3) Svody by měly být rozmístěny po obvodu ve stejných rozestupech. V normě jsou stanoveny pro jednotlivé třídy LPS tyto typické vzdálenosti mezi svody: LPS I = 10 m; LPS II = 10 m; LPS III = 15 m; LPS IV = 20 m (Je-li to možné, měl by být na každý nechráněný roh budovy umístěn jeden svod.)"
+    },
+    {
+      "question": "127. Mohou se použít okapové žlaby jako náhodné svody?",
+      "answer_a": "ANO, ale pouze z venčí.",
+      "answer_b": "ANO",
+      "answer_c": "NE",
+      "correct_answer": "C",
+      "explanation": "(ČSN EN 62305-3 ed.2, čl. 5.3.4) Svody musí být rozmístěny, pokud možno tak, aby bylo vytvořeno přímé pokračování jímací soustavy. Svody musí být instalovány přímo a svisle, aby bylo vytvořeno co nejkratší přímé spojení se zemí. Musí být zabráněno vytvoření instalačních smyček. Není-li možno tomu zabránit, musí se zajistit dostatečná vzdálenost S, měřená mezi dvěma body svodu, které se k sobě navzájem přiblíží. Svody nesmí být uloženy v okapech ani v okapových trubkách. (zvenčí ale na trubkách být mohou)."
+    },
+    {
+      "question": "128. Mohou se použít okapové trubky jako náhodné svody?",
+      "answer_a": "ANO, ale pouze z venčí",
+      "answer_b": "ANO",
+      "answer_c": "NE",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 62305-3 ed. 2, čl. 5.3.4) Svody musí být rozmístěny, pokud možno tak, aby bylo vytvořeno přímé pokračování jímací soustavy. Svody musí být instalovány přímo a svisle, aby bylo vytvořeno co nejkratší přímé spojení se zemí. Musí být zabráněno vytvoření instalačních smyček. Není-li možno tomu zabránit, musí se zajistit dostatečná vzdálenost s, měřená mezi dvěma body svodu, které se k sobě navzájem přiblíží. Svody nesmí být uloženy v okapech ani v okapových trubkách. (zvenčí ale na trubkách být mohou)"
+    },
+    {
+      "question": "129. Jaký může být průměr drátového ocelového zemniče?",
+      "answer_a": "10 mm",
+      "answer_b": "16 mm",
+      "answer_c": "25 mm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, tab.54.1) Min. rozměry běžných zemničů uložených v půdě nebo betonu, uplatňované z hlediska předcházení korozí a k zajištění mechanické pevnosti."
+    },
+    {
+      "question": "130. Jakou el.tech. kvalifikaci, musí mít uchazeč o vydání osvědčení o odborné způsobilosti k provádění revizí UTZ elektrických?",
+      "answer_a": "Osoba znalá",
+      "answer_b": "Osoba znalá s vyšší kvalifikací",
+      "answer_c": "Osoba znalá s vyšší kvalifikací pro řízení činnosti nebo řízení provozu",
+      "correct_answer": "B",
+      "explanation": "(Vyhl. MD č.100/95 Sb)"
+    },
+    {
+      "question": "131. Mohou být u jednoho více žilového kabelu nebo šňůry se čtyřmi žilami, bez zeleno/žluté žíly, použity pro označení ostatních žil současně barvy modrá, hnědá, černá a šedá?",
+      "answer_a": "Ne, pouze u koncentrických vodičů.",
+      "answer_b": "Ne.",
+      "answer_c": "Ano.",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 0166 ed.2, tab.2) Kabely a šňůry bez z/ž žíly: 4ž modrá, hnědá, černá, šedá."
+    },
+    {
+      "question": "132. Jakou hodnotu má udržovaná světelnost Em pro osvětlení otevřeného (nekrytého) nástupiště zastávky regionální dráhy?",
+      "answer_a": "10 lx",
+      "answer_b": "15 lx",
+      "answer_c": "20 lx",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 12464-2, tab.5.12.6, r.v.2014) Nekrytá nástupiště, malý počet cestujících, např. regionální a místní vlaky. (Pozor v edici zrušené 2014 bylo 15 lx)"
+    },
+    {
+      "question": "133. Jaké je nejmenší hloubka kabelu pod vozovkou nebo krajnicí vozovky?",
+      "answer_a": "100 cm",
+      "answer_b": "35 cm",
+      "answer_c": "70 cm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52, tab.NA.6) Min. hloubky kladení kabelů do 1 000 V do země: v terénu 35 cm s mech. ochranou, 70 cm bez mech. ochrany; pod chodníkem 35 cm; pod vozovkou nebo krajnicí 100 cm. Sdělovací řídicí a zvláštní obvody, se obvykle ukládají do stejné hloubky jako silové kabely."
+    },
+    {
+      "question": "134. Pro jakou síť nebo jaké zařízení se používá v označení zkratka 2/N AC 220/110 V 50Hz?",
+      "answer_a": "Pro jednofázovou dvouvodičovou síť s fázovým vodičem a nulovým/středním vodičem 220/110 V 50Hz",
+      "answer_b": "Pro jednofázovou tří vodičovou síť se dvěma fázovými vodiči a středním vodičem 220/110 V 50Hz",
+      "answer_c": "Pro jednofázovou dvouvodičovou síť s neuzemněným středním vodičem a přepínatelným fázovým vodičem 220/110 50 Hz",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN IEC 61293 ed.2, tab.A1.9) 2/N AC 220/110V 50Hz je jednorázová síť se dvěma vodiči vedení a nulovým vodičem 220/110 V, 50 Hz"
+    },
+    {
+      "question": "135. Za jakých podmínek je povoleno snížit hodnotu zkušebního stejnosměrného napětí při měření izolačního odporu el. instalace?",
+      "answer_a": "V případě, že výsledky mohou být ovlivněny přepěťovými ochranami nebo jinými přístroji a tyto přístroje nelze odpojit. Může se zkušební napětí snížit na 250 V DC. Izolační odpor přitom musí vykazovat hodnotu nejméně 1 M ohm",
+      "answer_b": "V případě, že výsledky mohou být ovlivněny přepěťovými ochranami nebo jinými přístroji a tyto přístroje nelze odpojit. Může se zkušební napětí snížit na 250 V DC. Izolační odpor přitom musí vykazovat hodnotu nejméně 0,5 M ohm",
+      "answer_c": "V případě, že výsledky mohou být ovlivněny přepěťovými ochranami nebo jinými přístroji a tyto přístroje nelze odpojit. Může se zkušební napětí snížit na 100 V DC. Izolační odpor přitom musí vykazovat hodnotu nejméně 0,5 M ohm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6, čl.6.4.3.3) Jestliže je pravděpodobné, že výsledky měření mohou být ovlivněny přepěťovými ochranami (SPD) nebo jinými přístroji, nebo jestliže takové přístroje mohou být měřením poškozeny, musí se tyto přístroje před měřením izolačního odporu odpojit. Pokud však odpojeni těchto přístrojů není prakticky proveditelné (např. v případě pevných zásuvek obsahujících přepěťově ochrany), je možno zkušební napětí pro takové obvody snížit na DC 250 V, ale izolační odpor musí vykazovat hodnotu nejméně 1 MOhm."
+    },
+    {
+      "question": "136. Jaký musí být min. průřez závitu šroubu ochranné svorky v místě připojení ochranného vodiče el. předmětu se jmenovitým proudem nad hodnotu 63 A?",
+      "answer_a": "U vnitřního místa připojení ochranného vodiče M6, u vnějšího místa připojení ochranného vodiče M8.",
+      "answer_b": "M6.",
+      "answer_c": "vnitřního místa připojení ochranného vodiče M4, u vnějšího místa připojení ochranného vodiče M6.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 0360 ed.2, čl.5, tab.1, str.9) 63A až 100A: min. průměr závitu: M6; rozsah jmenovitých průřezů ochranných vodičů: 10 - 25 mm2. (dále dle 33 2000-4-41 tab.41N0: U VN pozinkovaný ocelový pásek 50mm2, Cu drát 6mm)"
+    },
+    {
+      "question": "137. Jaký chránič se doporučuje pro zásuvku nad 32 A?",
+      "answer_a": "30 mA",
+      "answer_b": "300 mA",
+      "answer_c": "100 mA",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2130 ed.3, čl.5.3.11) Trojfázové zásuvky se jmenovitým proudem vyšším než 20 A a do 32 A se doporučuje vybavit doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem 30 mA a zásuvky připojené na obvod s jištěním 32 A a více doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem 100 mA."
+    },
+    {
+      "question": "138. Jak se uplatňuje redukční součinitel pro kabely v seskupení?",
+      "answer_a": "Redukční součinitel se aplikuje na seskupení kabelů s nejnižší max. provozní teplotou a příslušným redukčním faktorem pro seskupení.",
+      "answer_b": "Pro kabely v seskupení se redukční součinitel neuplatňuje.",
+      "answer_c": "Redukční součinitel se aplikuje na seskupení kabelů s nejvyšší minimální provozní teplotou a příslušným redukčním faktorem pro seskupení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52, čl.523.5) Seskupení obsahující více než jeden obvod. Redukční součinitele se mohou uplatnit na seskupení izolovaných vodičů nebo kabelů, které mají stejnou max. provozní teplotu. Pro seskupení, v němž jsou kabely nebo izolované vodiče s různou max. dovolenou provozní teplotou, musí být dovolené proudy všech kabelů nebo izolovaných vodičů ve skupině založeny na nejnižší max. provozní teplotě ze všech kabelů v seskupení, a to spolu s příslušným redukčním součinitelem pro dané seskupení. Jestliže se v důsledku známých provozních podmínek předpokládá, že kabel nebo izolovaný vodič nepovede větší proud než 30 % proudu, který by odpovídal jeho max. zatížení v seskupení, není nutné s tímto kabelem nebo vodičem pro účel určení redukčního součinitele seskupení počítat."
+    },
+    {
+      "question": "139. Může být přepěťová ochran (SPD) instalována na straně zátěže proudového chrániče?",
+      "answer_a": "Ano, musí být, ale použit proudový chránič, který odolá rázovému proudu alespoň 3 kA 8/20.",
+      "answer_b": "Ano, musí být, ale použit proudový chránič, který odolá rázovému proudu alespoň 20 kA.",
+      "answer_c": "Přepěťová ochrana nesmí být instalována na straně zátěže proudového chrániče (RCD)",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-53 ed.3, čl.534.4.7) Pokud jsou SPD instalovány v souladu s 534.4.1 a jsou umístěny na straně zátěže proudového chrániče (chráničů), mohou to být RCD se zpožděním nebo bez něj, ale musí mít odolnost proti rázovým proudům alespoň 3 kA při tvaru vlny 8/20 µs (62305-1, čl.12-14)."
+    },
+    {
+      "question": "140. Jaké jsou obecné podmínky pro pohyblivé přívody?",
+      "answer_a": "Musí být zhotoveny z ohebných kabelů nebo šňůr a splňovat kritéria jmenovitého napětí, max. proudu, mechanické pevnosti a odolnosti pro bezpečné použití.",
+      "answer_b": "Musí obsahovat ochranný vodič PE.",
+      "answer_c": "Musí být zhotoveny z ohebných šňůr a splňovat kritéria jmenovitého napětí, proudu, mechanické pevnosti a odolnosti pro bezpečné použití.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 0350 ed.2, čl.4) Pohyblivé přívody, prodlužovací přívody a vedení musí být zhotoveny z ohebných kabelů nebo šňůr vhodných pro dané použití z hlediska jmenovitého napětí, max. proudu, mechanické pevnosti, odolnosti vůči vlivům prostředí a mající potřebné vlastnosti pro jejich použití (např. ohebnost, hladký povrch, nešpinící povrch, trvanlivost) a zajišťující bezpečné používání připojovaného zařízení."
+    },
+    {
+      "question": "141. Kde se u vodivých staveb / konstrukcí malých rozměrů, které nepodpírají el. zařízení (kryty kanálů, návěstní sloupky..), nemusí provádět ochrana vodivých zařízení v POTV DC trakční soustavě?",
+      "answer_a": "Konstrukce do 15m délky vedené paralelně s TV a vzdálené 2 m a více od kolmého průměru živé části.",
+      "answer_b": "Konstrukce do délky 30 m kolmo na kolej.",
+      "answer_c": "Konstrukce do 15m délky vedené sériově s TV a vzdálené 2,5 m a více od kolmého průměru živé části.",
+      "correct_answer": "A",
+      "explanation": "(34 1500 ed.2 5.5.6.1) U vodivých staveb nebo konstrukcí malých rozměrů, které neobsahují ani nepodpírají el. zař. jako jsou kryty kanálů, návěstní sloupky, sloupky výstražných křížů PZS, návěstní upozorňovadla, nádoby na odpadky, zábradlí a konstrukce do 15 m délky, vedené paralelně s trakčním vedením a vzdálené 2 m a více od kolmého průměru živé části trolejového vedení na zem."
+    },
+    {
+      "question": "142. Může být základní izolace tvořena vzduchem?",
+      "answer_a": "Ne pouze v zařízení nízkého napětí, kdy na povrchu pevné izolace může být napětí.",
+      "answer_b": "Ano, dotyku nebezpečných živých částí, musí být, ale zabráněno zábranami, přepážkami nebo kryty, nebo polohou.",
+      "answer_c": "Ne",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-41 ed.3) Jestliže je základní izolace tvořena vzduchem, musí být dotyku nebezpečných živých částí nebo vniknutí do prostoru ohrožení zabráněno zábranami, ochrannými přepážkami, kryty nebo polohou (umístěním mimo dosah ruky)."
+    },
+    {
+      "question": "143. Jaký má význam tvar trojúhelníku, jako prostředku kódování pro stav zařízení?",
+      "answer_a": "Normální",
+      "answer_b": "Porucha",
+      "answer_c": "Abnormální (mimořádné)",
+      "correct_answer": "C",
+      "explanation": "(ČSN EN 60073 ed.2, čl.4.2.2) V případě, kdy je stejná barva (BÍLÁ, ŠEDÁ, ČERNÁ použita pro různé funkce, například START/ZAP. a STOP/VYP), musí být pro identifikaci ovládacích prvků použity doplňující prostředky kódování (např. tvar, poloha nebo značka). Tyto tvary mohou být: osmiúhelník – nebezpečí/nouzové/porucha; trojúhelník - Varování, výstraha/abnormální; čtverec nebo obdélník - bezpečí/normální, kruh - zvláštní význam."
+    },
+    {
+      "question": "144. Chráničky, štoly a kolektory musí být vybudovány v celé délce křížení a to:?",
+      "answer_a": "Nejméně do vzdálenosti 2 m od paty svahu náspu, nebo 0,6m od vnější hrany příkopu a přičemž tato vzdálenost nesmí být menší než 4 m od osy krajní koleje.",
+      "answer_b": "Nejméně do vzdálenosti 2 m od paty svahu náspu, nebo 1 m od vnější hrany příkopu a přičemž tato vzdálenost nesmí být menší než 4 m od osy krajní koleje.",
+      "answer_c": "Nejméně do vzdálenosti 2 m od paty svahu náspu, nebo 1 m od vnější hrany příkopu a přičemž tato vzdálenost nesmí být menší než 3 m od osy krajní koleje.",
+      "correct_answer": "A",
+      "explanation": "(37 5711 ed.2, čl.7.1) Chráničky, štoly a kolektory musí být navrženy tak, aby vyhovovaly zatížení, a to po celou dobu provozu chráničky i dráhy. Chráničky se mají zřizovat protlakem. Při protlačování musí být krytí chráničky nejméně 1,5 m od pláně tělesa železničního spodku. Chránička, štola nebo kolektor musí být vybudovány v celé délce křížení, nejméně do vzdálenosti 2 m od paty svahu náspu, nebo 0,6 m od vnější hrany příkopu, přičemž tato vzdálenost nesmí být menší než 4 m od osy krajní koleje. Nejméně na jedné straně tělesa žel. spodku musí být na konci chráničky (kolektoru) vybudována revizní šachta. V případě, že chránička nekončí šachtou, je nutno osadit na konci chráničky značkovací tyč. Vůči kabelům musí být chránička neaktivní. Provedení chráničky musí odpovídat typu kabelu. Chránička musí umožnit řešení havarijních případů bez narušení tělesa dráhy včetně výměny kabelu. Počet otvorů se stanoví s ohledem na dlouhodobé předpoklady. Doporučuje se rezerva alespoň pro jeden kabel v každé použité světlosti otvoru. U celostátních drah musí zůstat v chráničce trvale volný alespoň jeden otvor o max. světlosti. Je-li v jedné chráničce více silových kabelů musí být jejich rozmístění i v tomto případě v souladu s ustanovením o souběhu kabelů."
+    },
+    {
+      "question": "145. Poloměr valící se koule pro LPL III",
+      "answer_a": "20 m",
+      "answer_b": "45 m",
+      "answer_c": "30 m",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 62305-1 ed.2, čl. 8.2 tabulka č. 4 a podle ČSN EN 62305-3 ed. 2, čl. 5.2.2) V závislosti na min. hodnotě bleskového proudu jsou stanoveny poloměry valící se koule: LPL I–20 m; LPL II - 30 m; LPL III - 45 m; LPL IV - 60 m."
+    },
+    {
+      "question": "146. Typická vzdálenost mezi svody LPS III",
+      "answer_a": "10",
+      "answer_b": "15",
+      "answer_c": "20",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 62305-3 ed.2, čl.5.3.3) Svody by měly být rozmístěny po obvodu ve stejných rozestupech. V normě jsou stanoveny pro jednotlivé třídy LPS tyto typické vzdálenosti mezi svody: LPS I = 10 m; LPS II = 10 m; LPS III = 15 m; LPS IV = 20 m (Je-li to možné, měl by být na každý nechráněný roh budovy umístěn jeden svod.)"
+    },
+    {
+      "question": "147. Jak se jistí světelné obvody?",
+      "answer_a": "Max. 25 A",
+      "answer_b": "Max. 10 A",
+      "answer_c": "Max. 16 A",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, čl. 5.2.9) Vedení světelného obvodu se jistí jističi nebo pojistkami nebo jiným jisticím prvkem se jmenovitým proudem nejvýše 25 A. Vedení musí mít takový průřez, aby bylo předřazeným jisticím prvkem jištěno proti přetížení a zkratu. Tato otázka může mít různé podoby (Jakou max. hodnotu může mít jištění světelných obvodů? Světelné obvody se jistí jističem, pojistkami nebo jiným jistícím prvkem se jmenovitým proudem:? Jakým způsobem se jistí vnitřní světelné obvody NN?)"
+    },
+    {
+      "question": "148. Je možno u el. spojů uvnitř typově, či částečně zkoušeného rozváděče NN, připojit k jedné svorce dva a více holých nebo izolovaných vodičů?",
+      "answer_a": "Ano, svorky ale musí být pro tento účel konstruované.",
+      "answer_b": "Ne.",
+      "answer_c": "Ne. Výjimku tvoří holé vodiče u rozváděčů určených do míst, kde se nevyskytují v normálním provozu silné vibrace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204 ed.3, čl.13) Připojení dvou nebo více vodičů k jedné svorce je dovoleno pouze v případech, kdy je svorka pro tento účel navržena. Jeden ochranný vodič však musí být připojen pouze k jednomu připojovacímu bodu svorky."
+    },
+    {
+      "question": "149. Jakou doplňkovou ochranou RCD, se vybavují zásuvky připojené na obvod s jištěním 32 A a více?",
+      "answer_a": "30 mA",
+      "answer_b": "300 mA",
+      "answer_c": "100 mA",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2130 ed.3, čl.5.3.11) Zás. obvody do 20 A musí mít doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem nepřekračujícím 30 mA. Toto opatření se vztahuje i na trojfázové zásuvky připojené na obvod s jištěním do 20 A. Trojfázové zásuvky se jmenovitým proudem vyšším než 20 A a do 32 A se doporučuje vybavit doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem 30 mA a zásuvky připojené na obvod s jištěním 32 A a více doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem 100 mA."
+    },
+    {
+      "question": "150. Lze připojit pevně připojené 1f spotřebiče na jeden obvod s jiným zařízením?",
+      "answer_a": "ANO, do celkového příkonu 2 000 VA",
+      "answer_b": "ANO, pokud celkový příkon nepřesáhne 3 680 kVA",
+      "answer_c": "NE",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 33 2130 ed.3, čl.5.4.1) Pro pevně připojené 1f spotřebiče o příkonu 2 000 VA a více se zřizují samostatně jištěné obvody. Pouze spotřebiče do celkového příkonu 2 000 VA, nevyžadující jištění (např. ventilátory, elektrický pohon žaluzií), lze připojit na společný obvod s jiným zařízením. Trojfázové spotřebiče mohou být připojeny na jeden obvod, pokud jejich celkový výkon nepřesáhne 15 kVA."
+    },
+    {
+      "question": "151. Kterou z možností lze připojit na jištění 32 A?",
+      "answer_a": "Trojfázovou zásuvku 32 A a 16 A.",
+      "answer_b": "Trojfázovou zásuvku 32 A.",
+      "answer_c": "Čtyř vodičovou trojfázovou zásuvku.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2130) Opověď \"Trojfázovou zásuvku 32 A a 16 A.\" nemůže být správná, protože dle čl. 5.3.9 Trojfázové zásuvky o různém jmenovitém proudu se nesmějí zapojovat do stejného obvodu. Navíc musí mít rozdílné jištění."
+    },
+    {
+      "question": "152. Jak daleko od umývacího prostoru může být umístěná zásuvka 230V, je-li ve výšce 1,5m?",
+      "answer_a": "40cm od hranice umývacího prostoru",
+      "answer_b": "Těsně u hranice umývacího prostoru",
+      "answer_c": "20cm od hranice umývacího prostoru",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2130 ed.3) čl.7.8 Zásuvky a spínače mohou být umístěny pouze vně umývacího prostoru; jsou-li aspoň ve výši 1,2 m nad podlahou, mohou být umístěny těsně u hranice umývacího prostoru. Jsou-li umístěny níže, musí být vzdáleny svým nejbližším okrajem aspoň 0,2 m od hranice umývacího prostoru. Zás. a spínače mohou být umístěny v umývacím prostoru pouze tehdy, jsou-li součástí zařízení (zrcadlo, skříňka..) a bylo na ně výrobcem/dovozcem v souladu se zákonem 22/1997 Sb. vydáno ES prohlášení o shodě a v montážním návodu je výslovně uvedeno, že zař. je určeno i do umývacího prostoru. čl.7.8.1 Za součást umyvadla se nepovažuje okolí umyvadla určené pouze pro odkládání věcí, přestože toto okolí spolu s umyvadlem tvoří jeden celek. Dále (ČSN 33 2000-7-701 ed.1, čl. 701.53 N1 – zrušená)."
+    },
+    {
+      "question": "153. Kde musí být jištěna odbočka k měřícímu zařízení je-li delší než 3 m?",
+      "answer_a": "musí být jištěna u hlavního domovního vedení v témž podlaží, kde je elektroměr",
+      "answer_b": "lze ji jistit až jističem před měřícím zařízením v elektroměrové rozvodnici",
+      "answer_c": "Je-li uložena nehořlavě, lze jistit až jističem před měřícím zařízením, namontovaným na elektroměrové rozvodnici",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, čl.7.4.7 - Vnitřní el. rozvody) Odbočka k měřícímu zařízení (elektroměru) delší než 3 m musí být jištěna u hlavního domovního vedení v témž podlaží, kde je elektroměr. Odbočku kratší než 3 m, je-li uložena nehořlavé, lze jistit až jističem před měřícím zařízením (elektroměrem) namontovaným na elektroměrové rozvodnici. Provedení HDV a odboček od HDV k měřícím zař. (elektroměrům) musí být provedeno a uloženo odděleně od ostatních měřených vedení a tak, aby byl ztížen neoprávněný odběr nebo neoprávněná dodávka elektřiny a aby bylo možno vodiče bez stavebních zásahů vyměnit (např. v trubkách, kanálech, protahovacích lištách, dutinách, konstrukcí)."
+    },
+    {
+      "question": "154. Je-li konstrukce rodinného domu či bytu zcela či částečné z hořlavého materiálu, pak přívod musí mít doplňkovou ochranu tvořenou RCD s vybavovacím reziduálním proudem nepřekračujícím?",
+      "answer_a": "100 mA",
+      "answer_b": "500 mA",
+      "answer_c": "300 mA",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2130 ed.3, čl.7.6.17 - Vnitřní el. rozvody) Je-li konstrukce rodinného domku či bytu zcela či částečné z hořlavého materiálu, pak přívod musí mít doplňkovou ochranu tvořenou proudovým chráničem s vybavovacím residuálním proudem nepřekračujícím 300 mA. Tento proudový chránič se obvykle umísťuje do bytové rozvodnice."
+    },
+    {
+      "question": "155. Považuje se jako součást umývacího prostoru část umyvadla, sloužící pouze pro odkládání věcí?",
+      "answer_a": "NE",
+      "answer_b": "ANO",
+      "answer_c": "NE je-li deska delší jak 150 cm.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, čl.7.8.1) Za součást umyvadla se nepovažuje okolí umyvadla určené pouze pro odkládání věcí, přestože toto okolí spolu s umyvadlem tvoří jeden celek."
+    },
+    {
+      "question": "156. Můžeme použít u bytů stupně elektrizace B, od hlavního vedení k elektroměru vodič Cu?",
+      "answer_a": "Ano, primárně. Průřez vodiče musí být Cu 10 mm2.",
+      "answer_b": "Ne, v žádném případě.",
+      "answer_c": "Pouze pro opravy stávajících rozvodů, rovněž provedených vodiči s jádry z Cu. Průřez musí být 10 mm2 při délce odbočky do 20 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, Tab.D.1) Vodiče s jádry z AI (16 mm2) se používají pouze pro opravy stávajících rozvodů rovněž provedených vodiči s jádry z AI. Uvedené průřezy platí pro vodiče AY a CY v trubce, liště nebo dutině panelů pro proudovou soustavu AC 3 x 230/400 V pro odbočky dlouhé nejvýše 15 m, při úbytku napětí do 1 %."
+    },
+    {
+      "question": "157. Může být u dvoužilového kabelu, vedle světlemodrého vodiče, vodič hnědý, když zde není ochranný vodič?",
+      "answer_a": "ANO",
+      "answer_b": "Ne, tato kombinace je možná pouze v kombinaci s ochranným vodičem.",
+      "answer_c": "Ne,",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0166 ed.2, tab.2) Kabely a šňůry bez z/ž žíly: 2ž modrá, hnědá."
+    },
+    {
+      "question": "158. Smí být použit pohyblivý přívod bez ochranného vodiče s vidlicí bez ochranného kontaktu?",
+      "answer_a": "Smí být v rozvodu NN použit jen k připojení předmětů třídy ochrany II. a III. V takovém případě musí být vidlice neoddělitelně spojena s pohyblivým přívodem.",
+      "answer_b": "Smí být v rozvodu NN použit jen k připojení předmětů třídy ochrany II.",
+      "answer_c": "Vidlice musí mít vždy ochranný kontakt, nezávisle na tom, zda obvod má ochranný vodič nebo ne (slouží k případnému doplnění ochranného vodiče)",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 0350 ed.2, čl.5.3.2) Pohyblivé přívody pro el. předměty (zařízení) třídy ochrany II nebo III (tj. bez ochranného vodiče) mají být opatřeny vidlicí a pohyblivou zásuvkou předepsaného vzoru, neoddělitelně (nerozebíratelně) spojenými s kabelem nebo se šňůrou. Ostatní prodlužovací pohyblivé přívody musí mít PE vodič a musí být opatřeny vidlicí a pohyblivou zásuvkou s ochranným kontaktem. Třída I: spotřebiče, které jsou závislé na ochraně proti úrazu el. proudem tím, že mají uzemňovací vodič. Třída II: Spotřebiče, které jsou konstruovány tak, aby měly dvojitou izolaci, což znamená, že nemají uzemňovací vodič. U těchto spotřebičů musí být přívodní kabely a vidlice spojeny neoddělitelně, aby se zachovala integrita izolace a minimalizovalo riziko úrazu."
+    },
+    {
+      "question": "159. Jaká je teplota přístupných částí, kterých se nedotýkám",
+      "answer_a": "Kovové 80 °C a nekovové 90 °C",
+      "answer_b": "Kovové 70 °C a nekovové 80 °C",
+      "answer_c": "Kovové 55 °C a nekovové 65 °C",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-42, tab.42.1) Teplota, kterou může za normálních podmínek dosáhnout část el. zař. v dosahu ruky, kterého se není nutno dotýkat."
+    },
+    {
+      "question": "160. Z hlediska velikosti nebezpečí úrazu el., která může při provozu zař. vzniknout, se s ohledem na vnější vlivy a jejich působení prostory člení na?",
+      "answer_a": "normální, nebezpečné a zvlášť nebezpečné",
+      "answer_b": "bezpečné, nebezpečné a zvlášť nebezpečné",
+      "answer_c": "normální, nebezpečné a velmi nebezpečné",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.2 - zrušená) V nové ed.3, prostory již nejsou definovány."
+    },
+    {
+      "question": "161. Jaká je doba odpojení v síti TT 230 V AC a DC?",
+      "answer_a": "AC 0,07s a DC 0,2s",
+      "answer_b": "AC 0,2s a DC 0,07s",
+      "answer_c": "AC 0,2s a DC 0,4s",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, tab.41.1) Pokud je v síti TT dosaženo odpojení pomocí nadproudového ochranného přístroje a ochranné pospojování je spojeno se všemi cizími vodivými částmi v rámci instalace, je možno uplatnit max. dobu odpojení předepsanou pro sítě TN. V síti TN je doba odpojení nepřesahující 5 s dovolena pro distribuční obvody a v síti TT je tato doba odpojení nepřesahující 1 s."
+    },
+    {
+      "question": "162. S čím se mohou spojit neživé části obvodů SELV?",
+      "answer_a": "s ochrannými vodiči nebo s neživými částmi jiného obvodu, není-li spojen se zemí.",
+      "answer_b": "Nesmí se spojit s žádnými ochrannými vodiči ani s neživými částmi jiného obvodu, není-li spojen se zemí.",
+      "answer_c": "Mohou se spojit s neživými částmi ostatních obvodů.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-47, čl.414.4.4) Neživé části obvodů SELV nesmějí být spojeny se zemí nebo s ochrannými vodiči nebo s neživými částmi jiného obvodu. Jestliže neživé části obvodu SELV mohou náhodné nebo úmyslně přijít do styku s neživými částmi jiných obvodů, nezávisí již ochrana před úrazem el. proudem pouze na ochraně SELV, ale také na ochranných opatřeních, které chrání uvedené neživé části."
+    },
+    {
+      "question": "163. Mohou být odstraněny zábrany?",
+      "answer_a": "ANO, bez použití klíče nebo nástroje, ale musí být zajištěny tak, aby se zabránilo jejich neúmyslnému odstranění.",
+      "answer_b": "ANO, pouze s použitím klíče nebo nástroje",
+      "answer_c": "mohou být odstraněny bez použití klíče nebo nástroje, avšak vzdálenost stanoviště od živých částí musí být 0,2 m",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, Př.B, čl.B2.2) Zábrany mohou být odstraněny bez použití klíče nebo nástroje, ale musí být zajištěny tak, aby se zabránilo jejich neúmyslnému odstranění."
+    },
+    {
+      "question": "164. Jakou barvu má neprosvětlený ovladač jako nouzový?",
+      "answer_a": "Pro nouzové vypnutí/zastavení se používá výhradně ČERVENÁ, případně na ŽLUTÉm pozadí.",
+      "answer_b": "ŽLUTOU.",
+      "answer_c": "ČERNOU na ČERVENÉM pozadí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204-1 ed.3, čl.10.2.1) ČERVENÁ barva se musí používat pro ovládací prvky nouzového zastavení a nouzového vypnutí (včetně hlavních vypínačů, pokud se předpokládá, že jsou určeny pro použití v nouzovém stavu). Pokud bezprostředně kolem ovládacího prvku existuje nějaké pozadí, pak se má pro toto pozadí použít barva ŽLUTÁ. Kombinace ČERVENÉHO ovládacího prvku se ŽLUTÝM pozadím se musí použít pouze pro přístroje pro nouzovou činnost."
+    },
+    {
+      "question": "165. O jakou ochranu se jedná při normálním provozu v bezporuchovém stavu?",
+      "answer_a": "Jedná se o \"Základní ochranu\".",
+      "answer_b": "Jedná se o běžnou ochranu automatickým odpojením od zdroje.",
+      "answer_c": "Jedná se o doplňkovou ochranu, použitelnou jen v Normálním prostředí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 61140 ed.3, čl.3.1.1) Základní ochrana (basic protection) je ochrana před úrazem el. proudem v bezporuchovém stavu."
+    },
+    {
+      "question": "166. Jaké jsou podmínky ochrany omezením ustáleného proudu?",
+      "answer_a": "Aby za provozu i poruše nepřesáhl ustálený proud 3,5 mA AC nebo 10 mA DC.",
+      "answer_b": "Aby při poruše nepřesáhl ustálený proud 1,5 mA AC nebo 1,0 mA DC.",
+      "answer_c": "Aby při poruše nepřesáhl ustálený proud 1,0 mA AC nebo 1,5 mA DC.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.2(3) a ČSN EN 61140 ed.2(3)) Tato ochrana má zajistit, že proud, který lidským tělem proteče při dotyku s živou či neživou částí, je omezen na hodnotu, která nebude citelná nebo nebezpečná. Ustálený proud mezi částmi současně přístupnými dotyku tekoucí činným odporem 2 000 Ω nesmí překročit 3,5 mA střídavého nebo 10 mA stejnosměrného proudu. Nahromaděný náboj mezi současně přístupnými částmi chráněnými ochrannou impedancí nesmí překročit 50 μC.[https://publi.cz/books/260/05.html]"
+    },
+    {
+      "question": "167. Musí mít zásuvky obvodů FELV ochranný kontakt?",
+      "answer_a": "ANO, musí.",
+      "answer_b": "Ne, pouze v případě, že zdroj obvodu FELV nemá alespoň základní izolaci, musí mít zásuvky obvodu FELV ochranný kontakt, který se spojí s neuzemněným místním pospojováním u vstupního obvodu.",
+      "answer_c": "Zásuvky obvodů FELV nesmí mít ochranný kontakt, z důvodu že je u nich použita ochrana dvojitou izolací.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.411.7.3+5) Neživé části zař. obvodu FELV musí být spojeny s ochranným vodičem vstupního (primárního) obvodu zdroje, přičemž se předpokládá, že vstupní obvod je chráněn automatickým odpojením od zdroje. Vidlice nesmí být možno zasunout do zásuvek sítí o jiných napětích, do zásuvek FELV nesmí být možno zasunout vidlice sítí o jiných napětích a zásuvky musí mít ochranný kontakt. FELV (Functional Extra Low Voltage): Nejde o druh ochrany bezpečným napětím. Obvod sice pracuje s napětím spadajícím do kategorie MN, ale nikoliv z bezp., ale z funkčních důvodů. Živé části obvodu FELV musí být chráněny kryty, přepážkami, nebo izolací. Ochrana při poruše se provádí: spojením neživých částí obvodu s ochranným vodičem, přičemž se předpokládá, že vstupní obvod je chráněn automatickým odpojením od zdroje, což je důvod, proč je FELV dnes přiřazeno k ochraně automatickým odpojením od zdroje; zdrojem malého napětí, kterým je transformátor zajišťující alespoň jednoduché oddělení vinutí vstupní strany od strany výstupní."
+    },
+    {
+      "question": "168. Musí být sítě SELV odděleny od všech obvodů jiných než SELV i od ostatních sítí SELV (od sebe)?",
+      "answer_a": "Ano, od obvodů jiných než SELV ochranným oddělením a od ostatních obvodů SELV jednoduchým oddělením.",
+      "answer_b": "Ano, od obvodů jiných než SELV ochranným oddělením a od ostatních obvodů SELV se sítě SELV oddělovat nemusí.",
+      "answer_c": "Ano, od obvodů jiných než SELV jednoduchým oddělením. Od ostatních obvodů SELV se sítě SELV oddělovat nemusí.",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-4-41 ed.3, čl.414.1.1) Ochranné oddělení sítě SELV nebo PELV od všech ostatních sítí jiných než SELV a PELV a základní izolaci mezi sítí SELV nebo PELV a ostatními sítěmi SELV nebo PELV. Pouze u sítí SELV základní izolaci mezi sítí SELV a zemí."
+    },
+    {
+      "question": "169. Jaká je max. doba odpojení u AC / DC sítí TN o Uo 120V – 230V.",
+      "answer_a": "AC 0,4 s / DC 1 s",
+      "answer_b": "AC 0,2 s / DC 0,4 s",
+      "answer_c": "AC 0,4 s / DC 0,2 s",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, tab.41.1) Tabulka."
+    },
+    {
+      "question": "170. Jaký může být max. odpor ochranného vodiče v závislosti na jeho délce?",
+      "answer_a": "Nesmí být větší než 0,2 Ohm při délce do 3 m a 0,1 Ohm se připočte na každé další 3m délky.",
+      "answer_b": "Nesmí být větší než 0,3 Ohm při délce do 3 m a 0,1 Ohm se připočte na každé další 3m délky.",
+      "answer_c": "Nesmí být větší než 0,1 Ohm při délce do 3 m a 0,2 Ohm se připočte na každé další 3m délky.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1600 ed.2, čl.6.4.3) Ochranný vodič musí být spolehlivé připojen. Odpor ochranného vodiče, měřený mezi ochrannou zdířkou vidlice a přístupnými vodivými neživými částmi spojenými s ochranným vodičem (u prodlužovacích a odpojitelných přívodů mezi ochrannou zdířkou vidlice a ochranným kontaktem na druhém konci), nesmí být větší než 0,2 Ohm při délce přívodu do 3 m. K tomuto odporu se připočte 0,1 Ohm na každé další 3 m délky přívodu. V žádném případě však nesmí být překročena hodnota 1 Ohm. Během měření se doporučuje s kabelem pohybovat, a to zejména u konců, a kontroluje se, jestli přitom naměřená hodnota nevykazuje výrazné změny. (Dříve ed.1, čl.5.4)"
+    },
+    {
+      "question": "171. Může být prodlužovací přívod dvoužilový a pokud ano, jaké jsou podmínky?",
+      "answer_a": "Ano, je to běžné u dvojité izolace",
+      "answer_b": "Ne, každý prodlužovací přívod musí být vybaven i ochrannou žílou pro připojení spotřebičů různých tříd.",
+      "answer_c": "Ano, ale pouze pro použití v sítích TN-C. V zásuvce i nástrčce prodlužovacího přívodu musí být provedeno propojení ochranné zdířky (ochranného kolíku) s N. Ve šňůrovém vedení jsou použity vodiče L a PEN.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 0350 ed.2, čl.5.2d) Dvoužilové pohyblivé přívody, tj. pohyblivé přívody bez PE, které jsou na jednom konci vybaveny vidlicí pro spotřebiče třídy ochrany II a na druhém konci zásuvkou jen pro spotřebiče třídy ochrany II. Vidlice a zásuvka nebo nástrčka musí být neoddělitelné (nerozebíratelně) spojena s pohyblivým přívodem."
+    },
+    {
+      "question": "172. Jaký je minimální Ø drátových pozinkovaných zemničů?",
+      "answer_a": "10 mm",
+      "answer_b": "16 mm",
+      "answer_c": "25 mm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-54 ed.3, tab.54.1) Min. rozměry běžných zemničů uložených v půdě nebo betonu, uplatňované z hlediska předcházení korozí a k zajištění mechanické pevnosti."
+    },
+    {
+      "question": "173. Jak se označují zařízení, při jejichž obvyklém užívání mohou vzniknout proudy nebezpečné osobám, zvířatům nebo majetku?",
+      "answer_a": "Označují se jako \"Silnoproudá\".",
+      "answer_b": "Označují se jako \"Silová\".",
+      "answer_c": "Označují se jako \"Nebezpečná el. zařízení\".",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 0010 ed.2, čl.4.4.1) Silnoproudá zařízení – zařízení, v nichž při obvyklém užívání mohou vzniknout proudy nebezpečné osobám, užitkovým zvířatům, majetku a věcem. (Slaboproudá zařízení – zařízení, v nichž při obvyklém užívání nemohou vzniknout proudy nebezpečné osobám, užitkovým zvířatům, majetku a věcem.)"
+    },
+    {
+      "question": "174. Co signalizuje červená fólie v zemi?",
+      "answer_a": "Uložení silových kabelů.",
+      "answer_b": "Uložení kabelů DC soustavy.",
+      "answer_c": "Uložení žáruvzdorných kabelů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 73 6006, tab.1 - Barevné rozlišení) Barevné provedení výstražné fólie lze doplnit vhodným nápisem, např. vodovod, kanalizace, nebo symbolem, např. pro silnoproudé kabely symbolem blesku. Pokud je vedení technického vybavení opatřeno ochrannou vrstvou (povlakem) nebo chráničkou, má barva jejího vnějšího povrchu odpovídat barvě příslušné výstražné fólie; v případě plynovodů a silnoproudých kabelů je to nezbytné. Výstražná folie barva červená slouží pro označení vedení inženýrských sítí, jako je elektřina. Červená fólie v zemi slouží k označení podzemních vedení technického vybavení. Její účel spočívá v upozornění na existenci kabelů a potrubí uložených v zemi, zejména při následných výkopových pracích. Červená: Označuje silnoproudé kabely. Žlutá: Slouží pro plynové potrubí. Modrá: Identifikuje železniční zabezpečovací a sdělovací kabely. Bílá: Používá se pro vodovodní potrubí."
+    },
+    {
+      "question": "175. Kde může být použita ochrana zábranou?",
+      "answer_a": "Pouze tam, kde mají přístup pouze osoby znalé nebo poučené nebo osoby pod jejich dohledem.",
+      "answer_b": "Ochrana brání přístupu všem osobám, proto může být použita ve všech případech.",
+      "answer_c": "Ochrana zábranou, je druh ochrany ze staré normy ČSN 33 2000-4-41 ed.1, která byla novou normou u bezp. opatření zrušena.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.410.3.5) Ochranná opatření představovaná zábranami a polohou se mohou použít pouze v instalacích, které jsou přístupné osobám znalým nebo poučeným, nebo je lze použít také v instalacích přístupných osobám bez el. kvalifikace pracujícím pod dozorem nebo dohledem osob znalých nebo pod dohledem poučených."
+    },
+    {
+      "question": "176. Je nutné po přemístění el. stroje nebo zařízení dělat výchozí revizi?",
+      "answer_a": "Postačuje kontrola s měřením pověřeného pracovníka a vystaveným dokladem.",
+      "answer_b": "Ne, postačuje mimořádná (pravidelná) revize.",
+      "answer_c": "Ano. Musí se uvažovat jako o instalaci nového zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1500, čl.2.6) U el. zař., která mění svou dřívější polohu a u nichž přemístění na nové stanoviště, doprava nebo skladování mohou mít za následek změny el. a funkčních vlastností nebo změny zapojení proti původní dokumentaci, se musí před uvedením do provozu provést alespoň jejich kontrola a o této kontrole se musí vyhotovit záznam s podpisem pověřeného pracovníka. Pokud tato el. zař. jsou na místě sestavována z částí, musí se před uvedením do provozu provést jejich výchozí revize."
+    },
+    {
+      "question": "177. Jaká je min. hodnota izolačního odporu (IS) u obvodů do 500 V?",
+      "answer_a": "1 MOhm",
+      "answer_b": "5 MOhm",
+      "answer_c": "2 MOhm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6 ed.2, tab.6.1) SELV a PELV: 250 V / 0,5 MΩ; do 500 V, včetně FELV: 500 V / 1 MΩ; nad 500 V: 1000 V / 1 MΩ."
+    },
+    {
+      "question": "178. Co je obsahem kontroly el. spotřebičů?",
+      "answer_a": "Vnější prohlídka a zkouška chodu.",
+      "answer_b": "Případné včasné opravy el. spotřebičů během revize.",
+      "answer_c": "Rozebrání el. spotřebičů a detailní prohlídka.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 1600 ed.2, čl.6.3.1 a 6.9) Při prohlídce el. spotřebiče se důkladně kontrolují vnější části, jako jsou kryty, ovládací prvky a pohyblivé přívody, na případné poškození, které by mohlo snížit ochranu před úrazem elektrickým proudem. Je důležité, aby nebyly poškozené ani izolace, ani konektory, a aby větrací otvory zůstaly čisté a nezakryté. Evidenční označení pro identifikaci spotřebiče musí být čitelné a nepoškozené. V případě zjištění jakýchkoli závad se spotřebič musí vyřadit z provozu a označit, tuto skutečnost oznámit provozovateli a jeho opětovné použití je možné pouze po provedení opravy a revize potvrzující bezpečný stav. Prohlídka při revizi: Zjištění třídy ochrany spotřebiče. Důkladná vizuální kontrola spotřebiče podle návodu od výrobce. Měření odporu ochranného vodiče: Pro všechny spotřebiče s ochranným vodičem. Odpor ochranného vodiče nesmí překročit stanovené hodnoty. Měření izolačního odporu: Pro odpojitelné a prodlužovací přívody. Měření se provádí střídavým proudem o napětí nejméně 500V. Spotřebič se připojí k síti a ověří se jeho funkčnost. Kontrola, zda nevykazuje žádné abnormality. Vystavení protokolu: Zaznamenání identifikačních údajů a výsledků revize."
+    },
+    {
+      "question": "179. Jaká je minimální hodnota izolačního odporu u obvodů nad 500 V?",
+      "answer_a": "1 MOhm",
+      "answer_b": "5 MOhm",
+      "answer_c": "2 MOhm",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-6 ed.2, tab.6.1) SELV a PELV: 250 V / 0,5 MΩ; do 500 V, včetně FELV: 500 V / 1 MΩ; nad 500 V: 1000 V / 1 MΩ."
+    },
+    {
+      "question": "180. Jímka, která není zároveň havarijní jímkou se vyplňuje štěrkem. Je toto tvrzení správné?",
+      "answer_a": "Ne, tato jímka se štěrkem nevyplňuje.",
+      "answer_b": "Ano, vyplňuje se štěrkem v poměru 1:2",
+      "answer_c": "Každá jímka transformátoru je současně havarijní jímkou.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 3240 2.2) Objem záchytné jímky, která není zároveň havarijní jímkou, musí být alespoň 20 % objemu oleje největšího transformátoru, pro který je stanoviště určeno. Tato jímka se nevyplňuje štěrkem. Je-li záchytná jímka zároveň havarijní jímkou, provede se jedním z těchto způsobů: vyplní se štěrkem tak, aby kapalina měla hladinu alespoň 100 mm pod povrchem štěrku; přitom se předpokládá poměr volného prostoru k prostoru vyplněném štěrkem 1:2. Jako štěrku se má použít drceného kameniva frakce 32-63."
+    },
+    {
+      "question": "181. Jaké jsou mezní teploty přístupových kovových částí el. zař., při běžném provozu?",
+      "answer_a": "80 °C",
+      "answer_b": "60 °C",
+      "answer_c": "46 °C",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-42, tab.42.1) Tabulka: Kovové části, kterých není nutné se dotýkat."
+    },
+    {
+      "question": "182. Jaký je vypínací čas v síti TN AC i DC o Uo 230 V – 400 V?",
+      "answer_a": "AC 0,2s a DC 0,4s",
+      "answer_b": "AC 0,4s a DC 0,07s",
+      "answer_c": "AC 5s a DC 1s",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, tab.41.1) Tabulka."
+    },
+    {
+      "question": "183. Může být \"Nouzový stop\", ovládaný nohou?",
+      "answer_a": "Ano, pedál nesmí být vybaven mechanickým ochranným krytem pro navádění nohy.",
+      "answer_b": "Z bezpečnostních důvodů toto řešení není možné.",
+      "answer_c": "Ano, musí být ovšem vybaven mechanickým ochranným krytem pro navádění nohy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60447 ed.2) Ovládače obsluhované nohou a používané k uvedení příslušného zařízení do činnosti, musí být navržené a instalované tak aby se minimalizovala možnost neúmyslného našlápnutí. Noha musí být naváděná, např. mechanickým ochranným krytem. U přístrojů určených pro nouzový stop nesmí být pedál vybavený tímto krytem."
+    },
+    {
+      "question": "184. Jištění hlavního domovního vedení?",
+      "answer_a": "Podle soudobosti jističů před elektroměrem",
+      "answer_b": "O dva stupně vyšší",
+      "answer_c": "Podle kabelu a uložení",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 čl.737) Každé HDV se jistí v přípojkové skříni, případně v hlavním rozvaděči příslušně dimenzovanou pojistkou."
+    },
+    {
+      "question": "185. Jaká je povolená teplota svorek?",
+      "answer_a": "Cu 100°C; Mosaz 105°C, pocínovaná CU nebo Mosaz 105°C, postříbřená nebo poniklovaná Cu nebo Mo. 110°C",
+      "answer_b": "Cu 80°C; Mosaz 65°C, pocínovaná CU nebo Mosaz 90°C, postříbřená nebo poniklovaná Cu nebo Mo. 100°C",
+      "answer_c": "Pro svorky není stanovena maximální teplota, neboť jsou nepřístupné dotyku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 62052-31, čl.10.2) Mezní teploty svorek (dle správné odpovědi) a při stavu jedné poruchy nesmí překročit 135°C."
+    },
+    {
+      "question": "186. Co je \"Ochrana automatickým odpojením od zdroje\"?",
+      "answer_a": "Zákl. ochrana je zajištěna zákl. izolací živých částí nebo přepážkami nebo kryty a ochrana při poruše je zajištěna ochranným pospojováním a automatickým odpojením v případě poruchy. Jedná se o normální stupeň ochrany.",
+      "answer_b": "Zákl. ochrana je zajištěna zákl. izolací živých částí nebo přepážkami nebo kryty a ochrana při poruše je zajištěna jednoduchým oddělením odděleného obvodu od ostatních obvodů a od země.",
+      "answer_c": "Zákl. ochrana i ochrana při poruše zajištěna zesílenou izolací mezi nebezpečnými živými částmi a přístupnými částmi.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.411) Ochranné opatření: Automatické odpojení od zdroje; Tam, kde je použito toto ochranné opatření, může se také používat zařízení třídy ochrany II. Kde je to určeno, uplatní se ještě doplňková ochrana proudovým chráničem (RCD), jehož jmenovitý vybavovací reziduální proud nepřekračuje 30 mA."
+    },
+    {
+      "question": "187. Jaký je min. průřez kabelu stoupacího vedení bytového domu o 6 partajích elektrizace A?",
+      "answer_a": "4 x 10 mm2",
+      "answer_b": "4 x 16 mm2",
+      "answer_c": "4 x 25 mm2",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, Tab.C1) Do 7 bytů, elektrizace A: Cu 4 x 10 mm2."
+    },
+    {
+      "question": "188. Musí být v soustavě IT detekce nadproudu v N vodiči?",
+      "answer_a": "Ano, musí.",
+      "answer_b": "Musí, výjimku tvoří pouze případy dle ČSN 33 2000-4-43, kdy je například použit proudový chránič.",
+      "answer_c": "Nemusí, jedná se o izolovanou soustavu.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-43 ed.2, čl.431.2.2) Síť IT: Jestliže je nulový vodič rozveden, je třeba zajistit detekci nadproudu v nulovém vodiči v každém obvodu. Tato detekce musí způsobit odpojení všech živých vodičů příslušného obvodu včetně nulového. Toto opatření není zapotřebí, jestliže je nulový vodič účinně chráněn před nadproudy ochranným přístrojem umístěným na straně zdroje, např. na začátku instalace, nebo příslušný obvod je chráněn proudovým chráničem, jehož jmenovitý reziduální pracovní proud nepřekračuje 0,2násobek proudové zatížitelnosti (dovoleného proudu) příslušného nulového vodiče. Tento přístroj musí odpojit všechny živé vodiče odpovídajícího obvodu včetně nulového vodiče. V sítích IT se důrazně doporučuje, aby nulový vodič nebyl rozváděn. /Musí být použit HIS. /"
+    },
+    {
+      "question": "189. Jakému druhu dle ČSN 33 200-4-41 ed.2 odpovídá základní ochrana \"Ochrana před úrazem el. proudem v bezporuchovém stavu pro instalace sítě a zařízení\"?",
+      "answer_a": "Ochraně automatickým odpojením od zdroje",
+      "answer_b": "Obecně ochraně před nepřímým dotykem (nebezpečným dotykem neživých částí)",
+      "answer_c": "Obecně ochraně před přímým dotykem (nebezpečným dotykem živých částí)",
+      "correct_answer": "C",
+      "explanation": "(ČSN EN 61140 ed.3, čl.3.1.1) Základní ochrana (basic protection) je ochrana před úrazem el. proudem v bezporuchovém stavu."
+    },
+    {
+      "question": "190. Jak lze ověřit doplňující pospojení?",
+      "answer_a": "Pomocí vzorce u AC: R ≤ 50 V / Ia; u DC R ≤ 120 V / Ia",
+      "answer_b": "Pomocí vzorce u AC: R ≥ 50 V / Ia; u DC R ≥ 120 V / Ia",
+      "answer_c": "Doplňující pospojení není třeba ověřovat, protože se jedná pouze o doplňkovou ochranu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.3, čl.415.2.2) Dále: Vizuální kontrola, měření impedance, kontrola průřezu vodiče, zajištění mechanické ochrany, kontrola spojů a svorek."
+    },
+    {
+      "question": "191. Jaké musí být splněny podmínky, existují-li pochybnosti o účinnosti doplňujícího ochr. pospojování?",
+      "answer_a": "Musí se ověřit, že R splňuje podmínku: u AC: R ≤ 50 V / Ia; u DC R ≤ 120 V / Ia",
+      "answer_b": "Musí se ověřit, že R splňuje podmínku: u AC: R ≥ 50 V / Ia; u DC R ≥ 120 V / Ia",
+      "answer_c": "Musí být provedeno nové měření impedance smyčky kdy ZS </= U0 * Ia.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.2, čl.415.2.2) Jestliže existují pochybnosti o účinnosti doplňujícího ochranného pospojování, musí se ověřit, že odpor R mezi neživými částmi současné přístupnými dotyku a cizími vodivými částmi splňuje tuto podmínku. (v ed.3 je vynechána věta obsahující slovo \"pochybnosti\", vzorec zůstává stejný)"
+    },
+    {
+      "question": "192. Může být na ochrannou svorku v rozvaděči připojeno více ochranných vodičů přivedených zvnějšku?",
+      "answer_a": "Ne, jeden ochranný vodič, musí být připojen pouze k jednomu připojovacímu bodu svorky.",
+      "answer_b": "Pouze z vnitřku. Z vnějšku je z bezp. důvodů možné přivést pouze jeden ochranný vodič na jednu svorku.",
+      "answer_c": "Ano, pokud je k tomu konstruována",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60204 ed.3, čl.13) Připojení dvou nebo více vodičů k jedné svorce je dovoleno pouze v případech, kdy je svorka pro tento účel navržena. Jeden ochranný vodič však musí být připojen pouze k jednomu připojovacímu bodu svorky."
+    },
+    {
+      "question": "193. Jaká má být výška stropu ve stísněných prostorech, když jde o stropní kryt?",
+      "answer_a": "1500 mm",
+      "answer_b": "2000 mm",
+      "answer_c": "2500 mm",
+      "correct_answer": "C",
+      "explanation": "(ČSN 33 2000-7-729, čl.729.410.3.7.1) Světlá výška živých částí nad podlahou 2 500 mm. Min. výška stropního krytu nad podlahou 2 000 mm."
+    },
+    {
+      "question": "194. Může být v označení IP kódu použito více než jedno doplňkové písmeno?",
+      "answer_a": "Ano, písmena musí být ale seřazeny abecedně.",
+      "answer_b": "Ne, v označení IP kódu lze jako nepovinný údaj uvést jedno přídavné písmeno a jedno doplňkové písmeno.",
+      "answer_c": "Ne, výjimku tvoří případ, kdy kryt zajišťuje různé stupně ochrany pro různé montážní polohy. V takovém případě lze uvést pro každý stupeň ochrany různé doplňkové písmeno.",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 60529, čl.4.2)"
+    },
+    {
+      "question": "195. Seskupení kabelů, dimenzování, kdy se nepoužije koeficient?",
+      "answer_a": "Jestliže kabel / izolovaný vodič nepovede větší proud než 30 % proudu, který by odpovídal jeho max. zatížení v seskupení.",
+      "answer_b": "Koeficient se musí použít vždy.",
+      "answer_c": "Jestliže kabel / izolovaný vodič nepovede větší proud než 50 % proudu, který by odpovídal jeho max. zatížení v seskupení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52 ed.2, čl.523.5) Pro seskupení, v němž jsou kabely nebo izolované vodiče s různou maximální dovolenou provozní teplotou, musí být dovolené proudy všech kabelů nebo izolovaných vodičů ve skupině založeny na nejnižší maximální provozní teplotě ze všech kabelů v seskupení, a to spolu s příslušným redukčním součinitelem pro dané seskupení. Jestliže se v důsledku známých provozních podmínek předpokládá, že kabel nebo izolovaný vodič nepovede větší proud než 30 % proudu, který by odpovídal jeho maximálnímu zatížení v seskupení, není nutné s tímto kabelem nebo vodičem pro účel určení redukčního součinitele seskupení počítat. (Koeficienty zohledňují tepelnou výměnu mezi kabely a okolním prostředím. Např. pro 3f kabely v zemi se používá koeficient 0,7. U kabelů uložených v kabelových roštech se nepoužívají koeficienty pro seskupení, jsou zde vzduchem chlazeny, a proto není potřeba upravovat jejich průřez na základě seskupení.)"
+    },
+    {
+      "question": "196. Jakým způsobem je možno v napájecích a spínacích stanicích, když je do přípojky vložen ochranný oddělovací transformátor, provést spojení se samostatnou zemní soustavou?",
+      "answer_a": "Jen když nejbližší části uzemňovacích soustav primárního a sekundárního obvodu jsou od sebe vzdáleny min. 15 m.",
+      "answer_b": "Nejsou vyžadovány žádné speciální požadavky na provedení uzemnění. Stačí aby byly splněny podmínky 34 2000-4-41 ed.3.",
+      "answer_c": "Jen když nejvzdálenější části uzemňovacích soustav primárního a sekundárního obvodu jsou od sebe vzdáleny max. 15 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 1500) Je-li z lokální nebo veřejné distribuční sítě napájeno el.zař. NN umístěné na neživých částech trakčního vedení nebo v POTV, případně je-li toto zařízení svými neživými částmi spojeno s trakčním obvodem, musí se provést koordinace ochrany před úrazem elektrickým proudem i ochrana distribuční sítě. Ochranná opatření se provádí podle ČSN EN 50122-1 a ČSN 33 20004-41 ed.2: U napájení zařízení v napájecích a spínacích stanicích: jeli do přípojky vřazen ochranný oddělovací transformátor, musí splňovat podmínky ČSN EN 61558-1 ed.2 a EN 61558-24. Uzemnění středního vodiče distribuční sítě v místě přípojky musí být od uzemnění sekundárního obvodu oddělovacího transformátoru vzdáleno nejméně 15 m. Pro zařízení připojené na sekundární stranu transformátoru lze použít jakýkoliv způsob ochrany podle ČSN 33 2000-441 ed.2 (včetně sítě TN)."
+    },
+    {
+      "question": "197. Jaká je maximální dovolená provozní teplota vodiče s izolací typu PVC",
+      "answer_a": "Maximálně 105 stupňů celsia.",
+      "answer_b": "70°C, u spec. termoplastických PVC i 90°C.",
+      "answer_c": "90°C, u spec. termoplastických PVC i 105°C.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2000-4-43 ed.2, tab.43Hodnoty 'k' pro vodiče."
+    },
+    {
+      "question": "198. Jaký je min. průřez kabelové přípojky NN, provedené odbočením v přípojkové skříni kabelového vedení dodavatele elektřiny z jedné samostatné sady pojistek?",
+      "answer_a": "Min. průřezy kabelů el. přípojek jsou 4 x 16 mm2 Al. Použije-li se měděnými vodiči je min. průřez o stupeň nižší.",
+      "answer_b": "Min. průřezy kabelů el. přípojek jsou 4 x 25 mm2 Al. Použije-li se měděnými vodiči je min. průřez o stupeň nižší.",
+      "answer_c": "Min. průřezy kabelů el. přípojek jsou 4 x 10 mm2 Al. Použije-li se měděnými vodiči je min. průřez o stupeň nižší.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 3320) Min. průřezy kabelů elektrických přípojek jsou 4 x 16 mm2 Al. Použije-li se kabel s měděnými vodiči, min. průřez je 4 x 10 mm2 Cu."
+    },
+    {
+      "question": "199. Co je HDO?",
+      "answer_a": "Hromadné dálkové ovládání",
+      "answer_b": "Hlavní domovní vedení",
+      "answer_c": "Obvod hlavního vedení",
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "question": "200. Jaký je min. průřez hlavního domovního vedení v bytových domech, stupně elektrizace A, je-li vedení provedeno vodiči CY v trubkách a jed…. proudovou soustavou AC 3 PEN 50Hz 400V/TNC a ochranou automatickým odpojením od zdroje a jejíž vodorovná část (tj. od přípojkové skříně k elektroměru je do 20m) a za předpokladu jmenovitých proudů jističů…. Elektroměrem 20 A a se šesti byty stupně elektrizace A, připojenými na domovní vedení?",
+      "answer_a": "4 x 25 mm2",
+      "answer_b": "4 x 10 mm2",
+      "answer_c": "4 x 16 mm2",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 2130 ed.3, Tab.C1) Do 7 bytů, elektrizace A: Cu 4 x 10."
+    },
+    {
+      "question": "201. Jaké máme stupně ochrany z hlediska nebezpečí úrazu el. proudem",
+      "answer_a": "normální a doplněná",
+      "answer_b": "nebezpečná a zvlášť nebezpečná",
+      "answer_c": "bezpečná a nebezpečná",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-4-41 ed.2 - zrušená, Př.NZ hlediska nebezpečí úrazu el. proudem v prostorách s el. zař. se rozlišují dva stupně ochrany: normální ochrana (normální i nebezpečné) a doplněná ochrana (zvlášť nebezpečné)."
+    },
+    {
+      "question": "202. Lze jako náhodné jímače použít rýny (neboli svodové trubky) a okapy?",
+      "answer_a": "Ne.",
+      "answer_b": "Ano, ale jejich průřez není menší než průřez stanovený dle norem pro jímací soustavu.",
+      "answer_c": "Ano, ale jen LPS III a IV a jejich průřez není menší než průřez stanovený dle norem.",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 62305-3, čl.5.2.5 c) Následující součásti stavby mohou být považovány podle 5.1.3 za náhodné jímače a součásti LPS: Kovové díly jako jsou ozdoby, zábradlí, rýny, potrubí, kryti parapetů atd., jejichž průřez není menší než průřez stanovený dle norem pro jímací soustavu."
+    },
+    {
+      "question": "203. Musí být jednotlivé žíly prodlužovacího přívodu, který je na obou koncích spojen se zásuvkou i vidlicí neoddělitelně, barevně označeny?",
+      "answer_a": "Nemusí",
+      "answer_b": "Musí",
+      "answer_c": "Nemusí, protože jsou schované pod neoddělitelným spojením.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 33 0166 ed.2)"
+    },
+    {
+      "question": "204. Které obvody nesmí přerušit hlavní vypínač el. výtahu?",
+      "answer_a": "Obvody dveří",
+      "answer_b": "Zásuvku na střeše klece",
+      "answer_c": "Obvod elektromechanické brzdy",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 81-20 ed.2, čl.5.10.5.1) Hlavní vypínač výtahu musí vypínat všechny fáze. Nesmí však přerušit tyto obvody: osvětlení a větrání klece; elektrickou zásuvku na střeše klece; osvětlení prostorů pro strojní zařízení a místnosti pro kladky; elektrickou zásuvku v prostorech pro strojní zařízení a kladky a v prohlubni; osvětlení šachty výtahu."
+    },
+    {
+      "question": "205. Lze jako náhodné svody použít rýny (neboli svodové trubky)?",
+      "answer_a": "Ne",
+      "answer_b": "Ano, ale jejich průřez není menší než průřez stanovený dle norem.",
+      "answer_c": "Ano, ale mimo LPS I a II a jejich průřez není menší než průřez stanovený dle norem.",
+      "correct_answer": "B",
+      "explanation": "(ČSN EN 62305-3, čl.E.5.3.5) Následující části stavby mohou být použity jako náhodné svody: součásti fasády, profilové lišty a kovové spodní konstrukce fasády za předpokladu, že: jejich rozměry odpovídají požadavkům kladeným na svody (viz 5.6.2), a že kovové oplechování nebo kovová potrubí musí mít tloušťku minimálně 0,5 mm. Použití náhodných svodů pro zvýšení celkového počtu paralelních vodičů proudu je doporučeno, aby byl snížen úbytek napětí v soustavě svodů a bylo sníženo elektromagnetické rušení uvnitř stavby."
+    },
+    {
+      "question": "206. Počet zatížených vodičů v kabelu pro vodič PEN",
+      "answer_a": "Třetí harmonická",
+      "answer_b": "První harmonická",
+      "answer_c": "V kabelu společném s vodičem PEN může být maximálně jeden zatížený vodič.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-5-52 ed.2, Př.E) Účinky harmonických proudů na vyvážené 3f sítě: Nejvýznačnější harmonickou složkou proudů, která se v nulovém vodiči nevyruší, je třetí harmonická. Velikost proudu nulovým vodičem v důsledku třetí harmonické může překročit hodnotu fázového proudu základní frekvence."
+    },
+    {
+      "question": "207. Jakým způsobem musí být v ČR chráněny el. obvody v místnostech se sprchou?",
+      "answer_a": "Elektrické obvody musí být vybaveny proudovým chráničem (proudovými chrániči) s vypínacím residuálním proudem nepřesahujícím 30 mA. Výjimku tvoří obvody napájející pouze pevně uložený ohřívač teplé vody, u kterého není ochrana proudovým chráničem předepsána.",
+      "answer_b": "V zóně 1 musí být všechny obvody vybaveny proudovým chráničem (proudovými chrániči) s vypínacím residuálním proudem nepřesahujícím 30 mA. V zóně 2 musí být vybaveny proudovým chráničem obvody napájející pevně uložený ohřívač teplé vody pro ostatní obvody se vybavení proudovými chrániči doporučuje.",
+      "answer_c": "V zóně 1 musí být všechny obvody vybaveny proudovým chráničem (proudovými chrániči) s vypínacím residuálním proudem nepřesahujícím 30 mA. V zóně 2 musí být vybaveny proudovým chráničem zásuvkové obvody a obvody napájející pevně uložený ohřívač teplé vody pro ostatní obvody se vybavení proudovými chrániči doporučuje.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2000-7-701 ed.2) V místnostech, kde je umístěna vana nebo sprcha, musí být všechny el. obvody vybaveny proudovým chráničem s vypínacím residuálním proudem, který nepřesahuje 30 mA. RCD není vyžadován pouze pro obvody ve kterých je jako ochranného opatření použito ochrany elektrickým oddělením, kdy pro každé elektrické zařízení je zřízen samostatně napájený obvod s vlastním transformátorem; obvody, u kterých je jako ochranného opatření užito SELV nebo PELV."
+    },
+    {
+      "question": "208. Jaký je min. průřez odbočky od HDV k elektroměru (k bytu stupně elektrizace B), je-li délka odbočky 10 m a jedná-li se o 3f odbočku v proudové soustavě AC 3x230/400V?",
+      "answer_a": "10 mm2 Cu",
+      "answer_b": "6 mm2 Cu",
+      "answer_c": "16 mm2 Cu",
+      "correct_answer": "A",
+      "explanation": "(ČSN 33 2130 ed.3, Tab.D.1) Vodiče s jádry z AI (16 mm2) se používají pouze pro opravy stávajících rozvodů rovněž provedených vodiči s jádry z AI. Uvedené průřezy platí pro vodiče AY a CY v trubce, liště nebo dutině panelů pro proudovou soustavu AC 3 x 230/400 V pro odbočky dlouhé nejvýše 15 m, při úbytku napětí do 1 %."
+    },
+    {
+      "question": "209. Je možné zapojit mezi obvody, mezi kterými je jako prostředek zvýšené ochrany použito ochranné oddělení obvodů, další součástky?",
+      "answer_a": "Ano, musí ale vyhovovat požadavkům na ochrannou impedanci.",
+      "answer_b": "Ne, mezi obvody lze umístit pouze ochranné stínění s ochrannou stínící vložkou oddělenou od každého sousedního obvodu základní izolací.",
+      "answer_c": "Ne",
+      "correct_answer": "B",
+      "explanation": "(ČSN 61140 ed.3, čl.3.24) Ochranného oddělení obvodu od ostatních obvodů musí být dosaženo pomocí ochranného stínění s ochranným stíněním odděleným od každého sousedního obvodu základní izolací uvažovanou pro napětí sousedního obvodu.."
+    },
+    {
+      "question": "210. Jak se značí kladný vodič DC soustavy (ne svorka) a jakou barvou?",
+      "answer_a": "L+ (svorka jen \"+\")",
+      "answer_b": "M (svorka jen \"+\")",
+      "answer_c": "PB (svorka jen \"+\")",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN EN 60445 ed.5, Příloha A)"
+    },
+    {
+      "question": "211. Jaké vodiče procházejí součtovým transformátorem RCD?",
+      "answer_a": "Pouze pracovní vodiče (vodič N, je považován také za pracovní).",
+      "answer_b": "Pouze pracovní (Fázové vodiče)",
+      "answer_c": "Všechny vodiče L, N i PE. Nesmí procházet pouze vodič PEN.",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-4-41 edice 2 ) -opsat + Součtový transformátor (také známý jako diferenciální transformátor) je klíčovou součástí proudového chrániče (RCD). Jeho účelem je detekovat rozdíl mezi proudy v fázových vodičích a neutrálním/středním vodiči. Součtový transformátor je umístěn tak, aby jím procházely pouze pracovní vodiče (fázové a neutrální/střední vodiče). Ochranný vodič (PE) nesmí procházet součtovým transformátorem, protože by to mohlo narušit jeho funkci."
+    },
+    {
+      "question": "212. Jak velký musí být jmenovitý proud pojistek HDV?",
+      "answer_a": "o 1 stupeň než nejvyšší jmenovitý proud jističů před elektroměry",
+      "answer_b": "o 2 stupně než nejvyšší jmenovitý proud jističů před elektroměry",
+      "answer_c": "může po domluvě s odběratelem stejné jako proud jističů před elektroměrem",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 3320 ed.2, čl.4.1.7) Jištění v přípojkové skříni musí být alespoň o jeden stupeň vyšší, než je jištění před elektroměrem. Přitom nutno dodržet zásady pro volbu jistících prvků podle ČSN 33 2000-443. K jištění lze použít pojistek závitových, nožových apod. [vy máte: o 2 stupně než nejvyšší jmenovitý proud jističů před elektroměry (proč??)]"
+    },
+    {
+      "question": "213. Jaké podmínky platí pro sdružené obvody?",
+      "answer_a": "/Ochranný vodič se dimenzuje jako fázový a do sdruženého obvodu musí být vřazen prvek, kterým je možné vázaně vypnout všechny fázové vodiče. Odbočování u jednotlivých odboček sdruženého obvodu musí být provedeno u samostatných odbočovacích krabic. /",
+      "answer_b": "Ochranný vodič se dimenzuje jako fázový pouze v případě, že jednotlivé obvody nejsou rovnoměrně zatíženy. Do sdruženého obvodu musí být vřazen přístroj, který vázaně dokáže vypnout všechny fázové vodiče. Odbočování u jednotlivých fází musí být provedeno v samotných rozbočovacích krabicích.",
+      "answer_c": "Ochranný vodič se dimenzuje jako fázový a do sdruženého obvodu musí být vřazen prvek, kterým je možné vázaně vypnout všechny fázové vodiče. Odbočování u jednotlivých odboček sdruženého obvodu lze provézt v jednotlivých rozbočovacích krabicích.",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-5-52 ed.2, př.NA2.3.3) [AI souhrn + 2.3.2] Do sdruženého obvodu musí být vřazen přístroj (spínač, jistič, stykač apod.), jímž lze vázaně vypnout všechny fázové (krajní) vodiče sdruženého obvodu a teprve za tímto přístrojem je pak možno vypínat jednotlivé fáze; odbočování u jednotlivých fází sdruženého obvodu lze provést v jedné rozvodné krabici. [219. Sdružený obvod – (dimenzování N vodiče jako fázového nebo podle rovnoměrnosti zatížení)]"
+    },
+    {
+      "question": "214. Jaká je maximální hodnota zemniče u hromosvodů?",
+      "answer_a": "nižší než 15 Ω",
+      "answer_b": "nižší než 5 Ω",
+      "answer_c": "nižší než 10 Ω",
+      "correct_answer": "C",
+      "explanation": "viz. (podle ČSN EN 62305-3 ed.2, čl. 5.4.1) Všeobecně je doporučen nízký zemní odpor, pokud možno nižší než 10 Ω, měřený při nízkém kmitočtu. 5–15 Ohm - opravit"
+    },
+    {
+      "question": "215. Jakým způsobem se označují prvky nouzového osvětlení v budovách?",
+      "answer_a": "červený štítek o průměru alespoň 30 mm",
+      "answer_b": "/Zeleným pruhem o šíři 30 mm – svítidla včetně ovládacích přístrojů./",
+      "answer_c": "červený štítek o průměru alespoň 50 mm",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-5-56 ed.3, čl.560.9.15) Svítidla NO a přístroje v jim příslušejících obvodech, musí být označeny např. červeným štítkem o průměru alespoň 30 mm."
+    },
+    {
+      "question": "216. Je dovoleno použít modrého vodiče k jiným účelům, než jako vodiče nulového / středního?",
+      "answer_a": "Ne.",
+      "answer_b": "Ano, ale pouze když není možná záměna v případě, kdy není v místě nulový vodič, být užito modře označeného vodiče jako fázového vodiče nebo vodiče pro jiné účely s výjimkou použití jako ochranného vodiče.",
+      "answer_c": "Ano pouze však pro fázové vodiče v síti, kde není nulový/ střední vodič.",
+      "correct_answer": "B",
+      "explanation": "(ČSN 60445 ed.5, čl.6.2.2) Pokud se v systému nulový vodič nevyskytuje, může být modrý vodič, použit pro jiné účely."
+    },
+    {
+      "question": "217. Může být štítek na oddělitelných částech el. zařízení?",
+      "answer_a": "Ano, měl by tam být.",
+      "answer_b": "Nesmí",
+      "answer_c": "Pouze v případě, že tyto části nejsou zakresleny v dokumentaci.",
+      "correct_answer": "A",
+      "explanation": "viz. !(ČSN EN 60204-1)! Štítek na el. zař. by měl být umístěn na takovém místě, které umožní snadnou identifikaci zař. a poskytne potřebné informace o jeho provozu a bezpečnosti. Pokud je el. zař. rozděleno do oddělitelných částí, štítek by měl být umístěn na každé z těchto částí. To umožňuje jednoznačné označení a poskytuje uživatelům důležité informace o každé části zař."
+    },
+    {
+      "question": "218. Může revizní technik při provádění revize využít značek a symbolů na el. předmětech?",
+      "answer_a": "/Ano, při prohlídce. /",
+      "answer_b": "Ne, musí si vše ověřit měřením.",
+      "answer_c": "Ano, ve všech případech",
+      "correct_answer": "C",
+      "explanation": "viz. EN 60445, se zabývá písmeno-číslicovým značením vodičů a svorek na el. předmětech i v el. zař. nebo instalacích. Tato norma sjednocuje způsob, jakým jsou vodiče a součástky označovány, což přispívá k bezpečnosti a usnadňuje údržbu el. systémů. Její zavedení je důležité, protože umožňuje revizním technikům při provádění revize využít grafické značky a symboly na elektrických předmětech k identifikaci různých prvků a informací o elektrických zařízeních."
+    },
+    {
+      "question": "219. Pokud je vedení NN za transformátorem jištěno alespoň proti zkratu, jak může být toto vedení dlouhé?",
+      "answer_a": "Na délce vedení nezáleží",
+      "answer_b": "50 m",
+      "answer_c": "3 m",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-4-473, čl.473.2.3 - zrušená bez náhrady – něco převzaly ČSN 33 2000-4-42 a 4-43 ed.2) I kdyby toto jištění provedeno nebylo, odpověď by byla stejná. Ochranu proti zkratovým proudům lze vynechat u vodičů spojující transformátory s příslušnými řídícími (hlavními) rozváděči, přičemž ochranné prvky jsou umístěny na těchto rozváděčích. <UI: Pokud je nízkonapěťové vedení (NN) za transformátorem jištěno alespoň proti zkratu, jeho délka není přímo omezena. Zkratový proud je limitován zkratovým výkonem nejbližšího napájecího transformátoru. To znamená, že transformátor je schopen omezit proud, který by v případě zkratu procházel vedením.>"
+    },
+    {
+      "question": "220. Musí se hlavní rozváděč ve vnitřním rozvodu uzemnit samostatným zemničem, pokud je připojen ke společné uzemňovací soustavě zdroje se zemním odporem 5 Ω?",
+      "answer_a": "nemusí",
+      "answer_b": "musí",
+      "answer_c": "Může i nemusí, závisí na konkrétních podmínkách.",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-4-41, čl. 413.1.3N12) Pozor – chyták! Níže citovaný článek se týká uzemnění vodiče PEN, nikoliv však uzemnění neživých částí rozváděčů. Správná odpověď je „nemusí“. Pokud by se jednalo o vodič PEN (PE), správná odpověď by byla „musí“. A viz. (ČSN 33 2000-4-41, čl. 413.1.3N12) Ve venkovním rozvodu přípojkových skříních (např. hlavních domovních, které lze považovat za hlavní rozvaděč), jsou-li vzdáleny od nejbližšího místa uzemnění více než 100 m; ve vnitřním rozvodu u objektů s vlastním transformátorem vždy u hlavních rozváděčů, u objektů bez vlastního transformátoru jako ve venkovním rozvodu."
+    },
+    {
+      "question": "221. Může se pozinkový zemnící pásek připojit na přípojnici přímo?",
+      "answer_a": "/Musí být spojka. Přímo lze jen v obyčejném prostředí/",
+      "answer_b": "Ano",
+      "answer_c": "Ne",
+      "correct_answer": "A",
+      "explanation": "viz. (ČSN 33 2000-5-54, čl.542.4.2) Na přístupném místě musí být umístěny spojky, ve kterých je možno uzemňovací přívod odpojit. Taková spojka musí být odpojitelná pouze za pomoci nástroje."
+    },
+    {
+      "question": "222. Jak musí být provedeno značení holých vodičů?",
+      "answer_a": "Na koncích a na všech viditelných místech u spojů. PE je po celé délce zelený s doplněním žlutých pruhů tam, kde je nutné rozlišení.",
+      "answer_b": "Holé vodiče se neznačí.",
+      "answer_c": "Musí být provedeno výhradně po celé délce vodiče.",
+      "correct_answer": "A",
+      "explanation": "(ČSN EN 60445 ed.5, čl.6; ČSN EN 60079-11 ed.2) Identifikace barvou se musí provádět .., kromě holých vodičů, kde barevné označení musí být u konce vodičů a u připojovacích bodů/míst. Ochranný vodič je po celé délce zelený s doplněním žlutých pruhů tam, kde je nutné rozlišení."
+    }
+  ]
+}

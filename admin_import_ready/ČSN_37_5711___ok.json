@@ -1,0 +1,470 @@
+{
+  "name": "ČSN_37_5711___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (58 otázek)",
+  "questions": [
+    {
+      "question": "001. Co se rozumí pod pojmem Pláň tělesa železničního spodku?",
+      "answer_a": "Vrchní omezující plocha tělesa železničního spodku.",
+      "answer_b": "Vrchní omezující plocha tělesa železničního svršku.",
+      "answer_c": "Podkladová vrstva pod pražci tvořená štěrkem nebo kamenivem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl.3.4) Pláň tělesa železničního spodku je vrchní omezující plocha zemního tělesa, která slouží jako podklad pro konstrukční vrstvy spodku. Viz předpis SŽ S4."
+    },
+    {
+      "question": "002. Křížení kabelů s dráhou se zásadně provádí?",
+      "answer_a": "Tělesem železničního spodku.",
+      "answer_b": "Tělesem železničního svršku.",
+      "answer_c": "Pouze podél koleje v ochranném pásmu dráhy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl.4) Ve výjimečných případech (provizorium, dočasné řešení, skalní podloží apod.) lze se souhlasem vlastníka dráhy provést nadúrovňové křížení. Křížení kabelů s dráhou se provádí tělesem železničního spodku, aby nedošlo k narušení stability svršku a bezpečnosti provozu. Viz předpis SŽ S4."
+    },
+    {
+      "question": "003. Kabelové křížení nesmí být vybudováno pod výhybkami nebo nesvařenými kolejnicovými styky:",
+      "answer_a": "Nejmenší vodorovná vzdálenost kabelového křížení může být od uvedených míst minimálně 1,5 m.",
+      "answer_b": "Nejmenší vodorovná vzdálenost kabelového křížení může být od uvedených míst minimálně 2,0 m.",
+      "answer_c": "Nejmenší vodorovná vzdálenost kabelového křížení může být od uvedených míst minimálně 1,0 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl.5) Dále nesmí být pod budovami nebo pevnými drážními zařízeními, úrovňovými přejezdy, ani pod trvalými skládkami materiálu a v prostoru odvodňovacích zařízení. Nesmí být navrhováno šikmé vedení kabelové trasy svahem zemního tělesa. Kabelové křížení nesmí být pod výhybkami nebo nesvařenými styky, aby nedošlo k narušení stability traťového vedení. Minimální vzdálenost je 1,5 m."
+    },
+    {
+      "question": "004. Jakým způsobem se zásadně provádí křížení kabelu s dráhou?",
+      "answer_a": "Tělesem železničního spodku.",
+      "answer_b": "Nadúrovňově.",
+      "answer_c": "Pod železničními kolejemi bez ohledu na těleso spodku.",
+      "correct_answer": "A",
+      "explanation": "() Křížení kabelu s dráhou se zásadně provádí tělesem železničního spodku. Nadúrovňové křížení je možné jen výjimečně a se souhlasem vlastníka dráhy."
+    },
+    {
+      "question": "005. Kdy lze provést nadúrovňové křížení kabelu s dráhou?",
+      "answer_a": "Ve výjimečných případech se souhlasem vlastníka dráhy.",
+      "answer_b": "Vždy, pokud je to jednodušší řešení.",
+      "answer_c": "Pokud kabel vede přes skalní podloží bez dalšího povolení.",
+      "correct_answer": "A",
+      "explanation": "() Nadúrovňové křížení je možné pouze ve výjimečných případech, jako je provizorium, skalní podloží apod., a vždy se souhlasem vlastníka dráhy."
+    },
+    {
+      "question": "006. Jak by měla být navržena trasa kabelu při křížení s tělesem železničního spodku?",
+      "answer_a": "Tak, aby počet kabelových křížení byl co nejmenší.",
+      "answer_b": "Tak, aby bylo co nejvíce křížení pro snadnější přístup.",
+      "answer_c": "Tak, aby křížení probíhalo vždy nadúrovňově.",
+      "correct_answer": "A",
+      "explanation": "() Trasa kabelu musí být navržena tak, aby počet křížení s tělesem železničního spodku byl co nejmenší, čímž se zajišťuje bezpečnost a plynulost provozu."
+    },
+    {
+      "question": "007. Co nesmí být narušeno zřízením kabelového křížení?",
+      "answer_a": "Stabilita tělesa železničního spodku a funkce drážních zařízení.",
+      "answer_b": "Pouze stabilita tělesa železničního spodku.",
+      "answer_c": "Funkce trakčního vedení, pokud je trať elektrizovaná.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1) Zřízením kabelového křížení nesmí být narušena stabilita tělesa železničního spodku ani funkce ostatních drážních zařízení."
+    },
+    {
+      "question": "008. Co je třeba pečlivě posoudit při návrhu kabelového křížení?",
+      "answer_a": "Provedení a rozměry tělesa železničního spodku a umístění pevných drážních zařízení.",
+      "answer_b": "Pouze umístění pevných drážních zařízení.",
+      "answer_c": "Jen rozměry tělesa železničního spodku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Při návrhu kabelového křížení je nutné vycházet z provedení a rozměrů tělesa železničního spodku a umístění pevných zařízení, zejména při použití protlaku chráničky."
+    },
+    {
+      "question": "009. Jaké požadavky musí splňovat řešení kabelového křížení?",
+      "answer_a": "Musí umožnit údržbu a opravy kabelu bez narušení drážní dopravy.",
+      "answer_b": "Musí být navrženo tak, aby k údržbě nebylo potřeba žádné speciální vybavení.",
+      "answer_c": "Musí být provedeno nadúrovňově, aby nedošlo k narušení spodku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.3) Řešení kabelového křížení musí umožnit údržbu, opravy nebo výměnu kabelu bez narušení nebo omezení drážní dopravy."
+    },
+    {
+      "question": "010. Jaké normy je třeba respektovat při realizaci kabelového křížení na elektrizovaných tratích?",
+      "answer_a": "Normy související s příslušnou trakční soustavou.",
+      "answer_b": "Normy pro ochranu trakčního vedení.",
+      "answer_c": "Normy platné pouze pro stejnosměrné trakční soustavy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.4) Na elektrizovaných tratích nebo tratích s plánovanou elektrizací je nutné respektovat normy související s příslušnou trakční soustavou."
+    },
+    {
+      "question": "011. Co musí obsahovat návrh kabelového křížení?",
+      "answer_a": "Komplexní řešení kabelové trasy i její výstroje v obvodu dráhy.",
+      "answer_b": "Pouze návrh trasy kabelu bez výstroje.",
+      "answer_c": "Jen mapový podklad s trasou kabelu bez dalších údajů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1) Návrh musí zahrnovat komplexní řešení trasy i výstroje kabelu v obvodu dráhy, včetně zakreslení na mapovém podkladu a uvedení stávajících úložných zařízení."
+    },
+    {
+      "question": "012. Jaké měřítko se používá pro zakreslení trasy kabelového křížení na mapovém podkladu?",
+      "answer_a": "1:1 000.",
+      "answer_b": "1:500.",
+      "answer_c": "1:10 000.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1) Trasa kabelu a jeho křížení s dráhou se zakresluje na mapovém podkladu v měřítku 1:1 000 a řezy tělesem dráhy v měřítku 1:100 nebo 1:50."
+    },
+    {
+      "question": "013. Kde nesmí být kabelové křížení vybudováno?",
+      "answer_a": "Pod výhybkami, budovami, pevnými zařízeními a v prostoru odvodňovacích zařízení.",
+      "answer_b": "Pod mosty a viadukty.",
+      "answer_c": "V blízkosti trakčního vedení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Kabelové křížení nesmí být vybudováno pod výhybkami, budovami, úrovňovými přejezdy, ani v prostoru odvodňovacích zařízení."
+    },
+    {
+      "question": "014. Jaká je nejmenší vodorovná vzdálenost kabelového křížení od výhybek nebo nesvařených kolejnicových styků?",
+      "answer_a": "1,5 m.",
+      "answer_b": "0,5 m.",
+      "answer_c": "3 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Nejmenší vodorovná vzdálenost kabelového křížení od výhybek nebo nesvařených kolejnicových styků musí být minimálně 1,5 m."
+    },
+    {
+      "question": "015. Jaké vedení kabelové trasy nesmí být navrhováno?",
+      "answer_a": "Šikmé vedení svahem zemního tělesa.",
+      "answer_b": "Vedení rovnoběžné s kolejemi.",
+      "answer_c": "Přímé vedení pod kolejemi.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Kabelová trasa nesmí být navrhována jako šikmé vedení svahem zemního tělesa."
+    },
+    {
+      "question": "016. Kde se má při návrhu kabelového křížení s dráhou přednostně využívat stávajících staveb?",
+      "answer_a": "Nadjezdů, podjezdů, podchodů, propustků nebo již vybudovaných chrániček.",
+      "answer_b": "Pouze nadjezdů a podjezdů.",
+      "answer_c": "Pouze propustků a podchodů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1.1) Při návrhu kabelového křížení se má využívat stávajících staveb, jako jsou nadjezdy, podjezdy, podchody, propustky nebo již vybudované chráničky."
+    },
+    {
+      "question": "017. Kde se navrhuje umístění nového kabelového křížení, pokud nelze využít stávající stavby?",
+      "answer_a": "Do prostoru s minimálním počtem křížených kolejí.",
+      "answer_b": "Do prostoru s maximálním počtem křížených kolejí.",
+      "answer_c": "Do prostoru bez ohledu na počet křížených kolejí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1.2) Pokud nelze využít stávající stavby, navrhuje se nové křížení do prostoru s minimálním počtem křížených kolejí."
+    },
+    {
+      "question": "018. Jak se má kabelové křížení s dráhou zřizovat u elektrizovaných železničních tratí?",
+      "answer_a": "Tělesem železničního spodku.",
+      "answer_b": "Nad úrovní kolejí.",
+      "answer_c": "Vedle tělesa železničního spodku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1.2) Kabelové křížení s dráhou se má především zřizovat tělesem železničního spodku, zejména u elektrizovaných tratí."
+    },
+    {
+      "question": "019. Jak se označuje křížení úložných kabelů v obvodu dráhy?",
+      "answer_a": "Osazením kabelových označníků na obou hranicích obvodu dráhy.",
+      "answer_b": "Pouze zakreslením do mapového podkladu.",
+      "answer_c": "Barevným nátěrem kabelu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1.3) Křížení úložných kabelů se označuje osazením kabelových označníků, které se umisťují na obou hranicích obvodu dráhy."
+    },
+    {
+      "question": "020. Co může vlastník dráhy požadovat v rámci stavebního řízení?",
+      "answer_a": "Jiný způsob značení místa křížení s tělesem železničního spodku.",
+      "answer_b": "Zvýšení počtu kabelových označníků.",
+      "answer_c": "Přesunutí kabelového křížení mimo obvod dráhy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.1.3) Vlastník dráhy může v průběhu stavebního řízení požadovat jiný způsob značení místa křížení s tělesem železničního spodku."
+    },
+    {
+      "question": "021. Co musí být součástí dokumentace kabelového křížení při použití aktivní protikorozní ochrany?",
+      "answer_a": "Návrh včetně všech projektovaných parametrů.",
+      "answer_b": "Pouze seznam použitých materiálů.",
+      "answer_c": "Pouze mapový podklad s trasou kabelu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Při použití aktivní protikorozní ochrany musí být její návrh včetně všech projektovaných parametrů součástí dokumentace kabelového křížení."
+    },
+    {
+      "question": "022. Co musí být předáno vlastníku dráhy po uvedení aktivní protikorozní ochrany do provozu?",
+      "answer_a": "Skutečné parametry aktivní protikorozní ochrany.",
+      "answer_b": "Pouze výkresová dokumentace.",
+      "answer_c": "Informace o plánované údržbě.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.2) Po uvedení aktivní protikorozní ochrany do provozu musí být vlastníku dráhy předány její skutečné parametry."
+    },
+    {
+      "question": "023. Jaké údaje je třeba uvést u silových kabelů?",
+      "answer_a": "Napěťovou soustavu, kmitočet, maximální přenášený výkon a dobu trvání zkratu.",
+      "answer_b": "Pouze typ kabelu a napěťovou soustavu.",
+      "answer_c": "Pouze maximální přenášený výkon.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.3.1) U silových kabelů je třeba uvést napěťovou soustavu, kmitočet, maximální přenášený výkon a dobu trvání zkratu."
+    },
+    {
+      "question": "024. Co musí být uvedeno u metalických sdělovacích kabelů?",
+      "answer_a": "Typ kabelu a elektrická pevnost mezi duší kabelu a jeho pláštěm.",
+      "answer_b": "Pouze elektrická pevnost mezi duší kabelu a pláštěm.",
+      "answer_c": "Pouze typ kabelu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.3.2) U metalických sdělovacích kabelů musí být uveden typ kabelu a elektrická pevnost mezi duší kabelu a jeho pláštěm."
+    },
+    {
+      "question": "025. Jaké parametry musí být uvedeny u optických kabelů s metalickými prvky?",
+      "answer_a": "Typ kabelu a elektrická pevnost proti okolnímu prostředí.",
+      "answer_b": "Pouze typ kabelu.",
+      "answer_c": "Pouze elektrická pevnost proti okolnímu prostředí.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 5.3.3) U optických kabelů s metalickými prvky musí být uveden typ kabelu a elektrická pevnost proti okolnímu prostředí."
+    },
+    {
+      "question": "026. Jak musí být uložen kabel křižující dráhu tělesem železničního spodku?",
+      "answer_a": "V chráničce.",
+      "answer_b": "Přímo v zemi.",
+      "answer_c": "Na povrchu tělesa železničního spodku.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.1) Kabel křižující dráhu tělesem železničního spodku musí být uložen v chráničce."
+    },
+    {
+      "question": "027. Jaký má být směr kabelového křížení s železniční tratí?",
+      "answer_a": "Kolmý na železniční trať.",
+      "answer_b": "Paralelní se železniční tratí.",
+      "answer_c": "Šikmý pod úhlem větším než 45°.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.1) Kabelové křížení má být kolmé na železniční trať."
+    },
+    {
+      "question": "028. Co musí zajistit délka chráničky a provedení jejího ukončení?",
+      "answer_a": "Aby práce na kabelech neovlivnily bezpečnost a plynulost dopravy.",
+      "answer_b": "Aby bylo možné snadné přemístění chráničky.",
+      "answer_c": "Aby bylo zajištěno pouze mechanické krytí kabelů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.1) Délka chráničky a provedení jejího ukončení musí zajistit, aby práce na kabelech neovlivnily bezpečnost a plynulost železniční dopravy."
+    },
+    {
+      "question": "029. Co nesmí narušit výstavba chráničky?",
+      "answer_a": "Odvodňovací systém dráhy.",
+      "answer_b": "Stabilitu železničního svršku.",
+      "answer_c": "Elektrickou izolaci kabelů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.2) Výstavba chráničky nesmí narušit odvodňovací systém dráhy."
+    },
+    {
+      "question": "030. Jak má být chránička ukončena na širé trati?",
+      "answer_a": "Až za odvodňovacím příkopem.",
+      "answer_b": "Před odvodňovacím příkopem.",
+      "answer_c": "V odvodňovacím příkopu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.2) Na širé trati má být chránička ukončena až za odvodňovacím příkopem."
+    },
+    {
+      "question": "031. Jaké je minimální krytí chráničky pod dnem nedlážděného příkopu?",
+      "answer_a": "0,5 m.",
+      "answer_b": "0,1 m.",
+      "answer_c": "1,0 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.2) Krytí od horního okraje ochranného nebo výstražného obložení kabelu musí být nejméně 0,5 m pod dnem nedlážděného příkopu."
+    },
+    {
+      "question": "032. Co se musí stát, pokud je výhybka situována nad stávající chráničkou?",
+      "answer_a": "Kabelové křížení musí být přeloženo.",
+      "answer_b": "Chránička musí být zesílena.",
+      "answer_c": "Kabel musí být přerušen a znovu napojen.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.2) Pokud při opravách nebo rekonstrukcích dojde k situování výhybky nad stávající chráničkou, musí být kabelové křížení přeloženo."
+    },
+    {
+      "question": "033. Jak má být vedena kabelová trasa ve svahu železničního tělesa?",
+      "answer_a": "Kolmo na vrstevnice.",
+      "answer_b": "Paralelně s vrstevnicemi.",
+      "answer_c": "Šikmo pod úhlem 45° k vrstevnicím.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 6.2) Ve svahu železničního tělesa má být kabelová trasa vedena kolmo na vrstevnice."
+    },
+    {
+      "question": "034. Jaké minimální krytí musí mít chránička při protlačování od pláně tělesa železničního spodku?",
+      "answer_a": "1,5 m.",
+      "answer_b": "2,0 m.",
+      "answer_c": "1,0 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.1) Při protlačování musí být krytí chráničky nejméně 1,5 m od pláně tělesa železničního spodku."
+    },
+    {
+      "question": "035. Jaká musí být minimální vzdálenost chráničky od osy krajní koleje?",
+      "answer_a": "4 m.",
+      "answer_b": "2 m.",
+      "answer_c": "6 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.1) Vzdálenost chráničky od osy krajní koleje nesmí být menší než 4 m."
+    },
+    {
+      "question": "036. Co musí být vybudováno na konci chráničky, pokud nekončí revizní šachtou?",
+      "answer_a": "Značkovací tyč.",
+      "answer_b": "Betonový kryt.",
+      "answer_c": "Odvodňovací systém.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.1) Pokud chránička nekončí šachtou, je nutno osadit na jejím konci značkovací tyč."
+    },
+    {
+      "question": "037. Co musí být zajištěno u kovových chrániček na tratích s DC trakční soustavou?",
+      "answer_a": "Ochrana proti bludným proudům.",
+      "answer_b": "Elektrické uzemnění.",
+      "answer_c": "Izolace proti vodě.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.1) U kovových chrániček na tratích s DC trakční soustavou musí být učiněna opatření proti působení bludných proudů."
+    },
+    {
+      "question": "038. Kolik volných otvorů musí zůstat v chráničce na celostátních drahách?",
+      "answer_a": "Alespoň jeden o maximální světlosti.",
+      "answer_b": "Žádný, všechny otvory mohou být využity.",
+      "answer_c": "Minimálně dva o různých světlostech.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.1) U celostátních drah musí zůstat v chráničce trvale volný alespoň jeden otvor o maximální světlosti."
+    },
+    {
+      "question": "039. Jaký minimální sklon trub v chráničce je povolen?",
+      "answer_a": "0,4 %.",
+      "answer_b": "0,1 %.",
+      "answer_c": "1 %.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.2) Minimální sklon trub v chráničce nesmí být menší než 0,4 %."
+    },
+    {
+      "question": "040. Jaký způsob výstavby chráničky je doporučován, aby nedošlo k narušení pláně zemního tělesa dráhy?",
+      "answer_a": "Provrtání nebo protlačení.",
+      "answer_b": "Výkopová metoda.",
+      "answer_c": "Hydromechanické rozpojování.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.2) Doporučuje se výstavba chráničky provrtáním nebo protlačením, aby nedošlo k narušení pláně zemního tělesa dráhy."
+    },
+    {
+      "question": "041. Jaké minimální krytí musí být při použití hydromechanického rozpojování zemin?",
+      "answer_a": "Dvojnásobné oproti minimálnímu krytí dle 6.1.",
+      "answer_b": "Stejné jako minimální krytí dle 6.1.",
+      "answer_c": "Trojnásobné oproti minimálnímu krytí dle 6.1.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.2) Při hydromechanickém rozpojování musí být krytí alespoň dvojnásobné oproti minimálnímu krytí dle 6.1."
+    },
+    {
+      "question": "042. Co je nutné zajistit při použití stavební rýhy pro výstavbu chráničky?",
+      "answer_a": "Obnovení všech původních konstrukčních vrstev tělesa spodku i svršku.",
+      "answer_b": "Použití drenážního systému.",
+      "answer_c": "Zesílení zemního tělesa.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.2) Při použití stavební rýhy je nutné obnovit všechny původní konstrukční vrstvy tělesa spodku i svršku."
+    },
+    {
+      "question": "043. Co musí být zajištěno, pokud je železniční spodek chráněn geotextilií?",
+      "answer_a": "Funkčnost geotextilie a zabránění pronikání zemin.",
+      "answer_b": "Zvýšení tloušťky geotextilie.",
+      "answer_c": "Kompletní výměna geotextilie.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 7.2) Pokud je železniční spodek chráněn geotextilií, musí být zajištěna její funkčnost a zabráněno pronikání zemin."
+    },
+    {
+      "question": "044. Jaké podmínky musí být splněny pro vybudování kabelového křížení nad úrovní kolejí?",
+      "answer_a": "Technická neproveditelnost nebo neekonomičnost křížení pod úrovní kolejí.",
+      "answer_b": "Vždy musí být vybudováno nad úrovní kolejí.",
+      "answer_c": "Pouze na tratích bez elektrifikace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8) Kabelové křížení nad úrovní kolejí lze vybudovat pouze tam, kde je křížení pod úrovní kolejí technicky neproveditelné nebo neekonomické."
+    },
+    {
+      "question": "045. Kde lze vybudovat kabelové křížení nad úrovní kolejí?",
+      "answer_a": "Na kabelové lávce, bráně trakčního vedení, převěsem nebo na nosném laně.",
+      "answer_b": "Pouze na samostatné kabelové lávce.",
+      "answer_c": "Pouze na bráně trakčního vedení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.1) Kabelové křížení lze vybudovat na kabelové lávce, bráně trakčního vedení, převěsem nebo na nosném laně."
+    },
+    {
+      "question": "046. Jaká norma určuje minimální přípustnou výšku kabelového křížení nad kolejemi?",
+      "answer_a": "ČSN EN 50119.",
+      "answer_b": "ČSN 37 5711 ed.2.",
+      "answer_c": "ČSN 34 1541.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.1) Minimální výška kabelového křížení se volí v souladu s normou ČSN EN 50119."
+    },
+    {
+      "question": "047. Jaké podmínky platí pro optické kabely při křížení nad úrovní kolejí?",
+      "answer_a": "Stejné jako pro kabelová vedení do 1 kV.",
+      "answer_b": "Musí být vždy uloženy na samostatné kabelové lávce.",
+      "answer_c": "Platí pro ně zvláštní pravidla.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.1) Pro optické kabely platí stejné podmínky jako pro kabelová vedení do 1 kV."
+    },
+    {
+      "question": "048. Co se nepovažuje za kabelové křížení nad úrovní kolejí?",
+      "answer_a": "Uložení kabelu na konstrukci mimoúrovňového křížení.",
+      "answer_b": "Zavěšení kabelu na nosném laně.",
+      "answer_c": "Převěs kabelu přes trať.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8) Uložení kabelu na konstrukci mimoúrovňového křížení železniční trati se za kabelové křížení nad úrovní kolejí nepovažuje."
+    },
+    {
+      "question": "049. Jaké podmínky musí být splněny pro kabelové křížení s využitím trakčního vedení?",
+      "answer_a": "Souhlas vlastníka trakčního vedení a nepřekročení zatížení podpěr.",
+      "answer_b": "Využití lanových závěsů trakčního vedení.",
+      "answer_c": "Souhlas dopravce provozujícího trať.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.2) Kabelové křížení lze vybudovat pouze se souhlasem vlastníka trakčního vedení a nesmí překročit dovolené zatížení podpěr."
+    },
+    {
+      "question": "050. Co nelze využít při kabelovém křížení s trakčním vedením?",
+      "answer_a": "Lanové závěsy trakčního vedení.",
+      "answer_b": "Podpěry trakčního vedení.",
+      "answer_c": "Brány trakčního vedení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.2) K uvedenému účelu nelze využívat lanové závěsy trakčního vedení."
+    },
+    {
+      "question": "051. Jaká norma stanovuje ochranu vodivých částí konstrukce před nebezpečným dotykem?",
+      "answer_a": "ČSN EN 50122-1.",
+      "answer_b": "ČSN 37 5711 ed.2.",
+      "answer_c": "ČSN EN 50119.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.2) Ochrana vodivých částí musí být zajištěna podle ČSN EN 50122-1."
+    },
+    {
+      "question": "052. Jaké elektrické vlastnosti musí mít kabely s metalickými prvky?",
+      "answer_a": "Plášť musí vyhovovat výdržnému napětí odpovídajícímu trakční soustavě.",
+      "answer_b": "Musí být izolovány od všech vodivých prvků.",
+      "answer_c": "Musí být vždy bez metalických prvků.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.2) Kabely s metalickými prvky musí mít plášť splňující výdržné napětí odpovídající trakční soustavě."
+    },
+    {
+      "question": "053. Co se doporučuje pro zavěšené kabelové vedení?",
+      "answer_a": "Umístění mimo POTV.",
+      "answer_b": "Zavěšení na lanové závěsy trakčního vedení.",
+      "answer_c": "Zavěšení na nosné lano bez izolace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, čl. 8.2) Zavěšené kabelové vedení se doporučuje umístit mimo prostor POTV."
+    },
+    {
+      "question": "054. Jaký zákon definuje výstavbu kabelového křížení s železniční dráhou jako stavbu na dráze?",
+      "answer_a": "Zákon č. 266/1994 Sb., o dráhách.",
+      "answer_b": "Zákon č. 183/2006 Sb., stavební zákon.",
+      "answer_c": "Zákon č. 13/1997 Sb., o pozemních komunikacích.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, Příloha A, čl. A.1) Výstavba křížení kabelu s železniční dráhou je stavbou na dráze dle zákona č. 266/1994 Sb., o dráhách."
+    },
+    {
+      "question": "055. Kdo je speciálním stavebním úřadem pro stavby na železniční dráze?",
+      "answer_a": "Drážní úřad.",
+      "answer_b": "Ministerstvo dopravy.",
+      "answer_c": "Stavební úřad obce s rozšířenou působností.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, Příloha A, čl. A.2) Speciálním stavebním úřadem pro stavby na železniční dráze je Drážní úřad."
+    },
+    {
+      "question": "056. Co zajišťuje ochranu kabelu při křížení s železniční dráhou?",
+      "answer_a": "Ochranné pásmo dráhy.",
+      "answer_b": "Ochranné konstrukce.",
+      "answer_c": "Elektrické izolace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, Příloha A, čl. A.3) Ochrana kabelu je zajištěna ochranným pásmem dráhy dle zákona č. 266/1994 Sb., o dráhách."
+    },
+    {
+      "question": "057. Jaké údaje musí obsahovat smlouva o stavbě kabelového křížení?",
+      "answer_a": "Název stavby, umístění, investora, provozovatele.",
+      "answer_b": "Pouze dobu platnosti smlouvy a smluvní strany.",
+      "answer_c": "Pouze technické podmínky křížení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, Příloha A, čl. A.4) Smlouva o stavbě kabelového křížení musí obsahovat název stavby, umístění, investora, provozovatele a další podrobnosti."
+    },
+    {
+      "question": "058. Jak se určuje umístění stavby kabelového křížení?",
+      "answer_a": "Podle státního geodetického plánu a kilometrického členění dráhy.",
+      "answer_b": "Pouze podle státního geodetického plánu.",
+      "answer_c": "Pouze podle kilometrického členění dráhy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 37 5711 ed.2, Příloha A, čl. A.4) Umístění stavby se určuje podle státního geodetického plánu i kilometrického členění příslušné dráhy."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "export_info": {
+    "timestamp": "2025-08-10T23:21:58.485443",
+    "exported_tables": 14,
+    "exported_questions": 1134,
+    "errors": 0
+  },
+  "import_instructions": {
+    "method_1": "Použijte admin panel - záložka Tabulky - Import databáze",
+    "method_2": "API endpoint: POST /api/admin/tables",
+    "format": "JSON files obsahují pole questions s otázkami ve formátu {question, answer_a, answer_b, answer_c, correct_answer, explanation}"
+  },
+  "files_created": [
+    "Otazky_Quiz_2_export.json",
+    "Otazky_Quiz_export.json"
+  ]
+}

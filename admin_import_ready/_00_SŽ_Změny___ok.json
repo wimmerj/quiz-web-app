@@ -1,0 +1,1902 @@
+{
+  "name": "_00_SŽ_Změny___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (237 otázek)",
+  "questions": [
+    {
+      "question": "001. Změny v Bp1:",
+      "answer_a": "a",
+      "answer_b": "a",
+      "answer_c": "a",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "002. Kdy vstoupila v platnost první změna předpisu Bp1?",
+      "answer_a": "března 2023 (správná odpověď)",
+      "answer_b": "15. února 2023 (nesprávná odpověď)",
+      "answer_c": "ledna 2023 (nesprávná odpověď)",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "003. Co bylo hlavním obsahem první změny předpisu Bp1?",
+      "answer_a": "Aktualizace názvu pokynu na „Pokyny provozovatele dráhy k zajištění bezpečnosti a k ochraně zdraví osob při činnostech a pohybu v jeho prostorách a v prostorách železniční dráhy provozované Správou železnic“",
+      "answer_b": "Zavedení nových pravidel pro pohyb vlaků na hlavních tratích",
+      "answer_c": "Změna povinností strojvedoucích při mimořádných událostech",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "004. Kdo schválil změnu č. 1 předpisu Bp1?",
+      "answer_a": "Bc. Jiří Svoboda, MBA, generální ředitel Správy železnic (správná odpověď)",
+      "answer_b": "Ministerstvo dopravy ČR (nesprávná odpověď)",
+      "answer_c": "Odbor bezpečnosti Správy železnic (nesprávná odpověď)",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "005. Jakým způsobem byla změna č. 1 zapracována do předpisu?",
+      "answer_a": "Výměnou všech listů předpisu (správná odpověď)",
+      "answer_b": "Pouze doplněním dodatku na konci předpisu (nesprávná odpověď)",
+      "answer_c": "Elektronickým oznámením bez nutnosti fyzické úpravy předpisu (nesprávná odpověď)",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "006. Kde je k dispozici konsolidované znění předpisu Bp1 po zapracování změny č.1?",
+      "answer_a": "Na intranetu Správy železnic v záložce eDAP (správná odpověď)",
+      "answer_b": "Na veřejném portálu Ministerstva dopravy (nesprávná odpověď)",
+      "answer_c": "V tištěné podobě na všech stanicích Správy železnic (nesprávná odpověď)",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "007. Co je úkolem bezpečnostní hlídky podle předpisu SŽ Bp1?",
+      "answer_a": "Střežit ostatní osoby pracující v provozované dopravní cestě.",
+      "answer_b": "Kontrolovat technický stav železničních vozidel.",
+      "answer_c": "Zajišťovat provozní dokumentaci na drážních pracovištích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "008. Jaké barvy může mít bezpečnostní štítek podle předpisu SŽ Bp1?",
+      "answer_a": "Oranžové nebo červené.",
+      "answer_b": "Žluté nebo modré.",
+      "answer_c": "Zelené nebo bílé.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "009. Kdo je považován za cizí právní subjekt (CPS) podle předpisu SŽ Bp1?",
+      "answer_a": "Dodavatelé, dopravci mimo SŽ a ostatní CPS.",
+      "answer_b": "Pouze zaměstnanci Správy železnic.",
+      "answer_c": "Zaměstnanci dopravců s licencí od Ministerstva dopravy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "010. Co označuje dálkové ovládání zabezpečovacího zařízení (DOZ)?",
+      "answer_a": "Druh obsluhy zabezpečovacího zařízení z určeného pracoviště.",
+      "answer_b": "Automatické řízení vlakové dopravy bez lidského zásahu.",
+      "answer_c": "Manuální obsluhu zabezpečovacího zařízení přímo na místě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "011. Kdo je dirigující dispečer podle předpisu SŽ Bp1?",
+      "answer_a": "Zaměstnanec s odbornou způsobilostí k organizování a řízení dopravy na trati D3.",
+      "answer_b": "Zaměstnanec zajišťující provozní dokumentaci na hlavních tratích.",
+      "answer_c": "Osoba odpovědná za technický stav železničních vozidel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "012. Který předpis upravuje základní pravidla bezpečnosti a ochrany zdraví na stavbách v prostorách SŽ?",
+      "answer_a": "SŽ Bp3",
+      "answer_b": "SŽ Bp1",
+      "answer_c": "SŽ Bp2",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "013. Proč je nutné důsledně dodržovat odborné pojmy uvedené v předpise SŽ Bp1?",
+      "answer_a": "Aby se zamezilo omylům a nedorozuměním.",
+      "answer_b": "Kvůli snadnější orientaci v dokumentaci.",
+      "answer_c": "Pro zajištění rychlejšího pohybu vlaků.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "014. Co není dovoleno v souvislosti s výkonem činnosti podle předpisu SŽ Bp1?",
+      "answer_a": "Záměna významu odborných pojmů.",
+      "answer_b": "Používání technických norem.",
+      "answer_c": "Konzultace s jinými předpisy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "015. Odkud jsou převzaty základní pojmy obsažené v předpisu SŽ Bp1?",
+      "answer_a": "Z právních předpisů, technických norem a vnitřních předpisů SŽ.",
+      "answer_b": "Z mezinárodních železničních standardů.",
+      "answer_c": "Z pokynů Ministerstva dopravy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "016. Jak je označeno vymezení nového pojmu nebo upravené definice v předpisu SŽ Bp1?",
+      "answer_a": "Textem „pro účely tohoto předpisu“.",
+      "answer_b": "Nadpisem „nový pojem“.",
+      "answer_c": "Zkratkou „NP“.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "017. Co umožňuje železniční stanice podle předpisu SŽ Bp1?",
+      "answer_a": "Křižování a předjíždění vlaků.",
+      "answer_b": "Pouze nakládku a vykládku zboží.",
+      "answer_c": "Přístup na hlavní tratě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "018. Kde je povolen pobyt a pohyb cestujících v prostorách SŽ?",
+      "answer_a": "Pouze ve veřejně přístupných částech.",
+      "answer_b": "Ve všech prostorách SŽ bez omezení.",
+      "answer_c": "Pouze v technických prostorách SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "019. Co musí obsahovat Provozní řád osobního nádraží?",
+      "answer_a": "Konkrétní vymezení veřejně přístupných prostor.",
+      "answer_b": "Harmonogram příjezdů vlaků.",
+      "answer_c": "Seznam zaměstnanců SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "020. Kde musí být vyvěšen Provozní řád osobního nádraží?",
+      "answer_a": "Na viditelných místech, jako jsou vstupy a vchody.",
+      "answer_b": "Pouze v kancelářích správcovské OS.",
+      "answer_c": "Na webových stránkách SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "021. Kdo je odpovědný za zpracování a zveřejnění Provozního řádu osobního nádraží?",
+      "answer_a": "Příslušná (správcovská) OS.",
+      "answer_b": "Ministerstvo dopravy.",
+      "answer_c": "Dopravci působící na nádraží.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "022. Jaké systémy je vhodné využít k zajištění bezpečnosti cestujících při mimořádnostech?",
+      "answer_a": "Orientační a informační systémy.",
+      "answer_b": "Kamerové systémy.",
+      "answer_c": "Akustické sirény.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "023. Co musí dodržovat přepravci, kteří vstupují do ostatních prostor SŽ?",
+      "answer_a": "Veškerá ustanovení předpisu SŽ Bp1.",
+      "answer_b": "Pouze pravidla stanovená dopravcem.",
+      "answer_c": "Žádná zvláštní pravidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "024. Kdo je odpovědný za seznámení přepravce s příslušnými ustanoveními předpisu SŽ Bp1?",
+      "answer_a": "Dopravce zajišťující přepravu.",
+      "answer_b": "Správa železnic.",
+      "answer_c": "Ministerstvo dopravy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "025. Jaký předpis se uplatňuje při úrazu osob v prostorách SŽ souvisejícím s provozováním drážní dopravy?",
+      "answer_a": "SŽ D1 ČÁST PRVNÍ.",
+      "answer_b": "SŽ Bp3.",
+      "answer_c": "Zákon č. 89/2012 Sb.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "026. Jaký zákon se uplatňuje při úrazu osob v prostorách SŽ nesouvisejícím s provozováním drážní dopravy?",
+      "answer_a": "Zákon č. 89/2012 Sb., občanský zákoník.",
+      "answer_b": "Zákon č. 266/1994 Sb., o dráhách.",
+      "answer_c": "Zákon č. 361/2000 Sb., o provozu na pozemních komunikacích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "027. Kde mohou osoby uplatnit požadavek na náhradu škody vzniklé v prostorách SŽ?",
+      "answer_a": "Na adrese uvedené v Provozním řádu osobního nádraží.",
+      "answer_b": "Na hlavním nádraží v Praze.",
+      "answer_c": "Na webových stránkách Ministerstva dopravy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "028. Jak musí být uloženy pracovní pomůcky při jízdě drážního vozidla?",
+      "answer_a": "Tak, aby nezasahovaly do průjezdného průřezu.",
+      "answer_b": "Volně v manipulačním prostoru.",
+      "answer_c": "Kdekoli, pokud jsou pevně zajištěny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "029. Kam lze výjimečně ukládat předměty při jízdě drážního vozidla?",
+      "answer_a": "Do schůdného a manipulačního prostoru.",
+      "answer_b": "Na střechu drážního vozidla.",
+      "answer_c": "Do prostoru mezi nápravami vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "030. Jak musí být položena zarážka ke zmírnění rychlosti vozidla?",
+      "answer_a": "Včas před jedoucím vozidlem.",
+      "answer_b": "Těsně před jedoucím vozidlem.",
+      "answer_c": "Pod zadní kolo jedoucího vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "031. Na co je třeba brát ohled při pokládání zarážky?",
+      "answer_a": "Na sklon koleje, počasí, rychlost a hmotnost vozidel.",
+      "answer_b": "Pouze na rychlost vozidel.",
+      "answer_c": "Na barvu vozidla a směr větru.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "032. Jak musí být osoba postavena při pokládání zarážky?",
+      "answer_a": "Čelem k blížícímu se vozidlu.",
+      "answer_b": "Zády k blížícímu se vozidlu.",
+      "answer_c": "Bokem k blížícímu se vozidlu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "033. Co je zakázáno při manipulaci se zarážkou?",
+      "answer_a": "Odstraňovat ji těsně před jedoucím vozidlem.",
+      "answer_b": "Položit ji na kolej bez ohledu na sklon.",
+      "answer_c": "Používat ji při dešti nebo sněhu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "034. Jaký oděv musí nosit osoby v dopravní cestě při plnění pracovních úkolů?",
+      "answer_a": "Pracovní oděv výstražné barvy nebo výstražnou vestu.",
+      "answer_b": "Libovolný pracovní oděv bez ohledu na barvu.",
+      "answer_c": "Oděv pouze s reflexními pruhy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "035. Jaký má být stav výstražného oděvu nebo vesty?",
+      "answer_a": "Nesmí být nadměrně znečištěné, promaštěné či nasáklé hořlavinou.",
+      "answer_b": "Musí být vždy nové a nepoužité.",
+      "answer_c": "Může být znečištěné, pokud je stále viditelné.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "036. Kdo má výjimku z povinnosti nosit výstražný oděv?",
+      "answer_a": "Dopravní zaměstnanci ve stejnokroji SŽ.",
+      "answer_b": "Všichni zaměstnanci při práci na vlečkách.",
+      "answer_c": "Osoby pracující v dešti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "037. Jak má být zajištěna bezpečnost při opravách vozidel?",
+      "answer_a": "Uzamykatelnou kolejovou zábranou, výkolejkou nebo odvratnou výhybkou.",
+      "answer_b": "Umístěním výstražné tabule.",
+      "answer_c": "Vždy přítomností vedoucího pracovníka.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "038. Kdo odpovídá za krytí vozidla při jeho opravě?",
+      "answer_a": "Osoba, která na vozidle pracuje.",
+      "answer_b": "Vedoucí směny v depu.",
+      "answer_c": "Strojvedoucí posledního vlaku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "039. Kdo zajistí krytí všech vozidel při odstavení dalších vozidel k již krytým vozidlům?",
+      "answer_a": "Ten, který další vozidla odstavuje.",
+      "answer_b": "Osoba, která kryla původní vozidlo.",
+      "answer_c": "Dispečer příslušné stanice.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "040. Za jakých podmínek lze vykonávat činnosti v provozované nevyloučené železniční dopravní cestě za snížené viditelnosti?",
+      "answer_a": "Jen z nutných provozních důvodů, jako je odstranění bezprostředního ohrožení bezpečnosti nebo činnosti vyžadované legislativou.",
+      "answer_b": "Za jakýchkoliv podmínek, pokud je přítomen vedoucí prací.",
+      "answer_c": "Pouze při plánovaných opravách zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "041. Co musí obsahovat sjednání podmínek práce na zařízení?",
+      "answer_a": "Sdělení názvu OS nebo CPS, jména vedoucího prací a oznámení o použití výstražných terčů nebo kolíků.",
+      "answer_b": "Pouze čas zahájení a ukončení práce.",
+      "answer_c": "Popis pracovního úkolu a seznam všech zaměstnanců na místě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "042. Jak probíhá sjednání podmínek práce na zařízení v obvodu dopravny s kolejovým rozvětvením?",
+      "answer_a": "Zpravidla osobně mezi osamělým zaměstnancem nebo vedoucím prací a dopravním zaměstnancem.",
+      "answer_b": "Telefonicky mezi vedoucím prací a dispečerem.",
+      "answer_c": "Písemně prostřednictvím interního systému SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "043. Kdy lze považovat činnost za nutný provozní důvod?",
+      "answer_a": "Pokud přímo souvisí s výkonem dopravní služby nebo zajišťuje bezpečnost drážní dopravy.",
+      "answer_b": "Pokud je plánována a schválena alespoň 24 hodin předem.",
+      "answer_c": "Jestliže ji nařídí vedoucí směny bez ohledu na okolnosti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "044. Jaké označení pracovního místa lze využít při práci na zařízení?",
+      "answer_a": "Světelné výstražné terče nebo výstražné kolíky s dočasnou platností.",
+      "answer_b": "Pouze pevné návěstidlo.",
+      "answer_c": "Jakýkoliv viditelný předmět označený reflexní páskou.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "045. Kdo je odpovědný za sjednání podmínek práce na zařízení?",
+      "answer_a": "Osamělý zaměstnanec nebo vedoucí prací.",
+      "answer_b": "Pouze dopravní zaměstnanec.",
+      "answer_c": "Vedoucí směny v příslušné dopravně.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "046. Jakými způsoby lze zajistit bezpečnost pracovního místa?",
+      "answer_a": "Signalizací TWS typu ATWS, SCWS, LOWS, informacemi od dopravního zaměstnance nebo bezpečnostní hlídky, případně vizuální kontrolou vedoucího prací.",
+      "answer_b": "Signalizací TWS typu ATWS nebo SCWS.",
+      "answer_c": "Výhradně přítomností bezpečnostní hlídky na místě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "047. Co musí dopravní zaměstnanec udělat, pokud nesouhlasí se sjednáním podmínek práce na zařízení?",
+      "answer_a": "Zapsat nesouhlas a jeho důvod do telefonního zápisníku a oznámit číslo zápisu osamělému zaměstnanci nebo vedoucímu prací.",
+      "answer_b": "Ústně informovat vedoucího prací o nesouhlasu.",
+      "answer_c": "Požádat o souhlas svého nadřízeného a rozhodnutí nemusí zapisovat.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "048. Kdo musí podepsat zápis o nesouhlasu se sjednáním podmínek práce na zařízení?",
+      "answer_a": "Dopravní zaměstnanec i osamělý zaměstnanec nebo vedoucí prací.",
+      "answer_b": "Pouze dopravní zaměstnanec.",
+      "answer_c": "Vedoucí prací a jeho nadřízený.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "049. Jaké signalizační systémy lze použít k zajištění bezpečnosti pracovního místa?",
+      "answer_a": "TWS typu ATWS, SCWS nebo LOWS.",
+      "answer_b": "Pouze TWS typu ATWS.",
+      "answer_c": "Jakýkoliv dostupný signalizační systém.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "050. Co musí být oznámeno při nesouhlasu dopravního zaměstnance se sjednáním podmínek práce na zařízení?",
+      "answer_a": "Číslo zápisu v telefonním zápisníku.",
+      "answer_b": "Důvod nesouhlasu a jméno vedoucího prací.",
+      "answer_c": "Pouze čas, kdy byl nesouhlas zaznamenán.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "051. Jak může být pracovní místo informováno o jízdě vozidel?",
+      "answer_a": "Prostřednictvím dopravního zaměstnance nebo bezpečnostní hlídky, případně telekomunikačním zařízením.",
+      "answer_b": "Pouze prostřednictvím vizuálního signálu.",
+      "answer_c": "Výhradně informacemi z dispečerského systému.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "052. Jaký je hlavní smysl bezpečnostní hlídky při zajišťování bezpečnosti pracovního místa?",
+      "answer_a": "Sledovat úsek tratě před začátkem střeženého úseku, zjišťovat blížící se drážní vozidla a včas informovat pracovní místo.",
+      "answer_b": "Zajišťovat komunikaci mezi vedoucím prací a dopravním zaměstnancem.",
+      "answer_c": "Předávat signály TWS typu LOWS na pracovní místo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "053. Kdy je povinnost použít TWS typu ATWS nebo SCWS při zajišťování bezpečnosti pracovního místa?",
+      "answer_a": "Pokud traťová rychlost přesahuje 120 km/h, pokud není přechodné omezení na 120 km/h nebo méně.",
+      "answer_b": "Vždy, pokud je na pracovní místě přítomen vedoucí prací.",
+      "answer_c": "Pouze při pracích v dopravnách s kolejovým rozvětvením.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "054. Co musí udělat osamělý zaměstnanec/vedoucí prací při ztrátě spojení s dopravním zaměstnancem?",
+      "answer_a": "Okamžitě vyklidit pracovní místo a pokusit se obnovit spojení.",
+      "answer_b": "Pokračovat v práci a spojení obnovit později.",
+      "answer_c": "Informovat bezpečnostní hlídku, která převezme odpovědnost.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "055. Jaké podmínky musí být splněny pro použití TWS typu LOWS?",
+      "answer_a": "Systém musí být schválen pro použití na provozované železniční cestě SŽ a obsluhován podle návodu k obsluze.",
+      "answer_b": "Musí být použit pouze při rychlostech do 120 km/h.",
+      "answer_c": "Je možné jej použít bez schválení, pokud není k dispozici jiný signalizační systém.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "056. Co je považováno za včasné informování o jízdě vozidla přes pracovní místo?",
+      "answer_a": "Oznámení, kdy mezi potvrzením přijetí informace a dovolením jízdy uplyne minimálně sjednaná doba pro vyklizení pracovního místa.",
+      "answer_b": "Informace podaná alespoň 5 minut před jízdou vozidla.",
+      "answer_c": "Informace předaná kdykoliv před příjezdem vozidla na pracovní místo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "057. Kdy může dopravní zaměstnanec povolit jízdu vozidla přes pracovní místo?",
+      "answer_a": "Pouze pokud osamělý zaměstnanec/vedoucí prací potvrdí přijetí informace o jízdě vozidla.",
+      "answer_b": "Při jakémkoliv oznámení o plánované jízdě bez ohledu na potvrzení.",
+      "answer_c": "Pokud je pracovní místo označeno signalizací TWS typu SCWS.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "058. Jaké návěsti musí vedoucí prací nebo bezpečnostní hlídka dávat při blížícím se vozidle?",
+      "answer_a": "Návěsti dle předpisu SŽ D1 ČÁST PRVNÍ, například „Vlak se blíží“ a „Vykliďte pracovní místo“.",
+      "answer_b": "Pouze vizuální signál ručním návěstidlem bez dalších návěstí.",
+      "answer_c": "Výhradně zvukové signály pomocí píšťalky nebo sirény.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "059. Kdy může vedoucí prací dát pokyn ke vstupu do provozované koleje?",
+      "answer_a": "Až po průjezdu celého vozidla a přesvědčení, že za ním nejede další vozidlo.",
+      "answer_b": "Okamžitě po zahlédnutí konce vozidla.",
+      "answer_c": "Pouze pokud je pracovní místo označeno výstražným kolíkem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "060. Jak musí být označeno pracovní místo na širé trati?",
+      "answer_a": "Varovnými návěstidly dle předpisu SŽ D1 ČÁST PRVNÍ, pokud není kryto výstražným kolíkem.",
+      "answer_b": "Výstražnými páskami umístěnými kolem pracovního místa.",
+      "answer_c": "Značkami s označením „Pracovní místo“ na obou stranách trati.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "061. Co musí udělat bezpečnostní hlídka, zjistí-li, že varovná návěst nebyla zpozorována nebo jí nebylo uposlechnuto?",
+      "answer_a": "Dá návěst „Urychleně vykliďte pracovní místo“ dle předpisu SŽ D1 ČÁST PRVNÍ.",
+      "answer_b": "Informuje vedoucího prací a čeká na jeho pokyny.",
+      "answer_c": "Pokračuje v opakování původní návěsti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "062. Jaké jsou podmínky pro zajištění bezpečnosti pracovního místa na tratích s DOZ při maximální traťové rychlosti nad 120 km/h?",
+      "answer_a": "Zajištění musí být provedeno jiným způsobem, protože maximální rychlost na úseku s pracovním místem musí být do 120 km/h včetně.",
+      "answer_b": "Je povoleno použít pouze signalizaci TWS typu LOWS bez ohledu na rychlost.",
+      "answer_c": "Musí být přítomna předsunutá bezpečnostní hlídka na obou stranách pracovního místa.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "063. Jaké vybavení musí mít vedoucí prací a bezpečnostní hlídky na svém stanovišti?",
+      "answer_a": "Návěstidla určená vedoucím zaměstnancem v souladu s předpisem SŽ D1 ČÁST PRVNÍ.",
+      "answer_b": "Pouze píšťalku a červený praporek.",
+      "answer_c": "Ruční vysílačku pro komunikaci s dopravním zaměstnancem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "064. Jaké podmínky platí při práci na zařízení ve vyloučené koleji v blízkosti provozované nevyloučené koleje?",
+      "answer_a": "Platí ustanovení pro práci na zařízení v provozované nevyloučené dopravní cestě, včetně sjednání a evidence podmínek práce prostřednictvím zaměstnance stanoveného dle předpisů SŽ D1 a SŽ D7/2.",
+      "answer_b": "Není třeba žádných zvláštních opatření, pokud se práce odehrává na vyloučené koleji.",
+      "answer_c": "Je nutné vždy zavést pomalou jízdu na nevyloučené koleji bez ohledu na okolnosti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "065. Kdy není nutné zavádět pomalou jízdu na nevyloučené koleji při práci na vyloučené koleji?",
+      "answer_a": "Pokud jsou použity zábrany schválené pro použití na dráze, které minimalizují riziko střetu nebo sražení osob s projíždějícím vozidlem.",
+      "answer_b": "Pokud je pracovní místo označeno varovnými návěstidly dle předpisu SŽ D1 ČÁST PRVNÍ.",
+      "answer_c": "Pokud je práce na vyloučené koleji zapracována do výlukového rozkazu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "066. Jak lze zajistit pomalou jízdu na nevyloučené koleji při nepředpokládané výluce?",
+      "answer_a": "Na základě žádosti vedoucího výlukových prací zprostředkuje zajištění pomalé jízdy odpovědný zástupce objednavatele výluky.",
+      "answer_b": "Zavedení pomalé jízdy musí být schváleno vedoucím prací bez dalších kroků.",
+      "answer_c": "Pomalou jízdu není možné zajistit při nepředpokládané výluce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "067. Kdo musí schválit práci na zařízení na vyloučené koleji, která není zapracována do výlukového rozkazu?",
+      "answer_a": "Příslušný odpovědný zástupce objednavatele výluky a odborný zástupce zhotovitele, případně vedoucí výlukových prací.",
+      "answer_b": "Pouze vedoucí výlukových prací bez dalších schválení.",
+      "answer_c": "Zaměstnanec stanovený dle předpisu SŽ D1 ČÁST PRVNÍ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "068. Jaké podmínky musí splňovat zábrany používané na oddělení pracovního místa od nebezpečné oblasti?",
+      "answer_a": "Musí být schváleny pro použití na dráze provozované SŽ a splňovat příslušnou ČSN.",
+      "answer_b": "Stačí, aby byly viditelně označeny a umístěny v dostatečné vzdálenosti od koleje.",
+      "answer_c": "Musí být pevně ukotveny a zajištěny proti posunutí, ale nemusí být schváleny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "069. Co je povinností odborného zástupce zhotovitele při práci na zařízení na vyloučené koleji nesouvisející s výlukou?",
+      "answer_a": "Stanovit podmínky požadované práce na zařízení s ohledem na bezpečnost zaměstnanců.",
+      "answer_b": "Zajistit přítomnost bezpečnostní hlídky po celou dobu práce.",
+      "answer_c": "Vypracovat výlukový rozkaz a předložit jej vedoucímu výlukových prací.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "070. Jaké jsou podmínky pro práci se stroji do vzdálenosti 5,6 m od osy provozované nevyloučené koleje?",
+      "answer_a": "Práce musí být prováděna za dozoru vedoucího stroje, pracoviště musí být zajištěno hlídkou stroje, a v minimální vzdálenosti 1950 mm od osy sousední koleje musí být umístěna pevná páska nebo zábrana dle ČSN, pokud to neznemožňuje práci stroje.",
+      "answer_b": "Práce je možná pouze za přítomnosti vedoucího prací a bez nutnosti dalších opatření, pokud stroj nezasahuje do osy sousední koleje.",
+      "answer_c": "Práce se stroji je možná pouze za úplného zastavení provozu na sousední koleji.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "071. Kdy není nutné umístit pevnou pásku výrazné barvy ve vzdálenosti 1950 mm od osy nevyloučené koleje?",
+      "answer_a": "Pokud jsou použity zábrany dle příslušné ČSN nebo pokud by páska znemožnila práci stroje.",
+      "answer_b": "Pokud vedoucí stroje zajistí náležitý dohled nad prací stroje.",
+      "answer_c": "Pokud práce probíhá výhradně v nočních hodinách za sníženého provozu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "072. Jaké vybavení musí mít pracoviště stroje při práci v blízkosti provozované koleje?",
+      "answer_a": "Telekomunikační spojení s dopravním zaměstnancem, dostatečné osvětlení zajišťující rozhled po celém pracovišti a opatření proti oslnění zaměstnanců.",
+      "answer_b": "Pouze pevnou pásku nebo zábranu a ruční vysílačku pro komunikaci s vedoucím stroje.",
+      "answer_c": "Mobilní osvětlení a vizuální signály pro upozornění projíždějících vlaků.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "073. Za jakých podmínek je nutné přerušit práci stroje při jízdě vozidel po sousední koleji?",
+      "answer_a": "Práce musí být přerušena vždy, pokud provozní dokumentace stroje neumožňuje pokračovat v práci při jízdě vozidel po sousední koleji.",
+      "answer_b": "Práce se přerušuje pouze při rychlosti projíždějícího vozidla vyšší než 50 km/h.",
+      "answer_c": "Práce se přerušuje vždy, bez ohledu na typ stroje nebo provozní dokumentaci.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "074. Kdo je odpovědný za zajištění bezpečnosti práce stroje při práci do vzdálenosti 5,6 m od osy provozované koleje?",
+      "answer_a": "Vedoucí stroje, který musí být znalý místních poměrů a zajistit dodržení všech ustanovení o bezpečnosti práce stroje.",
+      "answer_b": "Hlídkový zaměstnanec, který je pověřen komunikací s dopravním zaměstnancem.",
+      "answer_c": "Dopravní zaměstnanec sousední stanice, který kontroluje provoz na sousední koleji.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "075. Jaké závady na speciálních vozidlech zakazují jejich provoz?",
+      "answer_a": "Vadné brzdy, porouchané zařízení pro dávání návěstí a prošlé lhůty prohlídek a revizí dle předpisu SŽ S8.",
+      "answer_b": "Pouze závady na brzdovém systému nebo podvozku vozidla.",
+      "answer_c": "Jakékoli závady, které vedoucí prací vyhodnotí jako ohrožující bezpečnost provozu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "076. Jak lze zajistit bezpečnost při mimořádné prohlídce vlaku (PMD) na traťové koleji, pokud na sousední koleji je povolena jízda vozidel rychlostí vyšší než 40 km/h?",
+      "answer_a": "Zavedením bezpečnostní pomalé jízdy v souladu s předpisem SŽ D1 ČÁST PRVNÍ.",
+      "answer_b": "Zastavením provozu na sousední koleji po dobu provádění prohlídky.",
+      "answer_c": "Použitím výstražných signálů a hlídek na obou koncích traťové koleje.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "077. Kdy lze zavést bezpečnostní pomalou jízdu podle předpisu SŽ D1 ČÁST PRVNÍ?",
+      "answer_a": "Při mimořádné prohlídce vlaku (PMD) nebo při zjišťování příčin nemožnosti přestavení výhybky nebo výkolejky.",
+      "answer_b": "Vždy, když je na sousední koleji povolena jízda vozidel rychlostí vyšší než 60 km/h.",
+      "answer_c": "Při jakékoli činnosti v blízkosti provozované koleje, kterou určí vedoucí zaměstnanec dopravce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "078. Jaké opatření lze žádat při mimořádné prohlídce vlaku (PMD) na dopravních kolejích v dopravnách s kolejovým rozvětvením, pokud na sousední koleji je povolena jízda vozidel rychlostí vyšší než 80 km/h?",
+      "answer_a": "Zavedení dopravních opatření prostřednictvím příslušného dopravního zaměstnance (výpravčí, dispečer).",
+      "answer_b": "Zastavení provozu na sousední koleji bez ohledu na rychlost vozidel.",
+      "answer_c": "Pouze snížení rychlosti na sousední koleji na maximálně 40 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "079. Kdo je odpovědný za zajištění bezpečnosti osob při činnostech v provozované dopravní cestě v ostatních případech?",
+      "answer_a": "Příslušní vedoucí zaměstnanci dopravce nebo jimi pověřené osoby.",
+      "answer_b": "Dopravní zaměstnanec (výpravčí nebo dispečer), který určuje podmínky bezpečnosti.",
+      "answer_c": "Osoby vykonávající činnost, které si bezpečnost zajišťují samostatně.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "080. Co je nutné zajistit při zjišťování příčin nemožnosti přestavení výhybky nebo výkolejky?",
+      "answer_a": "Lze zavést bezpečnostní pomalou jízdu v souladu s předpisem SŽ D1 ČÁST PRVNÍ.",
+      "answer_b": "Musí být přítomen vedoucí výlukových prací, který zajistí bezpečnostní opatření.",
+      "answer_c": "Je nutné zastavit provoz na všech sousedních kolejích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "081. Kdy je nutné zachovat předem dohodnutý postup při přepravě osob v posunovém dílu dopravce SŽ?",
+      "answer_a": "V dopravně bez kolejového rozvětvení na tratích provozovaných podle předpisu SŽ D3 nebo předpisu SŽ D4.",
+      "answer_b": "Vždy, když posunový díl dopravce SŽ projíždí dopravnou s kolejovým rozvětvením.",
+      "answer_c": "Při každém pohybu posunového dílu na tratích provozovaných podle předpisu SŽ D1.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "082. Kdy je nutné zachovat předem dohodnutý postup při přepravě osob v posunu mezi dopravnami dopravce SŽ?",
+      "answer_a": "V dopravně s kolejovým rozvětvením, na tratích provozovaných podle předpisu SŽ D3 nebo D4 a při pokračování v jízdě PMD po jeho zastavení na širé trati.",
+      "answer_b": "Pouze při jízdě PMD na tratích provozovaných podle předpisu SŽ D3.",
+      "answer_c": "Při každém posunu mezi dopravnami bez ohledu na typ trati nebo dopravny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "083. Kdy je nutné zachovat předem dohodnutý postup při přepravě osob ve vlaku dopravce SŽ?",
+      "answer_a": "V dopravně s kolejovým rozvětvením, na tratích provozovaných podle předpisu SŽ D3 nebo D4 a při pokračování v jízdě vlaku po jeho zastavení na širé trati.",
+      "answer_b": "Pouze v dopravně s kolejovým rozvětvením při výlukách kolejí.",
+      "answer_c": "Při každém pohybu vlaku na tratích provozovaných podle předpisu SŽ D1.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "084. Za jakých podmínek jsou možné současné práce na vyloučené koleji?",
+      "answer_a": "Pouze pokud jsou povoleny ve výlukovém rozkaze nebo za podmínek daných čl. 18 odst. 7 příslušného předpisu.",
+      "answer_b": "Vždy, pokud jsou práce koordinovány vedoucím výlukových prací.",
+      "answer_c": "Pouze za přítomnosti dopravního zaměstnance, který dohlíží na bezpečnost.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "085. Co je nutné zajistit při pokračování v jízdě PMD po jeho zastavení na širé trati?",
+      "answer_a": "Zachovat předem dohodnutý postup podle příslušných předpisů.",
+      "answer_b": "Zastavit provoz na všech sousedních kolejích.",
+      "answer_c": "Informovat vedoucího výlukových prací o pokračování v jízdě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "086. Změny v Bp1:",
+      "answer_a": "A",
+      "answer_b": "A",
+      "answer_c": "A",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "087. Kdo vydává předpis Bp3?",
+      "answer_a": "Správa železnic po projednání s odborovými organizacemi.",
+      "answer_b": "Ministerstvo dopravy po konzultaci se Správou železnic.",
+      "answer_c": "Český drážní úřad bez konzultace s odbory.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "088. Co předpis Bp3 upravuje?",
+      "answer_a": "Pravidla BOZP a bezpečné organizace práce na stavbách SŽ.",
+      "answer_b": "Pouze technologické postupy při stavební činnosti.",
+      "answer_c": "Zajištění BOZP výhradně pro zaměstnance SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "089. Kdo je investorem a zadavatelem stavby dle předpisu?",
+      "answer_a": "Správa železnic.",
+      "answer_b": "Ministerstvo dopravy.",
+      "answer_c": "Dodavatelská firma.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "090. Na koho se vztahuje závaznost předpisu Bp3?",
+      "answer_a": "Na zaměstnance SŽ i cizí právní subjekty.",
+      "answer_b": "Pouze na osoby v pracovním vztahu se SŽ.",
+      "answer_c": "Výhradně na právnické osoby působící na stavbách.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "091. Jaký zákon upravuje činnosti na staveništích dle předpisu?",
+      "answer_a": "Zákon č. 183/2006 Sb., stavební zákon.",
+      "answer_b": "Zákon č. 266/1994 Sb., o drahách.",
+      "answer_c": "Zákon č. 262/2006 Sb., zákoník práce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "092. Jaké další předpisy jsou součástí systému BOZP u SŽ?",
+      "answer_a": "SŽ Bp1 a SŽ Bp2.",
+      "answer_b": "SŽ Bp4 a SŽ Bp5.",
+      "answer_c": "SŽ A1 a SŽ D2.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "093. Kdo je cizí právní subjekt (CPS) dle předpisu?",
+      "answer_a": "Fyzická nebo právnická osoba odlišná od SŽ, ovlivňující činnost SŽ.",
+      "answer_b": "Zaměstnanec SŽ v pracovněprávním vztahu.",
+      "answer_c": "Pouze dopravce s licencí na dráze SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "094. Kdo je dodavatel/zhotovitel podle předpisu?",
+      "answer_a": "CPS provádějící práce pro SŽ na základě smlouvy.",
+      "answer_b": "Fyzická osoba pracující na stavbě bez smlouvy.",
+      "answer_c": "Zaměstnanec SŽ vykonávající stavební činnost.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "095. Co je dopravní cesta dle předpisu?",
+      "answer_a": "Část dráhy určená k pohybu drážních vozidel, vymezena 2,5 m od osy koleje.",
+      "answer_b": "Veškeré prostory v obvodu dráhy bez ohledu na účel.",
+      "answer_c": "Pouze koleje v dopravnách bez kolejového rozvětvení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "096. Co zahrnuje základní dopravní dokumentace (ZDD)?",
+      "answer_a": "Staniční řády, obsluhovací řády, provozní řády a jejich přílohy.",
+      "answer_b": "Pouze provozní řády vleček a jejich přílohy.",
+      "answer_c": "Technické normy pro stavbu železniční infrastruktury.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "097. Jak je vymezena dopravní cesta u ostrovních nástupišť?",
+      "answer_a": "Vzdáleností 2,5 m od os kolejí přilehlých k nástupišti.",
+      "answer_b": "Celým prostorem mezi kolejemi bez omezení.",
+      "answer_c": "Pouze místy označenými provozním předpisem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "098. Co je stavba dráhy?",
+      "answer_a": "Stavba cesty pro drážní vozidla nebo její zabezpečení.",
+      "answer_b": "Jakákoliv stavba v obvodu dráhy bez ohledu na účel.",
+      "answer_c": "Pouze novostavba železniční infrastruktury.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "099. Kdo je zaměstnanec SŽ dle předpisu?",
+      "answer_a": "Fyzická osoba v pracovněprávním vztahu se SŽ.",
+      "answer_b": "Každá osoba vykonávající činnost na dráze SŽ.",
+      "answer_c": "Pouze osoby pracující na stavbách SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "100. Kdo je odpovědný za správnost a bezpečnost stavby podle projektové dokumentace?",
+      "answer_a": "Projektant.",
+      "answer_b": "Stavebník.",
+      "answer_c": "Dodavatel stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "101. Co je nedílnou součástí projektové dokumentace?",
+      "answer_a": "Zásady organizace výstavby.",
+      "answer_b": "Pouze technická specifikace materiálů.",
+      "answer_c": "Seznam použitých stavebních strojů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "102. Co musí zásady organizace výstavby prokazovat?",
+      "answer_a": "Technickou reálnost a optimální způsob výstavby na konkrétním staveništi.",
+      "answer_b": "Pouze dostupnost stavebních materiálů.",
+      "answer_c": "Ekonomickou výhodnost projektu bez ohledu na technické provedení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "103. Kdo je povinen zajistit zpracování projektové dokumentace, pokud ji vyžaduje stavební zákon?",
+      "answer_a": "Stavebník.",
+      "answer_b": "Projektant.",
+      "answer_c": "Investiční odbor SŽ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "104. Který dokument stanoví podrobnosti ke zpracování projektové dokumentace?",
+      "answer_a": "Směrnice SŽ SM011 Dokumentace staveb.",
+      "answer_b": "Stavební zákon č. 183/2006 Sb.",
+      "answer_c": "Předpis SŽ Bp3.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "105. Co musí zásady organizace výstavby zahrnovat?",
+      "answer_a": "Využití mechanizmů, dopravní přístupnost, požární ochranu a BOZP.",
+      "answer_b": "Pouze přístupové cesty na staveniště.",
+      "answer_c": "Seznam pracovníků a jejich kvalifikaci.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "106. Kdo je povinen určit koordinátora BOZP, pokud na staveništi působí více než jeden zhotovitel?",
+      "answer_a": "Zadavatel stavby.",
+      "answer_b": "Stavbyvedoucí.",
+      "answer_c": "První zhotovitel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "107. Kdo nemůže být koordinátorem BOZP?",
+      "answer_a": "Zhotovitel, jeho zaměstnanec nebo stavbyvedoucí.",
+      "answer_b": "Zadavatel stavby nebo jeho zmocněnec.",
+      "answer_c": "Osoba odpovědná za zpracování projektové dokumentace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "108. Kdy je potřeba určit koordinátora BOZP?",
+      "answer_a": "Při přípravě stavby a během její realizace.",
+      "answer_b": "Pouze při realizaci stavby.",
+      "answer_c": "Až po dokončení projektové dokumentace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "109. Jaké jsou povinnosti koordinátora BOZP v případě, že staveniště zahrnuje provozovanou železniční dopravní cestu?",
+      "answer_a": "Stanovit opatření k zajištění bezpečnosti dráhy a drážní dopravy.",
+      "answer_b": "Zajišťovat pravidelnou údržbu železniční dopravní cesty.",
+      "answer_c": "Převzít odpovědnost za provozování dráhy během stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "110. Kdo je povinen předat koordinátorovi BOZP veškeré podklady a informace pro jeho činnost?",
+      "answer_a": "Zadavatel stavby.",
+      "answer_b": "Stavbyvedoucí.",
+      "answer_c": "Provozovatel dráhy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "111. Co kontroluje koordinátor BOZP během činnosti na staveništi zahrnujícím provozovanou železniční dopravní cestu?",
+      "answer_a": "Dodržování opatření zamezujících ohrožení bezpečnosti provozování dráhy.",
+      "answer_b": "Technický stav železniční dopravní cesty.",
+      "answer_c": "Plnění termínového harmonogramu prací.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "112. Kdy je zadavatel stavby povinen zajistit zpracování plánu BOZP?",
+      "answer_a": "Pokud jsou na staveništi vykonávány práce vystavující fyzickou osobu zvýšenému ohrožení života nebo zdraví.",
+      "answer_b": "Pokud stavba přesahuje dobu realizace delší než 6 měsíců.",
+      "answer_c": "Pokud je na staveništi více než jeden zhotovitel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "113. Co musí plán BOZP obsahovat?",
+      "answer_a": "Základní informace o stavbě, postupy pro bezpečné provádění prací, jejich časové trvání a posloupnost.",
+      "answer_b": "Podrobný seznam pracovníků a jejich zdravotní způsobilost.",
+      "answer_c": "Pouze technické parametry stavby a seznam použitých materiálů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "114. Jak často musí být plán BOZP aktualizován?",
+      "answer_a": "Průběžně během realizace stavby a při podstatných změnách.",
+      "answer_b": "Pouze jednou, na začátku realizace stavby.",
+      "answer_c": "Každý měsíc bez ohledu na změny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "115. Který dokument stanoví požadavky na obsah plánu BOZP?",
+      "answer_a": "Nařízení vlády č. 591/2006 Sb., Příloha 6.",
+      "answer_b": "Stavební zákon č. 183/2006 Sb.",
+      "answer_c": "Směrnice SŽ SM011 Dokumentace staveb.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "116. Co zahrnují postupy uvedené v plánu BOZP?",
+      "answer_a": "Opatření podle právních předpisů s ohledem na místní podmínky a časový průběh prací.",
+      "answer_b": "Detailní harmonogram dodávek stavebních materiálů.",
+      "answer_c": "Seznam používaných strojů a jejich technické specifikace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "117. Kdo je odpovědný za zpracování plánu BOZP?",
+      "answer_a": "Koordinátor BOZP.",
+      "answer_b": "Stavbyvedoucí.",
+      "answer_c": "Zadavatel stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "118. Kdy musí zadavatel stavby doručit oznámení o zahájení stavebních prací na OIP?",
+      "answer_a": "Nejpozději do 8 dnů před předáním staveniště zhotoviteli.",
+      "answer_b": "Nejpozději do 5 dnů po zahájení stavebních prací.",
+      "answer_c": "Nejpozději do 14 dnů před plánovaným ukončením stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "119. Jakou formou může být oznámení o zahájení prací doručeno na OIP?",
+      "answer_a": "V listinné nebo elektronické podobě.",
+      "answer_b": "Pouze osobním doručením na podatelnu OIP.",
+      "answer_c": "Výhradně prostřednictvím datové schránky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "120. Kde musí být stejnopis oznámení vyvěšen během stavby?",
+      "answer_a": "Na viditelném místě u vstupu na staveniště.",
+      "answer_b": "V kanceláři stavbyvedoucího.",
+      "answer_c": "Na hlavní stránce intranetu zadavatele stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "121. Co musí zadavatel udělat v případě změny údajů uvedených v oznámení?",
+      "answer_a": "Aktualizovat oznámení a doplnit je k vyvěšeným dokumentům na staveništi.",
+      "answer_b": "Poslat aktualizované oznámení znovu na OIP.",
+      "answer_c": "Vyvěsit nové oznámení a původní odstranit.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "122. Jak dlouho musí být oznámení o zahájení prací vyvěšeno na staveništi?",
+      "answer_a": "Po celou dobu stavby až do jejího ukončení a předání objednateli.",
+      "answer_b": "Pouze do zahájení stavebních prací.",
+      "answer_c": "Do prvního kontrolního dne stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "123. Kde lze nalézt vzor tiskopisu Oznámení o zahájení prací?",
+      "answer_a": "Na intranetu SŽ v sekci BOZP ve složce Předpisy BP.",
+      "answer_b": "Na webových stránkách Ministerstva práce a sociálních věcí.",
+      "answer_c": "Na úřední desce územně příslušného OIP.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "124. Kdo rozhoduje o způsobu zabezpečení staveniště proti vstupu nepovolaných osob, pokud není ustanoven koordinátor BOZP?",
+      "answer_a": "Zhotovitel stavby.",
+      "answer_b": "Objednatel (investor).",
+      "answer_c": "Stavbyvedoucí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "125. Jak musí být zabezpečeny kovové konstrukce delší než 3 metry v blízkosti elektrizované tratě?",
+      "answer_a": "Musí být ukolejněny ve spolupráci s odbornými zaměstnanci příslušného správce.",
+      "answer_b": "Musí být označeny výstražnými tabulkami.",
+      "answer_c": "Musí být uzemněny na místě stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "126. Kdy je nutné instalovat vizuální orientační systém pro cestující?",
+      "answer_a": "Při dlouhodobé stavební činnosti nad 14 dní a v místech s větším pohybem osob.",
+      "answer_b": "Při jakékoliv stavební činnosti v blízkosti železniční stanice.",
+      "answer_c": "Pouze pokud to nařídí objednatel (investor).",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "127. Kdo se standardně účastní kontrolních dnů na stavbě?",
+      "answer_a": "Zástupce objednatele, zhotovitele, projektant a správci stavbou dotčených zařízení.",
+      "answer_b": "Pouze zhotovitel a objednatel.",
+      "answer_c": "Koordinátor BOZP, stavbyvedoucí a územně příslušný OZO BOZP.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "128. Kde jsou uvedeny základní požadavky na provedení komunikací na stavbě?",
+      "answer_a": "V Pokynu SŽ PO-09/2021-GŘ.",
+      "answer_b": "V Příloze č. 4 zákona č. 309/2006 Sb.",
+      "answer_c": "Ve směrnici SŽ SM 118.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "129. Kdo by měl být přítomen na kontrolních dnech ze strany objednatele, pokud stavba zahrnuje provozovanou železniční dopravní cestu?",
+      "answer_a": "Odpovědní zástupci řízení provozu a infrastruktury.",
+      "answer_b": "Pouze projektant stavby.",
+      "answer_c": "Zástupce územně příslušného OIP.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "130. Kdo se považuje za vedoucího prací při stavbách na dráze, jejichž součástí je provozovaná železniční dopravní cesta?",
+      "answer_a": "Určená osoba zhotovitele.",
+      "answer_b": "Zástupce investora.",
+      "answer_c": "Koordinátor BOZP.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "131. Jaká odborná způsobilost je vyžadována pro vedoucího prací na dráze?",
+      "answer_a": "Odborná způsobilost dle předpisu SŽ Zam1.",
+      "answer_b": "Certifikát bezpečnostního technika BOZP.",
+      "answer_c": "Osvědčení o způsobilosti dle zákona č. 183/2006 Sb.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "132. Kdy investor převezme stavbu?",
+      "answer_a": "Po provedení všech sjednaných revizí, zkoušek, předání dokumentace a kontrole stavby.",
+      "answer_b": "Po ukončení stavebních prací bez ohledu na revize a dokumentaci.",
+      "answer_c": "Ihned po podpisu smlouvy mezi investorem a zhotovitelem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "133. Kdo svolává kolaudaci stavby?",
+      "answer_a": "Drážní úřad (DÚ) jako speciální stavební úřad.",
+      "answer_b": "Investor (objednatel).",
+      "answer_c": "Zhotovitel stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "134. Kdo se účastní kolaudace stavby?",
+      "answer_a": "Správce stavby a zástupce příslušné stavební správy nebo jiné příslušné OJ.",
+      "answer_b": "Pouze zástupce DÚ.",
+      "answer_c": "Koordinátor BOZP a stavební dozor.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "135. Co musí být vyhotoveno před převzetím stavby investorem, pokud jsou zjištěny vady?",
+      "answer_a": "Soupis všech zjevných vad a nedodělků.",
+      "answer_b": "Prohlášení o odstranění všech vad zhotovitelem.",
+      "answer_c": "Zápis o odmítnutí převzetí stavby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "136. Kdy je nutné určit koordinátora BOZP ve fázi realizace stavby?",
+      "answer_a": "Pokud stavba trvá déle než 30 pracovních dnů a současně na ní pracuje více než 20 pracovníků po dobu delší než 1 den.",
+      "answer_b": "Pokud stavba trvá méně než 30 pracovních dnů, ale pracují na ní více než 10 pracovníků.",
+      "answer_c": "Pokud stavba vyžaduje pouze ohlášení, nikoliv stavební povolení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "137. Kdy není nutné určit koordinátora BOZP?",
+      "answer_a": "Pokud stavím svépomocí a stavba nevyžaduje ohlášení ani stavební povolení.",
+      "answer_b": "Pokud stavba trvá déle než 500 pracovních dnů v přepočtu na jednu fyzickou osobu.",
+      "answer_c": "Pokud na stavbě působí pouze jeden zhotovitel, ale práce trvají více než 30 pracovních dnů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "138. Kdy vzniká povinnost oznámení o zahájení prací na OIP?",
+      "answer_a": "Pokud stavba trvá déle než 30 pracovních dnů a současně na ní pracuje více než 20 pracovníků po dobu delší než 1 den.",
+      "answer_b": "Pokud stavba trvá méně než 500 pracovních dnů v přepočtu na jednu fyzickou osobu.",
+      "answer_c": "Pokud stavba vyžaduje ohlášení, ale ne stavební povolení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "139. Za jakých podmínek není nutné oznámení o zahájení prací na OIP?",
+      "answer_a": "Pokud stavba netrvá déle než 30 pracovních dnů a práce nejsou vykonávány více než 20 pracovníky po dobu delší než 1 den.",
+      "answer_b": "Pokud stavba vyžaduje pouze stavební povolení a ne ohlášení.",
+      "answer_c": "Pokud na stavbě působí více než jeden zhotovitel, ale práce trvají méně než 500 pracovních dnů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "140. Kdy je nutné určit koordinátora BOZP, pokud na staveništi působí zaměstnanci více než jednoho zhotovitele?",
+      "answer_a": "Pokud stavba vyžaduje ohlášení nebo stavební povolení podle stavebního zákona.",
+      "answer_b": "Pokud stavba trvá méně než 30 pracovních dnů, ale pracuje na ní více než 10 pracovníků.",
+      "answer_c": "Pokud stavba nevyžaduje ohlášení ani stavební povolení, ale působí na ní více než jeden zhotovitel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "141. Kdy není nutné určit koordinátora BOZP, i když na stavbě působí více zhotovitelů?",
+      "answer_a": "Pokud stavba nevyžaduje ohlášení ani stavební povolení podle stavebního zákona.",
+      "answer_b": "Pokud stavba trvá déle než 500 pracovních dnů v přepočtu na jednu fyzickou osobu.",
+      "answer_c": "Pokud stavba vyžaduje pouze ohlášení, nikoliv stavební povolení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "142. Změny v D3:",
+      "answer_a": "A",
+      "answer_b": "A",
+      "answer_c": "A",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "143. Kdo musí zkontrolovat návěst Jízda zajištěna po zapnutí výhybky do režimu samovratného přestavování?",
+      "answer_a": "Zaměstnanec, který výhybku zapnul.",
+      "answer_b": "Dirigující dispečer.",
+      "answer_c": "Strojvedoucí vlaku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "144. Co má zaměstnanec udělat, pokud návěst Jízda zajištěna nesvítí a zjistí závadu?",
+      "answer_a": "Závadu odstraní, pokud je to možné.",
+      "answer_b": "Závadu nahlásí dirigujícímu dispečerovi.",
+      "answer_c": "Vyčká na příjezd odborné údržby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "145. Komu musí strojvedoucí ohlásit poškození výhybky?",
+      "answer_a": "Dirigujícímu dispečerovi přímo nebo přes výpravčího.",
+      "answer_b": "Pouze výpravčímu přilehlé stanice.",
+      "answer_c": "Odborně způsobilému zaměstnanci dopravce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "146. Co musí strojvedoucí udělat, pokud mu byla oznámena porucha výhybky jiným zaměstnancem než dirigujícím dispečerem?",
+      "answer_a": "Vyžádat si pokyny od dirigujícího dispečera.",
+      "answer_b": "Jízdu přes výhybku přerušit a vyčkat.",
+      "answer_c": "Pokračovat v jízdě podle vlastního uvážení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "147. Kdo dává pokyny strojvedoucímu na vyloučené koleji při poruše výhybky?",
+      "answer_a": "ZPŘS (Zaměstnanec pro přípravu a řízení sledu).",
+      "answer_b": "Dirigující dispečer.",
+      "answer_c": "Výpravčí přilehlé stanice.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "148. Kde musí být uloženy soupravy hlavních klíčů v neobsazené přilehlé stanici?",
+      "answer_a": "V uzamykatelných skříňkách (trezorech).",
+      "answer_b": "V otevřeném prostoru s kamerovým dohledem.",
+      "answer_c": "V místnosti přístupné každému zaměstnanci.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "149. Jak musí být zajištěn přístup ke skříňce s hlavními klíči?",
+      "answer_a": "Klíčem v elektromagnetickém zámku nebo bezpečnostním kódem.",
+      "answer_b": "Pouze klíčem drženým u dirigujícího dispečera.",
+      "answer_c": "Volným přístupem bez zabezpečení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "150. Co musí obsahovat skříňka s hlavními klíči kromě klíčů?",
+      "answer_a": "Zápisník o použití souprav hlavních klíčů.",
+      "answer_b": "Plán tratí D3.",
+      "answer_c": "Seznam zaměstnanců oprávněných k přístupu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "151. Co je vyžadováno, pokud je skříňka s klíči umístěna venku?",
+      "answer_a": "Musí být pod stříškou a monitorována kamerovým systémem.",
+      "answer_b": "Musí být chráněna pouze mechanickým zámkem.",
+      "answer_c": "Musí být umístěna ve veřejně přístupném prostoru.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "152. Kdo může dálkově odkódovat přístup do místnosti se skříňkou na klíče?",
+      "answer_a": "Dirigující dispečer.",
+      "answer_b": "Výpravčí přilehlé stanice.",
+      "answer_c": "Žádný zaměstnanec, přístup je mechanický.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "153. Kdo může používat hlavní klíče k odemčení mechanických zámků?",
+      "answer_a": "Strojvedoucí nebo jiný odborně způsobilý zaměstnanec dopravce na jeho příkaz.",
+      "answer_b": "Pouze dirigující dispečer.",
+      "answer_c": "Každý zaměstnanec dopravce bez omezení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "154. Co musí zaměstnanec udělat po ukončení použití hlavních klíčů?",
+      "answer_a": "Ohlásit ukončení dirigujícímu dispečerovi.",
+      "answer_b": "Vrátit klíče do nejbližší skříňky.",
+      "answer_c": "Zapsat ukončení do vlastního zápisníku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "155. Jak postupuje dirigující dispečer, pokud neobdrží hlášení o ukončení použití hlavních klíčů?",
+      "answer_a": "Postupuje jako při ztrátě hlavních klíčů.",
+      "answer_b": "Kontaktuje výpravčího přilehlé stanice.",
+      "answer_c": "Vyčká na další hlášení od zaměstnance.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "156. Co musí zaměstnanec udělat, pokud zapomene nebo ztratí hlavní klíč?",
+      "answer_a": "Neprodleně ohlásit tuto skutečnost dirigujícímu dispečerovi.",
+      "answer_b": "Pokračovat v práci a hlásit ztrátu až po směně.",
+      "answer_c": "Hledat klíč na vlastní pěst bez informování dispečera.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "157. Jaký je postup strojvedoucího při vjezdu do dopravny D3, kde byl zapomenut hlavní klíč?",
+      "answer_a": "Zastavit před krajní výhybkou a přesvědčit se o správném přestavení a uzamčení výhybek.",
+      "answer_b": "Projíždět dopravnou bez zastavení, ale se zvýšenou opatrností.",
+      "answer_c": "Požádat dirigujícího dispečera o doprovod jiného zaměstnance.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "158. Co musí zaměstnanec udělat, pokud nalezne zapomenutý nebo ztracený hlavní klíč?",
+      "answer_a": "Ohlásit nález dirigujícímu dispečerovi a postupovat podle jeho pokynů.",
+      "answer_b": "Ponechat klíč na místě a pokračovat v práci.",
+      "answer_c": "Vrátit klíč do nejbližší skříňky bez dalšího hlášení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "159. Kdy je možné použít náhradní klíče?",
+      "answer_a": "Pouze se souhlasem dirigujícího dispečera, pokud nelze použít hlavní klíč.",
+      "answer_b": "Kdykoliv, pokud to zaměstnanec uzná za nutné.",
+      "answer_c": "Pouze v případech ohrožení bezpečnosti bez nutnosti souhlasu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "160. Kdo může používat náhradní klíče?",
+      "answer_a": "Pouze zaměstnanci oprávnění převzít soupravu hlavních klíčů.",
+      "answer_b": "Každý zaměstnanec dráhy.",
+      "answer_c": "Pouze strojvedoucí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "161. Co musí zaměstnanec udělat po použití náhradních klíčů?",
+      "answer_a": "Vrátit je ihned na předepsané místo a ohlásit vrácení dirigujícímu dispečerovi.",
+      "answer_b": "Uložit je do své osobní skříňky a informovat přednostu PO.",
+      "answer_c": "Zapsat použití do svého pracovního deníku a vrátit klíče na konci směny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "162. Jaké informace musí obsahovat souhlas dirigujícího dispečera k použití náhradních klíčů?",
+      "answer_a": "Příjmení a funkci zaměstnance, dopravnu D3 a časové vymezení souhlasu.",
+      "answer_b": "Pouze důvod použití a přibližnou dobu vrácení klíčů.",
+      "answer_c": "Datum a čas, kdy byly klíče vydány.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "163. Co musí dirigující dispečer udělat, pokud nedostane hlášení o vrácení náhradních klíčů?",
+      "answer_a": "Informovat strojvedoucího písemným rozkazem a nařídit zastavení před krajní výhybkou.",
+      "answer_b": "Zajistit náhradní klíče jiného typu pro další použití.",
+      "answer_c": "Vyčkat na další hlášení od zaměstnance, který klíče použil.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "164. Kdo zajišťuje zapečetění náhradních klíčů a do kdy?",
+      "answer_a": "Přednosta PO do 5 pracovních dnů od jejich použití.",
+      "answer_b": "Dirigující dispečer ihned po ukončení směny.",
+      "answer_c": "Zaměstnanec, který klíče použil, do 3 pracovních dnů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "165. Jak se musí strojvedoucí ohlásit při navazování spojení s dirigujícím dispečerem?",
+      "answer_a": "Číslem vlaku a polohou, například: „Zde je vlak 17 505 v dopravně D3 Bukov na první koleji.“",
+      "answer_b": "Pouze číslem vlaku, například: „Zde je vlak 17 505.“",
+      "answer_c": "Pouze polohou, například: „Zde je dopravna D3 Bukov na první koleji.“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "166. Jak se musí dirigující dispečer ohlásit při navazování spojení?",
+      "answer_a": "Funkcí a pracovištěm, například: „Vlak 17 505, zde je dirigující dispečer Kroměříž.“",
+      "answer_b": "Pouze funkcí, například: „Zde je dirigující dispečer.“",
+      "answer_c": "Pouze pracovištěm, například: „Zde je Kroměříž.“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "167. Jak se musí ohlásit ostatní zaměstnanci při navazování spojení?",
+      "answer_a": "Funkcí a polohou, například: „Zde je zaměstnanec pro řízení sledu v dopravně D3 Akátov.“",
+      "answer_b": "Pouze funkcí, například: „Zde je zaměstnanec pro řízení sledu.“",
+      "answer_c": "Pouze polohou, například: „Zde je dopravna D3 Akátov.“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "168. Co musí zaměstnanec udělat, pokud bylo spojení během hovoru přerušeno?",
+      "answer_a": "Znovu se ohlásit podle pravidel pro navázání nového spojení.",
+      "answer_b": "Pokračovat v hovoru bez dalšího ohlášení.",
+      "answer_c": "Počkat, až naváže spojení dirigující dispečer.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "169. Jak se ohlásí posunový díl při navazování spojení?",
+      "answer_a": "„Zde je posunový díl v dopravně D3 Modrá na třetí koleji.“",
+      "answer_b": "„Zde je posunový díl na třetí koleji.“",
+      "answer_c": "„Zde je posunový díl v Modré.“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "170. Kdy může strojvedoucí žádat dirigujícího dispečera o souhlas k odjezdu vlaku?",
+      "answer_a": "V časovém rozmezí 1–10 minut před dobou odjezdu vlaku z dopravny.",
+      "answer_b": "Kdykoliv během své směny, pokud je vlak připraven k odjezdu.",
+      "answer_c": "Pouze přesně 5 minut před plánovaným odjezdem vlaku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "171. Jak musí strojvedoucí formulovat žádost o souhlas k odjezdu?",
+      "answer_a": "„Může odjet vlak [číslo vlaku] v [čas] z dopravny [název dopravny] do [cílová dopravna]? [příjmení].“",
+      "answer_b": "„Je vlak [číslo vlaku] připraven k odjezdu? [příjmení].“",
+      "answer_c": "„Odjíždím s vlakem [číslo vlaku] ze stanice [název stanice].“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "172. Co musí dirigující dispečer udělat, pokud nemůže udělit souhlas k odjezdu?",
+      "answer_a": "Zakázat odjezd vlaku a informovat o příčině zákazu a předpokládané době trvání.",
+      "answer_b": "Neudělit žádnou odpověď a čekat na další žádost strojvedoucího.",
+      "answer_c": "Požádat strojvedoucího o opětovnou žádost za 10 minut.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "173. Jak se postupuje v dopravnách D3, kde pobyt vlaku není delší než 10 minut?",
+      "answer_a": "Strojvedoucí může při ohlášení příjezdu zároveň žádat o souhlas k odjezdu.",
+      "answer_b": "Strojvedoucí musí vždy počkat na potvrzení příjezdu a teprve poté žádat o odjezd.",
+      "answer_c": "Dirigující dispečer automaticky udělí souhlas k odjezdu bez žádosti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "174. Jak musí dirigující dispečer zrušit již udělený souhlas k odjezdu?",
+      "answer_a": "„V dopravně [název dopravny] ruším vlaku [číslo vlaku] souhlas k odjezdu z dopravny [název dopravny] do [cílová dopravna]. [příjmení].“",
+      "answer_b": "„Souhlas k odjezdu vlaku [číslo vlaku] je zrušen. [příjmení].“",
+      "answer_c": "„Vlak [číslo vlaku] nesmí odjet. Oprava souhlasu. [příjmení].“",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "175. Co musí strojvedoucí udělat, pokud nemůže vlak odjet v době stanovené dirigujícím dispečerem?",
+      "answer_a": "Neprodleně ohlásit dirigujícímu dispečerovi důvod a skutečnost, že vlak nemůže odjet.",
+      "answer_b": "Počkat na další spojení od dirigujícího dispečera.",
+      "answer_c": "Pokračovat v jízdě, jakmile bude vlak připraven, bez dalšího hlášení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "176. Jaká je povinnost strojvedoucího při vjezdu vlaku na kolej obsazenou vozidly v dopravně D3 s kolejovým rozvětvením?",
+      "answer_a": "Upravit rychlost tak, aby od první pojížděné výhybky dodržel podmínky jízdy podle rozhledových poměrů.",
+      "answer_b": "Jízda musí být provedena maximální povolenou rychlostí.",
+      "answer_c": "Zastavit vlak před první pojížděnou výhybkou a požádat o další pokyny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "177. Kdy musí být strojvedoucí zpraven o obsazení dopravní koleje?",
+      "answer_a": "Písemným rozkazem nebo poznámkou v TJŘ, pokud se nejedná o křižování, předjíždění nebo dostižení.",
+      "answer_b": "Pouze v případě mimořádné situace, a to ústně dirigujícím dispečerem.",
+      "answer_c": "Jen pokud obsazení koleje přesahuje 50 % její délky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "178. Jakým způsobem může být povolen pravidelný vjezd na kolej obsazenou vozidly?",
+      "answer_a": "Pouze pokud je tato skutečnost uvedena v TJŘ ve sloupci „Zvláštní opatření“ značkou •.",
+      "answer_b": "Na základě ústního pokynu dirigujícího dispečera v sousední dopravně.",
+      "answer_c": "Automaticky, pokud je v dopravně D3 obsazena většina dopravních kolejí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "179. Kdy může dirigující dispečer povolit mimořádný vjezd na kolej obsazenou vozidly?",
+      "answer_a": "Jen v odůvodněných případech, vyžaduje-li to nezbytně dopravní situace.",
+      "answer_b": "Vždy, když je obsazena jiná dopravní kolej v dopravně D3.",
+      "answer_c": "Pouze pokud o to požádá strojvedoucí vlaku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "180. Co je dovoleno strojvedoucímu při vjezdu na kolej obsazenou vozidly za účelem svěšení?",
+      "answer_a": "Najíždět na stojící vozidla za podmínek stanovených předpisem D1 ČÁST PRVNÍ.",
+      "answer_b": "Provádět svěšení pouze ručně bez najíždění na stojící vozidla.",
+      "answer_c": "Najíždět na stojící vozidla bez ohledu na rychlost a podmínky předpisu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "181. Jaký zápis se provádí ve sloupci 9, pokud je jízda vlaku (PMD) dovolena do místa na širé trati, které není dopravnou, a zpět?",
+      "answer_a": "Zápis ve zlomku, kde v čitateli je kilometrická poloha (nebo název zastávky) na širé trati a ve jmenovateli název dopravny při jízdě zpět.",
+      "answer_b": "Zápis ve zlomku, kde v čitateli je název dopravny a ve jmenovateli kilometrická poloha na širé trati.",
+      "answer_c": "Zápis v podobě čísla vlaku, za kterým následuje název zastávky a dopravny oddělené lomítkem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "182. Co se uvede v čitateli při zápisu do sloupce 9?",
+      "answer_a": "Kilometrická poloha nebo název zastávky na širé trati, kde bude jízda ukončena ve směru tam.",
+      "answer_b": "Název dopravny, do které vlak pokračuje při jízdě zpět.",
+      "answer_c": "Číslo vlaku a kilometrická poloha dopravny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "183. Co se uvede ve jmenovateli při zápisu do sloupce 9?",
+      "answer_a": "Název dopravny, do níž je dovolena jízda vlaku (PMD) při jízdě zpět.",
+      "answer_b": "Kilometrická poloha zastávky na širé trati, kde bude jízda ukončena.",
+      "answer_c": "Čas odjezdu z poslední dopravny před místem ukončení jízdy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "184. Pro jaké situace se provádí zápis ve sloupci 9 ve zlomku?",
+      "answer_a": "Pokud je jízda vlaku (PMD) dovolena do místa na širé trati, které není dopravnou, a zpět.",
+      "answer_b": "Pokud vlak (PMD) projíždí více než dvě dopravny bez zastavení.",
+      "answer_c": "Pokud vlak (PMD) mění směr jízdy v dopravně D3.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "185. Jaký údaj je povinný při zápisu ve zlomku ve sloupci 9?",
+      "answer_a": "Kilometrická poloha nebo název zastávky a název dopravny.",
+      "answer_b": "Jenom číslo vlaku a kilometrická poloha dopravny.",
+      "answer_c": "Pouze název zastávky na širé trati.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "186. Změny v D3:",
+      "answer_a": "A",
+      "answer_b": "A",
+      "answer_c": "A",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "187. Co se musí udělat při poškození výhybky rozříznutím?",
+      "answer_a": "Podmínky provozu oznámí OUZZ a OUT, výpravčí je potvrdí v dokumentech.",
+      "answer_b": "Výpravčí podmínky provozu stanoví sám a zapíše je.",
+      "answer_c": "Podmínky provozu oznámí pouze OUZZ, OUT není zapojen.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "188. Kde výpravčí dokumentuje podmínky provozu v neobsazené dopravně?",
+      "answer_a": "V telefonním zápisníku.",
+      "answer_b": "V Záznamníku poruch.",
+      "answer_c": "V Knihovně výhybek.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "189. Kdo zapisuje podmínky provozu do Záznamníku poruch?",
+      "answer_a": "Zaměstnanec OUZZ.",
+      "answer_b": "Zaměstnanec OUT.",
+      "answer_c": "Výpravčí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "190. Změny v TNŽ 34 2620:",
+      "answer_a": "A",
+      "answer_b": "A",
+      "answer_c": "A",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "191. Jaké hlavní návěstidlo dovoluje vjezd vlaku do dopravny s kolejovým rozvětvením?",
+      "answer_a": "Vjezdové návěstidlo.",
+      "answer_b": "Odjezdové návěstidlo.",
+      "answer_c": "Cestové návěstidlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "192. Jaké návěstidlo řídí jízdu vlaků v obvodu dopravny s kolejovým rozvětvením?",
+      "answer_a": "Cestové návěstidlo.",
+      "answer_b": "Oddílové návěstidlo.",
+      "answer_c": "Krycí návěstidlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "193. Jaké návěstidlo kryje místo na širé trati, které není dopravnou?",
+      "answer_a": "Krycí návěstidlo.",
+      "answer_b": "Předvěst hlavního návěstidla.",
+      "answer_c": "Oddílové návěstidlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "194. Které návěstidlo slouží k opakování návěstí hlavních návěstidel?",
+      "answer_a": "Opakovací předvěst.",
+      "answer_b": "Seřaďovací návěstidlo.",
+      "answer_c": "Spádovištní návěstidlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "195. Jaké návěstidlo dovoluje odjezd vlaku z dopravny s kolejovým rozvětvením?",
+      "answer_a": "Odjezdové návěstidlo.",
+      "answer_b": "Vjezdové návěstidlo.",
+      "answer_c": "Opakovací seřaďovací návěstidlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "196. Co je považováno za viditelnost návěstidla?",
+      "answer_a": "Vzdálenost, ze které je návěstidlo vidět ze stanoviště strojvedoucího.",
+      "answer_b": "Doba, po kterou je návěstidlo vidět při jízdě vlakem.",
+      "answer_c": "Výška návěstidla nad temenem kolejnice.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "197. Jaká je minimální viditelnost hlavních návěstidel a předvěstí na širé trati?",
+      "answer_a": "100 metrů.",
+      "answer_b": "50 metrů.",
+      "answer_c": "150 metrů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "198. Za jakých podmínek může být doba viditelnosti návěstidla snížena na 7 sekund?",
+      "answer_a": "Jsou-li umístěna vzdálenostní upozorňovadla.",
+      "answer_b": "Je-li návěstidlo osvíceno v noci.",
+      "answer_c": "Je-li návěstidlo na širé trati.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "199. Jaká je minimální viditelnost návěstí, pokud viditelnosti brání jiné drážní vozidlo?",
+      "answer_a": "50 metrů.",
+      "answer_b": "70 metrů.",
+      "answer_c": "30 metrů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "200. Jaká výška očí strojvedoucího se uvažuje při stanovení viditelnosti návěstidla?",
+      "answer_a": "2 až 3,5 metru nad temenem kolejnice.",
+      "answer_b": "1,5 až 2,5 metru nad temenem kolejnice.",
+      "answer_c": "3 až 4 metry nad temenem kolejnice.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "201. Jaká je minimální viditelnost návěstidel v dopravnách a na širé trati, pokud viditelnosti brání jiné drážní vozidlo?",
+      "answer_a": "50 metrů.",
+      "answer_b": "100 metrů.",
+      "answer_c": "70 metrů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "202. Za jakých podmínek může být na návěstidle umístěn neproměnný ukazatel rychlosti 50 km/h?",
+      "answer_a": "Pokud žádné z možných následujících návěstidel nemůže nikdy návěstit rychlost 30 km/h.",
+      "answer_b": "Pokud následující návěstidlo návěstí rychlost 40 km/h nebo vyšší.",
+      "answer_c": "Pokud je konstrukční uspořádání kolejiště omezeno na rychlost 50 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "203. Změny v SŽ T1",
+      "answer_a": "A",
+      "answer_b": "A",
+      "answer_c": "A",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "204. Jaký je hlavní účel železničního telekomunikačního zařízení?",
+      "answer_a": "Umožňuje obousměrnou komunikaci v reálném čase.",
+      "answer_b": "Slouží pouze k přenosu datových souborů.",
+      "answer_c": "Zajišťuje výhradně komunikaci mezi stanicemi a vlaky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "205. Jakým způsobem musí být vedeny záznamy v písemné dokumentaci?",
+      "answer_a": "Stručně, přesně, srozumitelně a čitelně na očíslovaných stránkách.",
+      "answer_b": "Pouze stručně a na nelinkovaném papíře.",
+      "answer_c": "Srozumitelně, ale bez ohledu na čitelnost nebo očíslování stránek.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "206. Jakou barvu inkoustu lze použít pro zápisy kontrolních orgánů?",
+      "answer_a": "Červenou.",
+      "answer_b": "Modrou.",
+      "answer_c": "Zelenou.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "207. Co je zakázáno při vedení záznamů v dokumentaci?",
+      "answer_a": "Používat tužku nebo gumovatelné kuličkové pero.",
+      "answer_b": "Používat červenou barvu na běžné zápisy.",
+      "answer_c": "Provádět opravy škrtnutím chybného údaje.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "208. Jak se provádí oprava chybného údaje v dokumentaci?",
+      "answer_a": "Škrtnutím jednou čarou a připsáním nového údaje vedle.",
+      "answer_b": "Vymazáním chyby a přepsáním nového údaje.",
+      "answer_c": "Přelepením chyby nálepkou a přepsáním textu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "209. Co musí být uvedeno u záznamů přijatých telefonních hovorů?",
+      "answer_a": "Příjmení volajícího psané tiskacím písmem.",
+      "answer_b": "Pouze čas hovoru.",
+      "answer_c": "Jméno a příjmení volaného.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "210. Co se provádí v případě vyjmutí stránky z dokumentace?",
+      "answer_a": "Zaznamená se důvod, datum, čas a údaje vyšetřujícího orgánu.",
+      "answer_b": "Stránka se odstraní bez jakéhokoliv záznamu.",
+      "answer_c": "Vyjmutí stránek není nikdy povoleno.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "211. Jak se uchovávají dokumenty, pokud je to možné?",
+      "answer_a": "V elektronické formě v nepřepisovatelném formátu.",
+      "answer_b": "V tištěné formě na nelinkovaném papíře.",
+      "answer_c": "V elektronické formě, kterou lze kdykoliv upravit.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "212. Co se použije při výpadku elektronické dokumentace?",
+      "answer_a": "Tištěný tiskopis předepsaného typu.",
+      "answer_b": "Jakýkoliv dostupný papír.",
+      "answer_c": "Písemná dokumentace není v takovém případě nutná.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "213. Z čeho je tvořena železniční telekomunikační síť (ŽTS)?",
+      "answer_a": "Z pevných a bezdrátových - mobilních sítí.",
+      "answer_b": "Pouze z bezdrátových sítí.",
+      "answer_c": "Výhradně z metalických vedení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "214. Jaké rádiové sítě jsou součástí bezdrátových sítí ŽTS?",
+      "answer_a": "GSM-R, TRS a GSM veřejných operátorů.",
+      "answer_b": "Pouze GSM-R a TRS Tesla.",
+      "answer_c": "Výhradně GSM veřejných operátorů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "215. Proč ŽTS slouží při řízení železničního provozu?",
+      "answer_a": "Pro dorozumívání zaměstnanců při řízení a zajišťování provozu.",
+      "answer_b": "Pouze pro zajištění všeobecného telefonního provozu.",
+      "answer_c": "K přenosu dat mezi cestujícími a dopravcem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "216. Které předpisy platí pro komunikaci uvnitř sítí GSM-R a TRS?",
+      "answer_a": "TSI, Prohlášení o dráze, SŽDC T7 a Z11.",
+      "answer_b": "Pouze Prohlášení o dráze.",
+      "answer_c": "Výhradně TSI a provozní řád rádiové sítě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "217. Jaké služby zajišťuje ŽTS kromě řízení drážní dopravy?",
+      "answer_a": "Služební a všeobecný telefonní provoz.",
+      "answer_b": "Pouze služební telefonní provoz.",
+      "answer_c": "Výhradně komerční telefonní provoz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "218. Jakým způsobem je zajištěno telekomunikační tajemství?",
+      "answer_a": "Technickými a organizačními opatřeními pro zamezení úniku informací.",
+      "answer_b": "Pouze technickým šifrováním přenášených zpráv.",
+      "answer_c": "Zajištěním, že zprávy nejsou ukládány ani přenášeny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "219. Co musí záznamová zařízení zaznamenávat u hovorů na okruzích určených k řízení železničního provozu?",
+      "answer_a": "Celé hovory, časovou stopu, délku hovoru a specifikaci okruhu.",
+      "answer_b": "Pouze časovou stopu a délku hovoru.",
+      "answer_c": "Jen obsah hovoru bez časových údajů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "220. Jaké zařízení lze použít k záznamu hovorů na železniční dopravní cestě?",
+      "answer_a": "Pouze zařízení schválené správcem.",
+      "answer_b": "Jakékoliv záznamové zařízení s možností připojení.",
+      "answer_c": "Soukromé záznamové zařízení, pokud je schválené uživatelem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "221. Co je zakázáno u záznamových zařízení?",
+      "answer_a": "Manipulace vedoucí k nenahrání záznamů.",
+      "answer_b": "Používání zařízení s možností exportu záznamů.",
+      "answer_c": "Nastavení zařízení uživatelem bez přítomnosti správce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "222. Proč nelze použít nahrávky pořízené soukromými zařízeními?",
+      "answer_a": "Porušují telekomunikační tajemství a pravidla GDPR.",
+      "answer_b": "Mohou být nekompatibilní s formáty správce.",
+      "answer_c": "Nezaznamenávají časovou stopu ani délku hovoru.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "223. Kde musí mít zaměstnanci SŽDC a CPS možnost spojení na trati?",
+      "answer_a": "Se sousedními železničními stanicemi nebo dispečerskými pracovišti řídícími drážní dopravu.",
+      "answer_b": "Pouze se sousedními železničními stanicemi.",
+      "answer_c": "Výhradně s dispečerskými pracovišti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "224. Jaké zařízení lze použít pro zajištění telefonního spojení na tratích při poruše telefonních okruhů?",
+      "answer_a": "Síť GSM veřejného operátora jako součást VPN.",
+      "answer_b": "Výhradně hláskový telefonní okruh.",
+      "answer_c": "Pouze zařízení rádiových sítí zřízených a provozovaných dle SŽDC T7.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "225. Kdo může využívat traťový rádiový systém?",
+      "answer_a": "Strojvedoucí, výpravčí, dispečeři a zaměstnanci údržby dopravní cesty.",
+      "answer_b": "Pouze strojvedoucí a dispečeři.",
+      "answer_c": "Výhradně zaměstnanci řízení provozu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "226. Za jakých podmínek mohou rádiové sítě nahradit telefonní okruhy?",
+      "answer_a": "Dočasně při poruše telefonního okruhu se souhlasem správce zařízení.",
+      "answer_b": "Trvale bez omezení, pokud je rádiová síť dostupná.",
+      "answer_c": "Pouze při výpadku všech ostatních komunikačních prostředků.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "227. Jaké typy rádiových sítí mohou být použity pro dorozumívání při údržbě ŽDC?",
+      "answer_a": "Analogová (bez selektivní volby) a digitální (se selektivní volbou).",
+      "answer_b": "Pouze digitální sítě se selektivní volbou.",
+      "answer_c": "Výhradně analogová síť bez selektivní volby.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "228. K čemu je určeno zařízení sítě GSM-R?",
+      "answer_a": "Pro rádiové spojení strojvedoucího se zaměstnanci řízení provozu, automatické spojení mezi účastníky GSM-R a ŽSTS, datové přenosy a nouzové spojení.",
+      "answer_b": "Pouze pro rádiové spojení strojvedoucího s výpravčími a dispečery.",
+      "answer_c": "Výhradně pro datové přenosy mezi pevnými místy a hnacími vozidly.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "229. Jak se provádí volba účastníků mezi sítěmi GSM-R a ŽSTS?",
+      "answer_a": "Devítimístným nebo dvanáctimístným číslem v závislosti na pokrytí signálem.",
+      "answer_b": "Pouze devítimístným číslem bez ohledu na pokrytí signálem.",
+      "answer_c": "Výhradně dvanáctimístným číslem bez ohledu na situaci.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "230. Může být přenosný terminál GSM-R použit jako nouzové rádiové spojení?",
+      "answer_a": "Ano, za podmínek stanovených příslušnými předpisy a Prohlášením o dráze.",
+      "answer_b": "Ne, přenosný terminál GSM-R není určen pro nouzové situace.",
+      "answer_c": "Ano, ale pouze na tratích bez pokrytí signálem GSM-R.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "231. Jaké přenosy umožňuje zařízení sítě GSM-R?",
+      "answer_a": "Rádiové spojení, datové přenosy a automatické propojení s účastníky ŽSTS.",
+      "answer_b": "Pouze rádiové spojení na trati a ve stanicích.",
+      "answer_c": "Výhradně datové přenosy pro pevná zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "232. Kdo může být účastníkem spojení přes síť GSM-R?",
+      "answer_a": "Strojvedoucí, výpravčí, dispečeři a zaměstnanci s přenosnými terminály GSM-R.",
+      "answer_b": "Pouze strojvedoucí a výpravčí.",
+      "answer_c": "Výhradně provozní dispečeři a elektrodispečeři.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "233. Co se považuje za poruchu telekomunikačního zařízení?",
+      "answer_a": "Opakující se stejná závada během jedné směny více než třikrát nebo odchylka od normální funkce zařízení, která znemožňuje jeho použití.",
+      "answer_b": "Každá odchylka od správné funkce zařízení bez ohledu na její vliv na použitelnost.",
+      "answer_c": "Pouze závady, které nelze napravit obslužným úkonem nebo restartem zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "234. Kdo je povinen zajistit vybavení pracovišť Záznamníkem poruch?",
+      "answer_a": "Správce infrastruktury, a to pro každou obsazenou dopravnu, dispečerské pracoviště a další určená místa.",
+      "answer_b": "Pouze zaměstnanci dopravních dispečinků v rámci své směny.",
+      "answer_c": "Výhradně pracovníci HZS a dispečerských pracovišť řízení drážní dopravy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "235. Jaký tiskopis se používá jako Záznamník poruch?",
+      "answer_a": "Jednotný tiskopis „Záznamník poruch na sdělovacím a zabezpečovacím zařízení“ dle předpisu SŽDC T100.",
+      "answer_b": "Volně vytvořený tiskopis přizpůsobený konkrétní dopravně.",
+      "answer_c": "Speciální elektronický formulář dostupný pouze na dispečerských pracovištích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "236. Kde může být umístěn společný Záznamník poruch pro více pracovišť?",
+      "answer_a": "Na trvale obsazeném pracovišti v dopravně se stavědly a přidělenými trvale neobsazenými dopravnami.",
+      "answer_b": "Pouze na hlavním dispečerském pracovišti příslušné trati.",
+      "answer_c": "Na kterémkoliv pracovišti, bez ohledu na jeho obsazenost.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "237. Jak se postupuje při zápisech do Záznamníku poruch?",
+      "answer_a": "Podle ustanovení předpisu SŽDC T100, zejména částí 3.2, 4.2 a přílohy K.",
+      "answer_b": "Podle pokynů vedoucího směny bez ohledu na předpisy.",
+      "answer_c": "Výhradně podle interních směrnic konkrétní dopravny.",
+      "correct_answer": "A",
+      "explanation": "()"
+    }
+  ]
+}

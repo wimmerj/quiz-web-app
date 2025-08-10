@@ -1,0 +1,286 @@
+{
+  "name": "_00_Official_4700__2015_",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (35 otázek)",
+  "questions": [
+    {
+      "question": "01) Všichni zaměstnanci v provozované dopravní cestě při výkonu práce a při pohybu souvisejícím s přímým výkonem pracovních povinností jsou povinni:",
+      "answer_a": "používat, a to minimálně na horní polovině těla, pracovní oděv výstražné barvy nebo výstražnou vestu.",
+      "answer_b": "používat, na horní i dolní polovině těla, pracovní oděv výstražné barvy nebo výstražnou vestu.",
+      "answer_c": "používat pracovní oblek oranžové barvy nebo výstražnou vestu s reflexními pruhy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "02) Cizí právní subjekty (CPS) smějí pracovat v prostorách SŽ:",
+      "answer_a": "pouze na základě písemně sjednané smlouvy mezi oběma zúčastněnými stranami.",
+      "answer_b": "pouze na základě ujednání s provozovatelem drážní dopravy,",
+      "answer_c": "na základě dohody mezi dodavateli.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "03) Co se rozumí pod pojmem \"Střežený úsek”?",
+      "answer_a": "Úsek trati, který začíná 500 m před pracovním místem a končí uprostřed pracovního místa.",
+      "answer_b": "Úsek trati, který začíná 300 m před pracovním místem a končí 100 m za pracovním místem.",
+      "answer_c": "Úsek tratí který začíná v určené vzdálenosti a končí pracovním místem.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "04) Telefonní zápisník je tiskopis:",
+      "answer_a": "do kterého zaměstnanci mj. zapisují zápisy o reálném stavu zařízení.",
+      "answer_b": "do kterého zaměstnanci zapisují mj. zápisy, nařízené předpisy SŽ.",
+      "answer_c": "do kterého zaměstnanci zapisují pouze údaje o vedených telefonních hovorech.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "05) Varovná návěstidla se na širé trati:",
+      "answer_a": "umisťují uprostřed pracovního místa.",
+      "answer_b": "neumisťují.",
+      "answer_c": "umisťují před pracovní místa.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "06) Ve stanicích, případně dopravnách s kolejovým rozvětvením obsazených dopravním zaměstnancem, se staničním zabezpečovacím zařízením, které je ovládáno z jednotného obslužného pracoviště (JOP):",
+      "answer_a": "se bezpečnostní štítek neodevzdává.",
+      "answer_b": "se vždy musí postavit varovná návěstidla.",
+      "answer_c": "se bezpečnostní štítek musí vždy odevzdat.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "07) Hranici mezi širou trati a dopravnou D3 nebo dopravnou RB je:",
+      "answer_a": "lichoběžníková tabulka.",
+      "answer_b": "krajní výhybka stanice.",
+      "answer_c": "vjezdové návěstidlo u správné koleje.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "08) Při výkonu práce v blízkosti trakčního vedení musí zaměstnanec dodržet minimální vzdálenost od živých částí trakčního vedení:",
+      "answer_a": "1,5 m, a to jak částmi těla, tak nářadím nebo předměty, se kterými pracuje.",
+      "answer_b": "1 m, a to jak částmi těla, tak nářadím nebo předměty, se kterými pracuje.",
+      "answer_c": "2 m, a to jak částmi těla, tak nářadím nebo předměty, se kterými pracuje.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "09) Práce na zařízení se dle předpisu SŽ Bp1 rozumí:",
+      "answer_a": "Práce zaměstnanců, kteří provádějí společně práci v provozované dopravní cestě.",
+      "answer_b": "Práce zaměstnanců, při které je prováděna oprava, úprava, modernizace, montáž, demontáž, údržba, kontrola nebo měření součástí staveb dráhy.",
+      "answer_c": "Práce zaměstnanců, kteří vykonávají činnosti v prostorách SŽ nebo na provozované dopravní cestě.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "10) Varovná návěstidla se nestaví, jde-li o ucelenou pracovní skupinu nejvýše pěti zaměstnanců:",
+      "answer_a": "která pracuje s těžkými mechanizačními prostředky.",
+      "answer_b": "která pracuje s mechanizačními prostředky těžko odstranitelnými z průjezdného průřezu.",
+      "answer_c": "která nepracuje s mechanizačními prostředky těžko odstranitelnými z průjezdného průřezu.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "11) Při chůzi v koleji, při práci na zařízení:",
+      "answer_a": "musí zaměstnanci vždy předpokládat jízdu vozidel.",
+      "answer_b": "musí zaměstnanci vždy předpokládat ztíženou chůzi.",
+      "answer_c": "musí mít zaměstnanci vhodné nářadí a pomůcky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "12) Výstražný oděv i výstražná vesta:",
+      "answer_a": "musí být zapnuté",
+      "answer_b": "musí být zapnuté jen při posunu vozidel.",
+      "answer_c": "nemusí být zapnuté.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "13) Co se rozumí pod pojmem \"Bezpečnostní hlídka\"?",
+      "answer_a": "Jeden nebo více zaměstnanců určených ke střežení ostatních zaměstnanců pracujících v provozované dopravní cestě.",
+      "answer_b": "Zaměstnanec určený ke střeženi zaměstnanců pracujících v prostorách dopravní cesty.",
+      "answer_c": "Zaměstnanec určený ke střežení železniční dopravní cesty.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "14) V obvodech OS nepřístupných veřejnosti jsou zaměstnanci povinni:",
+      "answer_a": "Používat cest, vchodů a východů k tomu určených.",
+      "answer_b": "Používat cesty jen mimo koleje a výhybky.",
+      "answer_c": "Používat jen označené cesty, vchody a východy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "15) Všechna zařízeni, pracovní pomůcky, nářadí a ostatní materiál:",
+      "answer_a": "musí být uloženy tak, aby nezasahovaly do průjezdného průřezu.",
+      "answer_b": "musí být uloženy tak, aby nezasahovaly do volného schůdného a manipulačního prostoru.",
+      "answer_c": "musí být uloženy tak, aby do průjezdného průřezu zasahovaly jen výjimečná.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "16) Dopravna obsazená dopravním zaměstnancem se pro účely předpisu SŽ Bp1 považuje:",
+      "answer_a": "dopravna, ve které je fyzicky přítomen dopravní zaměstnanec, který v dané dopravně řídí a organizuje drážní dopravu.",
+      "answer_b": "stanice, ve které je fyzicky přítomen zaměstnanec vykonávající dopravní službu (např. závorář, výhybkář aj.).",
+      "answer_c": "dopravna D3 nebo dopravna RB, ve které je fyzicky přítomen zaměstnanec, který musí být odborně způsobilý.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "17) Osamělý zaměstnanec je:",
+      "answer_a": "zaměstnanec, který provádí práce na zařízení sám v provozované dopravní cestě, kde může dojít k ohrožení jeho bezpečnosti.",
+      "answer_b": "zaměstnanec, který provádí práce na zařízení, kde může dojít k ohrožení jeho bezpečnosti.",
+      "answer_c": "zaměstnanec, který se pohybuje sám v kolejišti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "18) Záhlaví je:",
+      "answer_a": "Kolej mezi vjezdovým návěstidlem (jeho úrovní) nebo lichoběžníkovou tabulkou a krajní výhybkou.",
+      "answer_b": "kolej mezi vjezdovým návěstidlem (jeho úrovní) nebo lichoběžníkovou tabulkou a zhlavím.",
+      "answer_c": "kolej mezi vjezdovým návěstidlem (jeho úrovní) nebo lichoběžníkovou tabulkou a krajní výkolejkou.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "19) Kdy může dopravní zaměstnanec dovolit jízdu vozidla přes pracovní místo osamělého zaměstnance?",
+      "answer_a": "Nesmí nikdy dovolit jízdu vozidla. Osamělý zaměstnanec si musí nechat, na nezbytně nutnou dobu, vyloučit kolej, ve které bude pracovat.",
+      "answer_b": "Pouze v případě, že bude osamělý zaměstnanec včas informován o jízdě vozidla a osamělý zaměstnanec tuto informaci potvrdí.",
+      "answer_c": "Pouze v případě, že osamělý zaměstnanec informoval dopravního zaměstnance, že včas opustil pracoviště.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "20) Na elektrizované trati je zakázáno, bez vypnutí a zajištění trakčního vedení:",
+      "answer_a": "Vystupovat na kapoty a střechy vozidel nebo na náklady vozů.",
+      "answer_b": "stát na stupačce vozu.",
+      "answer_c": "svěšovat vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "21) Blíží-li se k pracovnímu místu vozidlo musí vedoucí prací nebo bezpečnostní hlídka informovat zaměstnance na pracovním místě včasným dáváním návěstí:",
+      "answer_a": "„Vlak se blíží\" a poté „Vykliďte pracovní místo\".",
+      "answer_b": "\"Vozidlo v dohledu\" a poté \"Opusťte pracoviště stroje\".",
+      "answer_c": "\"Vozidlo na zábrzdnou vzdálenost\" a poté \"Opusťte nebezpečné pracoviště\".",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "22) Osamělý zaměstnanec v provozované nevyloučené dopravní cestě v obvodu dopravny s kolejovým rozvětvením obsazené dopravním zaměstnancem:",
+      "answer_a": "Vždy přeď zahájením práce na zařízení sdělí dopravnímu zaměstnanci mj. čas potřebný k bezpečnému vyklizení pracovního místa.",
+      "answer_b": "Vždy před zahájením práce oznámí dopravnímu zaměstnanci mj. denní harmonogram prací.",
+      "answer_c": "Vždy před zahájením práce na zařízení oznámí dopravnímu zaměstnanci mj. místo určené k vystoupení z provozované koleje.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "23) Vyloučená kolej:",
+      "answer_a": "je kolej v dopravně nebo v traťovém úseku, na které bylo omezeno provozování drážní dopravy.",
+      "answer_b": "je kolej v dopravně nebo v traťovém úseku, na které bylo dočasně vyloučeno pravidelné provozování drážní dopravy.",
+      "answer_c": "je kolej v dopravně nebo v traťovém úseku, na které bylo zastaveno pravidelné provozování drážní dopravy.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "24) Pracovní skupina je:",
+      "answer_a": "dva nebo vice zaměstnanců, kteří udržují zařízeni v provozované dopravní cestě.",
+      "answer_b": "dva nebo vice zaměstnanců, kteří se pohybují v kolejišti, přičemž jeden ze zaměstnanců musí být vedoucím prací.",
+      "answer_c": "dva nebo více zaměstnanců, kteří provádějí společně práci v provozované dopravní cestě, přičemž jeden ze zaměstnanců musí být vedoucím prací.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "25) Hranicí mezi širou trati a stanici (dopravnou s kolejovým rozvětvením) je:",
+      "answer_a": "krajní výhybka stanice.",
+      "answer_b": "lichoběžníková tabulka.",
+      "answer_c": "vjezdové návěstidlo.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "26) Jaké jsou časové intervaly revizi UTZ elektrických stanovené podle působeni vnějších vlivů pro prostory venkovní?",
+      "answer_a": "3 roky.",
+      "answer_b": "2 roky.",
+      "answer_c": "4 roky.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "27) Jaké zařízení lze používat při provozování dráhy a drážní dopravy?",
+      "answer_a": "Jen zařízení, které má platnou výchozí revizi vydanou právnickou osobou a jsou-li splněny podmínky provozní způsobilosti.",
+      "answer_b": "Jen zařízení, pro které bylo vydáno prohlášení o shodě výrobku s technickými předpisy podle zákona o technických požadavcích na výrobky.",
+      "answer_c": "Jen zařízení, které má platný průkaz způsobilosti vydaný drážním správním úřadem a jsou-li splněny podmínky provozní způsobilosti.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "28) Kolik může svítit na návěstidle současně návěstních světel?",
+      "answer_a": "Současně nejvýše tři návěstní světla. Svítí-li současně tři návěstní světla musí být jedno bílé.",
+      "answer_b": "Na návěstidle může svítit pouze jedno návěstní světlo.",
+      "answer_c": "Současně nejvýše dvě návěstní světla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "29) Mohou být při provozování dráhy používány další návěsti, které nejsou upraveny vyhláškou 173/1995 Sb.?",
+      "answer_a": "Mohou být používány za předpokladu, že jejích používání bylo smluvně dohodnuto.",
+      "answer_b": "Mohou, ale jejich provedení, význam a použití musí být na dráze, pro kterou bylo vydáno úřední povolení jednotné a nesmí být zaměnitelné s návěstmi podle této vyhlášky.",
+      "answer_c": "Zásadně nesmí být další návěsti používány.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "30) Co musí znát osoba, která se při výkonu pracovní činnosti smí pohybovat na trati?",
+      "answer_a": "Grafikon vlakové dopravy v rozmezí doby, po kterou se na trati pohybuje.",
+      "answer_b": "Návěst nařizující okamžité zastavení drážního vozidla a podmínky jejího použití.",
+      "answer_c": "Místní poměry, sklonové poměry trati a úniková místa v případě ohrožení bezpečnosti.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "31) Co musí splňovat označení zařízení dráhy?",
+      "answer_a": "Musí být v souladu se zvyklostmi platnými pro daný traťový úsek.",
+      "answer_b": "Musí být provedeno v souladu s rozhodnutím příslušné Správy dopravní cesty.",
+      "answer_c": "Musí být jednotné na celé dráze, pro kterou bylo vydáno úřední povolení k provozováni.",
+      "correct_answer": "C",
+      "explanation": "()"
+    },
+    {
+      "question": "32) Podle Stavebního a technického řádu drah musí být k zajištěni provozuschopnosti dráhy evidovány mimo jiné i záznamy o kontrolách, údržbě a měření sdělovacího zařízení, stejně jako zprávy o pravidelných revizích. Po jakou dobu tyto materiály musí být archivovány?",
+      "answer_a": "Po dobu pěti let.",
+      "answer_b": "Po dobu deseti let.",
+      "answer_c": "Po dobu tří let.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "33 Sdělovací zařízení použitá pro zajištění provozování dráhy:",
+      "answer_a": "Nemusí umožnit záznam přenosu informací.",
+      "answer_b": "Musí umožnit záznam přenosu informací.",
+      "answer_c": "By měla umožnit záznam přenosu informací.",
+      "correct_answer": "B",
+      "explanation": "()"
+    },
+    {
+      "question": "34 Sdělovací zařízení na elektrifikovaných tratích musí být konstruováno tak, aby:",
+      "answer_a": "Nebylo ovlivňováno příslušnou trakční soustavou.",
+      "answer_b": "Nenarušovalo provoz zařízení na ochranu před negativními vlivy zpětných trakčních proudů.",
+      "answer_c": "Splnilo podmínky pro vydání průkazu způsobilosti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "35 Pro přenos informací při provozování dráhy a drážní dopravy:",
+      "answer_a": "lze používat rádiová sdělovací zařízení na základě souhlasu Drážního správního úřadu.",
+      "answer_b": "nelze používat rádiová sdělovací zařízení.",
+      "answer_c": "lze používat rádiová sdělovací zařízení, která splňují podmínky podle zvláštního předpisu (Zákon o elektronických komunikacích).",
+      "correct_answer": "C",
+      "explanation": "()"
+    }
+  ]
+}

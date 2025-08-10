@@ -1,0 +1,86 @@
+{
+  "conversion_info": {
+    "timestamp": "2025-08-10T23:30:00",
+    "converted_tables": 14,
+    "total_files": 14
+  },
+  "import_instructions": {
+    "step_1": "Otevřete admin panel v prohlížeči",
+    "step_2": "Přejděte na záložku Tabulky",
+    "step_3": "Klikněte Import databáze",
+    "step_4": "Vyberte JSON soubor z adresáře admin_import_ready",
+    "step_5": "Nebo použijte drag & drop přímo do okna prohlížeče"
+  },
+  "files": [
+    {
+      "file": "_00_Official_2203__2015_.json",
+      "table": "_00_Official_2203__2015_",
+      "questions": 35
+    },
+    {
+      "file": "_03_UTZ_RTEZ_DUCR.json",
+      "table": "_03_UTZ_RTEZ_DUCR",
+      "questions": 222
+    },
+    {
+      "file": "_00_Official_2203__2015_.json",
+      "table": "_00_Official_2203__2015_",
+      "questions": 35
+    },
+    {
+      "file": "_00_Official_4343__2015_.json",
+      "table": "_00_Official_4343__2015_",
+      "questions": 35
+    },
+    {
+      "file": "_00_Official_4700__2015_.json",
+      "table": "_00_Official_4700__2015_",
+      "questions": 35
+    },
+    {
+      "file": "_00_SŽ_Změny___ok.json",
+      "table": "_00_SŽ_Změny___ok",
+      "questions": 237
+    },
+    {
+      "file": "_01_ČSN_34_2600_ed_2___ok.json",
+      "table": "_01_ČSN_34_2600_ed_2___ok",
+      "questions": 59
+    },
+    {
+      "file": "_02_ČSN_EN_50125_3___ok.json",
+      "table": "_02_ČSN_EN_50125_3___ok",
+      "questions": 36
+    },
+    {
+      "file": "ČSN_34_2613_ed3___ok.json",
+      "table": "ČSN_34_2613_ed3___ok",
+      "questions": 114
+    },
+    {
+      "file": "ČSN_34_2650___ok.json",
+      "table": "ČSN_34_2650___ok",
+      "questions": 140
+    },
+    {
+      "file": "ČSN_37_5711___ok.json",
+      "table": "ČSN_37_5711___ok",
+      "questions": 58
+    },
+    {
+      "file": "SŽ_T1___ok.json",
+      "table": "SŽ_T1___ok",
+      "questions": 7
+    },
+    {
+      "file": "SŽ_T31___ok.json",
+      "table": "SŽ_T31___ok",
+      "questions": 28
+    },
+    {
+      "file": "TNŽ_34_2620___ok.json",
+      "table": "TNŽ_34_2620___ok",
+      "questions": 93
+    }
+  ]
+}

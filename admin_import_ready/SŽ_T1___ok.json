@@ -1,0 +1,62 @@
+{
+  "name": "SŽ_T1___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (7 otázek)",
+  "questions": [
+    {
+      "question": "001. Co se dle předpisu SŽDC T1 považuje za nedovolený zásah do telekomunikačního zařízení?",
+      "answer_a": "Zasahovat mechanicky nebo elektronicky do přístrojů, zařízení a rozvodů. Patří sem také manipulace s jistícími prvky silových obvodů od napájení telekomunikačního zařízení.",
+      "answer_b": "Výměna vadných částí telekomunikačního zařízení za identické nové části bez použití nářadí.",
+      "answer_c": "Použití telekomunikačního zařízení pro soukromé hovory během pracovní doby.",
+      "correct_answer": "A",
+      "explanation": "(SŽ T1, čl.2.4)"
+    },
+    {
+      "question": "002. V ŽTS se mohou používat jen schválená telekomunikační zařízení, která splňují základní technické požadavky na železniční sdělovací zařízení a tyto požadavky stanovují?",
+      "answer_a": "Technicko-kvalitativní předpisy (TKP) pro elektrická, železniční a sdělovací zařízení a příslušné platné technické normy.",
+      "answer_b": "Zásady bezpečnosti práce a ochrany zdraví při práci (BOZP) pro železniční zaměstnance.",
+      "answer_c": "Pokyny Ministerstva dopravy pro používání mobilních zařízení na železnici.",
+      "correct_answer": "A",
+      "explanation": "(SŽ T1, čl.2.9)"
+    },
+    {
+      "question": "003. Všechny okruhy ZTS jsou v provozní dokumentaci evidovány a každému okruhu je přiřazeno jednoznačné označení, které definuje druh sítě a jeho geografické umístění - Čím je určen způsob označování těchto okruhů?",
+      "answer_a": "předpisem SŽDC (ČSD) T81.",
+      "answer_b": "předpisem SŽDC T1.",
+      "answer_c": "předpisem SŽ T2.",
+      "correct_answer": "A",
+      "explanation": "(SŽ T1, čl.5.2)"
+    },
+    {
+      "question": "004. Jaké okruhy tvoří dopravní telekomunikační síť dle předpisu T1?",
+      "answer_a": "Traťové, hláskové, přivolávací, výhybkářské, místní, dispečerské provozní, elektrodispečerské.",
+      "answer_b": "Komerční telefonní okruhy - určené pro veřejné hovory mezi železničními zaměstnanci a cestujícími.",
+      "answer_c": "Nouzové okruhy - pro spojení výhradně v případě mimořádných událostí na železnici.",
+      "correct_answer": "A",
+      "explanation": "(SŽ T1, čl.5.6)"
+    },
+    {
+      "question": "005. Jakým způsobem se označují telefonní okruhy v ŽTS?",
+      "answer_a": "Každému okruhu je přiřazeno jednoznačné označení definující druh sítě a geografické umístění.",
+      "answer_b": "Označují se pouze podle technického standardu ČTÚ.",
+      "answer_c": "Každý okruh má označení podle délky vedení a počtu připojených účastníků.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "006. Co je zakázáno při provádění zápisů do dokumentace telefonního provozu?",
+      "answer_a": "Používat obyčejnou tužku a kuličková pera s gumovatelnou náplní.",
+      "answer_b": "Používat červený inkoust pro všechny typy zápisů.",
+      "answer_c": "Provádět zápisy na nečíslované stránky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "007. K čemu slouží dopravní telekomunikační síť?",
+      "answer_a": "K telefonnímu styku osob zúčastněných na řízení a organizování drážní dopravy.",
+      "answer_b": "K telefonnímu spojení mezi cestujícími a železničními zaměstnanci.",
+      "answer_c": "K zajištění komerčního telefonního provozu mezi stanicemi.",
+      "correct_answer": "A",
+      "explanation": "()"
+    }
+  ]
+}

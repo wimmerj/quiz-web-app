@@ -1,0 +1,363 @@
+{
+  "source_database": "Otazky_Quiz.db",
+  "export_timestamp": "2025-08-10T23:21:58.414604",
+  "tables": {
+    "_00_Official_2203__2015_": {
+      "name": "_00_Official_2203__2015_",
+      "description": "Exportovaná tabulka z Otazky_Quiz.db",
+      "question_count": 35,
+      "questions": [
+        {
+          "original_id": 1,
+          "question": "01) Souprava hlavních klíčů obsahuje:",
+          "answer_a": "Hlavni klíče od zámků výhybek, výkolejek, od uzamykatelných přenosných výměnových zámků a uzamykatelných podložek.",
+          "answer_b": "hlavni a náhradní klíče od zámků výhybek a výkolejek.",
+          "answer_c": "hlavni a náhradní klíče od uzamykatelných přenosných výměnových zámků a uzamykatelných podložek.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 2,
+          "question": "02) Kdy a koho musí zpravit zaměstnanec, který zjistil, že na světelném návěstidle výhybky se samovratným přestavníkem není návěst JÍZDA ZAJIŠTĚNA?",
+          "answer_a": "Neprodlené dirigujícího dispečera a strojvedoucí všech vlaků v dopravně D3.",
+          "answer_b": "Neprodleně pouze výpravčího přilehlé stanice.",
+          "answer_c": "Neprodleně pouze udržujícího zaměstnance SSZT.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 3,
+          "question": "03) Jaký tvar mají v soupravě hlavních klíčů štítky od výhybek a výkolejek?",
+          "answer_a": "Kruhový.",
+          "answer_b": "Obdélníkový.",
+          "answer_c": "Čtvercový.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 4,
+          "question": "04) Rozříznutou výhybku v dopravně D3 může prohlédnout:",
+          "answer_a": "strojvedoucí",
+          "answer_b": "vlaková četa.",
+          "answer_c": "obsluha vlaku.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 5,
+          "question": "05) Náhradní klíče se smí použít:",
+          "answer_a": "pouze při nemožném dorozumění s dirigujícím dispečerem.",
+          "answer_b": "jen se souhlasem dirigujícího dispečera.",
+          "answer_c": "při každém posunu.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 6,
+          "question": "06) Čím je stanoveno určení kolejí pro jednotlivé směry a základní poloha výhybek v dopravně D3?",
+          "answer_a": "PND3",
+          "answer_b": "TTP",
+          "answer_c": "TJR",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 7,
+          "question": "07) Je-li rozříznutá výhybka zjevně poškozena, smí dát souhlas k jízdě přes tuto výhybku pouze.",
+          "answer_a": "dirigující dispečer.",
+          "answer_b": "odpovědný zaměstnanec příslušné organizační složky SŽ.",
+          "answer_c": "strojvedoucí",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 8,
+          "question": "08) Kde jsou umístěny náhradní klíče od zámků výhybek v dopravnách D3.",
+          "answer_a": "Ve skříňce, která se umístí zvenku na čelní stěnu budovy dopravny D3 směrem od začátku trati.",
+          "answer_b": "Vždy v dirigující stanici popř. přilehlé stanice.",
+          "answer_c": "Ve skříňce, opatřené patentním zámkem (typu FAB, dozickým apod.), která se umístí v uzamykatelné služební místnosti nebo v místech, určených PND3.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 9,
+          "question": "09) Kdo je objednavatelem výluky?",
+          "answer_a": "Vždy investor stavby.",
+          "answer_b": "Vždy Ředitel RCP nebo jeho statutární zástupce, do jehož správy spadá zařízení dopravní cesty, které má být vyloučeno.",
+          "answer_c": "Vždy Ředitel OŘ SŽ nebo jeho statutární zástupce, do jehož správy spadá zařízení dopravní cesty, které má být vyloučeno.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 10,
+          "question": "10) V jaké délce mohou být konané výluky dle ROV C?",
+          "answer_a": "Mohou být konané v délce maximálně 24 hodin a nesmí vyžadovat rozsáhlá provozní, dopravní nebo přepravní opatření.",
+          "answer_b": "Mohou být konané v délce maximálně 12 hodin a nesmí vyžadovat rozsáhlá provozní, dopravní nebo přepravní opatření.",
+          "answer_c": "Mohou být konané v délce maximálně 6 hodin a nesmí vyžadovat rozsáhlá provozní, dopravní nebo přepravní opatření.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 11,
+          "question": "11) Co znamenají zkratky OZOV, VP a ZPŘS?",
+          "answer_a": "OZOV - odpovědný zaměstnanec objednavatele výluky, VP - vrchní přednosta, ZPŘS - zástupce přednosty pro řízení sledu.",
+          "answer_b": "OZOV - odpovědný zástupce objednavatele výluky, VP -vedoucí prací, ZPŘS -zaměstnanec pro řízení sledu.",
+          "answer_c": "OZOV - odpovědný zástupce objednavatele výluky, VP -vrchní přednosta, ZPŘS -zaměstnanec pro řízeni sledu.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 12,
+          "question": "12) Co je to ROV (rozkaz o výluce)?",
+          "answer_a": "Je to dokument k provedení výluky, která vyžaduje mj. přijetí provozních opatření, podle kterých má být příslušné zařízení DC, i jen přechodně, vyloučeno z provozu.",
+          "answer_b": "Je to dokument pro denní výluky, podle kterého má být příslušné zařízení dopravní cesty vyloučeno z provozu na dobu delší než 12 hodin.",
+          "answer_c": "Je to dokument pro denní výluky, podle kterého má být příslušné zařízení dopravní cesty vyloučeno z provozu na dobu delší než 24 hodin.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 13,
+          "question": "13) OZOV (Odpovědný zástupce objednavatele výluky) je:",
+          "answer_a": "zaměstnanec zhotovitele s odbornou zkouškou určenou předpisem SŽ Zam1.",
+          "answer_b": "zaměstnanec s odbornou zkouškou určenou předpisem SŽ Zam1.",
+          "answer_c": "zaměstnanec OŘ SŽ nebo zhotovitele.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 14,
+          "question": "14) Co se rozumí pod pojmem Zařízení automatického varování (ZAV)?",
+          "answer_a": "ZAV je zařízení, které informuje strojvedoucího o pracovním místě na trati.",
+          "answer_b": "ZAV je zařízení pro zajištění bezpečnosti práce na pracovním místě.",
+          "answer_c": "ZAV je zařízení, které umožňuje přenos návěstí na hnací vozidlo.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 15,
+          "question": "15) Co se rozumí pod pojmem Světelný výstražný terč?",
+          "answer_a": "Je to přenosné varovné návěstidlo s více jak jedním zábleskovým světlem, které se umísťuje u pracovního místa, které je jak na širé trati, tak i v dopravnách.",
+          "answer_b": "Je to přenosné varovné návěstidlo s jedním zábleskovým světlem. Toto návěstidlo se umísťuje před pracovním místem, které je na širé trati.",
+          "answer_c": "Je to přenosné varovné návěstidlo s více jak jedním zábleskovým světlem, které se umísťuje před pracovním místem, které je na širé trati.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 16,
+          "question": "16) Obr.",
+          "answer_a": "Červeně označený úsek je úsek trati, kde musí být dávána návěst POZOR vždy. Strojvedoucí nemusí být o pracovním místě zpraven.",
+          "answer_b": "Červeně označený úsek je úsek trati, kde se přikazuje dávat návěst POZOR. Strojvedoucí musí být o pracovním místě zpraven písemným rozkazem nebo telefonním zařízením.",
+          "answer_c": "Červeně označený úsek je úsek trati, kde musí být dávána návěst POZOR jen, když je strojvedoucí o pracovním místě zpraven písemným rozkazem nebo telekomunikačním zařízením.",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 17,
+          "question": "17) Obr.",
+          "answer_a": "STANOVIŠTĚ SAMOSTATNÉ PŘEDVĚSTI.",
+          "answer_b": "STANOVIŠTĚ ODDÍLOVÉHO NÁVĚSTIDLA.",
+          "answer_c": "HLAVNI NÁVĚSTIDLO SLOUČENO S PŘEDVĚSTI.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 18,
+          "question": "18) Zjistí-li zaměstnanec, že se k nesjízdnému místu blíží vlak, PMD nebo posunový díl, musí dávat strojvedoucím nebo zaměstnancům v čele sunutého posunového dílu, jedoucím po příslušné koleji návěst:",
+          "answer_a": "STŮJ, ZASTAVTE VŠEMI PROSTŘEDKY.",
+          "answer_b": "VZDÁLIT",
+          "answer_c": "POMALU",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 19,
+          "question": "19) Obr.",
+          "answer_a": "\"Neproměnné návěstidlo ETCS\".",
+          "answer_b": "\"Předvěst změny úrovně ETCS\".",
+          "answer_c": "\"Změna úrovně ETCS\".",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 20,
+          "question": "20) Co se rozumí pod pojmem Dopravna D3?",
+          "answer_a": "Dopravna D3 je stanice (odbočka), ve které se vykonává dopravní služba podle předpisu SŽ D1, do které je zaústěna trať D3 a která není dirigující stanicí.",
+          "answer_b": "Dopravna D3 je stanice s DOZ, ve které organizuje drážní dopravu výpravčí z pracoviště, umístěného v této stanici.",
+          "answer_c": "Dopravna D3 je dopravna s kolejovým rozvětvením na trati D3, určená k řízeni jízdy vlaků a PMD, která není obsazena výpravčím, výhybkářem ani strážníkem oddílu.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 21,
+          "question": "21) Musí mít každý mechanický zámek pro zajištění výhybek hlavni a náhradní klíč?",
+          "answer_a": "Ano, musí.",
+          "answer_b": "Ne, nemusí.",
+          "answer_c": "Ano, ale pouze při výlukách.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 22,
+          "question": "22) Pomalu přerušované modré světlo na cestovém návěstidle je návěst:",
+          "answer_a": "JÍZDA VLAKU DOVOLENA.",
+          "answer_b": "OČEKÁVEJTE POSUN POVOLEN.",
+          "answer_c": "OČEKÁVEJTE POSUN ZAKÁZÁN.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 23,
+          "question": "23) Pro nerušený průjezd vozidel na trati i ve stanici musí být zachován stanovený:",
+          "answer_a": "volný prostor - průjezdný průřez.",
+          "answer_b": "volný schůdný a manipulační prostor.",
+          "answer_c": "postranní průjezd.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 24,
+          "question": "24) Za správné umístění přenosného návěstidla odpovídá:",
+          "answer_a": "Výpravčí v jehož obvodu je Návěstidlo umístěno",
+          "answer_b": "Vedoucí práce.",
+          "answer_c": "Zaměstnanec, který toto návěstidlo umístil.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 25,
+          "question": "25) Obr.",
+          "answer_a": "HLAVNÍ NÁVĚSTIDLO SLOUČENO S PŘEDVĚSTÍ.",
+          "answer_b": "STANOVIŠTĚ SAMOSTATNÉ PŘEDVĚSTI (oddílového nebo krycího návěstidla).",
+          "answer_c": "STANOVIŠTĚ ODDÍLOVÉH NÁVĚSTIDLA.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 26,
+          "question": "26) Obr.",
+          "answer_a": "Konec vlakové cesty.",
+          "answer_b": "\"Bez přenosu kódu VZ\".",
+          "answer_c": "\"Výstupní hranice oblasti ETCS",
+          "correct_answer": "B",
+          "explanation": "()",
+          "original_correct_answer": "B"
+        },
+        {
+          "original_id": 27,
+          "question": "27) Obr.",
+          "answer_a": "RYCHLOST 40 KM/H A OPAKOVÁNI NÁVĚSTI OČEKÁVEJTE RYCHLOST 60 KM/H.",
+          "answer_b": "RYCHLOST 40 KM/H A OPAKOVÁNI NÁVĚSTI OČEKÁVEJTE RYCHLOST 100 KM/H.",
+          "answer_c": "RYCHLOST 40 KM/H A OPAKOVÁNÍ NÁVĚSTI OČEKÁVEJTE RYCHLOS 40 KM/H.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 28,
+          "question": "28) Co rozumí pod pojmem Základní dopravní dokumentace (ZDD)?",
+          "answer_a": "ZDD je souhrnný název pro dopravní deníky, telefonní zápisníky a zápisníky volnosti a správného postavení vlakové cesty.",
+          "answer_b": "ZDD je souhrnný název pro staniční řády, obsluhovací řády, prováděcí nařízení, vlečkové provozní řády a provozní řády odboček.",
+          "answer_c": "ZDD je souhrnný název pro staniční řády, obsluhovací řády, prováděcí nařízení, připojen provozní řády a provozní řády vleček.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 29,
+          "question": "29) Co se rozumí pod pojmem Návěst?",
+          "answer_a": "Návěst je činnost, při které je dáván pokyn k organizování a provozování drážní dopravy.",
+          "answer_b": "Návěst je technické zařízení, pomůcka nebo předmět.",
+          "answer_c": "Návěst je viditelné nebo slyšitelné vyjádření pokynu stanoveným způsobem.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 30,
+          "question": "30) Vzdálenosti 400 m, 700 m a 1000 m mezi závislými hlavními návěstidly nebo mezi samostatnou předvěstí a hlavním návěstidlem se nazývají?",
+          "answer_a": "Nedostatečnými zábrzdnými vzdálenostmi.",
+          "answer_b": "Zkrácenými vzdálenostmi.",
+          "answer_c": "Zábrzdnými vzdálenostmi.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 31,
+          "question": "31) Obr.",
+          "answer_a": "\"Připravte rádiové zařízení GSM-R k registraci\". Přikazuje zahájit přípravu na registraci rádiového zařízení GSM-R.",
+          "answer_b": "\"Změna rádiového systému\". Přikazuje provádět komunikaci rádiovým zařízením v národním systému GSM-R.",
+          "answer_c": "\"Trať bez rádiového spojení\". Přikazuje okamžitě odregistrovat rádiové zařízení ze systému GSM-R.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 32,
+          "question": "32) Pro označení vpravo, vlevo, vpředu, vzadu, přední nebo zadní:",
+          "answer_a": "je rozhodující směr od začátku ke konci trati. Začátek a konec trati je uveden v TTP.",
+          "answer_b": "je rozhodující údaj v Dodatku předpisu SŽ D1.",
+          "answer_c": "je rozhodující směr jízdy vlaku nebo posunového dílu.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 33,
+          "question": "33) Co se rozumí pod pojmem Výstražný kolík?",
+          "answer_a": "Výstražný kolík je varovné nepřenosné návěstidlo. Toto návěstidlo je umístěno pro aktivaci dočasně zřízeného přejezdu.",
+          "answer_b": "Výstražný kolík je varovné nepřenosné návěstidlo. Toto návěstidlo je umístěno na širé trati tam, kde není zajištěn volný schůdný a manipulační prostor.",
+          "answer_c": "Výstražný kolík je varovné nepřenosné návěstidlo. Toto návěstidlo je umístěno před přejezdem, který nemá PZZ.",
+          "correct_answer": "C",
+          "explanation": "()",
+          "original_correct_answer": "C"
+        },
+        {
+          "original_id": 34,
+          "question": "34) Obr.",
+          "answer_a": "Přenosné varovné návěstidlo Výstražný terč.",
+          "answer_b": "Přenosné varovné návěstidlo Konec pracovního místa.",
+          "answer_c": "Nepřenosné varovné návěstidlo Výstražný terč.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        },
+        {
+          "original_id": 35,
+          "question": "35) Obr.",
+          "answer_a": "URYCHLENĚ VYKLIĎTE PRACOVNÍ MÍSTO.",
+          "answer_b": "VLAK SE BLÍŽÍ.",
+          "answer_c": "VYKLIĎTE PRACOVNÍ MÍSTO.",
+          "correct_answer": "A",
+          "explanation": "()",
+          "original_correct_answer": "A"
+        }
+      ]
+    }
+  }
+}

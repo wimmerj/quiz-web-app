@@ -1,0 +1,1126 @@
+{
+  "name": "ČSN_34_2650___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (140 otázek)",
+  "questions": [
+    {
+      "question": "001. Co se rozumí definicí \"Poruchový stav PZZ\"?",
+      "answer_a": "Stav přejezdového zařízení při poruše, která může ohrozit bezpečnost provozu na přejezdu.",
+      "answer_b": "Stav přejezdového zařízení, kdy je přejezd uzavřen pro silniční dopravu z důvodu údržby.",
+      "answer_c": "Stav přejezdového zařízení při běžném provozu, kdy je zařízení v režimu výstrahy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.1.34) Poruchový stav PZZ znamená, že přejezdové zařízení neplní svou funkci a může ohrozit bezpečnost. V takovém případě musí být přijata opatření dle předpisů."
+    },
+    {
+      "question": "002. Co se rozumí definicí \"Zvuková výstraha PZZ\"?",
+      "answer_a": "Výstražný signál dávaný zvukovou signalizací.",
+      "answer_b": "Zvukový signál, který informuje pouze drážní zaměstnance o blížícím se vlaku.",
+      "answer_c": "Hlasová zpráva vydaná dispečerem pro řidiče silničních vozidel na přejezdu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.1.63) Zvuková výstraha PZZ je akustický signál, který upozorňuje na blížící se vlak. Tento signál je součástí přejezdového zabezpečovacího zařízení."
+    },
+    {
+      "question": "003. Označení PZS 3ZBI znamená?",
+      "answer_a": "Světelný, třetí kategorie, se závorami, s pozitivním signálem, informace o stavu přenášena dopravnímu zaměstnanci.",
+      "answer_b": "Mechanický, třetí kategorie, bez závor, s negativním signálem, informace o stavu není přenášena.",
+      "answer_c": "Světelný, první kategorie, bez závor, s pozitivním signálem, informace o stavu přenášena automaticky.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.2.1) PZS 3ZBI označuje přejezdové zabezpečovací zařízení světelné, třetí kategorie, vybavené závorami a pozitivním signálem. Informace o jeho stavu je přenášena dopravnímu zaměstnanci."
+    },
+    {
+      "question": "004. Označení PZS 2SNLI znamená?",
+      "answer_a": "Světelný, 2 kategorie, bez závor, nemá pozitivní signál, informace kombinovaná (strojvůdce / dopravní zaměstnanec).",
+      "answer_b": "Mechanický, 2 kategorie, se závorami, má pozitivní signál, informace pouze strojvůdci.",
+      "answer_c": "Světelný, 3 kategorie, se závorami, nemá pozitivní signál, informace není přenášena.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.2.1) PZS 2SNLI označuje světelné přejezdové zařízení druhé kategorie, bez závor, bez pozitivního signálu. Informace o stavu je kombinovaně předávána strojvůdci a dopravnímu zaměstnanci."
+    },
+    {
+      "question": "005. Provedení návěstních nátěrů na přejezdových zařízeních:",
+      "answer_a": "Musí být v souladu s ustanovením předpisu.",
+      "answer_b": "Je libovolné, dle rozhodnutí provozovatele přejezdového zařízení.",
+      "answer_c": "Musí odpovídat pouze estetickým požadavkům obce, kde se přejezd nachází.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.1.6) Musí být v souladu s obr. přílohy E normy 34 2650."
+    },
+    {
+      "question": "006. Kmitočet přerušování každého červeného světla PZZ:",
+      "answer_a": "Musí být (60 ± 15) cyklů/min.",
+      "answer_b": "Musí být (90 ± 20) cyklů/min.",
+      "answer_c": "Musí být (45 ± 10) cyklů/min.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.2.3) Doba svícení jednoho světla, musí být 40-60 % z doby jednoho cyklu."
+    },
+    {
+      "question": "007. Mechanická výstraha přejezdového zařízení je dávána:",
+      "answer_a": "Sklápěným, sklopeným a zvedaným břevnem závory.",
+      "answer_b": "Zvukovým signálem vydávaným mechanickým zvonem.",
+      "answer_c": "Pouze sklopeným břevnem závory bez dalších pohybů.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.4.1) Mechanická výstraha je dávána sklápěným, sklopeným a zvedaným břevnem závory."
+    },
+    {
+      "question": "008. Doba zvedání břevna závory u PZS:",
+      "answer_a": "Max 10s.",
+      "answer_b": "Max 20s.",
+      "answer_c": "Max 18s.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.4.4) Max. 10s, přičemž u typů pohonů závor schválených po účinnosti edice 2 normy, nesmí být doba sklápění kratší než 3 s."
+    },
+    {
+      "question": "009. Doba zvedání břevna závory u PZM:",
+      "answer_a": "Max 18s.",
+      "answer_b": "Max 10s.",
+      "answer_c": "Max 20s.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.4.4)"
+    },
+    {
+      "question": "010. Doba sklápění břevna závory u PZS:",
+      "answer_a": "Nesmí být kratší než 3s.",
+      "answer_b": "Nesmí být kratší než 5s.",
+      "answer_c": "Nesmí být kratší než 19s.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.4.4) U typů pohonů závor PZS, schválených po účinnosti ed.2 normy, nesmí být doba sklápění kratší než 3 s."
+    },
+    {
+      "question": "011. Co se rozumí definicí \"Pohotovostní stav PZZ\"?",
+      "answer_a": "Stav kdy na PZZ není vyhodnocen poruchový stav.",
+      "answer_b": "Stav kdy na PZZ je vyhodnocen poruchový stav.",
+      "answer_c": "Stav kdy na PZZ je vyhodnocen nouzový stav.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.1.32)"
+    },
+    {
+      "question": "012. Co se rozumí definicí \"Bezporuchový stav PZZ\"?",
+      "answer_a": "Stav přejezdového zařízení v době, kdy na něm není vyhodnocen nouzový ani poruchový stav.",
+      "answer_b": "Stav přejezdového zařízení, kdy je zařízení vypnuto a neprovádí žádné zabezpečovací funkce.",
+      "answer_c": "Stav přejezdového zařízení, kdy je zařízení v údržbě a není používáno.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.1.5)"
+    },
+    {
+      "question": "013. Co se rozumí definicí \"Varovný signál PZZ\"?",
+      "answer_a": "Informace, neposkytující uživateli pozemní komunikace informaci, zda se k přejezdu blíží nebo neblíží drážní vozidlo, které by jej mohlo ohrozit.",
+      "answer_b": "Informace, která vždy potvrzuje, že se k přejezdu blíží drážní vozidlo.",
+      "answer_c": "Informace, která uživatele upozorňuje pouze na poruchu přejezdového zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.1.51)"
+    },
+    {
+      "question": "014. Jaké rozeznáváme základní druhy výstrahy u PZZ?",
+      "answer_a": "Mechanická, světelná.",
+      "answer_b": "Zvuková, hlasová.",
+      "answer_c": "Optická, elektrická.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.2.1)"
+    },
+    {
+      "question": "015. Označení PZS L znamená?",
+      "answer_a": "Světelný, informace o stavu předávána strojvůdci.",
+      "answer_b": "Mechanický, informace o stavu není přenášena.",
+      "answer_c": "Světelný, informace o stavu není přenášena.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.3.2.1) Přejezdové zařízení světelné předávající informace o svém stavu strojvedoucímu, bez ohledu na způsob ovládání a způsob signalizace uživateli pozemní komunikace.s"
+    },
+    {
+      "question": "016. Přejezdové zařízení musí poskytovat diagnostické informace:",
+      "answer_a": "Podle požadavků provozovatele dráhy.",
+      "answer_b": "Podle požadavků obce, kde se přejezd nachází.",
+      "answer_c": "Pouze v případě poruchy zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.1.1.10)"
+    },
+    {
+      "question": "017. Světelná výstraha na PZZ:",
+      "answer_a": "Musí trvat po celou dobu výstrahy (až do koncové horní polohy břeven).",
+      "answer_b": "Může být přerušena během sklápění břeven.",
+      "answer_c": "Musí trvat pouze během počáteční fáze výstrahy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.2.2) Světelná výstraha, musí trvat po celou dobu výstrahy. Je-li společně se světelnou výstrahou dávána i mechanická výstraha, musí světelná výstraha trvat až do dosažení horní koncové polohy břeven závor."
+    },
+    {
+      "question": "018. Při zřizování indikací v dopravně se vychází ze zásady, že indikace nouzového stavu PZS, je vyjádřena:",
+      "answer_a": "Stálé žluté světlo a akustická indikace.",
+      "answer_b": "Přerušované červené světlo bez akustické indikace.",
+      "answer_c": "Stálé bílé světlo a vizuální textová zpráva.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.3.13.1) Indikace nouzového stavu PZS je dle normy vyjádřena stálým žlutým světlem a doplněna akustickou indikací, aby byla zajištěna jasná signalizace problému."
+    },
+    {
+      "question": "019. Jaká musí být min. vzdálenost čelní strany stojanu od stěny domku PZS určená pro práci udržujícího zaměstnance?",
+      "answer_a": "0,8m",
+      "answer_b": "0,75m",
+      "answer_c": "0,9m",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.16.2) Do těchto prostorů, mohou ojedinělé součásti vyčnívat až 0,2 m."
+    },
+    {
+      "question": "020. Jaké signály dává PZS 2?",
+      "answer_a": "Varovný, výstražný, případně i pozitivní.",
+      "answer_b": "Pouze výstražný a varovný.",
+      "answer_c": "Varovný, informativní a akustický.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.3.18.9) PZS 2 dává varovný, výstražný a případně i pozitivní signál. Pokud zapínací prvky nedokážou bezpečně vyhodnotit volnost přibližovacích úseků, musí být použito jiné zařízení nebo nesmí být PZS 2 nasazeno"
+    },
+    {
+      "question": "021. Kritická doba se poruchou:",
+      "answer_a": "Nesmí zkrátit.",
+      "answer_b": "Může zkrátit, pokud to neohrozí bezpečnost.",
+      "answer_c": "Musí zůstat konstantní nebo se prodloužit.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650 ed.2, čl.5.3.19.24) Pokud se měří kritická doba, nesmí se poruchou zkrátit."
+    },
+    {
+      "question": "022. Co se rozumí definicí Anulace PZZ?",
+      "answer_a": "Stav, při kterém je vyloučen vliv nerozhodujícího zapínacího prvku ve vzdalovacím úseku na spuštění PZZ.",
+      "answer_b": "Stav, kdy je PZZ vyřazeno z provozu a neplní žádnou funkci.",
+      "answer_c": "Stav, kdy je PZZ nastaveno na trvalé výstražné signalizace bez ohledu na provoz.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.1.2)"
+    },
+    {
+      "question": "023. Co se rozumí definicí Vyklizovací doba na přejezdu?",
+      "answer_a": "Doba, během které nejpomalejší, nejdelší, cyklista, chodec mohou bezpečné přejít nebo přejet přejezd.",
+      "answer_b": "Doba, během které se automaticky zavřou závory po průjezdu vlaku.",
+      "answer_c": "Doba, během které musí vlak zpomalit před přejezdem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.1.53) Doba, během které může ještě bezpečně nejdelší a nejpomalejší silniční vozidlo, cyklista nebo chodec přejet nebo projít přejezdem."
+    },
+    {
+      "question": "024. Co se rozumí definicí Výstraha PZZ?",
+      "answer_a": "Vnější projev PZZ, kterým se uživateli zakazuje vjezd (vstup) na PZZ.",
+      "answer_b": "Vnější projev PZZ, kterým se uživateli povoluje vjezd (vstup) na PZZ.",
+      "answer_c": "Interní signál PZZ, který informuje obsluhu o technickém stavu zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.1.55) Vnější projev přejezdového zařízení, kterým se uživateli pozemní komunikace zakazuje vjezd (vstup) na přejezd, popř. se mu přikazuje, aby přejezd urychleně vyklidil; může být dávaná signalizací světelnou, zvukovou, nebo mechanickou."
+    },
+    {
+      "question": "025. Co je to Výstražník přejezdového zařízení?",
+      "answer_a": "Zařízení dávající uživatelům informaci, že mohou/nemohou jet/vstoupit na přejezd.",
+      "answer_b": "Mechanická část PZZ, která ovládá pohyb závor.",
+      "answer_c": "Vnitřní signalizační zařízení pro sledování stavu PZZ provozovatelem.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.1.56) Zařízení dávající uživatelům pozemní komunikace světelnou, případně i zvukovou signalizací informaci, že na přejezd nesmí/mohou vjet (vstoupit)."
+    },
+    {
+      "question": "026. Co se rozumí definicí Základní výstraha PZZ?",
+      "answer_a": "Musí být dávána po celou dobu výstrahy.",
+      "answer_b": "Je dávána pouze při spuštění závor.",
+      "answer_c": "Informuje o ukončení výstrahy a otevření přejezdu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 3.1.59) Výstraha, která musí být dávaná po celou dobu trvání výstrahy."
+    },
+    {
+      "question": "027. Kdy má být ukončena Výstraha na PZZ?",
+      "answer_a": "Jakmile konec drážního vozidla mine přejezd.",
+      "answer_b": "Jakmile drážní vozidlo vjede na přejezd.",
+      "answer_c": "Po uplynutí pevně stanoveného časového intervalu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.1.5)"
+    },
+    {
+      "question": "028. Přerušování červených světel téhož výstražníku PZZ:",
+      "answer_a": "Musí být navzájem v protifázi.",
+      "answer_b": "Musí být synchronní na všech výstražnících.",
+      "answer_c": "Může být libovolné, pokud je zajištěna viditelnost.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.2.3) Přerušování červených světel téhož výstražníku musí být navzájem v protifázi."
+    },
+    {
+      "question": "029. Sklopené břevno závory musí přehrazovat:",
+      "answer_a": "Alespoň 90 procent šířky jízdního pruhu.",
+      "answer_b": "Alespoň 75 procent šířky jízdního pruhu.",
+      "answer_c": "Přesně 100 procent šířky jízdního pruhu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.4.3) Zvednuté břevno závory nesmí zasahovat do průjezdného prostoru pozemní komunikace. Sklopené břevno závory musí přehrazovat alespoň 90 % šířky jízdního pruhu. Pokud přeražené břevno závory dále přehrazuje méně než 50 % šířky jízdního pruhu, musí to být zařízením vyhodnoceno jako nesprávná funkce mechanické výstrahy."
+    },
+    {
+      "question": "030. U celých závor, kde se sklápějí břevna proti sobě:",
+      "answer_a": "Nesmí být mezera mezi břevny > 0,5 m.",
+      "answer_b": "Mezera mezi břevny musí být přesně 1 m.",
+      "answer_c": "Mezera mezi břevny nesmí být větší než 1 m.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.4.3) U celých závor, kde se sklápějí břevna závor proti sobě, nesmí být po sklopení obou břeven závor mezera mezi břevny závor nad jízdními pruhy nebo pásy, příp. pruhy pro chodce a/nebo cyklisty větší než 0,5 m."
+    },
+    {
+      "question": "031. Kmitočet přerušování bílého světla PZZ:",
+      "answer_a": "(40 ± 10) cyklů/min",
+      "answer_b": "(60 ± 10) cyklů/min",
+      "answer_c": "(40 ± 05) cyklů/min",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.1.5.3) Kmitočet přerušování bílého světla musí být (40 ± 10) cyklů/min. Doba svícení musí být 40 % až 60 % doby jednoho cyklu."
+    },
+    {
+      "question": "032. PZM je zařízení, u kterého je základní výstraha dávána:",
+      "answer_a": "Břevny závor.",
+      "answer_b": "Výstražnými světly.",
+      "answer_c": "Není dávána (pouze kříže).",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl.5.2.1.1) Pro spuštění a ukončení výstrahy je charakteristický pohyb břeven, který musí být spolehlivě zajištěn. Spojení závor s pohonem závor v místě obsluhy je mechanické (převodové zařízení, drátovody, řetězy apod.)."
+    },
+    {
+      "question": "033. PZM 2 uzamykatelného na místě se nesmí zřídit na přejezdu v místě, kde není zákaz vstupu chodců s traťovou rychlostí:",
+      "answer_a": "Větší než 100 km/h.",
+      "answer_b": "Větší než 160 km/h.",
+      "answer_c": "Větší než 40 km/h.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.2.1.2) PZM se může nově budovat jen v odůvodněných případech a to pouze jako PZM 2 uzamykatelné na místě (otevření na požádání). Není-li na pozemní komunikaci zakázán dopravní značkou vstup chodcům a cyklistům, musí být na přejezdu s PZM 2 uzamykatelném na místě zajištěny rozhledové poměry pro přechod pro pěší. PZM 2 uzamykatelné na místě se nesmí zřídit na přejezdu v místě s traťovou rychlostí větší než 100 km.h-1, jestliže na pozemní komunikaci není zakázán vstup chodcům a cyklistům dopravní značkou a není pro ně zřízen v blízkosti přejezdu podchod nebo nadchod."
+    },
+    {
+      "question": "034. Co znamená označení PZM 1?",
+      "answer_a": "Mechanický obsluhovaný na dálku.",
+      "answer_b": "Automatický ovládaný činností vlaku.",
+      "answer_c": "Mechanický obsluhovaný na místě.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.2.2.1) \"PZM obsluhované na dálku\" je každé PZM, u kterého umístění závorářského stanoviště nesplňuje podmínky PZM 2."
+    },
+    {
+      "question": "035. Co znamená označení PZM 3?",
+      "answer_a": "Mechanický obsluhovaný kombinovaně (z místní obsluhy na dálkovou).",
+      "answer_b": "Automatický ovládaný činností vlaku s možností ručního ovládání.",
+      "answer_c": "Mechanický obsluhovaný pouze na místě.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.2.4.1) \"PZM obsluhované kombinovaně\", je označení takového mechanického přejezdového zařízení, které umožňuje měnit obsluhu na místě na obsluhu na dálku a naopak."
+    },
+    {
+      "question": "036. PZS je PZZ u kterého je základní výstraha dávána:",
+      "answer_a": "Světelnou výstrahou.",
+      "answer_b": "Zvukovou výstrahou.",
+      "answer_c": "Mechanickým pohybem závor.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.1) PZS je přejezdové zařízení, u kterého je základní výstraha dávána světlem. Ovládání světelné výstrahy a doplňkových výstrah je elektrické. Obvykle je závislé na jízdě drážního vozidla."
+    },
+    {
+      "question": "037. Při zřizování indikací v dopravně se vychází ze zásady, že indikace bezvýlukového stavu PZS je vyjádřena?",
+      "answer_a": "Stálé bílé světlo.",
+      "answer_b": "Přerušované bílé světlo.",
+      "answer_c": "Stálé červené světlo.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.13.1) Indikace bezvýlukového stavu - stálé bílé světlo, zpravidla samostatné pro každou kolej vícekolejného přejezdu."
+    },
+    {
+      "question": "038. Mezi PZS a návěstidlem s návěstí Posun zakázán, umístěným v přibližovacím úseku, povolujícím jízdu na přejezd:",
+      "answer_a": "Se musí zřídit závislost.",
+      "answer_b": "Nesmí být žádná závislost.",
+      "answer_c": "Závislost je volitelná dle místních podmínek.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.15.1) Mezi PZS a návěstidly s absolutním významem návěsti „Stůj“, nebo návěsti „Posun zakázán“ povolujícími jízdu na přejezd, umístěnými v přibližovacím úseku, se musí zřídit závislosti. Takovou závislost lze zřídit i u návěstidla s permisivním významem návěsti „Stůj“ pokud předpisy provozovatele dráhy zajišťují bezpečnost na přejezdu i při jízdě za  toto návěstidlo zakazující jízdu."
+    },
+    {
+      "question": "039. Před rozvodnicemi musí být ponechán volný prostor:",
+      "answer_a": "Do hloubky 0,6 m od krytu rozvodnice.",
+      "answer_b": "Do hloubky 0,8 m od krytu rozvodnice.",
+      "answer_c": "Do hloubky 1 m od krytu rozvodnice.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.16.4) Před rozvodnicemi musí být ponechán volný prostor, vymezený jejich šířkou a výškou, do hloubky 0,6 m od krytu (uzavřených dveří) rozvodnice."
+    },
+    {
+      "question": "040. Ovládání PZS 1:",
+      "answer_a": "Ruční z místa přejezdu.",
+      "answer_b": "Automatické činností vlaku.",
+      "answer_c": "Dálkové z dopravní kanceláře.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl.5.3.17.2) Ovládání musí být ruční z místa přejezdu. Uvažovanou poruchou ovládacích prvků a navazujících obvodů se nesmí ukončit již započatá výstraha. Pokud by se měla výstraha spouštět až po povolení jízdy drážních vozidel, nesmí ani při uvažované poruše ovládacích prvků nastat stav, kdy se po zadání povelu výstraha nespustí."
+    },
+    {
+      "question": "041. Indikace o Stavu PZS 2:",
+      "answer_a": "Se do dopravny nemusí přenášet.",
+      "answer_b": "Musí být vždy přenášena do dopravny.",
+      "answer_c": "Je přenášena pouze při výluce zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.18.12)"
+    },
+    {
+      "question": "042. Jaké signály dává PZS 3?",
+      "answer_a": "Varovný, výstražný, pozitivní.",
+      "answer_b": "Pouze výstražný a pozitivní.",
+      "answer_c": "Varovný, informativní, pozitivní.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.19.11)"
+    },
+    {
+      "question": "043. Mezní doba anulace se poruchou:",
+      "answer_a": "Nesmí prodloužit.",
+      "answer_b": "Může se prodloužit o 10 minut.",
+      "answer_c": "Je stanovena dle místních podmínek.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.19.7)"
+    },
+    {
+      "question": "044. Priority způsobů ovládání PZS musí být v pořadí?",
+      "answer_a": "Místní uzavření, nouzové vypnutí, místní nouzové vypnutí, dálkové nouzové otevření.",
+      "answer_b": "Nouzové vypnutí, místní uzavření, dálkové nouzové otevření, místní nouzové vypnutí.",
+      "answer_c": "Dálkové nouzové otevření, místní nouzové vypnutí, nouzové vypnutí, místní uzavření.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.3.1) Pokud bylo PZS nouzově vypnuto z činnosti, nelze jej ani místně uzavřít. Pokud se zřizuje dálkové nouzové otevření z více stanovišť, musí být v předpisu pro obsluhu zařízení stanoven postup pro zajištění bezpečnosti na PZS při nouzovém otevření přejezdu."
+    },
+    {
+      "question": "045. Nouzové vypnutí PZS z činnosti:",
+      "answer_a": "Vylučuje další ovlivnění automatickým i ručním ovládáním.",
+      "answer_b": "Umožňuje pouze ruční ovládání, automatické je vyloučeno.",
+      "answer_c": "Neovlivňuje další možnosti ovládání.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.8.5) Nouzové vypnutí z činnosti vylučuje další ovlivnění PZS automatickým i ručním ovládáním."
+    },
+    {
+      "question": "046. Světelná výstraha je u PZS?",
+      "answer_a": "Základní.",
+      "answer_b": "Doplňková.",
+      "answer_c": "Volitelná.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.9.1) Světelná výstraha u PZS je výstraha základní. Je-li dávána zvuková nebo mechanická výstraha, musí s ní být dávána i výstraha světelná."
+    },
+    {
+      "question": "047. Při ztrátě kontroly dolní polohy břevna závory se zvuková výstraha:",
+      "answer_a": "Musí obnovit.",
+      "answer_b": "Nesmí obnovit.",
+      "answer_c": "Obnovuje se pouze při výpadku signalizace.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.9.3.4) Dojde-li ke ztrátě kontroly dolní polohy břevna závory v době, kdy má být mechanická výstraha dávána, musí se obnovit zvuková výstraha nejméně na výstražníku určeném pro stejný jízdní pruh, resp. pruh pro chodce nebo cyklisty, jako břevno závory."
+    },
+    {
+      "question": "048. Po dobu zvedání břeven závor se u PZS zvuková výstraha:",
+      "answer_a": "Nedává.",
+      "answer_b": "Dává pouze při poruše signalizace.",
+      "answer_c": "Dává vždy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.9.3.5) Po dobu zvedání břeven závor se zvuková výstraha u PZS nedává, pokud zařízení nepřijalo povel k nové výstraze."
+    },
+    {
+      "question": "049. Kdy smí být spuštěna mechanická výstraha u PZS?",
+      "answer_a": "Až po uplynutí předzváněcí doby.",
+      "answer_b": "Současně s předzváněcí dobou.",
+      "answer_c": "Ihned po aktivaci PZS.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2650, čl. 5.3.9.5) Mechanická výstraha u PZS je výstraha doplňková. Smí být spuštěna až po uplynutí předzváněcí doby od povelu pro zahájení světelné a zvukové výstrahy. Předzváněcí doba se nesmí poruchou zkrátit."
+    },
+    {
+      "question": "050. Jaký je význam termínu \"anulace\" dle ČSN 34 2650 ed. 2?",
+      "answer_a": "Stav, kdy je vyloučen vliv nevyhodnocujícího zapínacího prvku na spuštění výstrahy.",
+      "answer_b": "Stav, kdy je spuštěna výstraha bez ohledu na zapínací prvky.",
+      "answer_c": "Stav, kdy přejezdové zařízení nevyhodnocuje žádné zapínací prvky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "051. Jak se nazývá stav, kdy není vyloučen vliv zapínacího prvku nevyhodnocujícího směr jízdy?",
+      "answer_a": "Bezanulační stav.",
+      "answer_b": "Anulační stav.",
+      "answer_c": "Dopravní klid na přejezdu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "052. Co znamená termín \"dopravní klid na přejezdu\"?",
+      "answer_a": "Stav, kdy ovládací prvky nezpůsobí spuštění výstrahy za stanovených podmínek.",
+      "answer_b": "Stav, kdy je přejezd trvale uzavřen pro silniční dopravu.",
+      "answer_c": "Stav, kdy je přejezdové zařízení mimo provoz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "053. Co je \"kritická doba\" dle definice normy?",
+      "answer_a": "Nejdelší doba odpovídající jízdě nejpomalejších vozidel, včetně zastávek a přípravy jízdní cesty.",
+      "answer_b": "Doba, po kterou je výstraha aktivní bez ohledu na pohyb vozidel.",
+      "answer_c": "Doba potřebná k aktivaci přejezdového zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "054. Jaký je permisivní význam návěsti „Stůj“?",
+      "answer_a": "Drážní vozidlo smí pokračovat po zastavení dle podmínek provozovatele dráhy.",
+      "answer_b": "Drážní vozidlo nesmí pokračovat v jízdě bez souhlasu dispečera.",
+      "answer_c": "Drážní vozidlo smí pokračovat bez zastavení, pokud je přejezd volný.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "055. Co znamená \"pozitivní signál\" dle ČSN 34 2650 ed. 2?",
+      "answer_a": "Informuje, že v obvodu přejezdu není drážní vozidlo, které by ohrozilo uživatele komunikace.",
+      "answer_b": "Signalizuje, že přejezd je trvale uzavřen pro silniční dopravu.",
+      "answer_c": "Upozorňuje na blížící se drážní vozidlo k přejezdu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "056. Co je \"předzváněcí doba\"?",
+      "answer_a": "Doba od spuštění výstrahy do sklápění břevna závory.",
+      "answer_b": "Doba od příjezdu drážního vozidla ke spuštění výstrahy.",
+      "answer_c": "Doba mezi sklopením a zvednutím závor.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "057. Jak norma definuje \"přejezd\"?",
+      "answer_a": "Úrovňové křížení dráhy s pozemní komunikací, včetně stezek pro pěší a cyklisty.",
+      "answer_b": "Křížení dráhy pouze se silniční komunikací.",
+      "answer_c": "Křížení dráhy s pozemní komunikací bez světelné signalizace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "058. Co je \"kmenový přejezdník\"?",
+      "answer_a": "Stožárové návěstidlo před přejezdem na zábrzdnou vzdálenost.",
+      "answer_b": "Návěstidlo umístěné přímo na přejezdu.",
+      "answer_c": "Návěstidlo umístěné za přejezdem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "059. Co označuje \"přibližovací úsek\"?",
+      "answer_a": "Část obvodu přejezdu před přejezdem ve směru jízdy drážního vozidla.",
+      "answer_b": "Část obvodu přejezdu za přejezdem ve směru jízdy drážního vozidla.",
+      "answer_c": "Část obvodu přejezdu, kde se nachází uživatelé komunikace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "060. Jaká je funkce \"světelné signalizace\"?",
+      "answer_a": "Signalizuje stav přejezdu světly výstražníku (bílá, červená, žádné světlo).",
+      "answer_b": "Signalizuje pouze přítomnost drážního vozidla na přejezdu.",
+      "answer_c": "Slouží k ovládání závor na přejezdu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "061. Co je \"vyklizovací doba\"?",
+      "answer_a": "Doba, během které může nejdelší a nejpomalejší vozidlo bezpečně přejet přejezd.",
+      "answer_b": "Doba potřebná k otevření závor pro silniční dopravu.",
+      "answer_c": "Doba, kdy je přejezd uzavřen pro drážní vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "062. Co označuje \"základní výstraha\"?",
+      "answer_a": "Výstraha, která musí být dávaná po celou dobu trvání výstrahy.",
+      "answer_b": "Výstraha, která se aktivuje pouze při přítomnosti drážního vozidla.",
+      "answer_c": "Výstraha, která signalizuje konec uzavření přejezdu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "063. Jaké označení má přejezdové zařízení se světelnou výstrahou, se závorami, s pozitivním signálem a předávající informace strojvedoucímu?",
+      "answer_a": "PZS ZBL",
+      "answer_b": "PZS SBLI",
+      "answer_c": "PZS SBL",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "064. Jaké je označení přejezdového zařízení mechanického, obsluhovaného na místě, doplněného světelnou výstrahou?",
+      "answer_a": "PZM 2S",
+      "answer_b": "PZM 1S",
+      "answer_c": "PZM 3S",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "065. Co znamená symbol „N“ v označení přejezdového zařízení?",
+      "answer_a": "Zařízení je bez pozitivního signálu.",
+      "answer_b": "Zařízení je bez závor.",
+      "answer_c": "Zařízení není schopno dávat výstrahu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "066. Jaký význam má symbol „I“ na konci označení přejezdového zařízení?",
+      "answer_a": "Informace o stavu PZ je předávána obsluhujícímu zaměstnanci.",
+      "answer_b": "Informace o stavu PZ je předávána strojvedoucímu.",
+      "answer_c": "Informace o stavu PZ není předávána.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "067. Co označuje symbol „3“ u PZS v rámci třídění?",
+      "answer_a": "Závislost provedení podle 5.3.19.1.",
+      "answer_b": "Závislost provedení podle 5.3.17.1.",
+      "answer_c": "Závislost provedení podle 5.3.18.1.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "068. Jaké označení má přejezdové zařízení světelné, bez závor, bez pozitivního signálu a informující obsluhujícího zaměstnance?",
+      "answer_a": "PZS SNBI",
+      "answer_b": "PZS SNI",
+      "answer_c": "PZS SBI",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "069. Jak se třídí přejezdová zařízení podle uspořádání mechanické výstrahy?",
+      "answer_a": "Na zařízení s polovičními a celými závorami.",
+      "answer_b": "Na zařízení s mechanickými a světelnými závorami.",
+      "answer_c": "Na zařízení s jedním nebo dvěma výstražníky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "070. Jaké jsou způsoby spuštění výstrahy u přejezdových zařízení?",
+      "answer_a": "Ručním ovládáním nebo automatickým ovládáním.",
+      "answer_b": "Ručním ovládáním nebo dálkovým ovládáním.",
+      "answer_c": "Automatickým ovládáním nebo manuálním zálohováním.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "071. Co zahrnuje automatické ovládání výstrahy u přejezdových zařízení?",
+      "answer_a": "Technický prostředek pro zjišťování drážních vozidel nebo povel ze spolupracujícího zabezpečovacího zařízení.",
+      "answer_b": "Pouze technický prostředek pro zjišťování přítomnosti drážních vozidel.",
+      "answer_c": "Pouze povel ze spolupracujícího zabezpečovacího zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "072. Jaký je příklad ručního ovládání přejezdového zařízení?",
+      "answer_a": "Ovládání obsluhujícím zaměstnancem nebo strojvedoucím.",
+      "answer_b": "Ovládání pomocí dálkového řídicího systému.",
+      "answer_c": "Ovládání automatickým systémem detekce vozidel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "073. Jak se označuje zařízení s polovičními závorami?",
+      "answer_a": "PZM s polovičními závorami.",
+      "answer_b": "PZS s polovičními závorami.",
+      "answer_c": "PZ s polovičními závorami.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "074. Jaké části obecně tvoří přejezdové zařízení?",
+      "answer_a": "Signalizace, ovládací části, závislostní části, komunikační zařízení, napájecí části, konstrukční části, kabelový rozvod.",
+      "answer_b": "Signalizace, napájecí zařízení, pouze mechanické části, kabelový rozvod.",
+      "answer_c": "Signalizace, diagnostické zařízení, pouze světelné výstrahy, napájecí části.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "075. Jaké druhy výstrah může přejezdové zařízení poskytovat?",
+      "answer_a": "Světelnou, zvukovou, mechanickou.",
+      "answer_b": "Zvukovou, vizuální, elektrickou.",
+      "answer_c": "Mechanickou, optickou, akustickou.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "076. Jak jsou různě provedená přejezdová zařízení označována?",
+      "answer_a": "Jako různé typy přejezdových zařízení.",
+      "answer_b": "Jako různé druhy přejezdových zařízení.",
+      "answer_c": "Jako různé verze přejezdových zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "077. Co musí být zajištěno pro povolení jízdy drážního vozidla na přejezd?",
+      "answer_a": "Přejezdové zařízení musí dávat výstrahu, nebo musí být bezpečnost zajištěna jiným způsobem.",
+      "answer_b": "Přejezdové zařízení musí být vybaveno zvukovou i světelnou signalizací.",
+      "answer_c": "Přejezdové zařízení musí být ovládáno automaticky.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "078. Kde musí příslušné části přejezdových zařízení spolehlivě pracovat?",
+      "answer_a": "V okolním prostředí, přístrojové skříni a buňce bez regulace teploty.",
+      "answer_b": "Pouze v přístrojové skříni s regulací teploty.",
+      "answer_c": "V prostředí s konstantní teplotou a vlhkostí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "079. Jaké jsou základní požadavky na výstrahu přejezdového zařízení?",
+      "answer_a": "Musí varovat uživatele včas o blížícím se drážním vozidle a nesmí omezovat provoz déle, než je nutné.",
+      "answer_b": "Musí být spuštěna pouze automaticky a vždy zahrnovat zvukovou signalizaci.",
+      "answer_c": "Musí být spuštěna ruční obsluhou a ukončena po odjezdu posledního vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "080. Kdy má být výstraha ukončena?",
+      "answer_a": "Jakmile konec drážního vozidla minul přejezd.",
+      "answer_b": "Jakmile drážní vozidlo opustí vzdalovací úsek.",
+      "answer_c": "Jakmile první část vozidla přejede přejezd.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "081. Co musí být zajištěno, pokud nelze bezpečně spustit výstrahu?",
+      "answer_a": "Uživatel pozemní komunikace musí být varován jiným způsobem.",
+      "answer_b": "Provoz na přejezdu musí být okamžitě zastaven.",
+      "answer_c": "Drážní vozidlo musí zastavit před přejezdem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "082. Jak dlouho může trvat úprava přejezdového zařízení na vícekolejné trati během přechodných opatření?",
+      "answer_a": "Nejvýše dva dny.",
+      "answer_b": "Nejvýše čtrnáct dní.",
+      "answer_c": "Nejvýše jeden týden.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "083. Jaké informace musí přejezdové zařízení umožnit předat?",
+      "answer_a": "Stav zařízení návaznému zabezpečovacímu zařízení, dispečinku, signalizaci na křižovatce, fotodokumentaci a zvukové signalizaci pro nevidomé.",
+      "answer_b": "Pouze stav zařízení dispečerskému pracovišti a návaznému zabezpečovacímu zařízení.",
+      "answer_c": "Stav zařízení pouze světelnému signalizačnímu zařízení na blízké křižovatce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "084. Přejezdovým zařízením podle této normy je možno zabezpečit přejezdy na tratích s rychlostí v místě přejezdu nejvíce?",
+      "answer_a": "160 km/h.",
+      "answer_b": "200 km/h.",
+      "answer_c": "120 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "085. Jaká je osová svítivost červeného světla výstražníku u nových typů?",
+      "answer_a": "Musí být mezi 100 cd a 500 cd.",
+      "answer_b": "Musí být minimálně 50 cd.",
+      "answer_c": "Musí být nad 25 cd v horizontální rovině.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "086. Jaký je požadovaný kmitočet přerušování červených světel?",
+      "answer_a": "60 ± 15 cyklů/min.",
+      "answer_b": "50 ± 10 cyklů/min.",
+      "answer_c": "70 ± 20 cyklů/min.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "087. Jaký průměr musí mít výstupní činná plocha světel?",
+      "answer_a": "180 mm až 220 mm.",
+      "answer_b": "150 mm až 200 mm.",
+      "answer_c": "200 mm až 250 mm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "088. Jak musí být směrována světla výstražníku?",
+      "answer_a": "Ve vodorovné rovině ±90° a svislé rovině ±20°.",
+      "answer_b": "Ve vodorovné rovině ±45° a svislé rovině ±15°.",
+      "answer_c": "Ve vodorovné rovině ±60° a svislé rovině ±30°.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "089. Jaký poměr maximálního a minimálního jasu je přípustný pro rovnoměrnost jasu u nových typů?",
+      "answer_a": "15:1.",
+      "answer_b": "10:1.",
+      "answer_c": "5:1.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "090. Jaká má být hlasitost zvukové výstrahy ve vzdálenosti 7 m od zdroje?",
+      "answer_a": "60 dB až 80 dB.",
+      "answer_b": "50 dB až 70 dB.",
+      "answer_c": "70 dB až 90 dB.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "091. Jaká má být frekvence přerušování zvukového signálu?",
+      "answer_a": "60 ± 15 cyklů/min.",
+      "answer_b": "50 ± 10 cyklů/min.",
+      "answer_c": "70 ± 20 cyklů/min.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "092. V jakém rozsahu kmitočtů by měl být zvukový signál?",
+      "answer_a": "300 Hz až 3 000 Hz.",
+      "answer_b": "200 Hz až 2 500 Hz.",
+      "answer_c": "400 Hz až 3 500 Hz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "093. Kolik zdrojů zvukové výstrahy musí být v činnosti, pokud jsou na jednom stožáru dva?",
+      "answer_a": "Postačí jeden zdroj.",
+      "answer_b": "Musí být v činnosti oba zdroje.",
+      "answer_c": "Musí být v činnosti alespoň jeden zdroj každé 2 minuty.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "094. Může být zvuk signálu sloužícího k jinému účelu použit pro zvukovou výstrahu?",
+      "answer_a": "Ne, nesmí být použit.",
+      "answer_b": "Ano, pokud je přerušovaný.",
+      "answer_c": "Ano, pokud je slyšitelný na 7 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "095. Jaká má být doba sklápění břevna závory u PZS?",
+      "answer_a": "Nejvíce 10 s, minimálně 3 s.",
+      "answer_b": "Nejvíce 18 s, minimálně 5 s.",
+      "answer_c": "Nejvíce 15 s, minimálně 2 s.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "096. Jaký nátěr musí mít břevno závory?",
+      "answer_a": "Červenobílý s pruhy dlouhými 500 mm a širokými nejméně 80 mm.",
+      "answer_b": "Červenobílý s pruhy dlouhými 400 mm a širokými nejméně 100 mm.",
+      "answer_c": "Červenobílý s pruhy dlouhými 600 mm a širokými nejméně 70 mm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "097. Jaká je maximální mezera mezi sklopenými břevny závor nad jízdními pruhy?",
+      "answer_a": "0,5 m.",
+      "answer_b": "0,8 m.",
+      "answer_c": "1,0 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "098. Co se stane, pokud břevno závory PZS uvolněné ze sklopené polohy nedosáhne sklopené polohy do 10 s?",
+      "answer_a": "Jedná se o nesprávnou funkci.",
+      "answer_b": "Je nutné ruční sklopení.",
+      "answer_c": "Břevno se automaticky zapevní.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "099. Jaká je minimální hybnost vozidla, aby mohlo přerazit břevno závory?",
+      "answer_a": "2 800 kg·m·s⁻¹.",
+      "answer_b": "3 000 kg·m·s⁻¹.",
+      "answer_c": "2 500 kg·m·s⁻¹.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "100. Jaký musí být kmitočet přerušování bílého světla u pozitivního signálu?",
+      "answer_a": "(40 ± 10) cyklů/min.",
+      "answer_b": "(50 ± 10) cyklů/min.",
+      "answer_c": "(30 ± 5) cyklů/min.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "101. Jaký je minimální a maximální průměr výstupní činné plochy bílého světla?",
+      "answer_a": "180 mm až 220 mm.",
+      "answer_b": "160 mm až 200 mm.",
+      "answer_c": "200 mm až 240 mm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "102. Jaká je maximální osová svítivost bílého světla?",
+      "answer_a": "500 cd.",
+      "answer_b": "400 cd.",
+      "answer_c": "600 cd.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "103. Kde se umisťuje svítilna bílého světla na výstražníku?",
+      "answer_a": "Pod spojnici dvojice červených světel v její ose.",
+      "answer_b": "Nad spojnici dvojice červených světel v její ose.",
+      "answer_c": "Vedle spojnici dvojice červených světel mimo osu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "104. Co musí umožnit přejezdové zařízení u pozitivního signálu?",
+      "answer_a": "Vypnutí pozitivního signálu bez vyhodnocení nouzového stavu.",
+      "answer_b": "Zapnutí pozitivního signálu pouze při nouzovém stavu.",
+      "answer_c": "Automatické vypnutí při nesplnění podmínek dle 5.1.6.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "105. Jaké podmínky musí být splněny, aby přejezdové zařízení dávalo pozitivní signál?",
+      "answer_a": "PZ musí být funkční, koleje volné do 60 m, žádné výstrahy, není nouzově vypnuto, a pozitivní signál není vypnut zaměstnancem.",
+      "answer_b": "PZ musí být vypnuto, koleje obsazené, výstraha aktivní a pozitivní signál vypnut zaměstnancem.",
+      "answer_c": "PZ musí být v poruše, koleje volné do 30 m a výstraha aktivní.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "106. Co se stane, pokud nesplní přejezdové zařízení podmínky pozitivního signálu?",
+      "answer_a": "PZ poskytuje varovný signál nebo výstrahu.",
+      "answer_b": "PZ přestane fungovat.",
+      "answer_c": "PZ automaticky vypne všechny signály.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "107. Jaká je minimální vzdálenost volných kolejí od přejezdu pro pozitivní signál?",
+      "answer_a": "60 m od nejbližší krajnice nebo chodníku.",
+      "answer_b": "50 m od nejbližší krajnice nebo chodníku.",
+      "answer_c": "40 m od nejbližší krajnice nebo chodníku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "108. Kdy lze ponechat pozitivní signál i při nesplnění podmínek?",
+      "answer_a": "Za dopravního klidu, pokud kolejová vozidla nemohou vjet na přejezd.",
+      "answer_b": "Při poruše PZ, pokud je zajištěna bezpečnost.",
+      "answer_c": "Při aktivní výstraze, pokud je přítomen zaměstnanec.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "109. Co se stane, pokud jsou splněny podmínky pro pozitivní signál?",
+      "answer_a": "Všechny výstražníky musí být vybaveny svítilnou bílého světla.",
+      "answer_b": "Výstražníky se automaticky vypnou.",
+      "answer_c": "Výstražníky zobrazují červené světlo.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "110. Jak se označují přejezdníky?",
+      "answer_a": "Označovacím štítkem s názvem pod návěstním štítem, názvy mohou obsahovat písmena, číslice a diakritiku.",
+      "answer_b": "Pouze číslicemi bez diakritiky, umístěnými vedle návěstního štítu.",
+      "answer_c": "Barevným pruhem a číslicemi, umístěnými nad návěstním štítem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "111. Jaká je minimální viditelnost přejezdníku z místa strojvedoucího?",
+      "answer_a": "250 m před přejezdem u opakovacího přejezdníku.",
+      "answer_b": "100 m před přejezdem u všech přejezdníků.",
+      "answer_c": "300 m před přejezdem u kmenového přejezdníku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "112. Kdy se používá opakovací přejezdník?",
+      "answer_a": "Při použití kmenového přejezdníku s návěstí „Otevřený přejezd“.",
+      "answer_b": "Při každé změně rychlosti na trati.",
+      "answer_c": "Při selhání světelného zdroje na kmenovém přejezdníku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "113. Jaká je výška úrovně očí strojvedoucího pro viditelnost přejezdníku?",
+      "answer_a": "2 m až 3,5 m nad temenem kolejnice.",
+      "answer_b": "1,5 m až 2,5 m nad temenem kolejnice.",
+      "answer_c": "3 m až 4 m nad temenem kolejnice.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "114. Co se stane, pokud se mění rychlost v oblasti viditelnosti přejezdníku?",
+      "answer_a": "Uvažuje se změna rychlosti skokem nebo zrychlením/zpomalením o 1,3 m/s².",
+      "answer_b": "Přejezdník se přemístí na místo s konstantní rychlostí.",
+      "answer_c": "Viditelnost přejezdníku se sníží na polovinu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "115. Jaká je minimální vzdálenost kmenového přejezdníku od přejezdu?",
+      "answer_a": "Nejméně na zábrzdnou vzdálenost.",
+      "answer_b": "Nejméně na 250 m.",
+      "answer_c": "Nejméně na 500 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "116. Kdy není nutné zřídit kmenový přejezdník při existenci opakovacího přejezdníku?",
+      "answer_a": "Pokud délka koleje je menší než zábrzdná vzdálenost nebo pokud funkci přejezdníku plní hlavní návěstidlo.",
+      "answer_b": "Pokud je přejezdník umístěn vlevo od koleje.",
+      "answer_c": "Pokud je přejezdník situován na širé trati.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "117. Kde se umisťuje přejezdník, aby nebyla možná jeho záměna?",
+      "answer_a": "Vpravo od koleje, pro kterou platí, nebo vlevo za určitých podmínek.",
+      "answer_b": "Pouze vlevo od koleje, pro kterou platí.",
+      "answer_c": "Jen nad kolejí, pro kterou platí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "118. Jaká je minimální výška osy nejnižšího světla přejezdníku nad temenem kolejnice?",
+      "answer_a": "Nejméně 2,5 m.",
+      "answer_b": "Nejméně 1,5 m.",
+      "answer_c": "Nejméně 3 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "119. Co musí být zaručeno při poruše přejezdníku?",
+      "answer_a": "Nebude dávaná návěst „Uzavřený přejezd“.",
+      "answer_b": "Přejezdník automaticky zhasne.",
+      "answer_c": "Přejezdník přestane fungovat a vyžaduje manuální opravu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "120. Jaký je hlavní charakteristický znak mechanického přejezdového zařízení (PZM)?",
+      "answer_a": "Pohyb břeven závor, který musí být spolehlivě zajištěn.",
+      "answer_b": "Automatické spuštění výstrahy při přiblížení vlaku.",
+      "answer_c": "Použití elektrického pohonu pro pohyb břeven.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "121. Kdy je možné nově zřídit PZM 2 uzamykatelné na místě?",
+      "answer_a": "Pouze v odůvodněných případech a při traťové rychlosti do 100 km/h.",
+      "answer_b": "Na všech tratích bez omezení rychlosti.",
+      "answer_c": "Pouze na tratích, kde není povolen vstup chodcům a cyklistům.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "122. Jaké jsou podmínky pro zřízení závislosti mezi PZM a hlavními návěstidly?",
+      "answer_a": "Přejezd musí být za návěstidlem v obvodu dopravny nebo krytý oddílovými návěstidly.",
+      "answer_b": "Přejezd musí být vždy vybaven přejezdníkem.",
+      "answer_c": "Přejezd musí být na trati s maximální rychlostí do 80 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "123. Jaká je podmínka pro postavení návěstidla do polohy dovolující jízdu?",
+      "answer_a": "Sklopení břeven závor a znemožnění jejich zdvižení normální obsluhou.",
+      "answer_b": "Uzamčení všech břeven závor ručně obsluhou.",
+      "answer_c": "Automatické spuštění výstrahy při přiblížení drážního vozidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "124. Jaká je minimální tloušťka drátových táhel používaných pro pohyb závor?",
+      "answer_a": "4 mm.",
+      "answer_b": "6 mm.",
+      "answer_c": "2 mm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "125. Jaký je hlavní rozdíl mezi PZM 1 a jinými typy mechanických přejezdových zařízení?",
+      "answer_a": "PZM 1 je obsluhováno na dálku, kde závorářské stanoviště nesplňuje podmínky podle 5.2.3.1.",
+      "answer_b": "PZM 1 je vždy vybaveno pouze ručním pohonem závor.",
+      "answer_c": "PZM 1 je určeno pouze pro tratě s maximální rychlostí 50 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "126. Co se stane, pokud obsluhující zaměstnanec nedodrží stanovenou rychlost při obsluze PZM 1?",
+      "answer_a": "Musí použít nouzové vybavovací zařízení k dokončení obsluhy.",
+      "answer_b": "Zařízení se automaticky přepne do poruchového stavu.",
+      "answer_c": "Obsluha se automaticky ukončí a závory zůstanou ve stávající poloze.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "127. Jaké výstražné signály dává PZM 1?",
+      "answer_a": "Varovný signál, výstražné signály A, B, C a D.",
+      "answer_b": "Pouze výstražný signál B a zvukovou výstrahu.",
+      "answer_c": "Výstražné signály A, B a zvukový signál bez mechanické výstrahy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "128. Jaká je délka předzváněcí doby při výstražném signálu A?",
+      "answer_a": "Je dána výpočtem podle přílohy B.5.3.",
+      "answer_b": "Musí být vždy minimálně 30 sekund.",
+      "answer_c": "Závisí na rychlosti vlaku a vzdálenosti přejezdu od návěstidla.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "129. Jaké výstrahy jsou považovány za základní u PZM 1?",
+      "answer_a": "Zvuková při signálech A a B, mechanická při signálech B, C a D.",
+      "answer_b": "Zvuková a mechanická výstraha pouze při signálu B.",
+      "answer_c": "Pouze mechanická výstraha při všech signálech.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "130. Jaké podmínky musí být splněny pro zřízení PZM 2?",
+      "answer_a": "Závorářské stanoviště musí být méně než 60 m od přejezdu, musí být viditelnost na přejezd a obsluhující musí být schopen upozornit účastníky provozu.",
+      "answer_b": "Závorářské stanoviště musí být vybaveno kamerovým systémem a zvukovou sirénou.",
+      "answer_c": "Přejezd musí být na trati s maximální rychlostí 80 km/h.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "131. Co je charakteristické pro výstrahu u PZM 2?",
+      "answer_a": "Výstraha začíná sklápěním břeven a obsluha může sklápění přerušit.",
+      "answer_b": "Výstraha je vždy doplněna zvukovou výstrahou.",
+      "answer_c": "Výstraha začíná automaticky při přiblížení vlaku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "132. Jaká je hlavní vlastnost PZM 3?",
+      "answer_a": "Umožňuje přepínat mezi obsluhou na místě a na dálku.",
+      "answer_b": "Je vždy vybaveno světelnou výstrahou jako základní výstrahou.",
+      "answer_c": "Je určeno pouze pro tratě s nízkou intenzitou provozu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "133. Kdy je spuštěna světelná výstraha u PZM obsluhovaného na místě?",
+      "answer_a": "Současně se započetím sklápění břeven.",
+      "answer_b": "Ihned po přiblížení vlaku k přejezdu.",
+      "answer_c": "Až po dokončení sklápění břeven.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "134. Jaký stav vyvolává porucha světelné výstrahy u PZM?",
+      "answer_a": "Nouzový stav.",
+      "answer_b": "Poruchový stav.",
+      "answer_c": "Automatické vypnutí přejezdového zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "135. Jaké jsou podmínky pro použití PZS 1 na dráze celostátní?",
+      "answer_a": "PZS 1 lze použít pouze jako prozatímní zařízení, obsluhované ručně z místa přejezdu s přímou viditelností.",
+      "answer_b": "PZS 1 lze použít pouze na tratích s rychlostí do 50 km/h.",
+      "answer_c": "PZS 1 lze použít pouze na přejezdech bez závor.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "136. Kdy je nutné vybavit přejezd celými závorami s kontrolou celistvosti břevna?",
+      "answer_a": "Při rychlosti drážního vozidla nad 120 km/h.",
+      "answer_b": "Při křížení více než dvou tratí.",
+      "answer_c": "Při křížení se silnicí I. třídy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "137. Kdy se doporučuje použít PZS se závorami pro snížení hlukové zátěže?",
+      "answer_a": "V blízkosti obytných domů, nemocnic nebo lázní.",
+      "answer_b": "Na tratích s maximální rychlostí 100 km/h.",
+      "answer_c": "Na přejezdech s vysokou intenzitou provozu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "138.",
+      "answer_a": "Jaké je doporučení pro přejezdy na komunikacích určených pouze pro chodce a cyklisty?",
+      "answer_b": "Poloviční závory se nezřizují.",
+      "answer_c": "Používají se pouze světelné výstrahy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "139. Kdy může být PZS konstruováno tak, že splňuje podmínky pro různé druhy PZS z různých směrů?",
+      "answer_a": "Pokud je to vhodné z provozních nebo ekonomických důvodů.",
+      "answer_b": "Pokud je přejezd na trati s maximální rychlostí do 80 km/h.",
+      "answer_c": "Pouze na přejezdech se závorami.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "140. Priority ovládání - 5.3.3.1 Jednotlivé způsoby ovládání PZS musí mít priority podle tohoto pořadí:",
+      "answer_a": "místní uzavření přejezdu – nejvyšší priorita;",
+      "answer_b": "nouzové",
+      "answer_c": "nouzové",
+      "correct_answer": "A",
+      "explanation": "()"
+    }
+  ]
+}

@@ -1,0 +1,918 @@
+{
+  "name": "ČSN_34_2613_ed3___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (114 otázek)",
+  "questions": [
+    {
+      "question": "001. Co je to \"Kolejový přijímač\"?",
+      "answer_a": "Část výstroje KO poskytující informaci o volnosti/obsazení el. kolejového úseku na základě změny napěťových nebo proudových parametrů vstupního signálu.",
+      "answer_b": "Zařízení sloužící k měření rychlosti vlaků na základě magnetických senzorů umístěných podél koleje.",
+      "answer_c": "Signalizační zařízení, které informuje strojvedoucího o aktuální poloze výhybek na trati.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.3.9) Kolejový přijímač je klíčovou součástí kolejových obvodů (KO). Zajišťuje bezpečný provoz tím, že detekuje obsazení nebo volnost kolejového úseku."
+    },
+    {
+      "question": "002. Za libovolně nízký zemní odpor se považuje:",
+      "answer_a": "Místo v KO, které lze zřídit kdekoliv na středech stykových transformátorů nebo středu SYT za podmínky použití prvku pro omezení průchodu signálního proudu (např. ukolejňovací tlumivky UT) nebo odpor nižší jak 5 Ohm.",
+      "answer_b": "Místo v KO, kde zemní odpor nesmí překročit hodnotu 10 Ohm, bez ohledu na použití dalších prvků.",
+      "answer_c": "Místo v KO, které je chráněno pouze izolačními prvky a kde odpor nesmí být vyšší než 15 Ohm.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.3.13)  Libovolně nízký zemní odpor je definován jako odpor nižší než 5 Ohm nebo místo, kde jsou použity specifické prvky jako ukolejňovací tlumivky. Tento parametr je klíčový pro bezpečnost KO."
+    },
+    {
+      "question": "003. Ukolejňovací tlumivka je:",
+      "answer_a": "Tlumivka připojena ke KO, zabraňující signálním proudům KO, téci do ukolejněné konstrukce s nízkým zemním odporem. Zabraňuje možnému vytvoření obchozí cesty signálním proudům.",
+      "answer_b": "Tlumivka, která reguluje napětí v elektrických obvodech vlakových souprav.",
+      "answer_c": "Tlumivka, která slouží k automatickému otevírání a zavírání přejezdových závor.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613, čl. 3.26) Tlumivka připojená ke KO, zabraňující signálnímu proudu KO téci do ukolejněné konstrukce s nízkým zemním odporem a tím zabraňující možnému vytvoření obchozí cesty signálního proudu."
+    },
+    {
+      "question": "004. Kolejové lože musí být upraveno tak, aby štěrk byl vzdálen od paty kolejnic nejméně?",
+      "answer_a": "Kolejové lože nesmí být v přímém dotyku s pojížděnou kolejnicí.",
+      "answer_b": "Kolejové lože musí být vzdáleno od paty kolejnic alespoň 10 mm.",
+      "answer_c": "Kolejové lože musí být izolováno vrstvou o tloušťce 20 mm.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.7.1.8) Kolejové lože nesmí být v přímém dotyku s pojížděnou kolejnicí. Tento požadavek zajišťuje elektrickou izolaci a splnění podmínek měrné svodové admitance."
+    },
+    {
+      "question": "005. Pravidelné měření svodu \"kolejnice - zem\" se provádí podle požadavků:",
+      "answer_a": "Provozovatele dráhy.",
+      "answer_b": "Výrobce kolejových obvodů.",
+      "answer_c": "Ministerstva dopravy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.7.1.12) Pravidla pro měření svodu \"kolejnice - zem\" stanovuje provozovatel dráhy, který odpovídá za bezpečný provoz a údržbu infrastruktury."
+    },
+    {
+      "question": "006. Co je to Dvoupásový kolejový obvod?",
+      "answer_a": "Kolejový obvod u kterého jsou zpětné trakční proudy odváděny oběma kolejnicovými pásy.",
+      "answer_b": "Kolejový obvod, který využívá pouze jednu kolejnici pro zpětné trakční proudy.",
+      "answer_c": "Kolejový obvod, který nevyužívá žádné kolejnice pro zpětné trakční proudy.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl. 3.1) KO, u kterého jsou zpětné proudy odváděny oběma kolejnicovými pásy elektrického kolejového úseku do systému zpětných kolejnicových vedení."
+    },
+    {
+      "question": "007. Zpětný trakční proud:",
+      "answer_a": "Zpětný trakční proud, zpětný proud při ústředním zásobování vozů elektrickou energií nebo zpětný proud stacionárních zařízení napájených z TV, který teče kolejovým vedením; zpětný proud je tvořen pracovním proudem a rušivým proudem.",
+      "answer_b": "Proud, který vzniká při zpomalování vlaku a je veden zpět do trakčního vedení pomocí rekuperace.",
+      "answer_c": "Elektrický proud, který vzniká při poruše izolace a je odváděn do země pomocí ochranného zařízení.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.3.22) Zpětný trakční proud je proud, který se vrací do napájecího systému kolejovým vedením. Obsahuje složky pracovního i rušivého proudu."
+    },
+    {
+      "question": "008. Co je to Symetrizační tlumivka (SYT)?",
+      "answer_a": "Tlumivka připojená ke KO sloužící k symetrickému připojení svodičů přepětí, ochranných vodičů a napájecích zdrojů, napájených z trakčního vedení.",
+      "answer_b": "Tlumivka, která slouží k redukci šumu v komunikacích mezi stanicemi.",
+      "answer_c": "Tlumivka používaná k regulaci rychlosti vlaků na trati.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl. 3.25) Tlumivka připojená ke kolejovému obvodu, sloužící k symetrickému připojení svodičú přepětí, ochranných vodičů a napájecích zdrojů, napájených z trakčního vedení apod."
+    },
+    {
+      "question": "009. Měděná lanová propojení mohou být nahrazena ocelovými u kolejových obvodů se signální frekvencí?",
+      "answer_a": "< 500 Hz",
+      "answer_b": "> 500 Hz",
+      "answer_c": "< 75 Hz",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.7.1.9) U KO se signálním kmitočtem nižším než 500 Hz mohou být měděná lanová propojení a propojky nahrazeny ocelovými lanovými propojeními a propojkami alespoň o stejné vodivosti nebo způsobem stanoveným provozovatelem dráhy."
+    },
+    {
+      "question": "010. Pokud se pro dosažení hodnoty měrné svodové admitance použijí izolační podložky, musí se u dvoupásových KO izolovat kolejnice od podpor:",
+      "answer_a": "Vždy v obou kolejnicových pásech.",
+      "answer_b": "Pouze v jednom kolejnicovém pásu, aby byla zachována vodivost.",
+      "answer_c": "Vždy pouze na kolejnici, která slouží jako zpětný vodič trakčního proudu.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613 ed.3, čl.7.1.7) U dvoupásových KO je nutné izolovat kolejnice od podpor v obou pásech, aby byla zajištěna požadovaná hodnota měrné svodové admitance."
+    },
+    {
+      "question": "011. Čím je tvořen Zpětný trakční proud?",
+      "answer_a": "Pracovním proudem a rušivým proudem.",
+      "answer_b": "Rušivým proudem.",
+      "answer_c": "Magnetickým polem a elektrickým napětím.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613, čl. 3.22) Zpětný trakční proud, zpětný proud při ústředním zásobování vozů elektrickou energií nebo zpětný proud stacionárních zařízení napájených z TV, který teče kolejovým vedením; zpětný proud je tvořen pracovním proudem a rušivým proudem."
+    },
+    {
+      "question": "012. Základním dokumentem pro nastavování kolejových obvodů jsou?",
+      "answer_a": "Regulační tabulky.",
+      "answer_b": "Provozní řády.",
+      "answer_c": "Předpisy SŽ.",
+      "correct_answer": "A",
+      "explanation": "(ČSN 34 2613, čl. 9.2.1) Dokumentace kolejových obvodů - Základním dokumentem pro nastavování KO jsou regulační tabulky"
+    },
+    {
+      "question": "013. Jaké kolejové obvody označuje norma ČSN 34 2613 ed.3 jako perspektivní?",
+      "answer_a": "Kolejové obvody splňující požadavky na interoperabilitu v železničním systému EU.",
+      "answer_b": "Kolejové obvody používané na spádovištích.",
+      "answer_c": "Kolejové obvody, které nevyžadují rušivé proudy drážních vozidel.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "014. Na jaké kolejové obvody se norma ČSN 34 2613 ed.3 nevztahuje?",
+      "answer_a": "Na kolejové obvody používané na spádovištích.",
+      "answer_b": "Na perspektivní kolejové obvody.",
+      "answer_c": "Na kolejové obvody splňující požadavky na interoperabilitu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "015. Proč jsou v normě stanoveny technické požadavky na starší i perspektivní KO?",
+      "answer_a": "Pro posuzování jejich součinnosti s působícími vnějšími vlivy.",
+      "answer_b": "Pro sjednocení parametrů všech KO v železničním systému.",
+      "answer_c": "Pro zajištění bezpečnosti pouze starších KO.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "016. Co je dvoupásový kolejový obvod?",
+      "answer_a": "KO, kde zpětné proudy odvádějí oba kolejnicové pásy do systému zpětných vedení.",
+      "answer_b": "KO, kde zpětné proudy odvádí pouze jeden kolejnicový pás.",
+      "answer_c": "KO, kde proudy neodvádí kolejnicové pásy, ale externí vedení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "017. Jaký je rozdíl mezi jednopásovým a dvoupásovým KO?",
+      "answer_a": "Jednopásový KO odvádí proudy jedním kolejnicovým pásem, dvoupásový oběma.",
+      "answer_b": "Jednopásový KO odvádí proudy oběma pásy, dvoupásový jedním.",
+      "answer_c": "Jednopásový KO neodvádí žádné proudy, dvoupásový pouze trakční proudy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "018. Co je paralelní kolejový obvod?",
+      "answer_a": "KO, jehož napájecí a přijímačová výstroj je spojena paralelně s elektrickým kolejovým úsekem.",
+      "answer_b": "KO, kde výstroj napájecího konce je zapojena do série s kolejovým úsekem.",
+      "answer_c": "KO, který neumožňuje detekovat volnost příslušného kolejového úseku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "019. Jaký je hlavní rozdíl mezi sériovým a paralelním KO?",
+      "answer_a": "Sériový KO neumožňuje jednoznačně odvodit volnost úseku, paralelní ano.",
+      "answer_b": "Paralelní KO neumožňuje detekci obsazení úseku, sériový ano.",
+      "answer_c": "Sériový KO neobsahuje přijímač, paralelní KO ano.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "020. Co obsahuje sérioparalelní kolejový obvod?",
+      "answer_a": "Dva přijímače, jeden zapojený sériově a druhý paralelně.",
+      "answer_b": "Jeden přijímač zapojený pouze paralelně.",
+      "answer_c": "Jeden přijímač zapojený pouze sériově.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "021. Co je kolejový přijímač?",
+      "answer_a": "Část KO poskytující informaci o volnosti/obsazení úseku na základě změny parametrů signálu.",
+      "answer_b": "Zařízení sloužící k napájení kolejového obvodu.",
+      "answer_c": "Část KO, která zajišťuje přenos trakčních proudů do kolejiště.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "022. Co je místo mezikolejového propojení?",
+      "answer_a": "Místo, kde lze propojit středy trakčních stykových transformátorů dvoupásových KO bez omezovacího prvku.",
+      "answer_b": "Místo, kde lze propojit kolejnice různých napěťových úrovní.",
+      "answer_c": "Místo, kde se propojují pouze jednopásové kolejové obvody.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "023. Co je zpětný proud?",
+      "answer_a": "Proud tekoucí kolejovým vedením, tvořený pracovním a rušivým proudem.",
+      "answer_b": "Proud, který se vrací do trakčního vedení přes izolované styky.",
+      "answer_c": "Proud tekoucí pouze stacionárními zařízeními napájenými z TV.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "024. K čemu slouží stykový transformátor?",
+      "answer_a": "K umožnění průchodu zpětného trakčního nebo topného proudu přes izolované styky.",
+      "answer_b": "K napájení kolejového obvodu signálním proudem.",
+      "answer_c": "K propojení dvou paralelních kolejových obvodů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "025. Co je symetrizační tlumivka (SYT)?",
+      "answer_a": "Tlumivka sloužící k symetrickému připojení svodičů přepětí, ochranných vodičů a napájecích zdrojů.",
+      "answer_b": "Tlumivka zabraňující signálnímu proudu téci do ukolejněné konstrukce.",
+      "answer_c": "Tlumivka vložená do připojení drenážní ochrany podzemních konstrukcí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "026. Jaký je účel ukolejňovací tlumivky (UT)?",
+      "answer_a": "Zabránit signálnímu proudu téci do ukolejněné konstrukce s nízkým zemním odporem.",
+      "answer_b": "Zajistit průchod signálního proudu do drenážovaných konstrukcí.",
+      "answer_c": "Symetricky připojit svodiče přepětí a ochranné vodiče k napájecím zdrojům.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "027. Co je odbuzení kolejového přijímače?",
+      "answer_a": "Ztráta indikace volnosti kolejového obvodu.",
+      "answer_b": "Ztráta napájení kolejového přijímače.",
+      "answer_c": "Indikace obsazení kolejového obvodu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "028. Co je paralelní kolejový obvod (PKO)?",
+      "answer_a": "Kolejový obvod, kde je vysílač signálu paralelně zapojen ke kolejovému přijímači přes EKÚ.",
+      "answer_b": "Kolejový obvod, kde je vysílač signálu zapojen do série s kolejovým přijímačem.",
+      "answer_c": "Kolejový obvod, který neumožňuje detekci volnosti EKÚ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "029. K čemu lze použít PKO?",
+      "answer_a": "K bezpečné detekci volnosti EKÚ nebo průjezdu vlaku přes dva sousední EKÚ.",
+      "answer_b": "Pouze k detekci obsazení EKÚ.",
+      "answer_c": "K detekci poruchy kolejového obvodu bez ohledu na volnost EKÚ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "030. Co znamená vybuzení kolejového přijímače u PKO?",
+      "answer_a": "Informaci, že příslušný EKÚ je volný při splnění podmínek kategorií a vnějších podmínek činnosti.",
+      "answer_b": "Informaci, že kolejový obvod je obsazený bez ohledu na stav EKÚ.",
+      "answer_c": "Ztrátu funkčnosti kolejového přijímače.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "031. Co zajišťuje kolejový obvod 4. kategorie?",
+      "answer_a": "Kontrolu elektrické celistvosti kolejnicového vedení a volného/obsazeného stavu EKÚ.",
+      "answer_b": "Pouze kontrolu obsazeného stavu EKÚ bez ohledu na celistvost kolejnicového vedení.",
+      "answer_c": "Kontrolu pouze havarijního stavu bez detekce volnosti EKÚ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "032. Jaký je rozdíl mezi KO 4. a 3. kategorie?",
+      "answer_a": "KO 3. kategorie nezajišťuje kontrolu v oblastech srdcovek a křižovatek.",
+      "answer_b": "KO 3. kategorie poskytuje pouze kontrolu havarijního stavu.",
+      "answer_c": "KO 3. kategorie zajišťuje kontrolu celistvosti ve všech částech železničního svršku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "033. Co je podmínkou pro správnou funkci KO 2. kategorie v oblastech volných odbočných větví?",
+      "answer_a": "Zajištění elektrické celistvosti kolejnicového vedení volných odbočných větví.",
+      "answer_b": "Použití symetrizačních tlumivek na odbočných větvích.",
+      "answer_c": "Odstranění všech paralelních větví z kolejového obvodu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "034. Jaký je hlavní nedostatek KO 1. kategorie?",
+      "answer_a": "Nezajišťuje kontrolu elektrické celistvosti kolejnicového vedení a lanových propojení.",
+      "answer_b": "Neumožňuje detekci volného/obsazeného stavu EKÚ.",
+      "answer_c": "Nedokáže fungovat v oblastech srdcovek a výhybek.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "035. Jak lze zvýšit bezpečnost KO 1. a KO 2. kategorie?",
+      "answer_a": "Použitím nezávislého technického prostředku pro zjišťování elektrické celistvosti nebo zdvojováním propojek.",
+      "answer_b": "Použitím pouze pravidelných vizuálních kontrol železničního svršku.",
+      "answer_c": "Zvýšením výkonu kolejového přijímače bez dalších opatření.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "036. Kde musí být lanové propojení připojeno k izolovanému styku?",
+      "answer_a": "Co nejblíže, nejdále však 1 m od izolovaného styku.",
+      "answer_b": "Přesně 2 m od izolovaného styku.",
+      "answer_c": "V libovolné vzdálenosti od izolovaného styku, pokud je propojení zdvojené.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "037. Co stanovuje podmínky použití KO příslušné bezpečnostní kategorie?",
+      "answer_a": "ČSN 34 2614 ed. 2.",
+      "answer_b": "Předpis SŽ D1.",
+      "answer_c": "Interní směrnice dopravce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "038. Jakou informaci lze spolehlivě odvodit ze stavu kolejového přijímače u sériového KO?",
+      "answer_a": "Informaci o obsazení EKÚ nebo jeho části.",
+      "answer_b": "Informaci o volnosti EKÚ bez dalších podmínek.",
+      "answer_c": "Informaci o havarijním stavu železničního svršku.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "039. Jaké využití má sériový KO s navazujícími logickými obvody?",
+      "answer_a": "Indikace průjezdu vlaků nebo automatizace třídicího procesu na spádovišti.",
+      "answer_b": "Kontrola elektrické celistvosti kolejnicového vedení.",
+      "answer_c": "Zajištění havarijní signalizace v případě poruchy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "040. Co umožňuje sérioparalelní KO vybavený dvěma kolejovými přijímači?",
+      "answer_a": "Spolehlivou detekci obsazení a bezpečnou detekci volnosti EKÚ.",
+      "answer_b": "Detekci pouze obsazení EKÚ bez možnosti detekce volnosti.",
+      "answer_c": "Pouze indikaci průjezdu vlaku přes EKÚ.",
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "question": "041. Jaké požadavky musí splňovat nové KO na tratích evropského železničního systému?",
+      "answer_a": "Musí bezpečně fungovat při pojíždění vozidly splňujícími platné TSI.",
+      "answer_b": "Musí být kompatibilní pouze s vozidly národních železničních systémů.",
+      "answer_c": "Nemusí splňovat žádné specifické požadavky na TSI.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "042. Kdy nastane nebezpečný stav u dvoupásového KO?",
+      "answer_a": "Pokud nedojde k odbuzení kolejového přijímače v šuntovém a havarijním stavu.",
+      "answer_b": "Pokud kolejový přijímač zůstane odbuzený při volnosti EKÚ.",
+      "answer_c": "Pokud dojde k odbuzení přijímače v šuntovém stavu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "043. Jaký problém může nastat u sériového KO?",
+      "answer_a": "Vyhodnocení průjezdu vlaku bez přítomnosti drážního vozidla v KO.",
+      "answer_b": "Nemožnost detekce obsazení EKÚ.",
+      "answer_c": "Ovlivnění funkce KO vlivem průmyslového kmitočtu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "044. Jaké vlastnosti musí mít paralelní KO na tratích nebo ve stanicích?",
+      "answer_a": "Odolnost proti rušivým vlivům vedení vn a vvn.",
+      "answer_b": "Schopnost detekce pouze obsazení EKÚ.",
+      "answer_c": "Možnost fungování bez ohledu na rušivé proudy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "045. Jaký materiál lze použít pro lanová propojení u KO se signálním kmitočtem pod 500 Hz?",
+      "answer_a": "Ocelová lanová propojení o stejné nebo vyšší vodivosti.",
+      "answer_b": "Pouze měděná lanová propojení.",
+      "answer_c": "Plastová lanová propojení s izolační vrstvou.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "046. Podle čeho se stanovuje elektrický odpor systému upevnění kolejnic?",
+      "answer_a": "Podle ČSN EN 13146-5.",
+      "answer_b": "Podle ČSN EN 62631-1.",
+      "answer_c": "Podle požadavků provozovatele dráhy bez normy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "047. Jaký je maximální povolený rozdíl v umístění izolovaných styků v protilehlých kolejnicových pásech?",
+      "answer_a": "500 mm.",
+      "answer_b": "1000 mm.",
+      "answer_c": "250 mm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "048. Jaká je minimální hodnota povrchového odporu celopryžových konstrukcí na přejezdech?",
+      "answer_a": "Více než 3 kΩ při 10 kHz a 50 kHz.",
+      "answer_b": "Méně než 3 kΩ při 10 kHz a 50 kHz.",
+      "answer_c": "Přesně 3 kΩ při 10 kHz a 50 kHz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "049. Jaké normy musí splňovat zdroje pro napájení KO?",
+      "answer_a": "ČSN EN 50160 ed. 3 a ČSN EN 50163 ed. 2.",
+      "answer_b": "Pouze ČSN EN 50160 ed. 3.",
+      "answer_c": "Pouze ČSN EN 50163 ed. 2.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "050. Jaké harmonické složky napětí je nutno předpokládat u kabelových vedení 6 kV, 50 Hz?",
+      "answer_a": "250 Hz, 350 Hz, 550 Hz, 650 Hz.",
+      "answer_b": "100 Hz, 200 Hz, 400 Hz, 800 Hz.",
+      "answer_c": "300 Hz, 450 Hz, 600 Hz, 750 Hz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "051. Z jakých zdrojů může být napájeno KO dle normy ČSN EN 50163 ed. 2?",
+      "answer_a": "Z DC nebo AC trakce.",
+      "answer_b": "Z veřejné distribuční sítě.",
+      "answer_c": "Pouze z lokální distribuční sítě.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "052. Jaký kmitočet má kabelové vedení napájené z trakčních napájecích stanic DC 3 kV?",
+      "answer_a": "6 kV, 50 Hz nebo 6 kV, 75 Hz.",
+      "answer_b": "3 kV, 50 Hz.",
+      "answer_c": "6 kV, 100 Hz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "053. Jaké podmínky musí být splněny pro připojení neživých částí trakčního vedení ke kolejnicovému vedení?",
+      "answer_a": "Nesmí snížit kategorii KO, překročit mezní admitance a připojit ohrožující napětí.",
+      "answer_b": "Musí být vždy připojeny na místa neomezeného připojení.",
+      "answer_c": "Nesmí být připojeny k dvoupásovým KO.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "054. Co je považováno za vodivé spojení konstrukce s kolejí?",
+      "answer_a": "Spojení, které není bezpečně nevodivé pro signální kolejový proud.",
+      "answer_b": "Pouze spojení s měrnou svodovou admitancí pod 7.1.1.",
+      "answer_c": "Spojení, které má izolační odpor vyšší než 10 MΩ.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "055. Jaké kmitočty nesmí obsahovat ohrožující napětí připojené ke kolejnicovému vedení?",
+      "answer_a": "Kmitočty spadající do ochranného provozního pásma KO.",
+      "answer_b": "Kmitočty vyšší než 100 Hz.",
+      "answer_c": "Pouze průmyslový kmitočet 50 Hz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "056. Co musí být doloženo mimo místa neomezeného připojení libovolně nízkých zemních odporů?",
+      "answer_a": "Konkrétní naměřená hodnota zemního odporu.",
+      "answer_b": "Pouze hodnota měrné svodové admitance.",
+      "answer_c": "Dokumentace o připojení konstrukce.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "057. Jak se považuje elektrická drenáž bez omezovacích prvků ve smyslu 7.4.1?",
+      "answer_a": "Za vodivou konstrukci s libovolně nízkým zemním odporem a za zdroj ohrožujícího napětí 50 Hz.",
+      "answer_b": "Za zdroj ohrožujícího napětí pouze při kmitočtu 60 Hz.",
+      "answer_c": "Za vodivou konstrukci pouze s vysokým zemním odporem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "058. Co musí být použito při připojení elektrické drenáže na KO s provozním pásmem 50 Hz?",
+      "answer_a": "Kontrolní obvod, který při 100 mA rozpojí drenážní obvod na dobu stanovenou provozovatelem dráhy.",
+      "answer_b": "Pouze ukolejňovací tlumivky.",
+      "answer_c": "Zařízení omezující napětí bez kontrolního obvodu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "059. Jaké vlastnosti musí mít omezovací prvek signálního proudu?",
+      "answer_a": "Musí zamezit průtoku signálního proudu nebo omezit dobu průtoku tak, aby nedošlo k vybuzení kolejového přijímače.",
+      "answer_b": "Musí vždy rozpojit drenážní obvod při hodnotě proudu nad 50 mA.",
+      "answer_c": "Musí být schopen snížit napětí pod 10 V.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "060. Co je nutné periodicky kontrolovat u zařízení omezujícího napětí?",
+      "answer_a": "Požadované parametry zařízení.",
+      "answer_b": "Funkčnost drenážní tlumivky.",
+      "answer_c": "Hodnotu měrné svodové admitance yB.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "061. Co musí být použito v sérii s drenážní tlumivkou?",
+      "answer_a": "Technický prostředek, který při nárůstu stejnosměrné složky drenážního proudu rozpojí drenážní obvod.",
+      "answer_b": "Ukolejňovací tlumivky.",
+      "answer_c": "Zařízení pro měření stejnosměrného proudu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "062. Jaká je minimální vzdálenost pro připojení zdroje rušení obsahujícího kmitočtové pásmo 50 Hz ke kolejím s jednopásovými KO?",
+      "answer_a": "8 km.",
+      "answer_b": "3 km.",
+      "answer_c": "5 km.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "063. K jakým účelům smí být jednotlivé části kolejiště vodivě propojeny?",
+      "answer_a": "K trakčnímu propojení, ústřednímu zásobování vozů a kontrole izolovaných styků.",
+      "answer_b": "Pouze ke kontrole izolovaných styků.",
+      "answer_c": "K jakémukoliv účelu, pokud je zajištěna izolace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "064. Co musí být doloženo v technické dokumentaci elektrického zařízení, které má být spojeno s kolejnicovými pásy KO?",
+      "answer_a": "Splnění všech podmínek dle 7.4.1 až 7.4.6.",
+      "answer_b": "Pouze splnění podmínek pro připojení drenážního zařízení.",
+      "answer_c": "Pouze splnění podmínek pro trakční zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "065. Jaké podmínky musí být splněny při propojení částí kolejiště?",
+      "answer_a": "Musí být vyloučen vznik obchozích cest signálního proudu.",
+      "answer_b": "Musí být použity pouze izolované vodiče.",
+      "answer_c": "Musí být zajištěna kontrola napětí na stycích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "066. Jaká je minimální vzdálenost pro připojení zdroje rušení obsahujícího kmitočtové pásmo 50 Hz ke kolejím s dvoupásovými KO?",
+      "answer_a": "3 km.",
+      "answer_b": "8 km.",
+      "answer_c": "5 km.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "067. Jaká je maximální vzdálenost mezi osami sousedních náprav jednoho kolejového vozidla?",
+      "answer_a": "20 m.",
+      "answer_b": "15 m.",
+      "answer_c": "25 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "068. Jaká je minimální šuntová citlivost kolejových obvodů, kterou musí být detekováno každé drážní vozidlo?",
+      "answer_a": "0,1 Ohmu.",
+      "answer_b": "0,5 Ohmu.",
+      "answer_c": "0,05 Ohmu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "069. Jaké zařízení musí mít samostatně jezdící hnací kolejové vozidlo o hmotnosti nižší než 38 t na regionálních tratích?",
+      "answer_a": "Zařízení na odstraňování nečistot z jízdní plochy dvojkolí s registrací jeho činnosti.",
+      "answer_b": "Zařízení pro mazání okolků.",
+      "answer_c": "Zařízení na kontrolu relativní asymetrie zpětných proudů.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "070. Co musí být provedeno u vozidla s hmotností nižší než 30 t, pokud není vybaveno nápravovými uzemňovači?",
+      "answer_a": "Vodivé propojení ložiskových domků mezi sebou navzájem.",
+      "answer_b": "Vodivé propojení všech dvojkolí s kolejnicemi.",
+      "answer_c": "Zařízení na odstranění nečistot z hlav kolejnic.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "071. Jaká je maximální relativní asymetrie zpětných proudů tekoucích do kolejnic z kolejových vozidel?",
+      "answer_a": "10 %.",
+      "answer_b": "15 %.",
+      "answer_c": "5 %.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "072. Jaká zařízení mohou být instalována na tratích s perspektivními kolejovými obvody?",
+      "answer_a": "Stacionární zařízení napájená z trakčního vedení.",
+      "answer_b": "Pouze mobilní zařízení.",
+      "answer_c": "Žádná zařízení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "073. Jaký požadavek musí splňovat stacionární zařízení odebírající energii z trakčního vedení?",
+      "answer_a": "Nesmí vytvářet rušivý proud překračující povolené limity v ochranných kmitočtových pásmech KO.",
+      "answer_b": "Musí být napájeno výhradně z nezávislého zdroje.",
+      "answer_c": "Musí být instalováno pouze na neelektrizovaných tratích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "074. Jakým způsobem se ověřují hodnoty rušivých proudů pro stacionární zařízení?",
+      "answer_a": "Měřením.",
+      "answer_b": "Výpočtem dle technické dokumentace.",
+      "answer_c": "Schválením projektové dokumentace.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "075. Jaká je minimální vzdálenost stacionárního zařízení od starších kolejových obvodů?",
+      "answer_a": "Minimálně LPR.",
+      "answer_b": "Minimálně 10 m.",
+      "answer_c": "Minimálně 50 m.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "076. Jaké normy musí být splněny při instalaci stacionárního zařízení u starších kolejových obvodů?",
+      "answer_a": "ČSN 34 2614 ed. 2.",
+      "answer_b": "ČSN 33 2000-5-52.",
+      "answer_c": "ČSN 73 6100.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "077. Jaké normy definují požadavky na prostředí, ve kterém musí části výstroje kolejových obvodů zajišťovat řádnou funkci?",
+      "answer_a": "ČSN EN 50125-3.",
+      "answer_b": "ČSN 33 2000-5-52.",
+      "answer_c": "ČSN 34 2614 ed. 2.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "078. Jaké parametry musí být definovány v technické dokumentaci součástí výstroje KO?",
+      "answer_a": "Rozsah teplot, odolnost proti rázům, vibracím a stříkající vodě, parametry spolehlivosti a životnosti.",
+      "answer_b": "Pouze rozsah teplot a relativní vlhkost okolního prostředí.",
+      "answer_c": "Pouze odolnost proti stříkající vodě a rázům.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "079. Jaké dokumenty se zpracovávají pro každý typ kolejového obvodu?",
+      "answer_a": "Regulační tabulky a rozbory bezpečnosti funkce.",
+      "answer_b": "Výhradně technické výkresy a montážní postupy.",
+      "answer_c": "Jen protokoly o zkouškách odolnosti.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "080. Jaké parametry musí být stanoveny pro každý typ kolejového přijímače?",
+      "answer_a": "Vstupní impedance, maximálně přípustné provozní napětí, časové parametry změn stavů.",
+      "answer_b": "Pouze vstupní impedance a jmenovité napětí.",
+      "answer_c": "Jen napěťové parametry kolejového přijímače.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "081. Co musí být definováno u kolejového přijímače s fázovou závislostí?",
+      "answer_a": "Jmenovité napětí a proud, vstupní impedance, fázové vztahy a příkon.",
+      "answer_b": "Pouze vstupní impedance a fázové vztahy.",
+      "answer_c": "Jen jmenovitý příkon a napětí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "082. Jaká je tolerance hodnoty impedance hlavního vinutí při doplňujícím vinutí naprázdno?",
+      "answer_a": "±5 %.",
+      "answer_b": "±10 %.",
+      "answer_c": "±2 %.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "083. Co je teplotní setrvačnost stykového transformátoru?",
+      "answer_a": "Doba, za kterou se ustálí teplota oleje nebo povrchu krytu při trvalém zatížení.",
+      "answer_b": "Maximální teplota transformátoru při přetížení.",
+      "answer_c": "Doba potřebná pro ochlazení transformátoru na okolní teplotu.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "084. Jaké parametry musí obsahovat technická dokumentace stykového transformátoru?",
+      "answer_a": "Impedance vinutí, proudová zatížitelnost, teplotní setrvačnost, elektrická pevnost, izolační odpor.",
+      "answer_b": "Pouze elektrickou pevnost a izolační odpor.",
+      "answer_c": "Jen proudovou zatížitelnost a typ trakční proudové soustavy.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "085. Jaká je maximální krátkodobá proudová zatížitelnost hlavního vinutí stykového transformátoru?",
+      "answer_a": "Mnohonásobně vyšší než trvalé zatížení (více než o jeden řád).",
+      "answer_b": "Maximálně dvojnásobek trvalého zatížení.",
+      "answer_c": "Přesně trojnásobek trvalého zatížení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "086. Co znamená komplexní hodnota impedance hlavního vinutí?",
+      "answer_a": "Modul a argument impedance při doplňujícím vinutí naprázdno.",
+      "answer_b": "Pouze modul impedance při doplňujícím vinutí nakrátko.",
+      "answer_c": "Jen argument impedance při hlavním vinutí naprázdno.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "087. Jaké signální kmitočty se nesmějí nově navrhovat u kolejových obvodů?",
+      "answer_a": "25 Hz a 50 Hz.",
+      "answer_b": "75 Hz a 100 Hz.",
+      "answer_c": "10 Hz a 20 Hz.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "088. Co se rozumí sezónní regulací kolejových obvodů?",
+      "answer_a": "Pravidelné změny nastavení KO v závislosti na ročním období.",
+      "answer_b": "Jednorázové snížení napájecího napětí po obnově železničního svršku.",
+      "answer_c": "Automatická změna nastavení KO při změně teploty.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "089. Jaká šuntová citlivost je minimálně požadovaná pro nové kolejové obvody?",
+      "answer_a": "0,1 Ω.",
+      "answer_b": "0,05 Ω.",
+      "answer_c": "0,2 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "090. Jak se vyhodnocuje obsazení rozvětveného kolejového obvodu?",
+      "answer_a": "Pokles kolejového napětí na jednom kolejovém přijímači pod stanovenou hranici.",
+      "answer_b": "Pokles napětí na všech kolejových přijímačích pod stanovenou hranici.",
+      "answer_c": "Průměrný pokles napětí na všech kolejových přijímačích.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "091. Co se doporučuje při projektování nových kolejových obvodů?",
+      "answer_a": "Instalace perspektivních KO podle přílohy B.",
+      "answer_b": "Použití KO fázově nezávislých na stálý proud.",
+      "answer_c": "Navrhování KO s kmitočtem 25 Hz.",
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "question": "092. Jaký je maximální činný odpor vinutí ukolejňovací tlumivky?",
+      "answer_a": "0,01 Ω.",
+      "answer_b": "0,05 Ω.",
+      "answer_c": "0,1 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "093. Jaký stejnosměrný zkratový proud musí být ukolejňovací tlumivka schopna převést?",
+      "answer_a": "20 kA po dobu až 50 ms.",
+      "answer_b": "10 kA po dobu až 100 ms.",
+      "answer_c": "15 kA po dobu až 30 ms.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "094. Jaké zkušební napětí musí vydržet izolace mezi vinutím a kostrou ukolejňovací tlumivky?",
+      "answer_a": "10 kV po dobu jedné minuty.",
+      "answer_b": "5 kV po dobu jedné minuty.",
+      "answer_c": "15 kV po dobu 30 sekund.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "095. Jaký je minimální izolační odpor mezi vinutím a kostrou ukolejňovací tlumivky?",
+      "answer_a": "20 MΩ při 1 kV.",
+      "answer_b": "10 MΩ při 1 kV.",
+      "answer_c": "30 MΩ při 1 kV.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "096. Jaký je maximální výsledný zemní odpor všech ukolejněných konstrukcí připojených na jeden úsek ukolejňovacího lana?",
+      "answer_a": "Menší než 5 Ω.",
+      "answer_b": "Menší než 10 Ω.",
+      "answer_c": "Menší než 3 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "097. Jaký je maximální činný odpor vinutí drenážní tlumivky?",
+      "answer_a": "0,15 Ω.",
+      "answer_b": "0,01 Ω.",
+      "answer_c": "0,05 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "098. Jaké zkušební napětí musí vydržet izolace mezi vinutím a kostrou drenážní tlumivky?",
+      "answer_a": "10 kV po dobu jedné minuty.",
+      "answer_b": "5 kV po dobu jedné minuty.",
+      "answer_c": "15 kV po dobu 30 sekund.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "099. Jaký proudový impuls musí vydržet symetrizační tlumivka?",
+      "answer_a": "8/20 s s vrcholovou hodnotou 35 kA.",
+      "answer_b": "10/50 s s vrcholovou hodnotou 30 kA.",
+      "answer_c": "5/10 s s vrcholovou hodnotou 40 kA.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "100. Jaký je maximální činný odpor vinutí symetrizační tlumivky?",
+      "answer_a": "0,01 Ω.",
+      "answer_b": "0,15 Ω.",
+      "answer_c": "0,05 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "101. Jakým způsobem musí symetrizační tlumivka odvádět nadproud a zkratový proud?",
+      "answer_a": "Symetricky do obou kolejnic.",
+      "answer_b": "Asymetricky do jedné kolejnice.",
+      "answer_c": "Do zemního vodiče.",
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "question": "102. Kolikrát musí zařízení pro omezení napětí odolat přepětí s proudovým rázem do 100 A po dobu 0,6 s?",
+      "answer_a": "Minimálně 100krát.",
+      "answer_b": "Minimálně 50krát.",
+      "answer_c": "Minimálně 200krát.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "103. Jaký činný odpor nesmí klesnout pod hodnotu při působení dynamického střídavého proudu 4 000 A, 50 Hz po dobu 0,2 s?",
+      "answer_a": "500 Ω.",
+      "answer_b": "1 000 Ω.",
+      "answer_c": "200 Ω.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "104. Kolik po sobě jdoucích působení dynamického stejnosměrného proudu 15 000 A po dobu 0,05 s musí zařízení pro omezení napětí vydržet?",
+      "answer_a": "Minimálně 2.",
+      "answer_b": "Minimálně 5.",
+      "answer_c": "Minimálně 3.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "105. Co označuje první číslice ve čtyřmístném číselném znaku kolejového obvodu?",
+      "answer_a": "Provozní kmitočtové pásmo.",
+      "answer_b": "Pořadové číslo.",
+      "answer_c": "Typ napájení.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "106. Co označuje druhá číslice ve čtyřmístném číselném znaku sériových nebo spádovištních kolejových obvodů?",
+      "answer_a": "Vždy „0“.",
+      "answer_b": "Pořadové číslo.",
+      "answer_c": "Provozní napětí.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "107. Kdy dochází k havarijnímu stavu paralelního kolejového obvodu (PKO)?",
+      "answer_a": "Při přerušení kolejnice, stykové propojky nebo lanového propojení ke stykovému transformátoru.",
+      "answer_b": "Při zvýšení napětí na přijímači nad hranici zaručeného vybuzení.",
+      "answer_c": "Při šuntování PKO kolejovým vozidlem.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "108. Kdy může dojít k šuntovanému stavu paralelního kolejového obvodu?",
+      "answer_a": "Při šuntování PKO kolejovým vozidlem a narušení podélné impedance nebo lanového propojení ke stykovému transformátoru.",
+      "answer_b": "Při lomu kolejnice v kritickém místě EKÚ.",
+      "answer_c": "Při přerušení napájecího obvodu přijímače.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "109. Co se považuje za nejhorší stav z hlediska rušivého proudu na přijímačovém konci PKO?",
+      "answer_a": "Relativní proudová asymetrie 100 %, kdy veškerý rušivý proud protéká přes jednu polovinu hlavního vinutí stykového transformátoru.",
+      "answer_b": "Relativní proudová asymetrie 50 %, kdy rušivý proud protéká oběma polovinami hlavního vinutí.",
+      "answer_c": "Pokles napětí na kolejové fázi pod hranici zaručeného vybuzení přijímače.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "110. Co je provozně nežádoucí stav paralelního kolejového obvodu?",
+      "answer_a": "Pokles napětí na kolejové fázi přijímače pod hranici napětí zaručeného vybuzení účinkem rušivého proudu.",
+      "answer_b": "Zvýšení napětí na kolejové fázi přijímače nad maximální provozní hodnotu.",
+      "answer_c": "Zkrat mezi kolejnicemi na přijímačovém konci KO.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "111. Co je považováno za nízký zemní odpor?",
+      "answer_a": "Zemní odpor nižší než 5 Ohm.",
+      "answer_b": "Zemní odpor nižší než 10 Ohm.",
+      "answer_c": "Zemní odpor nižší než 1 Ohm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "112. Kde lze zřídit místo neomezeného připojení?",
+      "answer_a": "Na středech stykových transformátorů nebo symetrizační tlumivky SYT za podmínky použití prvku pro omezení průchodu signálního proudu.",
+      "answer_b": "Pouze na koncích stykových transformátorů.",
+      "answer_c": "Pouze na středech symetrizační tlumivky bez dalších podmínek.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "113. Jaká opatření jsou nutná na tratích se stejnosměrnou (DC) trakcí proti šíření bludných proudů?",
+      "answer_a": "Použití prvků pro omezení napětí, rozdělení konstrukcí, zřízení elektrických tras pro bludné proudy apod.",
+      "answer_b": "Použití pouze ukolejňovacích tlumivek.",
+      "answer_c": "Použití symetrizačních tlumivek bez dalších opatření.",
+      "correct_answer": "A",
+      "explanation": "()"
+    },
+    {
+      "question": "114. Jaké vlastnosti musí mít zařízení pro vytvoření místa neomezeného připojení?",
+      "answer_a": "Musí zajišťovat, aby při průchodu poruchového proudu nevznikal velký úbytek napětí a nebyly překročeny mezní hodnoty dotykových napětí.",
+      "answer_b": "Musí být schopno přenášet signální proud bez omezení.",
+      "answer_c": "Musí mít zemní odpor vyšší než 5 Ohm.",
+      "correct_answer": "A",
+      "explanation": "()"
+    }
+  ]
+}

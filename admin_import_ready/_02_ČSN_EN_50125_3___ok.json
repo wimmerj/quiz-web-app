@@ -1,0 +1,294 @@
+{
+  "name": "_02_ČSN_EN_50125_3___ok",
+  "description": "Exportovaná tabulka z Otazky_Quiz_2.db (36 otázek)",
+  "questions": [
+    {
+      "question": "001. Jaká je primární aplikace evropské normy ČSN EN 50125-3?",
+      "answer_a": "Tato evropská norma je primárně určena pro konstrukci a užití zařízení a přenosných zařízení pro zabezpečovací a sdělovací systémy, včetně zařízení pro testování, měření a monitorování.",
+      "answer_b": "Tato norma se týká pouze elektronických zařízení.",
+      "answer_c": "Tato norma platí pouze pro zařízení vyráběná v Asii.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "002. Může být tato norma použita mimo Evropu?",
+      "answer_a": "Ano, po dohodě mezi dodavatelem a odběratelem lze normu použít i mimo Evropu.",
+      "answer_b": "Tato norma je výhradně určena pro evropské trhy.",
+      "answer_c": "Mimo Evropu se nesmí používat žádné evropské normy.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "003. Jaké jsou hlavní cíle této normy?",
+      "answer_a": "Hlavními cíli normy jsou definovat podmínky na rozhraní mezi zařízením a jeho okolním prostředím a parametry pro použití při výpočtu RAMS a životnosti s ohledem na vlivy podmínek prostředí.",
+      "answer_b": "Hlavním cílem této normy je stanovit ceny zařízení.",
+      "answer_c": "Norma se zaměřuje pouze na spotřebu energie zařízení.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "004. Zahrnuje tato norma požadavky na zkoušky zařízení?",
+      "answer_a": "Ne, tato evropská norma nestanoví požadavky na zkoušky zařízení.",
+      "answer_b": "Ano, tato norma vyžaduje pravidelné zkoušky zařízení.",
+      "answer_c": "Tato norma vyžaduje zkoušky pouze u zařízení vyrobených v Evropě.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "005. Platí tato norma pro všechna drážní zabezpečovací a sdělovací zařízení?",
+      "answer_a": "Ano, ale s výjimkou zařízení používaných na jeřábech, důlních vozidlech nebo vozidlech lanových drah.",
+      "answer_b": "Tato norma se nevztahuje na žádná drážní zařízení.",
+      "answer_c": "Norma platí pouze pro zařízení používaná na osobních vlacích.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "006. Co jsou to \"podmínky prostředí\" v kontextu této normy?",
+      "answer_a": "Podmínky prostředí se vztahují na soubor fyzikálních, chemických, elektrických a biologických podmínek, které působí v provozu na zařízení a jsou vůči tomuto zařízení vnější.",
+      "answer_b": "\"Podmínky prostředí\" v této normě zahrnují pouze fyzikální faktory, jako jsou teplota a tlak.",
+      "answer_c": "\"Podmínky prostředí\" v této normě se omezují na elektrické vlastnosti zařízení.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "007. Jaká je definice \"krytu zařízení\" podle této normy?",
+      "answer_a": "Kryt zařízení je pouzdro nebo jiný ochranný obal zhotovený výrobcem za účelem upevnění zařízení a ochrany proti náhodnému poškození, příležitostně i proti elektromagnetické kompatibilitě (EMC) a vlivům prostředí.",
+      "answer_b": "Kryt zařízení je jen pouhým obalem sloužícím k estetickým účelům, nemá žádnou funkci v ochraně zařízení.",
+      "answer_c": "Kryt zařízení je zodpovědný pouze za elektromagnetickou kompatibilitu (EMC) a neposkytuje žádnou fyzickou ochranu zařízení.",
+      "correct_answer": "C",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "008. Co představuje \"přístrojová skříň\" v této normě?",
+      "answer_a": "Obal, který se obvykle používá ke společnému umístění různých částí zařízení zabezpečovacího nebo sdělovacího systému, někdy i od různých dodavatelů, a může obsahovat různé kryty zařízení instalované uvnitř skříně pro další ochranu proti vlivům prostředí.",
+      "answer_b": "\"Přístrojová skříň\" je určena pouze pro montáž elektrických komponentů a neobsahuje žádné kryty zařízení.",
+      "answer_c": "obal, který slouží pouze ke skrytí částí zařízení a nemá žádný vliv na ochranu zařízení před vlivy prostředí.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "009. Jak se definuje \"budova\" v rámci této normy?",
+      "answer_a": "Budova je definována jako trvalá konstrukce vybavená hlavními sítěmi (např. vodou, elektřinou, plynem atd.) navržená k ochraně zařízení proti působení podmínek prostředí; budovy mohou, ale nemusí být vybaveny klimatickou regulací.",
+      "answer_b": "Budova je definována jako dočasný přístřešek s omezenými sítěmi (např. pouze elektřinou), sloužící k okamžitému použití bez dlouhodobé ochrany zařízení; budovy typicky neobsahují klimatickou regulaci.",
+      "answer_c": "Budova je charakterizována jako mobilní jednotka bez připojení na hlavní sítě (např. bez vody a plynu), určená k rychlému nasazení v terénu; budovy bývají často vybaveny pouze základním vybavením.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "010. Co znamená termín \"klimatická regulace\" v kontextu této normy?",
+      "answer_a": "Klimatická regulace se vztahuje na regulaci teploty a vlhkosti v rámci budovy nebo přístrojové skříně, aby byla zajištěna ochrana zařízení proti působení podmínek prostředí.",
+      "answer_b": "Klimatická regulace označuje systém pro generování a distribuci teplého vzduchu v budově nebo skříni, který slouží primárně k pohodlí osob, nikoliv k ochraně zařízení.",
+      "answer_c": "Klimatická regulace je proces odstraňování prachových částic z atmosféry v budově nebo skříni, což přispívá k čistotě prostředí, ale nezahrnuje kontrolu teploty nebo vlhkosti.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "011. Co znamená klasifikace podmínek prostředí v této normě?",
+      "answer_a": "Klasifikace podmínek prostředí v této normě rozděluje podmínky na normální, klasifikované čísly 1 nebo 2, a zvláštní, klasifikované písmenem X. Odběratel musí ve své specifikaci pro každý parametr prostředí zřetelně stanovit požadovanou třídu.",
+      "answer_b": "Klasifikace podmínek prostředí v této normě určuje podmínky jako vnitřní nebo venkovní, klasifikované čísly 3 nebo 4, a průmyslové, klasifikované písmenem Z. Odběratel musí ve své specifikaci pro každý parametr prostředí zřetelně stanovit požadovanou třídu.",
+      "answer_c": "Klasifikace podmínek prostředí v této normě dělí podmínky na standardní, klasifikované čísly 5 nebo 6, a extrémní, klasifikované písmenem Y. Odběratel musí ve své specifikaci pro každý parametr prostředí zřetelně stanovit požadovanou třídu.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "012. Jaké jsou parametry tlaku vzduchu pro různé nadmořské výšky podle této normy?",
+      "answer_a": "Norma specifikuje třídy nadmořské výšky (A1 do 1 400 m, A2 do 1 000 m, AX přes 1 400 m), přičemž na výšce závisí tlak vzduchu, který ovlivňuje chladicí systémy. Pro třídu AX musí odběratel specifikovat maximální výšku.",
+      "answer_b": "Norma určuje třídy nadmořské výšky (B1 do 2 000 m, B2 do 1 500 m, BX přes 2 000 m), přičemž na výšce závisí tlak vzduchu, který ovlivňuje tepelné vlastnosti. Pro třídu BX musí odběratel specifikovat maximální výšku.",
+      "answer_c": "Norma definuje třídy nadmořské výšky (C1 do 800 m, C2 do 600 m, CX přes 800 m), přičemž na výšce závisí tlak vzduchu, který ovlivňuje vlhkost vzduchu. Pro třídu CX musí odběratel specifikovat maximální výšku.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "013. Jaké jsou stanovené rozsahy teplot pro různá umístění zařízení?",
+      "answer_a": "Norma definuje rozsahy teplot pro různá umístění, včetně buňky, okolního prostředí a přístrojové skříně, s různými klimatickými třídami (T1, T2, TX), přičemž každé umístění má specifický rozsah teplot.",
+      "answer_b": "Norma určuje rozsahy teplot pro různá umístění, jako jsou interiér, exteriér a kontrolní panel, s jednotnými klimatickými třídami (U1, U2, UX), přičemž každé umístění má obecný rozsah teplot.",
+      "answer_c": "Norma stanovuje rozsahy teplot pro různá umístění, jako jsou strojovna, pracovní prostor a operační panel, s různými klimatickými třídami (V1, V2, VX), přičemž každé umístění má variabilní rozsah teplot.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "014. Jaké jsou požadavky na odolnost zařízení vůči vlhkosti?",
+      "answer_a": "Zařízení musí být navrženo tak, aby odolalo působení vlhkosti v celém rozsahu teplot vzduchu definovaném v normě. Norma obsahuje tabulky s minimálními a maximálními hodnotami relativní a absolutní vlhkosti pro různé klimatické třídy.",
+      "answer_b": "Zařízení musí být konstruována tak, aby odolala působení vlhkosti pouze v nejnižších teplotách vzduchu definovaných v normě. Norma uvádí pouze maximální hodnoty relativní vlhkosti pro jednotlivé klimatické třídy.",
+      "answer_c": "Zařízení musí být vyrobena tak, aby odolala působení vlhkosti pouze ve vrcholných teplotách vzduchu stanovených v normě. Norma poskytuje průměrné hodnoty relativní a absolutní vlhkosti pro standardní klimatické třídy.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "015. Jaké jsou požadavky na zařízení vystavená slunečnímu záření?",
+      "answer_a": "Zařízení vystavená slunečnímu záření musí být navržena tak, aby zajistila jejich plynulý provoz a splnění specifikačních parametrů. Maximální intenzita slunečního záření pro zařízení přímo vystavená jeho působení je 1 120 W/m² podle EN 60721-3-4.",
+      "answer_b": "Zařízení vystavená slunečnímu záření musí být uzpůsobena tak, aby snášela jeho nepřetržité působení bez ztráty výkonu. Standardní intenzita slunečního záření pro zařízení umístěná venku je 950 W/m² podle EN 60721-3-4.",
+      "answer_c": "Zařízení vystavená slunečnímu záření musejí být konstruována s ohledem na minimalizaci tepelného namáhání. Průměrná intenzita slunečního záření pro venkovní zařízení je 1 300 W/m² podle EN 60721-3-4.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "016. Jaké jsou požadavky na odolnost zařízení proti působení deště?",
+      "answer_a": "Zařízení vystavená dešti musí být navržena tak, aby odolala dešti o intenzitě 6 mm/min pro třídy T1 a T2 a 15 mm/min pro třídu TX. Zpracovatel návrhu musí vzít v úvahu kombinované působení deště a větru.",
+      "answer_b": "Zařízení vystavená dešti musí být navržena tak, aby odolala dešti o intenzitě 4 mm/min pro třídy T1 a T2 a 10 mm/min pro třídu TX. Zpracovatel návrhu musí vzít v úvahu pouze působení deště.",
+      "answer_c": "Zařízení vystavená dešti musí být navržena tak, aby odolala dešti o intenzitě 8 mm/min pro třídy T1 a T2 a 20 mm/min pro třídu TX. Zpracovatel návrhu musí vzít v úvahu pouze působení větru.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "017. Jaké jsou specifikace pro zařízení vystavená sněhu a kroupám?",
+      "answer_a": "Je nutné uvažovat vliv sněhu a/nebo kroup na zařízení. Za maximální velikostní průměr kroup se obvykle považuje 15 mm, výjimečně se mohou vyskytnout i větší. Musí se brát v úvahu všechny podoby sněhu, které se mohou vyskytnout.",
+      "answer_b": "Je nutné uvažovat vliv sněhu a/nebo kroup na zařízení. Za maximální velikostní průměr kroup se obvykle považuje 10 mm, výjimečně se mohou vyskytnout i menší. Musí se brát v úvahu pouze těžké sněhové srážky.",
+      "answer_c": "Je nutné uvažovat vliv sněhu a/nebo kroup na zařízení. Za maximální velikostní průměr kroup se obvykle považuje 20 mm, výjimečně se mohou vyskytnout i menší. Musí se brát v úvahu pouze náhlé sněhové přeháňky.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "018. Jaké jsou požadavky na odolnost zařízení proti ledu?",
+      "answer_a": "Zařízení vystavená působení tvořícího se nebo padajícího ledu musí být navržena tak, aby v těchto podmínkách fungovala. Funkční schopnost zařízení v těchto podmínkách musí být specifikována buď v normě výrobku, nebo odběratelem.",
+      "answer_b": "Zařízení vystavená působení tvořícího se nebo padajícího ledu musí být navržena tak, aby byla schopna fungovat pouze při teplotách nad bodem mrazu. Funkční schopnost zařízení při tvorbě ledu není specifikována.",
+      "answer_c": "Zařízení vystavená působení tvořícího se nebo padajícího ledu musí být navržena tak, aby byla schopna fungovat pouze při teplotách do -5 °C. Funkční schopnost zařízení při padajícím ledu není obvykle požadována.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "019. Jaká jsou kritéria pro vibrace a rázy u zařízení?",
+      "answer_a": "Norma specifikuje, že zařízení musí odolávat určitým úrovním vibrací a rázů. Tyto požadavky jsou určeny pro různá umístění a typy zařízení a měly by být specifikovány podle příslušných norem.",
+      "answer_b": "Norma uvádí, že zařízení musí odolávat pouze minimálním úrovním vibrací a rázů. Tyto požadavky nejsou specifikovány pro všechna umístění a typy zařízení a měly by být upraveny dle potřeby uživatele.",
+      "answer_c": "Norma doporučuje, že zařízení by mělo být testováno na odolnost vůči extrémním vibracím a rázům. Konkrétní úrovně nejsou definovány a závisí na individuálním posouzení výrobce.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "020. Jaké jsou požadavky na elektromagnetickou kompatibilitu zařízení?",
+      "answer_a": "Zařízení musí splňovat požadavky na elektromagnetickou kompatibilitu. Toto zahrnuje splnění specifikací pro emise a odolnost zařízení vůči elektromagnetickému rušení, jak je definováno v příslušných normách, například v EN 50121-4.",
+      "answer_b": "Zařízení musí vykazovat základní úroveň elektromagnetické kompatibility. Specifikace pro emise jsou definovány, ale odolnost vůči rušení není obvykle požadována.",
+      "answer_c": "Zařízení by mělo být schopno pracovat bez elektromagnetických rušení, ale specifikace pro emise a odolnost nejsou předmětem norem. Je na výrobci, aby stanovil vhodné úrovně kompatibility.příklad v EN 50121-4.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "021. Jaké jsou specifikace pro zařízení vystavená bleskům?",
+      "answer_a": "Je nezbytné vzít v úvahu působení blesků na zařízení. Zpracovatel návrhu musí specifikovat, jakým způsobem bude zařízení chráněno před blesky a jaké opatření bude přijato pro minimalizaci rizika poškození.",
+      "answer_b": "Zařízení musí být vybavena pouze vizuálním indikátorem úderu blesku, bez dalších ochranných prvků.",
+      "answer_c": "Zařízení může ignorovat riziko úderů blesků, pokud se nachází v oblasti s nízkou pravděpodobností výskytu bouřek.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "022. Jaké jsou požadavky na znečištění vnějšího prostředí pro zařízení?",
+      "answer_a": "Norma specifikuje, že zařízení musí odolávat určitým úrovním znečištění vnějšího prostředí. To zahrnuje odolnost proti prachu, chemickým látkám a dalším znečišťujícím látkám, které mohou ovlivnit funkčnost zařízení.",
+      "answer_b": "Zařízení musí být schopna odolat extrémním úrovním znečištění, včetně vysokých koncentrací kyselin a zásad.",
+      "answer_c": "Zařízení musí být navržena tak, aby byla úplně uzavřená a neprodyšná, aby se zabránilo jakémukoli kontaktu se znečištěným vnějším prostředím.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "023. Jaké jsou požadavky na zařízení vzhledem k požární ochraně?",
+      "answer_a": "Zařízení musí být navrženo a umístěno tak, aby bylo v souladu s požadavky na požární ochranu. To zahrnuje odolnost proti požáru, umístění zařízení v bezpečné vzdálenosti od zdrojů hoření a použití materiálů odolných vůči hoření.",
+      "answer_b": "Všechna zařízení musí mít integrovaný systém hasicích sprejů, který se automaticky aktivuje při detekci plamenů nebo zvýšené teploty.",
+      "answer_c": "Zařízení musí mít pouze vizuální indikace pro požární ochranu, jako jsou varovné štítky, bez nutnosti fyzických ochranných opatření.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "024. Jaká je role návrháře zařízení vzhledem k napájení?",
+      "answer_a": "Návrhář zařízení musí specifikovat a zajistit, aby všechny systémy a zařízení byly napájeny bezpečně a spolehlivě, zejména pokud zařízení pochází od různých dodavatelů. Je třeba brát v úvahu jmenovitá napětí, očekávané kolísání a přerušení, jmenovité frekvence a jejich kolísání, přípustné zvlnění napětí.",
+      "answer_b": "Návrhář zařízení by měl zajistit, aby bylo zařízení napájeno pouze z obnovitelných zdrojů energie, bez ohledu na jeho umístění nebo aplikaci.",
+      "answer_c": "Role návrháře zařízení je omezit potřebu elektrického napájení a navrhnout zařízení tak, aby fungovalo pouze na baterie.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "025. Jaké jsou požadavky na vibrace a rázy pro zařízení?",
+      "answer_a": "Zařízení musí splňovat specifické požadavky na odolnost proti vibracím a rázům, což zahrnuje určení přijatelných úrovní vibrací a rázů pro různá umístění a typy zařízení v souladu s příslušnými normami.",
+      "answer_b": "Zařízení musí být imunní vůči jakýmkoli vibracím a rázům, aby bylo zajištěno, že nebudou nijak ovlivněna běžnými provozními podmínkami.",
+      "answer_c": "Požadavky na vibrace a rázy nejsou důležité, pokud je zařízení umístěno v interiéru.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "026. Jaké jsou požadavky na odolnost zařízení proti ultrafialovému záření?",
+      "answer_a": "Zařízení vystavená ultrafialovému záření musí být navržena tak, aby odolala jeho působení. Zpracovatel návrhu musí zvážit vliv UV záření na materiály a komponenty zařízení a zajistit jejich dlouhodobou stabilitu.",
+      "answer_b": "Zařízení nemusí být chráněna proti UV záření, pokud jsou používány v noci nebo uvnitř budov.",
+      "answer_c": "Odolnost proti UV záření je důležitá pouze pro zařízení používané v tropických oblastech.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "027. Jaké jsou specifikace pro zařízení vystavená kolísání teplot?",
+      "answer_a": "Zařízení musí být schopna odolat kolísání teplot v souladu s definovanými rozsahy pro různá umístění. Klimatické diagramy v příloze normy poskytují podrobné informace o teplotních podmínkách pro různé klimatické třídy.",
+      "answer_b": "Zařízení by měla být schopna pracovat při standardní pokojové teplotě a nevyžadují žádnou speciální úpravu pro různé klimatické podmínky.",
+      "answer_c": "Specifikace pro kolísání teplot vyžadují, aby zařízení bylo vybaveno vlastním klimatizačním systémem.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "028. Jaké jsou požadavky na zařízení vystavená vodě a vlhkosti?",
+      "answer_a": "Zařízení musí být navržena tak, aby odolala působení vody a vlhkosti. To zahrnuje ochranu proti kondenzaci, dešti, a v případě potřeby i proti zaplavení, v souladu s IP kódem podle EN 60529.",
+      "answer_b": "Zařízení by měla být vodotěsná pouze pokud jsou umístěna venku nebo v blízkosti vodních zdrojů.",
+      "answer_c": "Vlhkost není faktor, který by se měl brát v úvahu, pokud je zařízení umístěno v suchém prostředí.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "029. Jaká je definice \"normálních podmínek prostředí\" v této normě?",
+      "answer_a": "A: Normální podmínky prostředí jsou definovány jako podmínky prostředí, které se běžně vyskytují v Evropě a jsou klasifikovány přidáním čísla 1 nebo 2. Pokud není třída specifikována, předpokládá se třída označená číslem 1.",
+      "answer_b": "B: Normální podmínky prostředí jsou určeny jako podmínky, které se často vyskytují v Asii a jsou označovány přidáním čísla 3 nebo 4. Bez specifikace se považuje za standard třída s číslem 3.",
+      "answer_c": "C: Normální podmínky prostředí jsou charakterizovány jako podmínky obvyklé v Severní Americe, označené přidáním čísla 5 nebo 6. V případě, že není třída uvedena, aplikuje se automaticky třída s číslem 5.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "030. Jaké jsou požadavky na zařízení v oblastech s výskytem prachu a chemických látek?",
+      "answer_a": "Zařízení musí být navržena tak, aby odolala působení prachu a chemických látek v externím prostředí. Zpracovatel návrhu musí specifikovat vhodná ochranná opatření a materiály pro zajištění funkčnosti zařízení v těchto podmínkách.",
+      "answer_b": "B: Zařízení by mělo být schopno fungovat v normálním vzdušném prostředí bez zvláštního ohledu na prach a chemické látky. Materiály a design se standardně nepřizpůsobují speciálním podmínkám.",
+      "answer_c": "C: Zařízení by měla být lehce omyvatelná a vodotěsná, aby byla chráněna proti prachu a chemikáliím. Specifická ochranná opatření nejsou obvykle vyžadována.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "031. Jaké jsou požadavky na zařízení v oblastech s vyšší intenzitou seismické aktivity?",
+      "answer_a": "Zařízení v oblastech s vyšší intenzitou seismické aktivity musí být navržena tak, aby odolala působení zemětřesení. Norma specifikuje parametry pro návrh a testování zařízení pro zajištění jejich odolnosti v těchto podmínkách.",
+      "answer_b": "B: Zařízení v oblastech s vyšší seismickou aktivitou by měla být lehká a flexibilní, aby se přizpůsobila pohybu země. Norma doporučuje použití měkkých materiálů a minimálního upevnění.",
+      "answer_c": "C: Zařízení v oblastech s vyšší seismickou aktivitou nevyžaduje žádné speciální úpravy, jelikož moderní budovy jsou navrženy tak, aby absorbovaly seismické otřesy.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "032. Jaká je definice \"mikroklimatu\" v této normě a jaké jsou na něj kladené požadavky?",
+      "answer_a": "Mikroklima je definováno jako specifické podmínky prostředí v okolí konkrétních součástek zařízení. Návrhář musí vzít v úvahu zvláštní požadavky na mikroklima, které mohou být definovány v normách výrobků.",
+      "answer_b": "B: Mikroklima znamená obecné klimatické podmínky v místě instalace zařízení. Konstrukce zařízení by měla reflektovat obecné klima bez speciálního zohlednění okolních součástek.",
+      "answer_c": "C: Mikroklima se vztahuje na klimatizovaná prostředí uvnitř zařízení. Návrhář by měl zajistit, aby bylo zařízení vybaveno efektivním klimatizačním systémem.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "033. Jaké jsou požadavky na odolnost zařízení vůči znečištěním?",
+      "answer_a": "Zařízení musí být navržena tak, aby odolávala různým úrovním znečištění, včetně prachu, chemických látek a dalších znečišťujících látek. Zpracovatel návrhu musí specifikovat, jakým způsobem bude zařízení chráněno před znečištěním.",
+      "answer_b": "B: Zařízení by mělo být vybaveno filtry pro odstranění běžných znečišťujících látek, ale speciální ochrana proti prachu nebo chemikáliím není obvykle vyžadována.",
+      "answer_c": "C: Zařízení by mělo mít samoočistnou funkci, která automaticky odstraňuje veškeré znečištění bez potřeby manuálního čištění.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "034. Jaké jsou požadavky na teplotní rozsahy pro různá umístění zařízení?",
+      "answer_a": "Zařízení musí být schopna fungovat v různých teplotních rozsazích podle typu umístění. Norma poskytuje specifické teplotní rozsahy pro buňky, okolní prostředí, přístrojové skříně a další umístění.",
+      "answer_b": "B: Zařízení by mělo být navrženo pro provoz při standardní pokojové teplotě, bez ohledu na místo umístění. Speciální teplotní rozsahy nejsou typicky zahrnuty do návrhu.",
+      "answer_c": "C: Zařízení by mělo být schopno fungovat pouze v omezeném teplotním rozsahu, typicky mezi 20 až 25 stupni Celsia, aby se předešlo poškození citlivých součástek.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "035. Jaké jsou požadavky na zařízení vystavená kondenzaci?",
+      "answer_a": "Zařízení musí být navržena tak, aby odolávala kondenzaci, která může nastat v důsledku náhlých změn teploty vzduchu nebo vysoké vlhkosti v okolním prostředí. Norma specifikuje požadavky pro minimalizaci rizika kondenzace.",
+      "answer_b": "B: Zařízení by mělo být uzpůsobeno pro provoz v suchých prostředích, kondenzace není obvykle brána v úvahu při návrhu.",
+      "answer_c": "C: Zařízení by mělo být vybaveno odvlhčovačem, aby se předešlo kondenzaci, ale specifické designové změny pro ochranu před kondenzací nejsou vyžadovány.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    },
+    {
+      "question": "036. Jaké jsou požadavky na aerodynamický tlak v souvislosti s pohybem vzduchu?",
+      "answer_a": "Zařízení musí být navržena tak, aby odolávala aerodynamickému tlaku způsobenému pohybem vzduchu, včetně vlivu větru nebo průchodu vlaků tunelem. Norma uvádí parametry pro výpočet aerodynamického tlaku a způsobů jeho ovlivnění na zařízení.",
+      "answer_b": "B: Zařízení by mělo být schopno fungovat v podmínkách slabého vzdušného proudění, ale speciální konstrukční úpravy pro odolávání silným větrům nebo pohybu vzduchu nejsou obvykle požadovány.",
+      "answer_c": "C: Aerodynamický tlak se nebere v úvahu při návrhu běžných zařízení, jelikož je předpokládáno, že zařízení nebudou vystavena extrémním větrům nebo rychlému pohybu vzduchu.",
+      "correct_answer": "A",
+      "explanation": "Podle ČSN EN 50125-3 - Prostředí - Zabezpečovací a sdělovací"
+    }
+  ]
+}
