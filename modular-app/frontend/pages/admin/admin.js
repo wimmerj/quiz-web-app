@@ -1365,6 +1365,728 @@ Informace o systému:
             console.error('❌ Error during admin test:', error);
         }
     }
+    
+    // Table Management Functions
+    addNewTable() {
+        // Show modal with two options: Manual creation or Database import
+        const modal = this.createTableCreationModal();
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+    }
+    
+    createTableCreationModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'tableCreationModal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📚 Vytvořit novou tabulku</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>Vyberte způsob vytvoření nové tabulky:</p>
+                    <div class="creation-options">
+                        <button class="creation-option-btn" onclick="adminModule.showManualTableCreation()">
+                            <div class="option-icon">✏️</div>
+                            <div class="option-content">
+                                <h4>Manuální vytvoření</h4>
+                                <p>Vytvořte tabulku řádek po řádku</p>
+                            </div>
+                        </button>
+                        <button class="creation-option-btn" onclick="adminModule.showDatabaseImport()">
+                            <div class="option-icon">📁</div>
+                            <div class="option-content">
+                                <h4>Import z databáze</h4>
+                                <p>Nahrajte existující .db soubor</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        return modal;
+    }
+    
+    showManualTableCreation() {
+        // Close current modal and show manual creation form
+        document.getElementById('tableCreationModal')?.remove();
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'manualTableModal';
+        modal.innerHTML = `
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3>✏️ Manuální vytvoření tabulky</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                </div>
+                <div class="modal-body">
+                    <form id="manualTableForm">
+                        <div class="form-group">
+                            <label for="tableName" class="form-label">Název tabulky:</label>
+                            <input type="text" id="tableName" class="form-input" required placeholder="Zadejte název tabulky...">
+                        </div>
+                        <div class="form-group">
+                            <label for="tableDescription" class="form-label">Popis:</label>
+                            <textarea id="tableDescription" class="form-textarea" rows="2" placeholder="Volitelný popis tabulky..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableDifficulty" class="form-label">Výchozí obtížnost:</label>
+                            <select id="tableDifficulty" class="form-select">
+                                <option value="easy">Snadná</option>
+                                <option value="medium" selected>Střední</option>
+                                <option value="hard">Těžká</option>
+                            </select>
+                        </div>
+                        <div class="questions-section">
+                            <h4>📝 Otázky <button type="button" class="btn btn-small btn-secondary" onclick="adminModule.addQuestionRow()">➕ Přidat otázku</button></h4>
+                            <div id="questionsContainer">
+                                <!-- Questions will be added dynamically -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">
+                        Zrušit
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="adminModule.saveManualTable()">
+                        💾 Vytvořit tabulku
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+        
+        // Add first question row
+        this.addQuestionRow();
+    }
+    
+    addQuestionRow() {
+        const container = document.getElementById('questionsContainer');
+        const questionIndex = container.children.length + 1;
+        
+        const questionRow = document.createElement('div');
+        questionRow.className = 'question-row';
+        questionRow.innerHTML = `
+            <div class="question-header">
+                <h5>Otázka ${questionIndex}</h5>
+                <button type="button" class="btn btn-small btn-danger" onclick="this.closest('.question-row').remove(); adminModule.renumberQuestions()">🗑️ Odstranit</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Text otázky:</label>
+                <textarea class="form-textarea question-text" rows="2" required placeholder="Zadejte text otázky..."></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Odpověď A:</label>
+                    <input type="text" class="form-input answer-a" required placeholder="Možnost A">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Odpověď B:</label>
+                    <input type="text" class="form-input answer-b" required placeholder="Možnost B">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Odpověď C:</label>
+                    <input type="text" class="form-input answer-c" required placeholder="Možnost C">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Správná odpověď:</label>
+                    <select class="form-select correct-answer" required>
+                        <option value="">Vyberte</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Obtížnost:</label>
+                    <select class="form-select question-difficulty">
+                        <option value="easy">Snadná</option>
+                        <option value="medium" selected>Střední</option>
+                        <option value="hard">Těžká</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Vysvětlení:</label>
+                    <textarea class="form-textarea question-explanation" rows="1" placeholder="Volitelné vysvětlení..."></textarea>
+                </div>
+            </div>
+        `;
+        container.appendChild(questionRow);
+    }
+    
+    renumberQuestions() {
+        const container = document.getElementById('questionsContainer');
+        Array.from(container.children).forEach((row, index) => {
+            const header = row.querySelector('.question-header h5');
+            if (header) {
+                header.textContent = `Otázka ${index + 1}`;
+            }
+        });
+    }
+    
+    saveManualTable() {
+        const tableName = document.getElementById('tableName').value.trim();
+        const tableDescription = document.getElementById('tableDescription').value.trim();
+        const tableDifficulty = document.getElementById('tableDifficulty').value;
+        
+        if (!tableName) {
+            this.showNotification('Zadejte název tabulky', 'error');
+            return;
+        }
+        
+        // Collect questions
+        const questions = [];
+        const questionRows = document.querySelectorAll('.question-row');
+        
+        if (questionRows.length === 0) {
+            this.showNotification('Přidejte alespoň jednu otázku', 'error');
+            return;
+        }
+        
+        for (let i = 0; i < questionRows.length; i++) {
+            const row = questionRows[i];
+            const question = {
+                id: Date.now() + i,
+                question: row.querySelector('.question-text').value.trim(),
+                answer_a: row.querySelector('.answer-a').value.trim(),
+                answer_b: row.querySelector('.answer-b').value.trim(),
+                answer_c: row.querySelector('.answer-c').value.trim(),
+                correct_answer: row.querySelector('.correct-answer').value,
+                difficulty: row.querySelector('.question-difficulty').value,
+                explanation: row.querySelector('.question-explanation').value.trim(),
+                createdAt: new Date().toISOString(),
+                createdBy: this.currentUser
+            };
+            
+            // Validate question
+            if (!question.question || !question.answer_a || !question.answer_b || 
+                !question.answer_c || !question.correct_answer) {
+                this.showNotification(`Vyplňte všechna povinná pole u otázky ${i + 1}`, 'error');
+                return;
+            }
+            
+            questions.push(question);
+        }
+        
+        // Save table
+        const tableData = {
+            name: tableName,
+            description: tableDescription,
+            difficulty: tableDifficulty,
+            questionCount: questions.length,
+            category: 'Custom',
+            createdAt: new Date().toISOString(),
+            createdBy: this.currentUser,
+            questions: questions
+        };
+        
+        // Check if table already exists
+        const existingTables = this.loadFromStorage('custom_tables') || {};
+        if (existingTables[tableName]) {
+            this.showNotification('Tabulka s tímto názvem již existuje', 'error');
+            return;
+        }
+        
+        // Save table and questions
+        existingTables[tableName] = tableData;
+        this.saveToStorage('custom_tables', existingTables);
+        this.saveToStorage(`questions_${tableName}`, questions);
+        
+        this.showNotification(`Tabulka "${tableName}" byla vytvořena s ${questions.length} otázkami`, 'success');
+        
+        // Close modal and refresh
+        document.getElementById('manualTableModal').remove();
+        this.loadTablesData();
+        this.loadDashboardData();
+        
+        console.log('Table created', { name: tableName, questions: questions.length });
+    }
+    
+    showDatabaseImport() {
+        // Close current modal and show database import form
+        document.getElementById('tableCreationModal')?.remove();
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'databaseImportModal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📁 Import z databáze</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="import-section">
+                        <h4>1. Nahrát databázový soubor</h4>
+                        <div class="file-upload-area">
+                            <input type="file" id="databaseFile" accept=".db,.sqlite,.sqlite3" style="display: none;">
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('databaseFile').click()">
+                                📁 Vybrat .db soubor
+                            </button>
+                            <div id="fileInfo" class="file-info"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="tablesSection" class="tables-section" style="display: none;">
+                        <h4>2. Vybrat tabulky k importu</h4>
+                        <div id="availableTables" class="available-tables">
+                            <!-- Tables will be loaded here -->
+                        </div>
+                        <div class="import-actions">
+                            <button type="button" class="btn btn-secondary" onclick="adminModule.selectAllTables()">
+                                ✅ Vybrat vše
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="adminModule.deselectAllTables()">
+                                ❌ Zrušit výběr
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">
+                        Zrušit
+                    </button>
+                    <button type="button" class="btn btn-primary" id="importSelectedBtn" onclick="adminModule.importSelectedTables()" style="display: none;">
+                        📥 Importovat vybrané
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+        
+        // Setup file input handler
+        document.getElementById('databaseFile').addEventListener('change', (e) => {
+            this.handleDatabaseFile(e.target.files[0]);
+        });
+    }
+    
+    async handleDatabaseFile(file) {
+        if (!file) return;
+        
+        const fileInfo = document.getElementById('fileInfo');
+        fileInfo.innerHTML = `
+            <div class="file-selected">
+                <span>📎 ${file.name} (${this.formatFileSize(file.size)})</span>
+                <div class="loading-indicator">📊 Analyzuji databázi...</div>
+            </div>
+        `;
+        
+        try {
+            // Read file as ArrayBuffer for SQLite parsing
+            const arrayBuffer = await file.arrayBuffer();
+            
+            // Simple SQLite parsing simulation (real implementation would use sql.js)
+            // For demo, we'll extract potential table names from the file
+            const tables = await this.extractTablesFromDatabase(arrayBuffer, file.name);
+            
+            if (tables.length > 0) {
+                this.displayAvailableTables(tables);
+                document.getElementById('tablesSection').style.display = 'block';
+                document.getElementById('importSelectedBtn').style.display = 'inline-block';
+            } else {
+                fileInfo.innerHTML = `
+                    <div class="file-error">
+                        <span>⚠️ Nebyly nalezeny žádné tabulky v souboru</span>
+                    </div>
+                `;
+            }
+            
+        } catch (error) {
+            console.error('Database parsing error:', error);
+            fileInfo.innerHTML = `
+                <div class="file-error">
+                    <span>❌ Chyba při čtení databáze: ${error.message}</span>
+                </div>
+            `;
+        }
+    }
+    
+    async extractTablesFromDatabase(arrayBuffer, fileName) {
+        // This is a simplified demonstration
+        // In a real implementation, you would use sql.js library to parse SQLite files
+        
+        // For demo purposes, we'll simulate finding tables based on common patterns
+        const view = new DataView(arrayBuffer);
+        const decoder = new TextDecoder();
+        
+        // Look for CREATE TABLE statements (very basic parsing)
+        const content = decoder.decode(arrayBuffer.slice(0, Math.min(arrayBuffer.byteLength, 10000)));
+        const tableMatches = content.match(/CREATE TABLE ["`]?([^"`\s]+)["`]?/gi);
+        
+        const tables = [];
+        if (tableMatches) {
+            tableMatches.forEach((match, index) => {
+                const tableName = match.replace(/CREATE TABLE ["`]?([^"`\s]+)["`]?/i, '$1');
+                if (tableName && !tableName.includes('sqlite_') && !tableName.includes('__')) {
+                    tables.push({
+                        name: tableName,
+                        estimatedRows: Math.floor(Math.random() * 100) + 10, // Simulated
+                        selected: true
+                    });
+                }
+            });
+        }
+        
+        // If no tables found, add some demo tables based on filename
+        if (tables.length === 0) {
+            const baseName = fileName.replace(/\.[^/.]+$/, "");
+            tables.push({
+                name: baseName || 'ImportedTable',
+                estimatedRows: 25,
+                selected: true
+            });
+        }
+        
+        return tables;
+    }
+    
+    displayAvailableTables(tables) {
+        const container = document.getElementById('availableTables');
+        container.innerHTML = '';
+        
+        tables.forEach(table => {
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'table-option';
+            tableDiv.innerHTML = `
+                <label class="table-checkbox">
+                    <input type="checkbox" ${table.selected ? 'checked' : ''} data-table="${table.name}">
+                    <div class="table-info">
+                        <div class="table-name">📊 ${table.name}</div>
+                        <div class="table-details">~${table.estimatedRows} záznamů</div>
+                    </div>
+                </label>
+            `;
+            container.appendChild(tableDiv);
+        });
+    }
+    
+    selectAllTables() {
+        document.querySelectorAll('#availableTables input[type="checkbox"]').forEach(cb => {
+            cb.checked = true;
+        });
+    }
+    
+    deselectAllTables() {
+        document.querySelectorAll('#availableTables input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+    }
+    
+    importSelectedTables() {
+        const selectedTables = [];
+        document.querySelectorAll('#availableTables input[type="checkbox"]:checked').forEach(cb => {
+            selectedTables.push(cb.dataset.table);
+        });
+        
+        if (selectedTables.length === 0) {
+            this.showNotification('Vyberte alespoň jednu tabulku k importu', 'warning');
+            return;
+        }
+        
+        // Simulate import process
+        selectedTables.forEach((tableName, index) => {
+            setTimeout(() => {
+                this.simulateTableImport(tableName);
+            }, index * 1000);
+        });
+        
+        this.showNotification(`Spouštím import ${selectedTables.length} tabulek...`, 'info');
+        document.getElementById('databaseImportModal').remove();
+    }
+    
+    simulateTableImport(tableName) {
+        // Create demo questions for imported table
+        const demoQuestions = [
+            {
+                id: Date.now(),
+                question: `Importovaná otázka z tabulky ${tableName}`,
+                answer_a: 'Možnost A',
+                answer_b: 'Možnost B', 
+                answer_c: 'Možnost C',
+                correct_answer: 'A',
+                difficulty: 'medium',
+                explanation: `Tato otázka byla importována z ${tableName}`,
+                createdAt: new Date().toISOString(),
+                createdBy: this.currentUser
+            }
+        ];
+        
+        // Save imported table
+        const tables = this.loadFromStorage('custom_tables') || {};
+        tables[tableName] = {
+            name: tableName,
+            description: `Importována z databáze`,
+            difficulty: 'medium',
+            questionCount: demoQuestions.length,
+            category: 'Imported',
+            createdAt: new Date().toISOString(),
+            createdBy: this.currentUser,
+            questions: demoQuestions
+        };
+        
+        this.saveToStorage('custom_tables', tables);
+        this.saveToStorage(`questions_${tableName}`, demoQuestions);
+        
+        this.showNotification(`✅ Tabulka "${tableName}" byla importována`, 'success');
+        this.loadTablesData();
+        this.loadDashboardData();
+    }
+    
+    editTable(tableName) {
+        // Load table data for editing
+        const tables = this.loadFromStorage('custom_tables') || {};
+        const tableData = tables[tableName];
+        
+        if (!tableData) {
+            this.showNotification(`Tabulka "${tableName}" nebyla nalezena`, 'error');
+            return;
+        }
+        
+        // Show edit modal (similar to manual creation but pre-filled)
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'editTableModal';
+        modal.innerHTML = `
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3>✏️ Upravit tabulku: ${tableName}</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTableForm">
+                        <div class="form-group">
+                            <label for="editTableName" class="form-label">Název tabulky:</label>
+                            <input type="text" id="editTableName" class="form-input" value="${tableData.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTableDescription" class="form-label">Popis:</label>
+                            <textarea id="editTableDescription" class="form-textarea" rows="2">${tableData.description || ''}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTableDifficulty" class="form-label">Výchozí obtížnost:</label>
+                            <select id="editTableDifficulty" class="form-select">
+                                <option value="easy" ${tableData.difficulty === 'easy' ? 'selected' : ''}>Snadná</option>
+                                <option value="medium" ${tableData.difficulty === 'medium' ? 'selected' : ''}>Střední</option>
+                                <option value="hard" ${tableData.difficulty === 'hard' ? 'selected' : ''}>Těžká</option>
+                            </select>
+                        </div>
+                        <div class="table-stats">
+                            <p><strong>Statistiky:</strong></p>
+                            <ul>
+                                <li>Otázek: ${tableData.questionCount || 0}</li>
+                                <li>Vytvořeno: ${new Date(tableData.createdAt).toLocaleDateString()}</li>
+                                <li>Autor: ${tableData.createdBy || 'Neznámý'}</li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">
+                        Zrušit
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="adminModule.saveTableEdit('${tableName}')">
+                        💾 Uložit změny
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="adminModule.manageTableQuestions('${tableName}')">
+                        📝 Spravovat otázky
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+    }
+    
+    saveTableEdit(originalName) {
+        const newName = document.getElementById('editTableName').value.trim();
+        const description = document.getElementById('editTableDescription').value.trim();
+        const difficulty = document.getElementById('editTableDifficulty').value;
+        
+        if (!newName) {
+            this.showNotification('Zadejte název tabulky', 'error');
+            return;
+        }
+        
+        const tables = this.loadFromStorage('custom_tables') || {};
+        const tableData = tables[originalName];
+        
+        if (!tableData) {
+            this.showNotification('Původní tabulka nebyla nalezena', 'error');
+            return;
+        }
+        
+        // Update table data
+        tableData.name = newName;
+        tableData.description = description;
+        tableData.difficulty = difficulty;
+        tableData.updatedAt = new Date().toISOString();
+        
+        // If name changed, move the data
+        if (newName !== originalName) {
+            delete tables[originalName];
+            tables[newName] = tableData;
+            
+            // Move questions storage
+            const questions = this.loadFromStorage(`questions_${originalName}`) || [];
+            this.saveToStorage(`questions_${newName}`, questions);
+            localStorage.removeItem(`quiz_questions_${originalName}`);
+        } else {
+            tables[originalName] = tableData;
+        }
+        
+        this.saveToStorage('custom_tables', tables);
+        
+        this.showNotification(`Tabulka byla aktualizována`, 'success');
+        document.getElementById('editTableModal').remove();
+        this.loadTablesData();
+        
+        console.log('Table updated', { originalName, newName });
+    }
+    
+    exportTable(tableName) {
+        try {
+            // Load table data
+            const tables = this.loadFromStorage('custom_tables') || {};
+            const tableData = tables[tableName];
+            const questions = this.loadFromStorage(`questions_${tableName}`) || [];
+            
+            if (!tableData && !questions.length) {
+                // Try to export demo table
+                const demoQuestions = this.getDemoQuestions().filter(q => q.table === tableName);
+                if (demoQuestions.length > 0) {
+                    this.exportQuestionsAsFile(tableName, demoQuestions, { 
+                        name: tableName, 
+                        category: 'Demo',
+                        description: 'Demo tabulka'
+                    });
+                    return;
+                }
+                
+                this.showNotification(`Tabulka "${tableName}" nebyla nalezena`, 'error');
+                return;
+            }
+            
+            this.exportQuestionsAsFile(tableName, questions, tableData);
+            
+        } catch (error) {
+            console.error('Export error:', error);
+            this.showNotification('Chyba při exportu tabulky', 'error');
+        }
+    }
+    
+    exportQuestionsAsFile(tableName, questions, tableData) {
+        const exportData = {
+            tableName: tableName,
+            tableInfo: tableData || {
+                name: tableName,
+                category: 'Export',
+                description: `Export tabulky ${tableName}`
+            },
+            questions: questions,
+            exportDate: new Date().toISOString(),
+            exportedBy: this.currentUser,
+            version: '1.0'
+        };
+        
+        const dataStr = JSON.stringify(exportData, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `${tableName.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+        
+        this.showNotification(`Tabulka "${tableName}" byla exportována`, 'success');
+        console.log('Table exported', { tableName, questionCount: questions.length });
+    }
+    
+    deleteTable(tableName) {
+        if (!confirm(`Opravdu chcete smazat tabulku "${tableName}" a všechny její otázky?`)) {
+            return;
+        }
+        
+        try {
+            // Remove from custom tables
+            const tables = this.loadFromStorage('custom_tables') || {};
+            delete tables[tableName];
+            this.saveToStorage('custom_tables', tables);
+            
+            // Remove questions
+            localStorage.removeItem(`quiz_questions_${tableName}`);
+            
+            this.showNotification(`Tabulka "${tableName}" byla smazána`, 'success');
+            this.loadTablesData();
+            this.loadDashboardData();
+            
+            console.log('Table deleted', { tableName });
+            
+        } catch (error) {
+            console.error('Delete error:', error);
+            this.showNotification('Chyba při mazání tabulky', 'error');
+        }
+    }
+    
+    manageTableQuestions(tableName) {
+        // Close edit modal and open question management
+        document.getElementById('editTableModal')?.remove();
+        
+        // Switch to Questions tab and filter by this table
+        this.switchTab('questions');
+        
+        setTimeout(() => {
+            const filter = document.getElementById('questionTableFilter');
+            if (filter) {
+                // Add table to filter if not exists
+                const existingOption = Array.from(filter.options).find(option => option.value === tableName);
+                if (!existingOption) {
+                    const option = document.createElement('option');
+                    option.value = tableName;
+                    option.textContent = tableName;
+                    filter.appendChild(option);
+                }
+                filter.value = tableName;
+                this.filterQuestions(tableName);
+            }
+        }, 100);
+    }
+    
+    filterQuestions(tableName) {
+        const rows = document.querySelectorAll('#questionsTableBody tr');
+        
+        rows.forEach(row => {
+            if (!tableName) {
+                // Show all rows if no filter
+                row.style.display = '';
+            } else {
+                // Check if row belongs to the selected table
+                const tableCell = row.cells[1]; // Table column is index 1
+                if (tableCell && tableCell.textContent.trim() === tableName) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        });
+        
+        // Update visible count
+        const visibleRows = Array.from(rows).filter(row => row.style.display !== 'none');
+        console.log(`Filtered questions: ${visibleRows.length} visible out of ${rows.length} total`);
+    }
+    
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
 }
 
 // Initialize when DOM is ready

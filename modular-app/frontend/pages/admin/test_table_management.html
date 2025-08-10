@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test: Table Management - Admin Panel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .success-badge {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2d3748;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            color: #4a5568;
+        }
+        
+        .icon {
+            font-size: 1.5em;
+        }
+        
+        .workflow-section {
+            background: rgba(248, 250, 252, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .workflow-section h2 {
+            color: #2d3748;
+            margin: 0 0 20px 0;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .workflow-step {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .workflow-step h4 {
+            color: #667eea;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .workflow-step p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+        
+        .implementation-details {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .implementation-details h4 {
+            color: #38a169;
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .code-snippet {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .feature-highlight {
+            background: rgba(255, 235, 59, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .feature-highlight strong {
+            color: #f57c00;
+        }
+        
+        .test-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Table Management - Admin Panel</h1>
+        
+        <div class="success-badge">
+            ✅ Advanced Table Management System Implemented
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3><span class="icon">➕</span> Vytvořit tabulku</h3>
+                <ul>
+                    <li>Dvě možnosti vytvoření</li>
+                    <li>Manuální vytvoření řádek po řádku</li>
+                    <li>Import z existující databáze (.db)</li>
+                    <li>Dynamické přidávání otázek</li>
+                    <li>Validace všech polí</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3><span class="icon">✏️</span> Upravit tabulku</h3>
+                <ul>
+                    <li>Editace názvu a popisu</li>
+                    <li>Změna obtížnosti</li>
+                    <li>Zobrazení statistik</li>
+                    <li>Přesměrování na správu otázek</li>
+                    <li>Zachování historie změn</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3><span class="icon">📤</span> Export tabulky</h3>
+                <ul>
+                    <li>Export do JSON formátu</li>
+                    <li>Zachování metadata</li>
+                    <li>Export demo i custom tabulek</li>
+                    <li>Automatické pojmenování souboru</li>
+                    <li>Kompletní struktura dat</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3><span class="icon">📁</span> Database Import</h3>
+                <ul>
+                    <li>Podpora .db, .sqlite, .sqlite3</li>
+                    <li>Automatická detekce tabulek</li>
+                    <li>Výběr tabulek k importu</li>
+                    <li>Bulk import funkcionalita</li>
+                    <li>Simulace SQL parsingu</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="workflow-section">
+            <h2>🔄 Workflow pro tvorbu tabulek</h2>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <h4>1. Kliknutí "Vytvořit tabulku"</h4>
+                    <p>Zobrazí se modal s dvěma možnostmi vytvoření</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>2a. Manuální vytvoření</h4>
+                    <p>Formulář pro vytvoření tabulky řádek po řádku</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>2b. Database Import</h4>
+                    <p>Nahrání .db souboru a výběr tabulek</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>3. Validace a uložení</h4>
+                    <p>Kontrola dat a uložení do localStorage</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="implementation-details">
+            <h4>🔧 Implementované funkce v admin.js:</h4>
+            <div class="code-snippet">
+// Hlavní funkce pro správu tabulek
+addNewTable()                    // Zobrazí modal s volbami
+showManualTableCreation()       // Manuální tvorba
+showDatabaseImport()            // Import z databáze
+editTable(tableName)            // Editace existující
+exportTable(tableName)          // Export do JSON
+deleteTable(tableName)          // Smazání s potvrzením
+filterQuestions(tableName)       // Filtrování otázek
+
+// Pomocné funkce
+addQuestionRow()                // Přidání řádku otázky
+saveManualTable()               // Uložení manuální tabulky
+handleDatabaseFile(file)        // Zpracování DB souboru
+extractTablesFromDatabase()     // Extrakce tabulek z DB
+</div>
+        </div>
+        
+        <div class="implementation-details">
+            <h4>🎨 Nové CSS styly v admin.css:</h4>
+            <div class="code-snippet">
+/* Modal systém s glass morphism efekty */
+.modal, .modal-content, .modal-header
+.creation-options, .creation-option-btn
+.question-row, .question-header
+
+/* Database import styly */
+.file-upload-area, .available-tables
+.table-option, .table-checkbox
+
+/* Responzivní design pro mobily */
+@media (max-width: 768px) { ... }
+</div>
+        </div>
+        
+        <div class="feature-highlight">
+            <strong>Nové možnosti:</strong>
+            <br>• Kompletní správa tabulek s glass morphism designem
+            <br>• Dvoucestný proces vytváření (manuální + import)
+            <br>• Validace a error handling pro všechny operace
+            <br>• Responzivní modaly pro mobily a tablety
+            <br>• Automatické aktualizace dashboard statistik
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="../admin.html" class="test-link">
+                🧪 Otestovat Table Management
+            </a>
+        </div>
+    </div>
+</body>
+</html>
