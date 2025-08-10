@@ -659,6 +659,43 @@ def monica_evaluate():
 # TABLE MANAGEMENT API (Admin Only)
 # ===============================================
 
+@app.route('/api/admin/tables', methods=['GET'])
+@require_auth
+def get_admin_tables():
+    """Get detailed table information for admin panel"""
+    try:
+        # Get tables with question counts and creation info
+        tables_query = db.session.query(
+            Question.table_name,
+            db.func.count(Question.id).label('question_count'),
+            db.func.min(Question.created_at).label('created_at'),
+            db.func.max(Question.difficulty).label('difficulty')
+        ).group_by(Question.table_name).all()
+        
+        result = []
+        for table in tables_query:
+            # Try to get creator info from first question
+            first_question = Question.query.filter_by(table_name=table.table_name).first()
+            
+            table_info = {
+                'name': table.table_name,
+                'question_count': table.question_count,
+                'difficulty': table.difficulty or 'medium',
+                'created_at': table.created_at.isoformat() if table.created_at else None,
+                'created_by': first_question.created_by if first_question and hasattr(first_question, 'created_by') else None,
+                'description': f'Tabulka s {table.question_count} otázkami'
+            }
+            result.append(table_info)
+        
+        return jsonify({
+            'tables': result,
+            'total_tables': len(result)
+        })
+        
+    except Exception as e:
+        print(f"Error getting admin tables: {e}")
+        return jsonify({'error': 'Failed to get tables', 'details': str(e)}), 500
+
 @app.route('/api/admin/tables', methods=['POST'])
 @require_auth
 @require_admin

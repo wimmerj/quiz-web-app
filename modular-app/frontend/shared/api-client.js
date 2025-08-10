@@ -438,11 +438,26 @@ class ModularAPIClient {
     
     async getTables() {
         try {
+            // Try admin endpoint first for detailed info
+            if (this.isAuthenticated()) {
+                try {
+                    const response = await this.request(this.endpoints.adminTables, {
+                        method: 'GET'
+                    });
+                    
+                    this.safeLog('success', 'Admin tables loaded successfully', { count: response.tables?.length });
+                    return response;
+                } catch (adminError) {
+                    this.safeLog('warning', 'Admin endpoint failed, trying public endpoint', adminError);
+                }
+            }
+            
+            // Fallback to public endpoint
             const response = await this.request(this.endpoints.tables, {
                 method: 'GET'
             });
             
-            this.safeLog('success', 'Tables loaded successfully', { count: response.length });
+            this.safeLog('success', 'Public tables loaded successfully', { count: response.tables?.length });
             return response;
         } catch (error) {
             this.safeLog('error', 'Failed to load tables', error);

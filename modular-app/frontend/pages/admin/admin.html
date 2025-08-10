@@ -9,7 +9,26 @@
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     
     <!-- SQL.js for SQLite database parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script>
+        // Lighter approach - only load SQL.js when needed
+        window.loadSQLjs = function() {
+            return new Promise((resolve, reject) => {
+                if (window.initSqlJs) {
+                    resolve(window.initSqlJs);
+                    return;
+                }
+                
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js';
+                script.onload = () => resolve(window.initSqlJs);
+                script.onerror = () => reject(new Error('Failed to load SQL.js'));
+                document.head.appendChild(script);
+                
+                // Timeout after 10 seconds
+                setTimeout(() => reject(new Error('SQL.js loading timeout')), 10000);
+            });
+        };
+    </script>
 </head>
 <body class="no-navigation no-breadcrumb">
     <!-- Notifications Container -->

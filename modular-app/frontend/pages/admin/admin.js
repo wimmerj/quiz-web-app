@@ -21,24 +21,38 @@ class AdminModule {
         
         // Initialize SQL.js for database parsing
         this.initializeSQL();
+        
+        // Initialize the admin module
+        this.init();
     }
     
     async initializeSQL() {
+        // Don't load SQL.js at startup - only when needed
+        console.log('SQL.js will be loaded on demand when needed');
+    }
+    
+    async loadSQLjsOnDemand() {
+        if (this.SQL) return this.SQL; // Already loaded
+        
         try {
-            // Initialize SQL.js for database parsing
-            if (typeof initSqlJs !== 'undefined') {
+            console.log('Loading SQL.js on demand...');
+            
+            if (typeof window.loadSQLjs === 'function') {
+                const initSqlJs = await window.loadSQLjs();
                 this.SQL = await initSqlJs({
                     locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
                 });
-                console.log('SQL.js initialized successfully');
+                console.log('SQL.js loaded successfully on demand');
+                return this.SQL;
             } else {
-                console.warn('SQL.js not available, using text-based parsing fallback');
+                throw new Error('SQL.js loader not available');
             }
+            
         } catch (error) {
-            console.warn('SQL.js initialization failed, using fallback:', error);
+            console.warn('On-demand SQL.js loading failed:', error.message);
+            this.SQL = null;
+            return null;
         }
-        
-        this.init();
     }
     
     async init() {
@@ -1804,12 +1818,24 @@ Informace o systému:
             </div>
         `;
         
+        // Add timeout for parsing to prevent freezing
+        const parseTimeout = 30000; // 30 seconds max
+        
         try {
-            // Read file as ArrayBuffer for SQLite parsing
+            // Read file with size limit
+            if (file.size > 50 * 1024 * 1024) { // 50MB limit
+                throw new Error('Soubor je příliš velký (max 50MB)');
+            }
+            
             const arrayBuffer = await file.arrayBuffer();
             
-            // Extract tables from database
-            const tables = await this.extractTablesFromDatabase(arrayBuffer, file.name);
+            // Parse with timeout
+            const tables = await Promise.race([
+                this.extractTablesFromDatabase(arrayBuffer, file.name),
+                new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Parsing timeout')), parseTimeout)
+                )
+            ]);
             
             // Store the parsed data for later use in import
             this.parsedDatabaseData = {
@@ -1832,9 +1858,20 @@ Informace o systému:
             
         } catch (error) {
             console.error('Database parsing error:', error);
+            
+            let errorMessage = 'Chyba při čtení databáze';
+            if (error.message === 'Parsing timeout') {
+                errorMessage = 'Parsing databáze trval příliš dlouho. Zkuste menší soubor.';
+            } else if (error.message.includes('příliš velký')) {
+                errorMessage = error.message;
+            }
+            
             fileInfo.innerHTML = `
                 <div class="file-error">
-                    <span>❌ Chyba při čtení databáze: ${error.message}</span>
+                    <span>❌ ${errorMessage}</span>
+                    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.6);">
+                        Tip: Zkuste použít menší databázi nebo exportovat pouze potřebné tabulky
+                    </div>
                 </div>
             `;
         }
@@ -1842,9 +1879,20 @@ Informace o systému:
     
     async extractTablesFromDatabase(arrayBuffer, fileName) {
         try {
-            // Try to use SQL.js if available for real SQLite parsing
-            if (window.SQL && window.SQL.Database) {
-                return await this.parseRealSQLiteDatabase(arrayBuffer, fileName);
+            // Quick size check - if file is too large, skip SQL.js
+            if (arrayBuffer.byteLength > 10 * 1024 * 1024) { // 10MB limit for SQL.js
+                console.log('File too large for SQL.js, using text parsing');
+                return await this.parseTextBasedDatabase(arrayBuffer, fileName);
+            }
+            
+            // Try to load SQL.js on demand and use it for real SQLite parsing
+            try {
+                const SQL = await this.loadSQLjsOnDemand();
+                if (SQL && SQL.Database) {
+                    return await this.parseSQLiteWithSQLjs(arrayBuffer, fileName, SQL);
+                }
+            } catch (sqlError) {
+                console.warn('SQL.js loading failed, using text parsing:', sqlError.message);
             }
             
             // Fallback to improved text-based parsing
@@ -1861,7 +1909,7 @@ Informace o systému:
         try {
             // Try to use SQL.js if available for real SQLite parsing
             if (this.SQL && this.SQL.Database) {
-                return await this.parseSQLiteWithSQLjs(arrayBuffer, fileName);
+                return await this.parseSQLiteWithSQLjs(arrayBuffer, fileName, this.SQL);
             } else {
                 throw new Error('SQL.js not available');
             }
@@ -1871,10 +1919,10 @@ Informace o systému:
         }
     }
     
-    async parseSQLiteWithSQLjs(arrayBuffer, fileName) {
+    async parseSQLiteWithSQLjs(arrayBuffer, fileName, SQL) {
         try {
             const uInt8Array = new Uint8Array(arrayBuffer);
-            const db = new this.SQL.Database(uInt8Array);
+            const db = new SQL.Database(uInt8Array);
             
             // Get all table names (excluding system tables)
             const tableQuery = `
