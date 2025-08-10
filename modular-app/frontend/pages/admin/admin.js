@@ -801,13 +801,17 @@ class AdminModule {
             if (window.APIClient && window.APIClient.isAuthenticated()) {
                 try {
                     // Load tables from API
-                    const apiTables = await window.APIClient.getTables();
+                    const apiResponse = await window.APIClient.getTables();
+                    const apiTables = apiResponse.tables || apiResponse; // Handle both formats
+                    
+                    // Ensure we have an array
+                    const tablesArray = Array.isArray(apiTables) ? apiTables : [];
                     
                     // Convert API format to UI format
-                    allTables = apiTables.map(table => ({
-                        name: table.name,
+                    allTables = tablesArray.map(table => ({
+                        name: table.name || table.table_name,
                         description: table.description || 'Popis není k dispozici',
-                        questionCount: table.question_count || 0,
+                        questionCount: table.question_count || table.count || 0,
                         difficulty: table.difficulty || 'medium',
                         category: table.created_by ? 'Custom' : 'System',
                         createdAt: table.created_at,
@@ -815,7 +819,7 @@ class AdminModule {
                         isFromAPI: true
                     }));
                     
-                    console.log('Loaded tables from API', { count: allTables.length });
+                    console.log('Loaded tables from API', { count: allTables.length, rawResponse: apiResponse });
                     
                 } catch (apiError) {
                     console.error('Failed to load from API, using localStorage fallback:', apiError);
