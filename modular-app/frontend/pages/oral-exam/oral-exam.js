@@ -150,6 +150,9 @@ class OralExamModule {
             // Load available tables
             await this.loadAvailableTables();
             
+            // Start periodic status checking
+            this.startStatusChecking();
+            
             this.isInitialized = true;
             console.log('✅ Oral Exam Module initialized successfully');
             
@@ -439,16 +442,40 @@ class OralExamModule {
                     console.log('🔍 Server tables response for oral exam:', response);
                     
                     if (response.success && response.data) {
-                        response.data.forEach(table => {
-                            const option = document.createElement('option');
-                            option.value = table.name;
-                            option.textContent = `🌐 ${table.name} (${table.question_count || 0} otázek)`;
-                            tableSelect.appendChild(option);
-                        });
+                        let tablesData = [];
                         
-                        console.log('✅ Server tables loaded for oral exam', { count: response.data.length });
-                        console.log('✅ Server tables loaded successfully for oral exam');
-                        return; // Exit if server data loaded successfully
+                        // Handle different response formats
+                        if (Array.isArray(response.data)) {
+                            // Direct array format
+                            tablesData = response.data;
+                        } else if (response.data.tables && Array.isArray(response.data.tables)) {
+                            // Nested tables property
+                            tablesData = response.data.tables;
+                        } else if (typeof response.data === 'object') {
+                            // Object with table names as keys
+                            tablesData = Object.keys(response.data).map(key => ({
+                                name: key,
+                                question_count: response.data[key].question_count || 0,
+                                ...response.data[key]
+                            }));
+                        }
+                        
+                        console.log('🔍 Processed tables data:', tablesData);
+                        
+                        if (tablesData.length > 0) {
+                            tablesData.forEach(table => {
+                                const option = document.createElement('option');
+                                option.value = table.name;
+                                option.textContent = `🌐 ${table.name} (${table.question_count || 0} otázek)`;
+                                tableSelect.appendChild(option);
+                            });
+                            
+                            console.log('✅ Server tables loaded for oral exam', { count: tablesData.length });
+                            console.log('✅ Server tables loaded successfully for oral exam');
+                            return; // Exit if server data loaded successfully
+                        } else {
+                            console.warn('⚠️ No tables found in server response, using demo data');
+                        }
                     }
                 } catch (error) {
                     console.error('❌ Failed to load server tables for oral exam:', error);
@@ -1961,6 +1988,42 @@ class OralExamModule {
         }
     }
     
+    // Server status management
+    startStatusChecking() {
+        // Initial check
+        this.checkOralExamServerStatus();
+        
+        // Periodic checks every 30 seconds
+        setInterval(() => {
+            this.checkOralExamServerStatus();
+        }, 30000);
+    }
+    
+    async checkOralExamServerStatus() {
+        try {
+            updateOralExamServerStatus('checking', 'Checking...');
+            
+            if (window.APIClient) {
+                // Try to ping the server
+                const isOnline = await window.APIClient.healthCheck();
+                if (isOnline) {
+                    updateOralExamServerStatus('online', 'Online');
+                } else {
+                    updateOralExamServerStatus('offline', 'Offline');
+                }
+            } else {
+                updateOralExamServerStatus('offline', 'Offline');
+            }
+            
+            // Update the status indicator
+            updateOralExamStatusIndicator();
+            
+        } catch (error) {
+            console.warn('Status check failed:', error);
+            updateOralExamServerStatus('offline', 'Offline');
+        }
+    }
+    
     // 🧪 TESTOVACÍ FUNKCE PRO AIClient - ORAL EXAM
     async runOralAPIClientTest() {
         console.log('🧪 ORAL EXAM TEST BUTTON CLICKED! (v2.0)'); // Debug
@@ -2160,23 +2223,57 @@ window.addEventListener('beforeunload', (event) => {
 
 // Status indicator management
 function updateOralExamStatusIndicator() {
-    const indicator = document.getElementById('oralExamStatusIndicator');
-    if (!indicator) return;
+    // Update main status indicator (standardní jako v quiz.html)
+    const indicator = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusIndicatorText');
     
-    try {
-        if (typeof APIClient !== 'undefined' && APIClient.isAuthenticated()) {
-            indicator.style.background = '#00ff00';
-            indicator.title = 'Online Mode - Authenticated';
-        } else if (typeof APIClient !== 'undefined') {
-            indicator.style.background = '#ffff00';
-            indicator.title = 'API Available - Ready for Exam';
+    if (indicator && statusText) {
+        if (window.APIClient && window.APIClient.isAuthenticated()) {
+            indicator.textContent = '🟢';
+            statusText.textContent = 'Online';
         } else {
-            indicator.style.background = '#ff8800';
-            indicator.title = 'Offline Mode - Local Exam Only';
+            indicator.textContent = '🔴';
+            statusText.textContent = 'Offline';
         }
-    } catch (error) {
-        indicator.style.background = '#ff0000';
-        indicator.title = 'Connection Error';
+    }
+    
+    // Update specific oral exam indicator (pokud existuje)
+    const oralIndicator = document.getElementById('oralExamStatusIndicator');
+    if (oralIndicator) {
+        try {
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                oralIndicator.style.background = '#00ff00';
+                oralIndicator.title = 'Online Mode - Authenticated';
+            } else if (window.APIClient) {
+                oralIndicator.style.background = '#ffff00';
+                oralIndicator.title = 'API Available - Ready for Exam';
+            } else {
+                oralIndicator.style.background = '#ff8800';
+                oralIndicator.title = 'Offline Mode - Local Exam Only';
+            }
+        } catch (error) {
+            oralIndicator.style.background = '#ff0000';
+            oralIndicator.title = 'Connection Error';
+        }
+    }
+}
+
+// Add server status update function similar to quiz.js
+function updateOralExamServerStatus(status, text) {
+    const indicator = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusIndicatorText');
+    
+    if (indicator && statusText) {
+        statusText.textContent = text;
+        
+        // Update indicator icon based on status
+        if (status === 'online') {
+            indicator.textContent = '🟢';
+        } else if (status === 'checking') {
+            indicator.textContent = '🟡';
+        } else {
+            indicator.textContent = '🔴';
+        }
     }
 }
 
