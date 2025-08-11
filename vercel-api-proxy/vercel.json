@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "@vercel/node@20.x"
-    }
-  },
   "env": {
     "MONICA_API_KEY": "@monica_api_key"
   }
