@@ -1513,6 +1513,11 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
     // === SERVER STATUS METHODS ===
     
     initializeServerStatus() {
+        console.log('[Render.com Optimization] Initializing server status - single check only');
+        
+        // Show checking state initially
+        this.updateServerStatus('checking', 'Kontroluji...');
+        
         // Initial check only - no periodic checking to save Render.com free tier resources
         this.checkServerStatus();
         
@@ -1543,11 +1548,16 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
                 }
             }
 
-            this.updateServerStatus(isOnline);
+            // Call updateServerStatus with proper string format
+            if (isOnline) {
+                this.updateServerStatus('online', 'Online');
+            } else {
+                this.updateServerStatus('offline', 'Offline');
+            }
             
         } catch (error) {
             console.error('Error checking server status:', error);
-            this.updateServerStatus(false);
+            this.updateServerStatus('offline', 'Offline');
         }
     }
 
@@ -1556,26 +1566,29 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
         await this.checkServerStatus();
     }
 
-    updateServerStatus(isOnline) {
+    updateServerStatus(status, text) {
         const indicator = document.getElementById('statusIndicator');
         const statusText = document.getElementById('statusIndicatorText');
         const mode = document.getElementById('statusMode');
         
         if (indicator && statusText && mode) {
-            if (isOnline) {
+            statusText.textContent = text;
+            
+            if (status === 'online') {
                 indicator.textContent = '🟢';
-                statusText.textContent = 'Online';
                 mode.textContent = 'Server Mode';
+            } else if (status === 'checking') {
+                indicator.textContent = '�';
+                mode.textContent = 'Checking...';
             } else {
                 indicator.textContent = '🔴';
-                statusText.textContent = 'Offline';
                 mode.textContent = 'Local Mode';
             }
             
             // Also update server status container class
             const serverStatusElement = document.getElementById('serverStatus');
             if (serverStatusElement) {
-                serverStatusElement.className = isOnline ? 'server-status online' : 'server-status offline';
+                serverStatusElement.className = `server-status ${status}`;
             }
         }
     }
