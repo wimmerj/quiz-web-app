@@ -488,8 +488,8 @@ class ModularAPIClient {
                 answerLength: userAnswer.length 
             });
             
-            // Use Vercel Monica AI proxy directly for better performance
-            const VERCEL_MONICA_URL = 'https://quiz-api-proxy-37drka9ro-jan-wimmers-projects.vercel.app/api/monica';
+            // Use Vercel Monica AI proxy - Public endpoint (bez autentifikace)
+            const VERCEL_MONICA_URL = 'https://quiz-api-proxy-37drka9ro-jan-wimmers-projects.vercel.app/api/public-monica';
             
             const response = await fetch(VERCEL_MONICA_URL, {
                 method: 'POST',
@@ -504,7 +504,7 @@ class ModularAPIClient {
             });
             
             if (!response.ok) {
-                throw new Error(`Monica API error: ${response.status}`);
+                throw new Error(`Monica API error: ${response.status} - ${response.statusText}`);
             }
             
             const data = await response.json();
@@ -512,9 +512,9 @@ class ModularAPIClient {
             // Extract evaluation from Vercel response format
             const evaluation = data.success ? data.evaluation : data;
             
-            this.safeLog('success', 'Answer evaluation completed via Vercel proxy', { 
+            this.safeLog('success', 'Answer evaluation completed via Vercel public proxy', { 
                 score: evaluation.score, 
-                method: evaluation.method || 'vercel-monica-proxy'
+                method: evaluation.method || 'vercel-monica-public-proxy'
             });
             
             return evaluation;
