@@ -1832,10 +1832,27 @@ class OralExamModule {
     handleKeyboardShortcuts(event) {
         if (!this.examState.isActive) return;
         
+        // Check if user is typing in text input mode
+        const isTextMode = document.querySelector('input[name="responseMode"][value="text"]')?.checked;
+        const isTypingInTextArea = event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA';
+        
+        // Disable keyboard shortcuts when user is typing in text mode
+        if (isTextMode && isTypingInTextArea) {
+            // Allow only Escape key to work when typing
+            if (event.code === 'Escape') {
+                event.preventDefault();
+                this.togglePause();
+            }
+            return;
+        }
+        
         switch (event.code) {
             case 'Space':
-                event.preventDefault();
-                this.toggleRecording();
+                // Only prevent default in voice mode
+                if (!isTextMode) {
+                    event.preventDefault();
+                    this.toggleRecording();
+                }
                 break;
             case 'KeyR':
                 if (!event.ctrlKey && !event.altKey) {
@@ -1850,7 +1867,12 @@ class OralExamModule {
                 }
                 break;
             case 'Enter':
-                if (!event.shiftKey) {
+                // In text mode, Enter should work normally in the text field
+                if (!isTextMode && !event.shiftKey) {
+                    event.preventDefault();
+                    this.submitAnswer();
+                } else if (isTextMode && event.target.id === 'manualAnswer' && !event.shiftKey) {
+                    // Allow Enter to submit in text mode when focused on answer field
                     event.preventDefault();
                     this.submitAnswer();
                 }
