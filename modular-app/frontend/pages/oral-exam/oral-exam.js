@@ -2237,14 +2237,17 @@ function updateOralExamStatusIndicator() {
     // Update main status indicator (standardní jako v quiz.html)
     const indicator = document.getElementById('statusIndicator');
     const statusText = document.getElementById('statusIndicatorText');
+    const mode = document.getElementById('statusMode');
     
-    if (indicator && statusText) {
+    if (indicator && statusText && mode) {
         if (window.APIClient && window.APIClient.isAuthenticated()) {
             indicator.textContent = '🟢';
             statusText.textContent = 'Online';
+            mode.textContent = 'Server Mode';
         } else {
             indicator.textContent = '🔴';
             statusText.textContent = 'Offline';
+            mode.textContent = 'Local Mode';
         }
     }
     
@@ -2273,17 +2276,21 @@ function updateOralExamStatusIndicator() {
 function updateOralExamServerStatus(status, text) {
     const indicator = document.getElementById('statusIndicator');
     const statusText = document.getElementById('statusIndicatorText');
+    const mode = document.getElementById('statusMode');
     
-    if (indicator && statusText) {
+    if (indicator && statusText && mode) {
         statusText.textContent = text;
         
         // Update indicator icon based on status
         if (status === 'online') {
             indicator.textContent = '🟢';
+            mode.textContent = 'Server Mode';
         } else if (status === 'checking') {
             indicator.textContent = '🟡';
+            mode.textContent = 'Checking...';
         } else {
             indicator.textContent = '🔴';
+            mode.textContent = 'Local Mode';
         }
     }
 }

@@ -472,13 +472,13 @@ class AuthManager {
     
     async checkServerStatus() {
         Logger.info('Checking server status...');
-        this.updateServerStatus('checking', '🟡 Kontroluji...');
+        this.updateServerStatus('checking', 'Kontroluji...');
         
         // Ensure APIClient is available
         if (!window.APIClient) {
             console.warn('APIClient not yet available, falling back to offline mode');
             this.serverStatus = 'offline';
-            this.updateServerStatus('offline', '🔴 Offline Mode');
+            this.updateServerStatus('offline', 'Offline');
             return;
         }
         
@@ -486,22 +486,37 @@ class AuthManager {
         
         if (isOnline) {
             this.serverStatus = 'online';
-            this.updateServerStatus('online', '🟢 Server Online');
+            this.updateServerStatus('online', 'Online');
         } else {
             this.serverStatus = 'offline';
-            this.updateServerStatus('offline', '🔴 Offline Mode');
+            this.updateServerStatus('offline', 'Offline');
         }
     }
     
     updateServerStatus(status, text) {
         const indicator = document.getElementById('statusIndicator');
-        const statusText = document.getElementById('statusText');
+        const statusText = document.getElementById('statusIndicatorText');
+        const mode = document.getElementById('statusMode');
         
-        if (indicator && statusText) {
+        if (indicator && statusText && mode) {
             statusText.textContent = text;
             
+            // Update indicator icon based on status
+            if (status === 'online') {
+                indicator.textContent = '🟢';
+                mode.textContent = 'Server Mode';
+            } else if (status === 'checking') {
+                indicator.textContent = '🟡';
+                mode.textContent = 'Checking...';
+            } else {
+                indicator.textContent = '🔴';
+                mode.textContent = 'Local Mode';
+            }
+            
             const statusElement = document.getElementById('serverStatus');
-            statusElement.className = `server-status ${status}`;
+            if (statusElement) {
+                statusElement.className = `server-status ${status}`;
+            }
         }
     }
     

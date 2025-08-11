@@ -1557,15 +1557,26 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
     }
 
     updateServerStatus(isOnline) {
-        const serverStatusElement = document.getElementById('serverStatus');
-        if (!serverStatusElement) return;
-
-        if (isOnline) {
-            serverStatusElement.innerHTML = '🟢 Online';
-            serverStatusElement.className = 'status-indicator online';
-        } else {
-            serverStatusElement.innerHTML = '🔴 Offline';
-            serverStatusElement.className = 'status-indicator offline';
+        const indicator = document.getElementById('statusIndicator');
+        const statusText = document.getElementById('statusIndicatorText');
+        const mode = document.getElementById('statusMode');
+        
+        if (indicator && statusText && mode) {
+            if (isOnline) {
+                indicator.textContent = '🟢';
+                statusText.textContent = 'Online';
+                mode.textContent = 'Server Mode';
+            } else {
+                indicator.textContent = '🔴';
+                statusText.textContent = 'Offline';
+                mode.textContent = 'Local Mode';
+            }
+            
+            // Also update server status container class
+            const serverStatusElement = document.getElementById('serverStatus');
+            if (serverStatusElement) {
+                serverStatusElement.className = isOnline ? 'server-status online' : 'server-status offline';
+            }
         }
     }
 }

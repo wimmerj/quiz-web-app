@@ -1087,8 +1087,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         await window.settingsModule.initialize();
         console.log('Settings Module ready');
         
-        // Update status indicator
+        // Update status indicators
         updateSettingsStatusIndicator();
+        updateSettingsMainStatusIndicator();
     } catch (error) {
         console.error('Failed to initialize Settings Module:', error);
     }
@@ -1113,6 +1114,31 @@ function updateSettingsStatusIndicator() {
     } catch (error) {
         indicator.style.background = '#ff0000';
         indicator.title = 'Connection Error';
+    }
+}
+
+// Main status indicator management (navigation bar)
+function updateSettingsMainStatusIndicator() {
+    const indicator = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusIndicatorText');
+    const mode = document.getElementById('statusMode');
+    
+    if (indicator && statusText && mode) {
+        try {
+            if (window.APIClient && window.APIClient.isAuthenticated()) {
+                indicator.textContent = '🟢';
+                statusText.textContent = 'Online';
+                mode.textContent = 'Server Mode';
+            } else {
+                indicator.textContent = '🔴';
+                statusText.textContent = 'Offline';
+                mode.textContent = 'Local Mode';
+            }
+        } catch (error) {
+            indicator.textContent = '🔴';
+            statusText.textContent = 'Error';
+            mode.textContent = 'Connection Error';
+        }
     }
 }
 

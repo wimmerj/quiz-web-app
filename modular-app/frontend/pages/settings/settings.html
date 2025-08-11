@@ -25,9 +25,18 @@
         
         <!-- Navigation Breadcrumbs -->
         <nav class="breadcrumbs">
-            <a href="../../index.html">🏠 Dashboard</a>
-            <span class="separator">›</span>
-            <span class="current">⚙️ Nastavení</span>
+            <div class="status-left">
+                <a href="../../index.html">🏠 Dashboard</a>
+                <span class="separator">›</span>
+                <span class="current">⚙️ Nastavení</span>
+            </div>
+            <div class="status-right">
+                <div class="server-status" id="serverStatus">
+                    <span class="status-indicator" id="statusIndicator">🔴</span>
+                    <span class="status-text" id="statusIndicatorText">Offline</span>
+                    <span class="status-mode" id="statusMode">Local Mode</span>
+                </div>
+            </div>
         </nav>
     </header>
 
