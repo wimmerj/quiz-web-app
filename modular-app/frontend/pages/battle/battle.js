@@ -322,6 +322,12 @@ class BattleModule {
         // Keyboard shortcuts
         document.addEventListener('keydown', this.handleKeyboardShortcuts.bind(this));
 
+        // Server status manual refresh
+        document.getElementById('serverStatus')?.addEventListener('click', () => {
+            console.log('[Render.com Optimization] Manual server status refresh clicked');
+            this.refreshServerStatus();
+        });
+
         // Tab navigation
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', this.switchTab.bind(this));
@@ -1507,11 +1513,11 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
     // === SERVER STATUS METHODS ===
     
     initializeServerStatus() {
+        // Initial check only - no periodic checking to save Render.com free tier resources
         this.checkServerStatus();
-        // Check server status every 30 seconds
-        setInterval(() => {
-            this.checkServerStatus();
-        }, 30000);
+        
+        Logger.info('Server status checking initialized - single check only (Render.com optimization)');
+        console.log('💡 Tip: Status will be refreshed only when needed (before battles, etc.)');
     }
 
     async checkServerStatus() {
@@ -1543,6 +1549,11 @@ Správných odpovědí: ${you.correct}/${this.battleState.questions.length}`;
             console.error('Error checking server status:', error);
             this.updateServerStatus(false);
         }
+    }
+
+    async refreshServerStatus() {
+        console.log('[Render.com Optimization] Manual server status refresh initiated');
+        await this.checkServerStatus();
     }
 
     updateServerStatus(isOnline) {

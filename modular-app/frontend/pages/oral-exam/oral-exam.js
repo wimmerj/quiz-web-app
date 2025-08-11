@@ -524,6 +524,9 @@ class OralExamModule {
             
             console.log('Starting oral exam...');
             
+            // Check server status before starting exam (Render.com optimization)
+            await this.refreshServerStatus();
+            
             // Initialize exam state
             this.examState.isActive = true;
             this.examState.isPaused = false;
@@ -1990,13 +1993,11 @@ class OralExamModule {
     
     // Server status management
     startStatusChecking() {
-        // Initial check
+        // Initial check only - no periodic checking to save Render.com free tier resources
         this.checkOralExamServerStatus();
         
-        // Periodic checks every 30 seconds
-        setInterval(() => {
-            this.checkOralExamServerStatus();
-        }, 30000);
+        console.log('📡 Status checking initialized - single check only (Render.com optimization)');
+        console.log('💡 Tip: Status will be refreshed only when needed (before exams, tests, etc.)');
     }
     
     async checkOralExamServerStatus() {
@@ -2022,6 +2023,12 @@ class OralExamModule {
             console.warn('Status check failed:', error);
             updateOralExamServerStatus('offline', 'Offline');
         }
+    }
+    
+    // Manual status refresh - call this before important operations
+    async refreshServerStatus() {
+        console.log('🔄 Manual server status refresh requested');
+        await this.checkOralExamServerStatus();
     }
     
     // 🧪 TESTOVACÍ FUNKCE PRO AIClient - ORAL EXAM
@@ -2114,6 +2121,10 @@ class OralExamModule {
                 output += `<div><hr style="border: 1px solid #ccc; margin: 10px 0;"></div>`;
                 output += `<div><strong>🤖 MONICA AI DIRECT TEST:</strong></div>`;
                 try {
+                    // Refresh server status before AI test (Render.com optimization)
+                    output += `<div>🔄 Refreshing server status before AI test...</div>`;
+                    await this.refreshServerStatus();
+                    
                     output += `<div>📡 Testing direct Monica AI communication...</div>`;
                     
                     // Prepare detailed test data
