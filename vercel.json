@@ -3,5 +3,7 @@
     "api/**/*.js": {
       "runtime": "@vercel/node@3.0.23"
     }
-  }
+  },
+  "buildCommand": "echo 'No build needed'",
+  "outputDirectory": "modular-app/frontend"
 }
