@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "quiz-api-proxy",
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "MONICA_API_KEY": "@monica_api_key"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node@18.x"
+    }
+  }
+}

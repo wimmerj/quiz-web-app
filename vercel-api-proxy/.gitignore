@@ -1,0 +1,13 @@
+# Vercel API Proxy
+node_modules/
+.vercel/
+.env
+.env.local
+*.log
+
+# Backup files
+*.backup
+
+# OS generated files
+.DS_Store
+Thumbs.db
