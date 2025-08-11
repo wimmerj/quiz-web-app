@@ -1,0 +1,11 @@
+{
+  "name": "quiz-web-app",
+  "version": "1.0.0",
+  "description": "Quiz web application with oral exam module and Monica AI integration",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "build": "echo 'No build needed'"
+  }
+}
