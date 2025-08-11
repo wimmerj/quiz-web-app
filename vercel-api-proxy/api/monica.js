@@ -70,7 +70,7 @@ Prosím, vrať hodnocení v následujícím JSON formátu:
                 'User-Agent': 'QuizApp/1.0'
             },
             body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
+                model: 'gpt-4o', // Opraveno: Monica podporuje gpt-4o
                 messages: [{
                     role: 'system',
                     content: 'Jsi učitel, který hodnotí odpovědi studentů. Buď konstruktivní a povzbuzující.'

@@ -488,8 +488,8 @@ class ModularAPIClient {
                 answerLength: userAnswer.length 
             });
             
-            // Use Vercel Monica AI proxy - Public endpoint (bez autentifikace)
-            const VERCEL_MONICA_URL = 'https://quiz-api-proxy-37drka9ro-jan-wimmers-projects.vercel.app/api/public-monica';
+            // Use Vercel Monica AI proxy - Production endpoint
+            const VERCEL_MONICA_URL = 'https://quiz-api-proxy.vercel.app/api/monica';
             
             const response = await fetch(VERCEL_MONICA_URL, {
                 method: 'POST',
