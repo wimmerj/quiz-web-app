@@ -991,7 +991,22 @@ class OralExamModule {
             isCorrect,
             score,
             confidence,
-            analysis
+            analysis,
+            aiResult: {
+                summary: 'Lokální vyhodnocení odpovědi',
+                score: score,
+                positives: isCorrect ? ['Odpověď byla uznána jako správná'] : [],
+                negatives: !isCorrect ? ['Odpověď neodpovídá očekávané správné odpovědi'] : [],
+                recommendations: analysis,
+                grade: this.calculateGrade(score),
+                scoreBreakdown: {
+                    factual: Math.round(score * 0.4),
+                    completeness: Math.round(score * 0.3),
+                    clarity: Math.round(score * 0.2),
+                    structure: Math.round(score * 0.1)
+                },
+                method: 'local-evaluation'
+            }
         };
     }
 
@@ -1181,6 +1196,28 @@ class OralExamModule {
                 // New AI format
                 const aiResult = result.aiResult;
                 
+                // Add method indicator at the top - prominent display
+                const methodHeader = document.createElement('li');
+                const methodText = aiResult.method === 'local-evaluation' ? 
+                    '📋 Lokální hodnocení (AI nedostupná)' : 
+                    '🤖 AI hodnocení';
+                methodHeader.textContent = methodText;
+                methodHeader.classList.add('feedback-method-header');
+                
+                // Add appropriate class for styling
+                if (aiResult.method === 'local-evaluation') {
+                    methodHeader.classList.add('local-evaluation');
+                } else {
+                    methodHeader.classList.add('ai-evaluation');
+                }
+                
+                feedbackPoints.appendChild(methodHeader);
+                
+                // Add separator
+                const separator = document.createElement('li');
+                separator.innerHTML = '<hr style="border: 1px solid var(--border-color); margin: 10px 0;">';
+                feedbackPoints.appendChild(separator);
+                
                 // Add AI summary
                 if (aiResult.summary) {
                     const li = document.createElement('li');
@@ -1233,12 +1270,6 @@ class OralExamModule {
                         feedbackPoints.appendChild(li);
                     });
                 }
-                
-                // Add method indicator
-                const methodLi = document.createElement('li');
-                methodLi.textContent = `🔍 Hodnoceno pomocí: ${aiResult.method === 'local-evaluation' ? 'Lokální analýza' : 'AI služba'}`;
-                methodLi.classList.add('feedback-method');
-                feedbackPoints.appendChild(methodLi);
                 
             } else {
                 // Old format - fallback
@@ -1393,6 +1424,14 @@ class OralExamModule {
             responseSpeed,
             answers: this.examState.answers
         };
+    }
+
+    calculateGrade(score) {
+        if (score >= 90) return 'A';
+        else if (score >= 80) return 'B';
+        else if (score >= 70) return 'C';
+        else if (score >= 60) return 'D';
+        else return 'F';
     }
 
     calculateVoiceQuality() {
