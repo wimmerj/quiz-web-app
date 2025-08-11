@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vercel API Proxy Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-area {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #005a8a; }
+        .result {
+            background: white;
+            padding: 15px;
+            border-left: 4px solid #007cba;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .error { border-left-color: #e74c3c; }
+        .success { border-left-color: #27ae60; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Vercel Monica API Proxy Test</h1>
+    
+    <div class="test-area">
+        <h2>API Endpoint:</h2>
+        <p><strong>https://quiz-api-proxy-37drka9ro-jan-wimmers-projects.vercel.app/api/monica</strong></p>
+        
+        <button onclick="testBasicConnection()">🔗 Test Basic Connection</button>
+        <button onclick="testOPTIONSRequest()">⚙️ Test CORS (OPTIONS)</button>
+        <button onclick="testMonicaAPI()">🤖 Test Monica AI Evaluation</button>
+        <button onclick="testErrorHandling()">❌ Test Error Handling</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        const API_URL = 'https://quiz-api-proxy-37drka9ro-jan-wimmers-projects.vercel.app/api/monica';
+        
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const result = document.createElement('div');
+            result.className = `result ${type}`;
+            result.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            results.appendChild(result);
+            console.log(message);
+        }
+        
+        async function testBasicConnection() {
+            log('🔗 Testing basic connection...', 'info');
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET'
+                });
+                
+                if (response.status === 405) {
+                    log('✅ API endpoint accessible (returned 405 Method Not Allowed as expected)', 'success');
+                    const data = await response.json();
+                    log(`Response: ${JSON.stringify(data, null, 2)}`, 'info');
+                } else {
+                    log(`⚠️ Unexpected status: ${response.status}`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Connection failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testOPTIONSRequest() {
+            log('⚙️ Testing CORS preflight (OPTIONS)...', 'info');
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'OPTIONS'
+                });
+                
+                log(`✅ CORS preflight: ${response.status}`, response.ok ? 'success' : 'error');
+                log(`CORS headers: ${JSON.stringify(Object.fromEntries(response.headers), null, 2)}`, 'info');
+                
+            } catch (error) {
+                log(`❌ CORS test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testMonicaAPI() {
+            log('🤖 Testing Monica AI evaluation...', 'info');
+            
+            try {
+                const testData = {
+                    question: "Co je hlavním účelem elektrické soustavy?",
+                    correctAnswer: "Výroba, přenos a distribuce elektrické energie",
+                    userAnswer: "Elektrická soustava slouží k výrobě a dodávce elektřiny"
+                };
+                
+                log(`Sending request: ${JSON.stringify(testData, null, 2)}`, 'info');
+                
+                const startTime = Date.now();
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const duration = Date.now() - startTime;
+                log(`Response time: ${duration}ms`, 'info');
+                log(`Status: ${response.status} ${response.statusText}`, response.ok ? 'success' : 'error');
+                
+                const data = await response.json();
+                log(`Response data: ${JSON.stringify(data, null, 2)}`, response.ok ? 'success' : 'error');
+                
+                if (response.ok && data.success && data.evaluation) {
+                    log(`✅ Monica API test successful!`, 'success');
+                    log(`Score: ${data.evaluation.score}`, 'success');
+                    log(`Feedback: ${data.evaluation.feedback}`, 'success');
+                } else {
+                    log(`❌ Monica API test failed`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Monica API test error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testErrorHandling() {
+            log('❌ Testing error handling...', 'info');
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        // Missing required fields
+                        question: "Test question"
+                        // correctAnswer and userAnswer missing
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.status === 400 && data.error) {
+                    log(`✅ Error handling works: ${data.error}`, 'success');
+                } else {
+                    log(`⚠️ Unexpected error response: ${JSON.stringify(data)}`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error handling test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-test na načtení stránky
+        window.addEventListener('load', () => {
+            log('🚀 Test page loaded. API ready for testing!', 'success');
+        });
+    </script>
+</body>
+</html>
