@@ -586,6 +586,192 @@ def websocket_info():
         'features': ['battle_real_time', 'notifications', 'live_updates']
     })
 
+# ===============================================
+# API ROUTES - MONICA AI
+# ===============================================
+
+@app.route('/api/monica/evaluate', methods=['POST', 'OPTIONS'])
+def evaluate_answer_with_ai():
+    """Evaluate answer using Monica AI (no auth required for compatibility)"""
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+    
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        # Extract required fields
+        question = data.get('question', '')
+        correct_answer = data.get('correctAnswer', '')  
+        user_answer = data.get('userAnswer', '')
+        
+        if not all([question, correct_answer, user_answer]):
+            return jsonify({'error': 'Missing required fields: question, correctAnswer, userAnswer'}), 400
+        
+        # Use Monica AI if available
+        if MONICA_ENABLED:
+            try:
+                ai_response = monica_ai.evaluate_oral_answer(question, correct_answer, user_answer)
+                
+                if 'error' not in ai_response and 'choices' in ai_response:
+                    ai_content = ai_response['choices'][0]['message']['content']
+                    
+                    try:
+                        # Parse AI response as JSON
+                        evaluation_data = json.loads(ai_content)
+                        
+                        # Ensure all required fields are present
+                        result = {
+                            'summary': evaluation_data.get('feedback', 'AI vyhodnocení odpovědi'),
+                            'score': evaluation_data.get('score', 50),
+                            'positives': evaluation_data.get('suggestions', [])[:3] if evaluation_data.get('correctness') == 'correct' else [],
+                            'negatives': evaluation_data.get('suggestions', [])[:3] if evaluation_data.get('correctness') != 'correct' else [],
+                            'recommendations': evaluation_data.get('suggestions', []),
+                            'grade': calculate_grade(evaluation_data.get('score', 50)),
+                            'scoreBreakdown': {
+                                'factual': evaluation_data.get('content_score', 50),
+                                'completeness': min(100, evaluation_data.get('score', 50) + 10),
+                                'clarity': evaluation_data.get('grammar_score', 75),
+                                'structure': evaluation_data.get('pronunciation_score', 75)
+                            },
+                            'method': 'ai-monica'
+                        }
+                        
+                        # Log successful AI usage
+                        if hasattr(request, 'current_user') and request.current_user:
+                            monica_usage = MonicaUsage(
+                                user_id=request.current_user['user_id'],
+                                feature='answer_evaluation',
+                                tokens_used=len(user_answer) // 4,
+                                cost=0.001
+                            )
+                            db.session.add(monica_usage)
+                            db.session.commit()
+                        
+                        return jsonify(result)
+                        
+                    except json.JSONDecodeError:
+                        # AI didn't return valid JSON, fall back to local evaluation
+                        print(f"AI returned non-JSON response: {ai_content}")
+                        pass
+                
+            except Exception as e:
+                print(f"Monica AI error: {str(e)}")
+                pass
+        
+        # Fallback to local evaluation
+        result = evaluate_answer_locally(question, correct_answer, user_answer)
+        return jsonify(result)
+        
+    except Exception as e:
+        print(f"Evaluation error: {str(e)}")
+        return jsonify({
+            'summary': 'Došlo k chybě při vyhodnocování',
+            'score': 50,
+            'positives': ['Odpověď byla zaznamenána'],
+            'negatives': ['Automatické vyhodnocení selhalo'],
+            'recommendations': ['Zkuste odpověď zformulovat jinak'],
+            'grade': 'C',
+            'method': 'error-fallback'
+        })
+
+def calculate_grade(score):
+    """Calculate letter grade from numeric score"""
+    if score >= 90: return 'A'
+    elif score >= 75: return 'B'
+    elif score >= 60: return 'C'
+    elif score >= 45: return 'D'
+    else: return 'F'
+
+def evaluate_answer_locally(question, correct_answer, user_answer):
+    """Local fallback evaluation when AI is not available"""
+    import re
+    
+    def normalize_text(text):
+        """Normalize text for comparison"""
+        if not text:
+            return ''
+        text = text.lower()
+        # Remove diacritics (simplified)
+        replacements = {
+            'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ý': 'y',
+            'ě': 'e', 'š': 's', 'č': 'c', 'ř': 'r', 'ž': 'z', 'ů': 'u',
+            'ň': 'n', 'ť': 't', 'ď': 'd'
+        }
+        for czech, ascii_char in replacements.items():
+            text = text.replace(czech, ascii_char)
+        # Remove punctuation and normalize whitespace
+        text = re.sub(r'[^\w\s]', ' ', text)
+        text = re.sub(r'\s+', ' ', text)
+        return text.strip()
+    
+    normalized_correct = normalize_text(correct_answer)
+    normalized_user = normalize_text(user_answer)
+    
+    # Calculate similarity
+    correct_words = set(normalized_correct.split())
+    user_words = set(normalized_user.split())
+    
+    if len(correct_words) == 0:
+        similarity = 0.5
+    else:
+        common_words = correct_words.intersection(user_words)
+        similarity = len(common_words) / len(correct_words)
+    
+    # Calculate score
+    base_score = int(similarity * 70)  # Max 70 points for word match
+    length_bonus = min(15, len(user_answer.split()) * 2)  # Up to 15 points for length
+    effort_bonus = 15 if len(user_answer.strip()) > 0 else 0  # 15 points for trying
+    
+    score = min(100, base_score + length_bonus + effort_bonus)
+    
+    # Generate feedback
+    positives = []
+    negatives = []
+    recommendations = []
+    
+    if similarity > 0.7:
+        positives.append('Odpověď obsahuje většinu klíčových pojmů')
+    elif similarity > 0.4:
+        positives.append('Odpověď obsahuje některé správné pojmy')
+    else:
+        negatives.append('Odpověď neobsahuje hlavní klíčové pojmy')
+    
+    if len(user_answer.split()) > 10:
+        positives.append('Podrobná a rozvinutá odpověď')
+    elif len(user_answer.split()) < 5:
+        negatives.append('Odpověď je příliš stručná')
+        recommendations.append('Pokuste se odpověď více rozvinout')
+    
+    if similarity < 0.5:
+        recommendations.append('Zaměřte se na klíčové pojmy ze správné odpovědi')
+        recommendations.append('Použijte více konkrétních termínů')
+    
+    if len(recommendations) == 0:
+        recommendations.append('Dobrá práce, pokračujte v učení')
+    
+    return {
+        'summary': f'Vaše odpověď obsahuje {len(user_words.intersection(correct_words))} z {len(correct_words)} klíčových pojmů.',
+        'score': score,
+        'positives': positives,
+        'negatives': negatives,
+        'recommendations': recommendations,
+        'grade': calculate_grade(score),
+        'scoreBreakdown': {
+            'factual': int(similarity * 100),
+            'completeness': min(100, base_score + length_bonus),
+            'clarity': max(50, min(100, len(user_answer.split()) * 8)),
+            'structure': 75
+        },
+        'method': 'local-evaluation'
+    }
+
 # Import additional modules if needed
 import random
 import string
+import json

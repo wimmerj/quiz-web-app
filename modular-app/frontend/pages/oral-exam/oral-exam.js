@@ -73,7 +73,9 @@ class OralExamModule {
             {
                 id: 1,
                 question: "Co je JavaScript?",
+                otazka: "Co je JavaScript?",
                 correctAnswer: "JavaScript je programovací jazyk používaný pro vývoj webových aplikací",
+                spravna_odpoved: "JavaScript je programovací jazyk používaný pro vývoj webových aplikací",
                 explanation: "JavaScript je vysokoúrovňový, interpretovaný programovací jazyk, který se používá pro vytváření interaktivních webových stránek.",
                 difficulty: "easy",
                 category: "Základy"
@@ -81,7 +83,9 @@ class OralExamModule {
             {
                 id: 2,
                 question: "Vysvětlete rozdíl mezi var, let a const v JavaScriptu.",
+                otazka: "Vysvětlete rozdíl mezi var, let a const v JavaScriptu.",
                 correctAnswer: "var má function scope, let a const mají block scope, const je konstantní",
+                spravna_odpoved: "var má function scope, let a const mají block scope, const je konstantní",
                 explanation: "var má funkční dosah, let a const mají blokový dosah. const navíc neumožňuje změnu hodnoty po inicializaci.",
                 difficulty: "medium",
                 category: "Proměnné"
@@ -89,10 +93,32 @@ class OralExamModule {
             {
                 id: 3,
                 question: "Co je to closure v JavaScriptu a jak funguje?",
+                otazka: "Co je to closure v JavaScriptu a jak funguje?",
                 correctAnswer: "Closure je funkce která má přístup k proměnným z vnějšího dosahu i po skončení této funkce",
+                spravna_odpoved: "Closure je funkce která má přístup k proměnným z vnějšího dosahu i po skončení této funkce",
                 explanation: "Closure umožňuje funkcím přistupovat k proměnným ze svého lexikálního dosahu i poté, co se vnější funkce ukončí.",
                 difficulty: "hard",
                 category: "Pokročilé"
+            },
+            {
+                id: 4,
+                question: "Jak funguje Event Loop v JavaScriptu?",
+                otazka: "Jak funguje Event Loop v JavaScriptu?",
+                correctAnswer: "Event Loop spravuje asynchronní operace tím, že přesouvá callbacky z fronty do call stacku když je prázdný",
+                spravna_odpoved: "Event Loop spravuje asynchronní operace tím, že přesouvá callbacky z fronty do call stacku když je prázdný",
+                explanation: "Event Loop je mechanismus, který umožňuje JavaScriptu vykonávat asynchronní operace v single-threaded prostředí.",
+                difficulty: "hard",
+                category: "Pokročilé"
+            },
+            {
+                id: 5,
+                question: "Co jsou Promise v JavaScriptu?",
+                otazka: "Co jsou Promise v JavaScriptu?",
+                correctAnswer: "Promise je objekt reprezentující výsledek asynchronní operace, která může být pending, fulfilled nebo rejected",
+                spravna_odpoved: "Promise je objekt reprezentující výsledek asynchronní operace, která může být pending, fulfilled nebo rejected",
+                explanation: "Promises poskytují způsob, jak pracovat s asynchronním kódem způsobem, který je čitelnější než callbacks.",
+                difficulty: "medium",
+                category: "Asynchronní programování"
             }
         ];
         
@@ -518,25 +544,72 @@ class OralExamModule {
         try {
             const questionCount = parseInt(document.getElementById('questionCount').value);
             const difficulty = document.getElementById('examDifficulty').value;
+            const selectedTable = document.getElementById('examTableSelect').value;
             
-            // For demo, use predefined questions
-            let availableQuestions = [...this.demoQuestions];
+            let availableQuestions = [];
+            
+            // Try to load questions from server first
+            if (window.APIClient && window.APIClient.isAuthenticated() && selectedTable) {
+                try {
+                    console.log('🌐 Loading questions from server...', { table: selectedTable });
+                    const response = await window.APIClient.get(`/api/quiz/questions/${selectedTable}`);
+                    
+                    if (response.success && response.data && response.data.length > 0) {
+                        console.log('✅ Server questions loaded:', response.data.length);
+                        
+                        // Convert server format to oral exam format
+                        availableQuestions = response.data.map(q => ({
+                            id: q.id,
+                            question: q.question_text,
+                            otazka: q.question_text,
+                            correctAnswer: q.explanation || this.getCorrectAnswerText(q),
+                            spravna_odpoved: q.explanation || this.getCorrectAnswerText(q),
+                            explanation: q.explanation || this.getCorrectAnswerText(q),
+                            difficulty: q.difficulty || 'medium',
+                            category: q.category || 'Obecné'
+                        }));
+                    }
+                } catch (serverError) {
+                    console.warn('⚠️ Server questions failed, using demo data:', serverError.message);
+                }
+            }
+            
+            // Fallback to demo questions
+            if (availableQuestions.length === 0) {
+                console.log('📚 Using demo questions');
+                availableQuestions = [...this.demoQuestions];
+            }
             
             // Filter by difficulty if specified
-            if (difficulty !== 'all') {
-                availableQuestions = availableQuestions.filter(q => q.difficulty === difficulty);
+            if (difficulty !== 'all' && difficulty !== 'medium') {
+                const filtered = availableQuestions.filter(q => q.difficulty === difficulty);
+                if (filtered.length > 0) {
+                    availableQuestions = filtered;
+                }
             }
             
             // Shuffle and take requested count
             availableQuestions = this.shuffleArray(availableQuestions);
             this.examState.questions = availableQuestions.slice(0, questionCount);
             
-            console.log(`Loaded ${this.examState.questions.length} questions for exam`);
+            console.log(`✅ Loaded ${this.examState.questions.length} questions for exam`);
             
         } catch (error) {
             console.error('Failed to load exam questions:', error);
             throw error;
         }
+    }
+
+    getCorrectAnswerText(question) {
+        /* Convert multiple choice question to text answer */
+        const answers = [question.answer_a, question.answer_b, question.answer_c];
+        const correctIndex = question.correct_answer;
+        
+        if (correctIndex >= 0 && correctIndex < answers.length) {
+            return `Správná odpověď je ${String.fromCharCode(65 + correctIndex)}: ${answers[correctIndex]}`;
+        }
+        
+        return 'Správná odpověď není k dispozici';
     }
 
     shuffleArray(array) {
@@ -854,8 +927,34 @@ class OralExamModule {
 
     async evaluateAnswer(userAnswer) {
         const question = this.examState.questions[this.examState.currentQuestion];
-        const correctAnswer = question.correctAnswer;
+        const correctAnswer = question.correctAnswer || question.spravna_odpoved;
+        const questionText = question.question || question.otazka;
         
+        // Try AI evaluation first if available
+        try {
+            console.log('🤖 Attempting AI evaluation...');
+            const aiResult = await this.evaluateWithAI(questionText, correctAnswer, userAnswer);
+            if (aiResult) {
+                console.log('✅ AI evaluation successful');
+                return {
+                    isCorrect: aiResult.score >= 70,
+                    score: aiResult.score,
+                    confidence: aiResult.score / 100,
+                    analysis: [
+                        aiResult.summary,
+                        ...aiResult.positives,
+                        ...aiResult.negatives,
+                        ...aiResult.recommendations
+                    ],
+                    aiResult: aiResult
+                };
+            }
+        } catch (error) {
+            console.warn('🔄 AI evaluation failed, using fallback:', error.message);
+        }
+        
+        // Fallback to local evaluation
+        console.log('🔧 Using local evaluation...');
         let isCorrect = false;
         let score = 0;
         let confidence = 0;
@@ -894,6 +993,48 @@ class OralExamModule {
             confidence,
             analysis
         };
+    }
+
+    async evaluateWithAI(questionText, correctAnswer, userAnswer) {
+        /* Evaluate answer using AI service */
+        try {
+            console.log('📡 Calling AI evaluation API...');
+            
+            if (!window.APIClient) {
+                console.warn('⚠️ APIClient not available for AI evaluation');
+                return null;
+            }
+            
+            const response = await window.APIClient.evaluateAnswer(questionText, correctAnswer, userAnswer);
+            
+            if (response && response.score !== undefined) {
+                console.log('✅ AI evaluation response:', response);
+                
+                // Ensure all required properties exist
+                return {
+                    summary: response.summary || 'AI vyhodnocení odpovědi',
+                    score: response.score || 50,
+                    positives: response.positives || [],
+                    negatives: response.negatives || [],
+                    recommendations: response.recommendations || [],
+                    grade: response.grade || 'C',
+                    scoreBreakdown: response.scoreBreakdown || {
+                        factual: Math.round((response.score || 50) * 0.4),
+                        completeness: Math.round((response.score || 50) * 0.3),
+                        clarity: Math.round((response.score || 50) * 0.2),
+                        structure: Math.round((response.score || 50) * 0.1)
+                    },
+                    method: response.method || 'ai'
+                };
+            } else {
+                console.warn('⚠️ Invalid AI response format:', response);
+                return null;
+            }
+            
+        } catch (error) {
+            console.error('❌ AI evaluation error:', error);
+            return null;
+        }
     }
 
     strictComparison(userAnswer, correctAnswer) {
@@ -1025,20 +1166,88 @@ class OralExamModule {
         
         // Update feedback content
         const question = this.examState.questions[this.examState.currentQuestion];
+        const correctAnswer = question.correctAnswer || question.spravna_odpoved;
         
         document.getElementById('answerScore').textContent = `${result.score}/100`;
         document.getElementById('userAnswerText').textContent = this.examState.answers[this.examState.answers.length - 1].userAnswer;
-        document.getElementById('correctAnswerText').textContent = question.correctAnswer;
+        document.getElementById('correctAnswerText').textContent = correctAnswer;
         
-        // Update analysis
+        // Update analysis - handle both old format and new AI format
         const feedbackPoints = document.getElementById('feedbackPoints');
         if (feedbackPoints) {
             feedbackPoints.innerHTML = '';
-            result.analysis.forEach(point => {
-                const li = document.createElement('li');
-                li.textContent = point;
-                feedbackPoints.appendChild(li);
-            });
+            
+            if (result.aiResult) {
+                // New AI format
+                const aiResult = result.aiResult;
+                
+                // Add AI summary
+                if (aiResult.summary) {
+                    const li = document.createElement('li');
+                    li.textContent = `📝 ${aiResult.summary}`;
+                    li.classList.add('feedback-summary');
+                    feedbackPoints.appendChild(li);
+                }
+                
+                // Add positives
+                if (aiResult.positives && aiResult.positives.length > 0) {
+                    const header = document.createElement('li');
+                    header.textContent = '✅ Pozitiva:';
+                    header.classList.add('feedback-header', 'positive');
+                    feedbackPoints.appendChild(header);
+                    
+                    aiResult.positives.forEach(positive => {
+                        const li = document.createElement('li');
+                        li.textContent = `• ${positive}`;
+                        li.classList.add('feedback-positive');
+                        feedbackPoints.appendChild(li);
+                    });
+                }
+                
+                // Add negatives
+                if (aiResult.negatives && aiResult.negatives.length > 0) {
+                    const header = document.createElement('li');
+                    header.textContent = '❌ Nedostatky:';
+                    header.classList.add('feedback-header', 'negative');
+                    feedbackPoints.appendChild(header);
+                    
+                    aiResult.negatives.forEach(negative => {
+                        const li = document.createElement('li');
+                        li.textContent = `• ${negative}`;
+                        li.classList.add('feedback-negative');
+                        feedbackPoints.appendChild(li);
+                    });
+                }
+                
+                // Add recommendations
+                if (aiResult.recommendations && aiResult.recommendations.length > 0) {
+                    const header = document.createElement('li');
+                    header.textContent = '💡 Doporučení:';
+                    header.classList.add('feedback-header', 'recommendation');
+                    feedbackPoints.appendChild(header);
+                    
+                    aiResult.recommendations.forEach(recommendation => {
+                        const li = document.createElement('li');
+                        li.textContent = `• ${recommendation}`;
+                        li.classList.add('feedback-recommendation');
+                        feedbackPoints.appendChild(li);
+                    });
+                }
+                
+                // Add method indicator
+                const methodLi = document.createElement('li');
+                methodLi.textContent = `🔍 Hodnoceno pomocí: ${aiResult.method === 'local-evaluation' ? 'Lokální analýza' : 'AI služba'}`;
+                methodLi.classList.add('feedback-method');
+                feedbackPoints.appendChild(methodLi);
+                
+            } else {
+                // Old format - fallback
+                result.analysis.forEach(point => {
+                    const li = document.createElement('li');
+                    li.textContent = point;
+                    feedbackPoints.appendChild(li);
+                });
+            }
         }
         
         // Show feedback panel
@@ -1048,7 +1257,10 @@ class OralExamModule {
         // Auto-read feedback if enabled
         if (this.settings.speech.readFeedback) {
             setTimeout(() => {
-                const feedbackText = `Váš výsledek: ${result.score} bodů. ${result.analysis.join(' ')}`;
+                let feedbackText = `Váš výsledek: ${result.score} bodů.`;
+                if (result.aiResult && result.aiResult.summary) {
+                    feedbackText += ` ${result.aiResult.summary}`;
+                }
                 this.speakText(feedbackText);
             }, 1000);
         }
@@ -1688,7 +1900,7 @@ class OralExamModule {
         }
     }
     
-    // 🧪 TESTOVACÍ FUNKCE PRO APIClient - ORAL EXAM
+    // 🧪 TESTOVACÍ FUNKCE PRO AIClient - ORAL EXAM
     async runOralAPIClientTest() {
         console.log('🧪 ORAL EXAM TEST BUTTON CLICKED! (v2.0)'); // Debug
         alert('🧪 TEST FUNCTION REACHED! - Oral Exam v2.0'); // Immediate feedback
@@ -1716,6 +1928,7 @@ class OralExamModule {
                 output += `<div>- isAuthenticated: ${typeof window.APIClient.isAuthenticated}</div>`;
                 output += `<div>- getCurrentUser: ${typeof window.APIClient.getCurrentUser}</div>`;
                 output += `<div>- get: ${typeof window.APIClient.get}</div>`;
+                output += `<div>- evaluateAnswer: ${typeof window.APIClient.evaluateAnswer}</div>`;
                 
                 // Test 3: Authentication status
                 try {
@@ -1745,13 +1958,21 @@ class OralExamModule {
                     output += `<div>❌ isAuthenticated error: ${error.message}</div>`;
                 }
                 
-                // Test 5: Try API call - tables
+                // Test 5: Try AI evaluation
                 try {
-                    output += `<div>🌐 Testing API call to /api/quiz/tables...</div>`;
-                    const tablesResponse = await window.APIClient.get('/api/quiz/tables');
-                    output += `<div>✅ Tables response: ${JSON.stringify(tablesResponse, null, 2)}</div>`;
+                    output += `<div>🤖 Testing AI evaluation...</div>`;
+                    const testQuestion = "Co je JavaScript?";
+                    const testCorrectAnswer = "JavaScript je programovací jazyk";
+                    const testUserAnswer = "JavaScript je jazyk pro web";
+                    
+                    const evaluationResult = await window.APIClient.evaluateAnswer(testQuestion, testCorrectAnswer, testUserAnswer);
+                    output += `<div>✅ AI Evaluation successful:</div>`;
+                    output += `<div style="margin-left: 20px;">Score: ${evaluationResult.score}/100</div>`;
+                    output += `<div style="margin-left: 20px;">Method: ${evaluationResult.method}</div>`;
+                    output += `<div style="margin-left: 20px;">Summary: ${evaluationResult.summary}</div>`;
+                    
                 } catch (error) {
-                    output += `<div>❌ Tables API call error: ${error.message}</div>`;
+                    output += `<div>❌ AI Evaluation error: ${error.message}</div>`;
                 }
                 
                 // Test 6: localStorage tokens
@@ -1760,6 +1981,11 @@ class OralExamModule {
                 
                 // Test 7: Current user state in oral exam module
                 output += `<div>👨‍🎓 Oral Exam Current User: ${this.currentUser ? this.currentUser.username : 'NULL'}</div>`;
+                
+                // Test 8: Speech capabilities
+                output += `<div>🗣️ Speech Recognition: ${this.speechRecognition ? 'Available' : 'Not Available'}</div>`;
+                output += `<div>🔊 Speech Synthesis: ${this.speechSynthesis ? 'Available' : 'Not Available'}</div>`;
+                
             }
             
         } catch (error) {

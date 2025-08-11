@@ -479,6 +479,35 @@ class ModularAPIClient {
             throw error;
         }
     }
+
+    // AI Evaluation Methods
+    async evaluateAnswer(question, correctAnswer, userAnswer) {
+        try {
+            this.safeLog('info', 'Evaluating answer with AI...', { 
+                questionLength: question.length, 
+                answerLength: userAnswer.length 
+            });
+            
+            const response = await this.request('/api/monica/evaluate', {
+                method: 'POST',
+                body: JSON.stringify({
+                    question: question,
+                    correctAnswer: correctAnswer,
+                    userAnswer: userAnswer
+                })
+            });
+            
+            this.safeLog('success', 'Answer evaluation completed', { 
+                score: response.score, 
+                method: response.method 
+            });
+            return response;
+            
+        } catch (error) {
+            this.safeLog('error', 'Answer evaluation failed', error);
+            throw error;
+        }
+    }
 }
 
 // Global API client instance

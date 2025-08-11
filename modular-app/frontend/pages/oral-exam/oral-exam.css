@@ -1299,3 +1299,153 @@ kbd {
         padding: 1rem;
     }
 }
+
+/* === AI FEEDBACK STYLES === */
+.feedback-summary {
+    background: rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(102, 126, 234, 0.4);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.feedback-header {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 16px 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feedback-header.positive {
+    color: #4CAF50;
+    border-bottom-color: rgba(76, 175, 80, 0.5);
+}
+
+.feedback-header.negative {
+    color: #F44336;
+    border-bottom-color: rgba(244, 67, 54, 0.5);
+}
+
+.feedback-header.recommendation {
+    color: #FF9800;
+    border-bottom-color: rgba(255, 152, 0, 0.5);
+}
+
+.feedback-positive {
+    color: #81C784;
+    margin-left: 20px;
+    padding: 4px 0;
+}
+
+.feedback-negative {
+    color: #E57373;
+    margin-left: 20px;
+    padding: 4px 0;
+}
+
+.feedback-recommendation {
+    color: #FFB74D;
+    margin-left: 20px;
+    padding: 4px 0;
+}
+
+.feedback-method {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 16px;
+    font-size: 0.9em;
+    font-style: italic;
+    color: #E0E0E0;
+}
+
+/* Enhanced feedback panel animations */
+.feedback-panel {
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* AI evaluation indicator */
+.ai-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.ai-indicator::before {
+    content: "🤖";
+    font-size: 1.1em;
+}
+
+/* Loading state for AI evaluation */
+.feedback-panel.evaluating {
+    position: relative;
+    overflow: hidden;
+}
+
+.feedback-panel.evaluating::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    animation: loading-bar 2s linear infinite;
+}
+
+@keyframes loading-bar {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Score display enhancements for AI feedback */
+.ai-score-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-score-item {
+    text-align: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+.ai-score-value {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.ai-score-label {
+    font-size: 0.85em;
+    color: #B0BEC5;
+    margin-top: 4px;
+}
