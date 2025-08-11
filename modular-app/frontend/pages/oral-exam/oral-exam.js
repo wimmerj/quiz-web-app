@@ -2047,6 +2047,73 @@ class OralExamModule {
                 output += `<div>🗣️ Speech Recognition: ${this.speechRecognition ? 'Available' : 'Not Available'}</div>`;
                 output += `<div>🔊 Speech Synthesis: ${this.speechSynthesis ? 'Available' : 'Not Available'}</div>`;
                 
+                // Test 9: Direct Monica AI Communication Test
+                output += `<div><hr style="border: 1px solid #ccc; margin: 10px 0;"></div>`;
+                output += `<div><strong>🤖 MONICA AI DIRECT TEST:</strong></div>`;
+                try {
+                    output += `<div>📡 Testing direct Monica AI communication...</div>`;
+                    
+                    // Prepare detailed test data
+                    const monicaTestQuestion = "Vysvětlete princip event-driven architektury";
+                    const monicaTestCorrect = "Event-driven architektura je návrhový vzor kde komponenty komunikují pomocí událostí (events), které jsou asynchronně odesílány a zpracovávány bez přímé závislosti mezi komponentami";
+                    const monicaTestUser = "Event architektura používá události pro komunikaci mezi částmi systému";
+                    
+                    output += `<div style="margin-left: 20px;">📋 Test otázka: "${monicaTestQuestion}"</div>`;
+                    output += `<div style="margin-left: 20px;">✅ Správná odpověď: "${monicaTestCorrect}"</div>`;
+                    output += `<div style="margin-left: 20px;">👤 Uživatelská odpověď: "${monicaTestUser}"</div>`;
+                    
+                    output += `<div>⏳ Volání Monica AI API...</div>`;
+                    const startTime = Date.now();
+                    
+                    const monicaResult = await window.APIClient.evaluateAnswer(monicaTestQuestion, monicaTestCorrect, monicaTestUser);
+                    
+                    const endTime = Date.now();
+                    const responseTime = endTime - startTime;
+                    
+                    if (monicaResult) {
+                        output += `<div style="color: #4CAF50;">🎯 MONICA AI TEST ÚSPĚŠNÝ!</div>`;
+                        output += `<div style="margin-left: 20px;">⏱️ Response time: ${responseTime}ms</div>`;
+                        output += `<div style="margin-left: 20px;">📊 Score: ${monicaResult.score || 'N/A'}/100</div>`;
+                        output += `<div style="margin-left: 20px;">🎖️ Grade: ${monicaResult.grade || 'N/A'}</div>`;
+                        output += `<div style="margin-left: 20px;">🔧 Method: ${monicaResult.method || 'unknown'}</div>`;
+                        output += `<div style="margin-left: 20px;">📝 Summary: "${monicaResult.summary || 'No summary'}"</div>`;
+                        
+                        // Show detailed breakdown
+                        if (monicaResult.scoreBreakdown) {
+                            output += `<div style="margin-left: 20px;">📈 Score Breakdown:</div>`;
+                            output += `<div style="margin-left: 40px;">- Factual: ${monicaResult.scoreBreakdown.factual || 0}</div>`;
+                            output += `<div style="margin-left: 40px;">- Completeness: ${monicaResult.scoreBreakdown.completeness || 0}</div>`;
+                            output += `<div style="margin-left: 40px;">- Clarity: ${monicaResult.scoreBreakdown.clarity || 0}</div>`;
+                            output += `<div style="margin-left: 40px;">- Structure: ${monicaResult.scoreBreakdown.structure || 0}</div>`;
+                        }
+                        
+                        // Show positives/negatives
+                        if (monicaResult.positives && monicaResult.positives.length > 0) {
+                            output += `<div style="margin-left: 20px;">✅ Positives: ${monicaResult.positives.join(', ')}</div>`;
+                        }
+                        if (monicaResult.negatives && monicaResult.negatives.length > 0) {
+                            output += `<div style="margin-left: 20px;">❌ Negatives: ${monicaResult.negatives.join(', ')}</div>`;
+                        }
+                        if (monicaResult.recommendations && monicaResult.recommendations.length > 0) {
+                            output += `<div style="margin-left: 20px;">💡 Recommendations: ${monicaResult.recommendations.join(', ')}</div>`;
+                        }
+                        
+                        // Full response object for debugging
+                        output += `<div style="margin-left: 20px;">🔍 Full Response Object:</div>`;
+                        output += `<div style="margin-left: 40px; font-family: monospace; font-size: 11px; background: #f5f5f5; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto;">${JSON.stringify(monicaResult, null, 2)}</div>`;
+                        
+                    } else {
+                        output += `<div style="color: #F44336;">❌ MONICA AI TEST FAILED - No response</div>`;
+                    }
+                    
+                } catch (monicaError) {
+                    output += `<div style="color: #F44336;">🚨 MONICA AI TEST ERROR: ${monicaError.message}</div>`;
+                    output += `<div style="margin-left: 20px;">Error details: ${monicaError.toString()}</div>`;
+                    if (monicaError.stack) {
+                        output += `<div style="margin-left: 20px; font-family: monospace; font-size: 10px;">Stack: ${monicaError.stack}</div>`;
+                    }
+                }
+                
             }
             
         } catch (error) {
