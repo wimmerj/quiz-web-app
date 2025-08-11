@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/monica.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/public-monica.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/test.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
