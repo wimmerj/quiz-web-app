@@ -74,29 +74,63 @@
     font-size: 0.85rem;
 }
 
-.status-info {
+.status-left {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    flex: 1;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.status-right {
+    display: flex;
+    align-items: center;
 }
 
 .server-status {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    gap: 8px;
+    padding: 4px 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
     font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.server-status.online {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.server-status.offline {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+.server-status.checking {
+    background-color: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.3);
 }
 
 .status-indicator {
-    font-size: 0.8rem;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .status-text {
+    font-size: 12px;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8rem;
+}
+
+.status-mode {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
 }
 
 /* Server status indicators */

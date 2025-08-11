@@ -117,7 +117,7 @@ body {
 }
 
 .status-right {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     flex-shrink: 0; /* Prevent shrinking */
 }
@@ -147,7 +147,7 @@ body {
 }
 
 .server-status {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 4px 12px;

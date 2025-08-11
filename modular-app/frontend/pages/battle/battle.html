@@ -131,17 +131,18 @@
         
         <!-- Navigation Breadcrumbs -->
         <nav class="breadcrumbs">
-            <a href="../../index.html">🏠 Dashboard</a>
-            <span class="separator">›</span>
-            <a href="../quiz/quiz.html">📝 Quiz</a>
-            <span class="separator">›</span>
-            <a href="../oral-exam/oral-exam.html">🎤 Ústní zkouška</a>
-            <span class="separator">›</span>
-            <span class="current">⚔️ Battle Mode</span>
-            <span class="separator">›</span>
-            <a href="../admin/admin.html">⚙️ Admin</a>
-            
-            <div class="status-info">
+            <div class="status-left">
+                <a href="../../index.html">🏠 Dashboard</a>
+                <span class="separator">›</span>
+                <a href="../quiz/quiz.html">📝 Quiz</a>
+                <span class="separator">›</span>
+                <a href="../oral-exam/oral-exam.html">🎤 Ústní zkouška</a>
+                <span class="separator">›</span>
+                <span class="current">⚔️ Battle Mode</span>
+                <span class="separator">›</span>
+                <a href="../admin/admin.html">⚙️ Admin</a>
+            </div>
+            <div class="status-right">
                 <div class="server-status" id="serverStatus">
                     <span class="status-indicator" id="statusIndicator">🔴</span>
                     <span class="status-text" id="statusIndicatorText">Offline</span>
@@ -790,7 +791,6 @@
     <!-- API Test Section (for debugging) -->
     <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(40, 44, 52, 0.95); border: 1px solid #61dafb; border-radius: 8px; padding: 10px; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-            <div class="status-indicator" id="battleStatusIndicator" style="padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">🔍 API Status</div>
             <button id="testBattleBtn" style="background: #61dafb; color: #282c34; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer;">🧪 Test API</button>
         </div>
         <div id="testBattleResults" style="display: none; max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 10px; color: #e4e4e4; line-height: 1.4;"></div>
