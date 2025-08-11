@@ -5,5 +5,8 @@
     }
   },
   "buildCommand": "echo 'No build needed'",
-  "outputDirectory": "modular-app/frontend"
+  "outputDirectory": "modular-app/frontend",
+  "engines": {
+    "node": "20.x"
+  }
 }
