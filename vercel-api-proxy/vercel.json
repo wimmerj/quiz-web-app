@@ -5,6 +5,6 @@
     }
   },
   "env": {
-    "MONICA_API_KEY": "sk-049nXVgkhXvC1mJIMdyuvOFPlc-GEGtec2OhmpnkeQ6Ksrz47edYR8bQRZmtYkLlQT0AIJpN-Hgc3l0a5wfjubpu4Z2O"
+    "MONICA_API_KEY": "@monica_api_key"
   }
 }
