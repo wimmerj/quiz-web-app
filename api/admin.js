@@ -1,12 +1,15 @@
 /**
- * CONSOLIDATED ADMIN API  
+ * CONSOLIDATED ADMIN API - KV VERSION  
  * Handles: /api/admin (users, statistics, import, system)
- * Saves serverless function count for Vercel Hobby plan
+ * Uses Vercel KV for persistent storage
  */
 
-import { UsersDB, SessionsDB, QuestionsDB, corsHeaders, jsonResponse, errorResponse } from './utils/memory-db.js';
+import { UsersDB, SessionsDB, QuestionsDB, corsHeaders, jsonResponse, errorResponse, initializeDatabase } from './utils/kv-db.js';
 
 export default async function handler(request) {
+    // Initialize database if needed
+    await initializeDatabase();
+    
     // Handle preflight
     if (request.method === 'OPTIONS') {
         return new Response(null, { status: 200, headers: corsHeaders });

@@ -13,6 +13,7 @@
     "import-questions": "node scripts/import-questions.js"
   },
   "dependencies": {
+    "@vercel/kv": "^3.0.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {

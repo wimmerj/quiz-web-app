@@ -1,12 +1,15 @@
 /**
- * CONSOLIDATED AUTH API
- * Handles: /api/auth (login, register, profile, logout)
- * Saves serverless function count for Vercel Hobby plan
+ * CONSOLIDATED AUTH API - KV VERSION
+ * Handles: /api/auth (login, register, profile, logout)  
+ * Uses Vercel KV for persistent storage across devices
  */
 
-import { UsersDB, SessionsDB, verifyPassword, hashPassword, generateToken, corsHeaders, jsonResponse, errorResponse } from './utils/memory-db.js';
+import { UsersDB, SessionsDB, verifyPassword, hashPassword, generateToken, corsHeaders, jsonResponse, errorResponse, initializeDatabase } from './utils/kv-db.js';
 
 export default async function handler(request) {
+    // Initialize database if needed
+    await initializeDatabase();
+    
     // Handle preflight
     if (request.method === 'OPTIONS') {
         return new Response(null, { status: 200, headers: corsHeaders });

@@ -1,12 +1,15 @@
 /**
- * CONSOLIDATED QUIZ API
+ * CONSOLIDATED QUIZ API - KV VERSION
  * Handles: /api/quiz (tables, questions, submit-answer)
- * Saves serverless function count for Vercel Hobby plan
+ * Uses Vercel KV for persistent storage
  */
 
-import { QuestionsDB, SessionsDB, UsersDB, corsHeaders, jsonResponse, errorResponse } from './utils/memory-db.js';
+import { QuestionsDB, SessionsDB, UsersDB, corsHeaders, jsonResponse, errorResponse, initializeDatabase } from './utils/kv-db.js';
 
 export default async function handler(request) {
+    // Initialize database if needed
+    await initializeDatabase();
+    
     // Handle preflight
     if (request.method === 'OPTIONS') {
         return new Response(null, { status: 200, headers: corsHeaders });
