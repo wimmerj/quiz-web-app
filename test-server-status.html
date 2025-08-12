@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Status Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .status-section { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .result { margin: 10px 0; padding: 15px; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .status-indicator { padding: 5px 10px; border-radius: 15px; font-weight: bold; margin: 5px; }
+        .online { background: #28a745; color: white; }
+        .offline { background: #dc3545; color: white; }
+        .checking { background: #ffc107; color: black; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Server Status Test</h1>
+    
+    <div class="status-section">
+        <h2>API Client Status</h2>
+        <div id="api-client-status">Loading...</div>
+        <button onclick="checkAPIClient()">Refresh API Client</button>
+    </div>
+    
+    <div class="status-section">
+        <h2>Health Check Test</h2>
+        <div id="health-status">Not tested</div>
+        <button onclick="testHealthCheck()">Test Health</button>
+    </div>
+    
+    <div class="status-section">
+        <h2>API Endpoints Test</h2>
+        <div id="endpoints-status">Not tested</div>
+        <button onclick="testEndpoints()">Test Endpoints</button>
+    </div>
+
+    <div id="results"></div>
+
+    <!-- Load API Client -->
+    <script src="../../modular-app/frontend/shared/logger.js"></script>
+    <script src="../../modular-app/frontend/shared/api-client.js"></script>
+    
+    <script>
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+
+        function updateStatus(elementId, status, message) {
+            const element = document.getElementById(elementId);
+            const statusClass = status === 'online' ? 'online' : status === 'checking' ? 'checking' : 'offline';
+            element.innerHTML = `<span class="status-indicator ${statusClass}">${message}</span>`;
+        }
+
+        function checkAPIClient() {
+            if (window.APIClient) {
+                updateStatus('api-client-status', 'online', '✅ API Client Available');
+                log(`✅ APIClient loaded: ${window.APIClient.baseURL}`, 'success');
+            } else {
+                updateStatus('api-client-status', 'offline', '❌ API Client Not Available');
+                log('❌ APIClient not loaded', 'error');
+            }
+        }
+
+        async function testHealthCheck() {
+            updateStatus('health-status', 'checking', '🔄 Testing...');
+            
+            if (!window.APIClient) {
+                updateStatus('health-status', 'offline', '❌ No API Client');
+                log('❌ No API Client available for health check', 'error');
+                return;
+            }
+
+            try {
+                const isHealthy = await window.APIClient.healthCheck();
+                if (isHealthy) {
+                    updateStatus('health-status', 'online', '✅ Health OK');
+                    log('✅ Health check passed', 'success');
+                } else {
+                    updateStatus('health-status', 'offline', '❌ Health Failed');
+                    log('❌ Health check failed', 'error');
+                }
+            } catch (error) {
+                updateStatus('health-status', 'offline', '❌ Health Error');
+                log(`❌ Health check error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testEndpoints() {
+            updateStatus('endpoints-status', 'checking', '🔄 Testing...');
+            
+            const BASE_URL = 'https://quiz-web-app-chi-ten.vercel.app';
+            
+            try {
+                // Test health directly
+                const healthResponse = await fetch(BASE_URL + '/api/health');
+                const healthData = await healthResponse.json();
+                
+                if (healthResponse.ok) {
+                    log(`✅ Direct health test: ${healthData.status}`, 'success');
+                } else {
+                    log(`❌ Direct health test failed: ${healthResponse.status}`, 'error');
+                }
+
+                // Test auth endpoint (should return 404 for missing action)
+                const authResponse = await fetch(BASE_URL + '/api/auth');
+                const authData = await authResponse.json();
+                
+                if (authResponse.status === 404 && authData.error?.includes('Invalid auth action')) {
+                    log('✅ Auth endpoint responding correctly', 'success');
+                } else {
+                    log(`⚠️ Auth endpoint unexpected response: ${authResponse.status}`, 'info');
+                }
+
+                // Test quiz endpoint
+                const quizResponse = await fetch(BASE_URL + '/api/quiz?action=tables');
+                const quizData = await quizResponse.json();
+                
+                if (quizResponse.ok) {
+                    log(`✅ Quiz tables endpoint: Found ${quizData.data?.length || 0} tables`, 'success');
+                } else {
+                    log(`❌ Quiz tables failed: ${quizResponse.status}`, 'error');
+                }
+
+                updateStatus('endpoints-status', 'online', '✅ Endpoints OK');
+                
+            } catch (error) {
+                updateStatus('endpoints-status', 'offline', '❌ Endpoints Error');
+                log(`❌ Endpoints test error: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                checkAPIClient();
+                testHealthCheck();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

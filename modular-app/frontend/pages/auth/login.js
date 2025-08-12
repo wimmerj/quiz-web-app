@@ -19,8 +19,12 @@ class AuthManager {
     init() {
         this.setupEventListeners();
         this.setupFormValidation();
-        this.checkServerStatus();
         this.loadSavedCredentials();
+        
+        // Delayed server status check to allow APIClient to load
+        setTimeout(() => {
+            this.checkServerStatus();
+        }, 1000);
         
         Logger.system('AuthManager initialized');
     }
