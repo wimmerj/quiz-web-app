@@ -14,8 +14,7 @@ export default async function handler(request) {
     
     // Parse URL to determine action
     const url = new URL(request.url);
-    const pathParts = url.pathname.split('/');
-    const action = pathParts[pathParts.length - 1]; // login, register, profile
+    const action = url.searchParams.get('action');
     
     try {
         switch (action) {
