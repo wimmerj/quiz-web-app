@@ -60,8 +60,8 @@ class ModularAPIClient {
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
             return 'http://localhost:3000';  // Local development
         } else {
-            // Updated Vercel URL for your project
-            return 'https://quiz-web-app-honzam405s-projects.vercel.app';  // Production on Vercel
+            // Correct Vercel URL matching your dashboard
+            return 'https://quiz-web-app-chi-ten.vercel.app';  // Production on Vercel
         }
     }
     
