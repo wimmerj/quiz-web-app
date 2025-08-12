@@ -32,7 +32,8 @@ class ModularAPIClient {
             // Special endpoints
             monica: '/api/monica',
             publicMonica: '/api/public-monica',
-            test: '/api/test'
+            test: '/api/test',
+            health: '/api/health'
         };
         
         this.init();
@@ -59,7 +60,8 @@ class ModularAPIClient {
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
             return 'http://localhost:3000';  // Local development
         } else {
-            return 'https://quiz-web-app-chi-ten.vercel.app';  // Production on Vercel
+            // Updated Vercel URL for your project
+            return 'https://quiz-web-app-honzam405s-projects.vercel.app';  // Production on Vercel
         }
     }
     
