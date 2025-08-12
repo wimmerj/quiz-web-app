@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .result { margin: 10px 0; padding: 15px; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .test-button { 
+            background: #007bff; color: white; border: none; 
+            padding: 12px 20px; border-radius: 5px; cursor: pointer; margin: 5px; 
+        }
+        .test-button:hover { background: #0056b3; }
+        .endpoint { background: white; border-radius: 8px; margin: 15px 0; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .url { font-family: monospace; background: #f8f9fa; padding: 5px 10px; border-radius: 3px; }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Live API Test - Vercel Production</h1>
+        <p>Testing consolidated API endpoints on: <span class="url">https://quiz-web-app-chi-ten.vercel.app</span></p>
+        
+        <div class="endpoint">
+            <h2>🏥 Health Check</h2>
+            <button class="test-button" onclick="testHealth()">Test Health</button>
+            <div id="health-result"></div>
+        </div>
+
+        <div class="endpoint">
+            <h2>📊 Quiz Tables</h2>
+            <button class="test-button" onclick="testTables()">Test Tables</button>
+            <div id="tables-result"></div>
+        </div>
+
+        <div class="endpoint">
+            <h2>🔐 Auth Profile (requires token)</h2>
+            <button class="test-button" onclick="testAuthProfile()">Test Profile</button>
+            <div id="auth-result"></div>
+        </div>
+
+        <div class="endpoint">
+            <h2>⚙️ Admin Statistics (requires admin)</h2>
+            <button class="test-button" onclick="testAdminStats()">Test Admin Stats</button>
+            <div id="admin-result"></div>
+        </div>
+
+        <div class="endpoint">
+            <h2>🤖 Monica AI Public</h2>
+            <button class="test-button" onclick="testMonica()">Test Monica</button>
+            <div id="monica-result"></div>
+        </div>
+
+        <div id="summary" style="margin-top: 30px;"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://quiz-web-app-chi-ten.vercel.app';
+        let testResults = [];
+
+        function log(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="result ${type}">${message}</div>`;
+        }
+
+        async function testEndpoint(url, options = {}) {
+            try {
+                const response = await fetch(BASE_URL + url, {
+                    method: options.method || 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    body: options.body ? JSON.stringify(options.body) : undefined
+                });
+                
+                const data = await response.json();
+                return { ok: response.ok, status: response.status, data };
+            } catch (error) {
+                return { ok: false, error: error.message };
+            }
+        }
+
+        async function testHealth() {
+            log('health-result', 'Testing...', 'info');
+            const result = await testEndpoint('/api/health');
+            
+            if (result.ok) {
+                log('health-result', `✅ Health OK: ${result.data.status} - ${result.data.service}<br>Database: ${result.data.database}`, 'success');
+                testResults.push({ name: 'Health', status: 'OK' });
+            } else {
+                log('health-result', `❌ Health failed: ${result.error || result.data?.error}`, 'error');
+                testResults.push({ name: 'Health', status: 'FAILED' });
+            }
+        }
+
+        async function testTables() {
+            log('tables-result', 'Testing...', 'info');
+            const result = await testEndpoint('/api/quiz?action=tables');
+            
+            if (result.ok && result.data.success) {
+                const count = result.data.data?.length || 0;
+                log('tables-result', `✅ Tables OK: Found ${count} quiz tables`, 'success');
+                testResults.push({ name: 'Tables', status: 'OK' });
+            } else {
+                log('tables-result', `❌ Tables failed: ${result.error || result.data?.error}`, 'error');
+                testResults.push({ name: 'Tables', status: 'FAILED' });
+            }
+        }
+
+        async function testAuthProfile() {
+            log('auth-result', 'Testing without token (should fail gracefully)...', 'info');
+            const result = await testEndpoint('/api/auth?action=profile');
+            
+            if (result.status === 401) {
+                log('auth-result', '✅ Auth endpoint works: Correctly returns 401 (Authentication required)', 'success');
+                testResults.push({ name: 'Auth', status: 'OK' });
+            } else {
+                log('auth-result', `❌ Auth unexpected: Status ${result.status}`, 'error');
+                testResults.push({ name: 'Auth', status: 'FAILED' });
+            }
+        }
+
+        async function testAdminStats() {
+            log('admin-result', 'Testing without auth (should fail gracefully)...', 'info');
+            const result = await testEndpoint('/api/admin?action=statistics');
+            
+            if (result.status === 401) {
+                log('admin-result', '✅ Admin endpoint works: Correctly returns 401 (Authentication required)', 'success');
+                testResults.push({ name: 'Admin', status: 'OK' });
+            } else {
+                log('admin-result', `❌ Admin unexpected: Status ${result.status}`, 'error');
+                testResults.push({ name: 'Admin', status: 'FAILED' });
+            }
+        }
+
+        async function testMonica() {
+            log('monica-result', 'Testing Monica AI...', 'info');
+            const result = await testEndpoint('/api/public-monica', {
+                method: 'POST',
+                body: { question: 'Test otázka' }
+            });
+            
+            if (result.ok) {
+                log('monica-result', `✅ Monica AI OK: Response received`, 'success');
+                testResults.push({ name: 'Monica', status: 'OK' });
+            } else {
+                log('monica-result', `❌ Monica failed: ${result.error || result.data?.error}`, 'error');
+                testResults.push({ name: 'Monica', status: 'FAILED' });
+            }
+        }
+
+        async function runAllTests() {
+            testResults = [];
+            await testHealth();
+            await testTables();
+            await testAuthProfile();
+            await testAdminStats();
+            await testMonica();
+            
+            // Show summary
+            const passed = testResults.filter(t => t.status === 'OK').length;
+            const total = testResults.length;
+            const summaryDiv = document.getElementById('summary');
+            
+            if (passed === total) {
+                summaryDiv.innerHTML = `<div class="result success"><h3>🎉 All Tests Passed! (${passed}/${total})</h3><p>Your consolidated API is working perfectly on Vercel!</p></div>`;
+            } else {
+                summaryDiv.innerHTML = `<div class="result error"><h3>⚠️ Some Tests Failed (${passed}/${total})</h3></div>`;
+            }
+        }
+
+        // Auto-run all tests on load
+        window.onload = () => {
+            setTimeout(runAllTests, 1000);
+        };
+    </script>
+</body>
+</html>
