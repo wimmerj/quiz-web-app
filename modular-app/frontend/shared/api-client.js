@@ -12,31 +12,27 @@ class ModularAPIClient {
         this.authToken = this.loadAuthToken();
         
         this.endpoints = {
-            // Auth endpoints
-            login: '/api/auth/login',
-            register: '/api/auth/register',
-            refresh: '/api/auth/refresh',
-            logout: '/api/auth/logout',
-            resetPassword: '/api/auth/reset-password',
+            // CONSOLIDATED AUTH ENDPOINTS (all in /api/auth)
+            login: '/api/auth?action=login',
+            register: '/api/auth?action=register',
+            logout: '/api/auth?action=logout',
+            profile: '/api/auth?action=profile',
             
-            // Quiz endpoints
-            tables: '/api/quiz/tables',
-            questions: '/api/quiz/questions',
-            submitAnswer: '/api/quiz/answer',
+            // CONSOLIDATED QUIZ ENDPOINTS (all in /api/quiz)
+            tables: '/api/quiz?action=tables',
+            questions: '/api/quiz?action=questions',
+            submitAnswer: '/api/quiz?action=submit-answer',
             
-            // User endpoints
-            profile: '/api/auth/profile',
-            updateProfile: '/api/user/update',
+            // CONSOLIDATED ADMIN ENDPOINTS (all in /api/admin)
+            adminUsers: '/api/admin?action=users',
+            adminStats: '/api/admin?action=statistics',
+            adminImport: '/api/admin?action=import',
+            adminSystem: '/api/admin?action=system',
             
-            // Admin endpoints
-            adminUsers: '/api/admin/users',
-            adminStats: '/api/admin/statistics',
-            adminTables: '/api/admin/tables',
-            adminQuestions: '/api/admin/questions',
-            adminImport: '/api/admin/import-database',
-            
-            // Health check
-            health: '/api/health'
+            // Special endpoints
+            monica: '/api/monica',
+            publicMonica: '/api/public-monica',
+            test: '/api/test'
         };
         
         this.init();

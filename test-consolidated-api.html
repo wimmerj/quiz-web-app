@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Consolidated API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .endpoint-group {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .endpoint-header {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .endpoint-content {
+            padding: 20px;
+        }
+        
+        .test-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        .test-button:hover {
+            background: #2980b9;
+        }
+        
+        .test-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .status.ready {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.testing {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Consolidated API Tester</h1>
+            <p>Test všech konsolidovaných Vercel API endpointů</p>
+        </div>
+
+        <div class="endpoint-group">
+            <div class="endpoint-header">
+                <h2>📊 System Status</h2>
+            </div>
+            <div class="endpoint-content">
+                <button class="test-button" onclick="testSystemStatus()">Test System Status</button>
+                <div id="system-result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="endpoint-group">
+            <div class="endpoint-header">
+                <h2>🔐 Auth Endpoints (Consolidated)</h2>
+            </div>
+            <div class="endpoint-content">
+                <button class="test-button" onclick="testAuth('tables')">Test Auth Token (via Tables)</button>
+                <button class="test-button" onclick="testAuth('profile')">Test Profile</button>
+                <div id="auth-result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="endpoint-group">
+            <div class="endpoint-header">
+                <h2>📝 Quiz Endpoints (Consolidated)</h2>
+            </div>
+            <div class="endpoint-content">
+                <button class="test-button" onclick="testQuiz('tables')">Test Tables</button>
+                <button class="test-button" onclick="testQuiz('questions')">Test Questions</button>
+                <div id="quiz-result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="endpoint-group">
+            <div class="endpoint-header">
+                <h2>⚙️ Admin Endpoints (Consolidated)</h2>
+            </div>
+            <div class="endpoint-content">
+                <button class="test-button" onclick="testAdmin('statistics')">Test Statistics</button>
+                <button class="test-button" onclick="testAdmin('system')">Test System Info</button>
+                <div id="admin-result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="endpoint-group">
+            <div class="endpoint-header">
+                <h2>🤖 Monica AI</h2>
+            </div>
+            <div class="endpoint-content">
+                <button class="test-button" onclick="testMonica()">Test Public Monica</button>
+                <div id="monica-result" class="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Detect backend URL  
+        function getBaseURL() {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return 'http://localhost:3000';
+            }
+            return 'https://quiz-web-app-honzam405s-projects.vercel.app';
+        }
+
+        // Test system status
+        async function testSystemStatus() {
+            showResult('system', 'Testing system status...', 'testing');
+            
+            try {
+                const response = await fetch(getBaseURL() + '/api/test-consolidated');
+                const data = await response.json();
+                showResult('system', JSON.stringify(data, null, 2), response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult('system', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Test auth endpoints
+        async function testAuth(action) {
+            showResult('auth', `Testing auth ${action}...`, 'testing');
+            
+            try {
+                const response = await fetch(getBaseURL() + `/api/auth?action=${action}`, {
+                    method: action === 'profile' ? 'GET' : 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                showResult('auth', JSON.stringify(data, null, 2), response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult('auth', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Test quiz endpoints
+        async function testQuiz(action) {
+            showResult('quiz', `Testing quiz ${action}...`, 'testing');
+            
+            try {
+                const response = await fetch(getBaseURL() + `/api/quiz?action=${action}`);
+                const data = await response.json();
+                showResult('quiz', JSON.stringify(data, null, 2), response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult('quiz', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Test admin endpoints
+        async function testAdmin(action) {
+            showResult('admin', `Testing admin ${action}...`, 'testing');
+            
+            try {
+                const response = await fetch(getBaseURL() + `/api/admin?action=${action}`);
+                const data = await response.json();
+                showResult('admin', JSON.stringify(data, null, 2), response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult('admin', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Test Monica
+        async function testMonica() {
+            showResult('monica', 'Testing Monica AI...', 'testing');
+            
+            try {
+                const response = await fetch(getBaseURL() + '/api/public-monica', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question: 'Test otázka pro Monicu AI'
+                    })
+                });
+                const data = await response.json();
+                showResult('monica', JSON.stringify(data, null, 2), response.ok ? 'success' : 'error');
+            } catch (error) {
+                showResult('monica', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Show test result
+        function showResult(endpoint, message, type) {
+            const resultDiv = document.getElementById(endpoint + '-result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${type}`;
+            resultDiv.style.display = 'block';
+        }
+
+        // Auto-test system status on load
+        window.addEventListener('load', () => {
+            testSystemStatus();
+        });
+    </script>
+</body>
+</html>
