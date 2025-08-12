@@ -59,15 +59,16 @@
             }
         }
         
-        // Test both URLs
+        // Test URLs
         window.onload = async () => {
-            await testURL('https://quiz-web-app-chi-ten.vercel.app', 'quiz-web-app Project');
+            // Primary production URL (alias)
+            await testURL('https://quiz-web-app-chi-ten.vercel.app', 'Production URL (Alias)');
             
-            // Also test the proxy project for comparison
-            await testURL('https://quiz-api-proxy.vercel.app', 'quiz-api-proxy Project');
+            // Latest deployment URL
+            await testURL('https://quiz-web-hj6h4hhnl-jan-wimmers-projects.vercel.app', 'Latest Deployment');
             
-            // Test current deployment URL from your dashboard
-            await testURL('https://quiz-web-khjdx6n6e-jan-wimmers-projects.vercel.app', 'Current Deployment URL');
+            // Alternative aliases
+            await testURL('https://quiz-web-app-jan-wimmers-projects.vercel.app', 'Alternative Alias');
         };
     </script>
 </body>
