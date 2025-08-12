@@ -1,6 +1,7 @@
 {
   "name": "quiz-web-app",
   "version": "1.0.0",
+  "type": "module",
   "description": "Quiz web application with JSON database and Monica AI integration",
   "engines": {
     "node": "20.x"
@@ -8,7 +9,8 @@
   "scripts": {
     "build": "echo 'No build needed'",
     "dev": "vercel dev",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "import-questions": "node scripts/import-questions.js"
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
