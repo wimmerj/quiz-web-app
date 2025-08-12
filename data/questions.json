@@ -5,7 +5,7 @@
       "name": "_00_Official_2203__2015_",
       "display_name": "Oficiální 2203/2015",
       "description": "Oficiální otázky podle předpisu 2203/2015",
-      "question_count": 35,
+      "question_count": 3,
       "category": "official",
       "created_at": "2025-08-12T00:00:00.000Z"
     },
@@ -14,7 +14,7 @@
       "name": "demo_questions",
       "display_name": "Demo Otázky",
       "description": "Demonstrační sada otázek pro testování",
-      "question_count": 5,
+      "question_count": 3,
       "category": "demo",
       "created_at": "2025-08-12T00:00:00.000Z"
     }
@@ -22,6 +22,42 @@
   "questions": [
     {
       "id": 1,
+      "table_name": "_00_Official_2203__2015_",
+      "question": "01) Souprava hlavních klíčů obsahuje:",
+      "answer_a": "Hlavni klíče od zámků výhybek, výkolejek, od uzamykatelných přenosných výměnových zámků a uzamykatelných podložek.",
+      "answer_b": "hlavni a náhradní klíče od zámků výhybek a výkolejek.",
+      "answer_c": "hlavni a náhradní klíče od uzamykatelných přenosných výměnových zámků a uzamykatelných podložek.",
+      "correct_answer": "A",
+      "explanation": "Podle předpisů",
+      "difficulty": 2,
+      "category": "official"
+    },
+    {
+      "id": 2,
+      "table_name": "_00_Official_2203__2015_",
+      "question": "02) Kdy a koho musí zpravit zaměstnanec, který zjistil, že na světelném návěstidle výhybky se samovratným přestavníkem není návěst JÍZDA ZAJIŠTĚNA?",
+      "answer_a": "Neprodlené dirigujícího dispečera a strojvedoucí všech vlaků v dopravně D3.",
+      "answer_b": "Neprodleně pouze výpravčího přilehlé stanice.",
+      "answer_c": "Neprodleně pouze udržujícího zaměstnance SSZT.",
+      "correct_answer": "A",
+      "explanation": "Bezpečnostní opatření",
+      "difficulty": 3,
+      "category": "official"
+    },
+    {
+      "id": 3,
+      "table_name": "_00_Official_2203__2015_",
+      "question": "03) Jaký tvar mají v soupravě hlavních klíčů štítky od výhybek a výkolejek?",
+      "answer_a": "Kruhový.",
+      "answer_b": "Obdélníkový.",
+      "answer_c": "Čtvercový.",
+      "correct_answer": "A",
+      "explanation": "Standardní označení",
+      "difficulty": 1,
+      "category": "official"
+    },
+    {
+      "id": 4,
       "table_name": "demo_questions",
       "question": "Jaká je maximální rychlost osobního vlaku?",
       "answer_a": "120 km/h",
@@ -33,7 +69,7 @@
       "category": "rychlosti"
     },
     {
-      "id": 2,
+      "id": 5,
       "table_name": "demo_questions",
       "question": "Co znamená návěst 'Stůj'?",
       "answer_a": "Vlak může pokračovat v jízdě",
@@ -45,7 +81,7 @@
       "category": "navesti"
     },
     {
-      "id": 3,
+      "id": 6,
       "table_name": "demo_questions",
       "question": "Jaká je minimální vzdálenost mezi vlaky?",
       "answer_a": "500 metrů",
@@ -58,9 +94,9 @@
     }
   ],
   "next_table_id": 3,
-  "next_question_id": 4,
+  "next_question_id": 7,
   "metadata": {
-    "total_questions": 3,
+    "total_questions": 6,
     "total_tables": 2,
     "last_updated": "2025-08-12T00:00:00.000Z",
     "version": "1.0.0"
