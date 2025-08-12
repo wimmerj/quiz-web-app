@@ -1,4 +1,4 @@
-import { QuestionsDB, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
+import { QuestionsDB, corsHeaders, jsonResponse, errorResponse } from '../utils/memory-db.js';
 
 export default async function handler(request) {
     // Handle preflight
