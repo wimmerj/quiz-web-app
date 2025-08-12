@@ -1,4 +1,4 @@
-import { getDB, hashPassword, createSession, corsHeaders, jsonResponse, errorResponse } from '../utils/db.js';
+import { UsersDB, SessionsDB, hashPassword, generateToken, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
 
 export default async function handler(request) {
     // Handle preflight
@@ -17,36 +17,55 @@ export default async function handler(request) {
             return errorResponse('Username and password are required');
         }
         
-        const db = getDB();
-        
         // Check if user already exists
-        const existing = await db`
-            SELECT id FROM users WHERE username = ${username}
-        `;
+        const existingUser = await UsersDB.findByUsername(username);
+        if (existingUser) {
+            return errorResponse('Username already exists', 409);
+        }
         
-        if (existing.length > 0) {
-            return errorResponse('User already exists');
+        if (email) {
+            const existingEmail = await UsersDB.findByEmail(email);
+            if (existingEmail) {
+                return errorResponse('Email already exists', 409);
+            }
         }
         
         // Create new user
-        const passwordHash = hashPassword(password);
-        const result = await db`
-            INSERT INTO users (username, email, password_hash)
-            VALUES (${username}, ${email || ''}, ${passwordHash})
-            RETURNING id, username, email, is_admin
-        `;
+        const newUser = await UsersDB.create({
+            username,
+            email: email || null,
+            password_hash: hashPassword(password),
+            role: 'student',
+            avatar: '👤',
+            settings: {
+                theme: 'orange',
+                notifications: true,
+                auto_next: false
+            },
+            battle_stats: {
+                rating: 1500,
+                wins: 0,
+                losses: 0
+            }
+        });
         
-        const user = result[0];
-        const token = await createSession(user.id);
+        if (!newUser) {
+            return errorResponse('Failed to create user');
+        }
+        
+        // Create session
+        const token = generateToken();
+        await SessionsDB.create(newUser.id, token);
         
         return jsonResponse({
             success: true,
             message: 'Registration successful',
             user: {
-                id: user.id,
-                username: user.username,
-                email: user.email,
-                isAdmin: user.is_admin
+                id: newUser.id,
+                username: newUser.username,
+                email: newUser.email,
+                role: newUser.role,
+                avatar: newUser.avatar
             },
             token
         });

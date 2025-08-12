@@ -1,4 +1,4 @@
-import { verifySession, corsHeaders, jsonResponse, errorResponse } from '../utils/db.js';
+import { UsersDB, SessionsDB, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
 
 export default async function handler(request) {
     // Handle preflight
@@ -20,10 +20,17 @@ export default async function handler(request) {
         }
         
         // Verify session
-        const user = await verifySession(token);
+        const session = await SessionsDB.findByToken(token);
+        
+        if (!session) {
+            return errorResponse('Invalid or expired token', 401);
+        }
+        
+        // Get user details
+        const user = await UsersDB.findById(session.user_id);
         
         if (!user) {
-            return errorResponse('Invalid or expired token', 401);
+            return errorResponse('User not found', 404);
         }
         
         return jsonResponse({
@@ -32,7 +39,10 @@ export default async function handler(request) {
                 id: user.id,
                 username: user.username,
                 email: user.email,
-                isAdmin: user.is_admin
+                role: user.role,
+                avatar: user.avatar,
+                settings: user.settings,
+                battle_stats: user.battle_stats
             }
         });
         

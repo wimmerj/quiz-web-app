@@ -61,9 +61,9 @@ class ModularAPIClient {
         const hostname = window.location.hostname;
         
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
-            return 'http://localhost:5000';  // Local development
+            return 'http://localhost:3000';  // Local development
         } else {
-            return 'https://quiz-modular-backend.onrender.com';  // Production on Render.com
+            return 'https://quiz-web-app-chi-ten.vercel.app';  // Production on Vercel
         }
     }
     

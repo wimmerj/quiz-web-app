@@ -1,0 +1,8 @@
+{
+  "sessions": [],
+  "metadata": {
+    "cleanup_interval": "24h",
+    "max_age": "7d",
+    "created": "2025-08-12T00:00:00.000Z"
+  }
+}

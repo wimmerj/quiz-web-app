@@ -1,4 +1,4 @@
-import { getDB, verifyPassword, createSession, corsHeaders, jsonResponse, errorResponse } from '../utils/db.js';
+import { UsersDB, SessionsDB, verifyPassword, generateToken, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
 
 export default async function handler(request) {
     // Handle preflight
@@ -17,20 +17,12 @@ export default async function handler(request) {
             return errorResponse('Username and password are required');
         }
         
-        const db = getDB();
-        
         // Find user
-        const result = await db`
-            SELECT id, username, email, password_hash, is_admin
-            FROM users 
-            WHERE username = ${username}
-        `;
+        const user = await UsersDB.findByUsername(username);
         
-        if (result.length === 0) {
+        if (!user) {
             return errorResponse('Invalid username or password', 401);
         }
-        
-        const user = result[0];
         
         // Verify password
         if (!verifyPassword(password, user.password_hash)) {
@@ -38,14 +30,13 @@ export default async function handler(request) {
         }
         
         // Update last login
-        await db`
-            UPDATE users 
-            SET last_login = CURRENT_TIMESTAMP 
-            WHERE id = ${user.id}
-        `;
+        await UsersDB.update(user.id, {
+            last_login: new Date().toISOString()
+        });
         
         // Create session
-        const token = await createSession(user.id);
+        const token = generateToken();
+        await SessionsDB.create(user.id, token);
         
         return jsonResponse({
             success: true,
@@ -54,7 +45,8 @@ export default async function handler(request) {
                 id: user.id,
                 username: user.username,
                 email: user.email,
-                isAdmin: user.is_admin
+                role: user.role,
+                avatar: user.avatar
             },
             token
         });

@@ -1,4 +1,4 @@
-import { getDB, corsHeaders, jsonResponse, errorResponse } from '../utils/db.js';
+import { QuestionsDB, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
 
 export default async function handler(request) {
     // Handle preflight
@@ -11,27 +11,18 @@ export default async function handler(request) {
     }
     
     try {
-        const db = getDB();
-        
         // Get all quiz tables with question counts
-        const tables = await db`
-            SELECT 
-                qt.*,
-                COUNT(q.id) as question_count
-            FROM quiz_tables qt
-            LEFT JOIN questions q ON qt.name = q.table_name
-            GROUP BY qt.id, qt.name, qt.display_name, qt.description, qt.created_at
-            ORDER BY qt.display_name
-        `;
+        const tables = await QuestionsDB.getAllTables();
         
         return jsonResponse({
             success: true,
-            tables: tables.map(table => ({
+            data: tables.map(table => ({
                 name: table.name,
-                displayName: table.display_name,
+                display_name: table.display_name,
                 description: table.description,
-                questionCount: parseInt(table.question_count),
-                createdAt: table.created_at
+                question_count: table.question_count,
+                category: table.category,
+                created_at: table.created_at
             }))
         });
         

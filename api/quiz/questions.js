@@ -1,4 +1,4 @@
-import { getDB, corsHeaders, jsonResponse, errorResponse } from '../utils/db.js';
+import { QuestionsDB, corsHeaders, jsonResponse, errorResponse } from '../utils/json-db.js';
 
 export default async function handler(request) {
     // Handle preflight
@@ -19,35 +19,29 @@ export default async function handler(request) {
             return errorResponse('Table name is required');
         }
         
-        const db = getDB();
-        
         // Verify table exists
-        const tableExists = await db`
-            SELECT id FROM quiz_tables WHERE name = ${tableName}
-        `;
+        const table = await QuestionsDB.getTableByName(tableName);
         
-        if (tableExists.length === 0) {
+        if (!table) {
             return errorResponse('Table not found', 404);
         }
         
         // Get questions for the table
-        const questions = await db`
-            SELECT id, question, answer, options, difficulty, created_at
-            FROM questions
-            WHERE table_name = ${tableName}
-            ORDER BY id
-        `;
+        const questions = await QuestionsDB.getQuestionsByTable(tableName);
         
         return jsonResponse({
             success: true,
-            tableName,
-            questions: questions.map(q => ({
+            table_name: tableName,
+            data: questions.map(q => ({
                 id: q.id,
-                question: q.question,
-                answer: q.answer,
-                options: q.options,
+                otazka: q.question,
+                odpoved_a: q.answer_a,
+                odpoved_b: q.answer_b,
+                odpoved_c: q.answer_c,
+                spravna_odpoved: q.correct_answer,
+                vysvetleni: q.explanation,
                 difficulty: q.difficulty,
-                createdAt: q.created_at
+                category: q.category
             }))
         });
         
