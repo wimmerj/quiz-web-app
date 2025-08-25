@@ -713,12 +713,19 @@
       "email": "test@github.com",
       "created_at": "2025-08-25T08:55:09.660Z",
       "is_active": true
+    },
+    {
+      "id": 99,
+      "username": "test_github_user",
+      "email": "test@github.com",
+      "created_at": "2025-08-25T08:55:16.596Z",
+      "is_active": true
     }
   ],
-  "next_id": 99,
+  "next_id": 100,
   "metadata": {
     "created": "2025-08-12T00:00:00.000Z",
-    "last_updated": "2025-08-25T08:55:09.661Z",
+    "last_updated": "2025-08-25T08:55:16.598Z",
     "version": "1.0.0"
   }
 }
