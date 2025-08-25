@@ -94,8 +94,8 @@ class QuizModule {
         // Check authentication
         await this.checkAuthentication();
         
-        // Check server status
-        this.checkServerStatus();
+    // Check server status
+    await this.checkServerStatus();
         
         // Load settings
         this.loadSettings();
@@ -103,6 +103,10 @@ class QuizModule {
         // Setup event listeners
         this.setupEventListeners();
         
+        // If server is online, prefer server mode
+        if (this.serverStatus === 'online') {
+            this.settings.backendMode = 'server';
+        }
         // Load available tables
         this.loadAvailableTables();
         
@@ -294,19 +298,20 @@ class QuizModule {
             const response = await window.APIClient.get('/api/quiz/tables');
             console.log('🔍 Server tables response:', response);
             
-            if (response.success && response.data) {
+            if (response && response.success && response.data && (response.data.tables || Array.isArray(response.data))) {
                 const tableSelect = document.getElementById('tableSelect');
                 console.log('🔍 Table select element:', tableSelect);
-                console.log('🔍 Tables received:', response.data);
+                const tables = response.data.tables || response.data;
+                console.log('🔍 Tables received:', tables);
                 
-                response.data.forEach(table => {
+                tables.forEach(table => {
                     const option = document.createElement('option');
                     option.value = table.name;
                     option.textContent = `🌐 ${table.name} (${table.question_count || 0} otázek)`;
                     tableSelect.appendChild(option);
                 });
                 
-                Logger.success('Server tables loaded', { count: response.data.length });
+                Logger.success('Server tables loaded', { count: tables.length });
                 console.log('✅ Server tables loaded successfully');
             } else {
                 console.log('⚠️ No table data in response or not successful');
@@ -1223,7 +1228,7 @@ class QuizModule {
         if (!statusText) return;
         
         const totalAnswered = this.scoreCorrect + this.scoreWrong;
-        const userText = this.currentUser ? this.currentUser.username : 'Nepřihlášený uživatel';
+    const userText = (this.currentUser && (this.currentUser.username || this.currentUser)) ? (this.currentUser.username || this.currentUser) : 'Nepřihlášený uživatel';
         
         const statusMessage = `Quiz Application - ${userText} (${totalAnswered} odpovědí, celkem správně ${this.scoreCorrect}, celkem špatně ${this.scoreWrong})`;
         statusText.textContent = statusMessage;

@@ -20,11 +20,11 @@ services:
       - key: FLASK_ENV
         value: production
       - key: CORS_ORIGINS
-        value: https://quiz-web-app-chi-ten.vercel.app,https://quiz-web-app-git-main-jan-wimmers-projects.vercel.app,http://localhost:3000,http://127.0.0.1:3000
+        value: https://wimmerj.github.io,https://quiz-web-app-chi-ten.vercel.app,https://quiz-web-app-git-main-jan-wimmers-projects.vercel.app,http://localhost:3000,http://127.0.0.1:3000
       - key: MONICA_API_KEY
         value: your-monica-api-key-here
       - key: FRONTEND_URL
-        value: https://quiz-web-app-chi-ten.vercel.app
+        value: https://wimmerj.github.io/quiz-web-app/modular-app/frontend/index.html
       - key: STORAGE_BACKEND
         value: github
       - key: GH_TOKEN

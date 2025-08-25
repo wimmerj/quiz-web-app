@@ -7,8 +7,8 @@
 class ModularAPIClient {
     constructor() {
         this.baseURL = this.detectBackendURL();
-        this.timeout = 10000; // 10 seconds
-        this.retryAttempts = 3;
+    this.timeout = 25000; // allow Render cold-starts (25s)
+    this.retryAttempts = 3; // network/backoff retries
         this.authToken = this.loadAuthToken();
         
         this.endpoints = {
@@ -119,36 +119,54 @@ class ModularAPIClient {
             });
         }
         
-        try {
-            const response = await this.fetchWithTimeout(url, config);
-            const data = await this.parseResponse(response);
-            
-            // Log successful response
-            this.safeLog('debug', `API Response: ${response.status} ${endpoint}`, {
-                status: response.status,
-                data: data
-            });
-            
-            return {
-                success: true,
-                data: data,
-                status: response.status,
-                headers: response.headers
-            };
-            
-        } catch (error) {
-            this.safeLog('error', `API Error: ${endpoint}`, {
-                error: error.message,
-                endpoint,
-                config
-            });
-            
-            return {
-                success: false,
-                error: error.message,
-                status: error.status || 0
-            };
+        // Simple retry with exponential backoff for transient errors/timeouts
+        const transientStatuses = new Set([408, 429, 500, 502, 503, 504]);
+        let lastError = null;
+        for (let attempt = 1; attempt <= this.retryAttempts; attempt++) {
+            try {
+                const response = await this.fetchWithTimeout(url, config);
+                const data = await this.parseResponse(response);
+                // Log successful response
+                this.safeLog('debug', `API Response: ${response.status} ${endpoint}`, {
+                    status: response.status,
+                    data: data
+                });
+                return {
+                    success: true,
+                    data: data,
+                    status: response.status,
+                    headers: response.headers
+                };
+            } catch (error) {
+                lastError = error;
+                const isTimeout = (error && error.message === 'Request timeout');
+                const isTransient = transientStatuses.has(error.status || 0);
+                const shouldRetry = (attempt < this.retryAttempts) && (isTimeout || isTransient);
+                if (shouldRetry) {
+                    const backoff = Math.min(2000 * attempt, 5000); // 2s, 4s, 5s
+                    this.safeLog('warning', `API transient error, retrying (${attempt}/${this.retryAttempts}) in ${backoff}ms`, {
+                        endpoint,
+                        error: error.message,
+                        status: error.status || 0
+                    });
+                    await this.sleep(backoff);
+                    continue;
+                }
+                // Log final error
+                this.safeLog('error', `API Error: ${endpoint}`, {
+                    error: error.message,
+                    endpoint,
+                    config
+                });
+                return {
+                    success: false,
+                    error: error.message,
+                    status: error.status || 0
+                };
+            }
         }
+        // Fallback (should not reach here)
+        return { success: false, error: lastError?.message || 'Unknown error', status: lastError?.status || 0 };
     }
     
     async fetchWithTimeout(url, config) {
@@ -196,6 +214,10 @@ class ModularAPIClient {
         } else {
             return await response.text();
         }
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
     
     // Authentication methods

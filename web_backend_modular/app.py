@@ -363,10 +363,14 @@ monica_ai = MonicaAIService(MONICA_API_KEY)
 def health_check():
     """Health check endpoint"""
     try:
-        # Test database connection with PostgreSQL compatible query
-        db.session.execute(db.text('SELECT 1'))
-        db.session.commit()
-        db_status = "connected"
+        # When using GitHub storage, skip DB ping to avoid cold starts/timeouts
+        if STORAGE_BACKEND == 'github' and github_store is not None:
+            db_status = "skipped"
+        else:
+            # Test database connection with PostgreSQL compatible query
+            db.session.execute(db.text('SELECT 1'))
+            db.session.commit()
+            db_status = "connected"
     except Exception as e:
         print(f"Database connection error: {e}")
         db_status = "disconnected"
