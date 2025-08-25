@@ -7,6 +7,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
+import { githubReadFile, githubWriteFile } from './github-storage.js';
 
 // Základní cesty k JSON souborům
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -17,13 +18,24 @@ const DB_FILES = {
     quiz_progress: path.join(DATA_DIR, 'quiz_progress.json')
 };
 
+// GitHub storage config (nastavte v prostředí)
+const GITHUB_ENABLED = process.env.GITHUB_STORAGE === '1';
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'wimmerj';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'quiz-web-app';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
 /**
  * Načte JSON soubor
  */
-async function loadJSON(filePath) {
+async function loadJSON(filePath, githubPath) {
     try {
-        const data = await fs.readFile(filePath, 'utf8');
-        return JSON.parse(data);
+        if (GITHUB_ENABLED && githubPath && GITHUB_TOKEN) {
+            const raw = await githubReadFile({ owner: GITHUB_OWNER, repo: GITHUB_REPO, path: githubPath, token: GITHUB_TOKEN });
+            return JSON.parse(raw);
+        } else {
+            const data = await fs.readFile(filePath, 'utf8');
+            return JSON.parse(data);
+        }
     } catch (error) {
         console.error(`Error loading JSON file ${filePath}:`, error);
         return null;
@@ -33,10 +45,15 @@ async function loadJSON(filePath) {
 /**
  * Uloží data do JSON souboru
  */
-async function saveJSON(filePath, data) {
+async function saveJSON(filePath, data, githubPath) {
     try {
-        await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
-        return true;
+        if (GITHUB_ENABLED && githubPath && GITHUB_TOKEN) {
+            await githubWriteFile({ owner: GITHUB_OWNER, repo: GITHUB_REPO, path: githubPath, content: JSON.stringify(data, null, 2), token: GITHUB_TOKEN });
+            return true;
+        } else {
+            await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+            return true;
+        }
     } catch (error) {
         console.error(`Error saving JSON file ${filePath}:`, error);
         return false;
@@ -48,7 +65,7 @@ async function saveJSON(filePath, data) {
  */
 export class UsersDB {
     static async getAll() {
-        const data = await loadJSON(DB_FILES.users);
+    const data = await loadJSON(DB_FILES.users, 'data/users.json');
         return data?.users || [];
     }
     
@@ -82,12 +99,12 @@ export class UsersDB {
         data.next_id += 1;
         data.metadata.last_updated = new Date().toISOString();
         
-        const saved = await saveJSON(DB_FILES.users, data);
+    const saved = await saveJSON(DB_FILES.users, data, 'data/users.json');
         return saved ? newUser : null;
     }
     
     static async update(id, updates) {
-        const data = await loadJSON(DB_FILES.users);
+    const data = await loadJSON(DB_FILES.users, 'data/users.json');
         if (!data) return null;
         
         const userIndex = data.users.findIndex(user => user.id === parseInt(id));
@@ -96,12 +113,12 @@ export class UsersDB {
         data.users[userIndex] = { ...data.users[userIndex], ...updates };
         data.metadata.last_updated = new Date().toISOString();
         
-        const saved = await saveJSON(DB_FILES.users, data);
+    const saved = await saveJSON(DB_FILES.users, data, 'data/users.json');
         return saved ? data.users[userIndex] : null;
     }
     
     static async delete(id) {
-        const data = await loadJSON(DB_FILES.users);
+    const data = await loadJSON(DB_FILES.users, 'data/users.json');
         if (!data) return false;
         
         const userIndex = data.users.findIndex(user => user.id === parseInt(id));
@@ -110,7 +127,7 @@ export class UsersDB {
         data.users.splice(userIndex, 1);
         data.metadata.last_updated = new Date().toISOString();
         
-        return await saveJSON(DB_FILES.users, data);
+    return await saveJSON(DB_FILES.users, data, 'data/users.json');
     }
 }
 
@@ -119,7 +136,7 @@ export class UsersDB {
  */
 export class SessionsDB {
     static async create(userId, token) {
-        const data = await loadJSON(DB_FILES.sessions);
+    const data = await loadJSON(DB_FILES.sessions, 'data/sessions.json');
         if (!data) return null;
         
         const session = {
@@ -131,15 +148,15 @@ export class SessionsDB {
         
         data.sessions.push(session);
         
-        const saved = await saveJSON(DB_FILES.sessions, data);
+    const saved = await saveJSON(DB_FILES.sessions, data, 'data/sessions.json');
         return saved ? session : null;
     }
     
     static async findByToken(token) {
-        const data = await loadJSON(DB_FILES.sessions);
+    const data = await loadJSON(DB_FILES.sessions, 'data/sessions.json');
         if (!data) return null;
         
-        const session = data.sessions.find(s => s.token === token);
+    const session = data.sessions.find(s => s.token === token);
         if (!session) return null;
         
         // Check if session is expired
@@ -148,25 +165,25 @@ export class SessionsDB {
             return null;
         }
         
-        return session;
+    return session;
     }
     
     static async delete(token) {
-        const data = await loadJSON(DB_FILES.sessions);
+    const data = await loadJSON(DB_FILES.sessions, 'data/sessions.json');
         if (!data) return false;
         
-        data.sessions = data.sessions.filter(s => s.token !== token);
-        return await saveJSON(DB_FILES.sessions, data);
+    data.sessions = data.sessions.filter(s => s.token !== token);
+    return await saveJSON(DB_FILES.sessions, data, 'data/sessions.json');
     }
     
     static async cleanup() {
-        const data = await loadJSON(DB_FILES.sessions);
+    const data = await loadJSON(DB_FILES.sessions, 'data/sessions.json');
         if (!data) return false;
         
         const now = new Date();
         data.sessions = data.sessions.filter(s => new Date(s.expires_at) > now);
         
-        return await saveJSON(DB_FILES.sessions, data);
+    return await saveJSON(DB_FILES.sessions, data, 'data/sessions.json');
     }
 }
 
