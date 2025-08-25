@@ -983,13 +983,20 @@ def init_database():
             db.session.commit()
             print("✅ Sample questions added")
 
-@app.before_first_request
-def before_first_request_bootstrap_admin():
-    # Ensure admin exists in GitHub storage (no-op for SQL mode)
-    try:
-        ensure_admin_github()
-    except Exception as e:
-        print(f"Bootstrap admin (before_first_request) skipped: {e}")
+# Flask 3 compatible: one-time bootstrap before the first handled request
+_BOOTSTRAPPED = False
+
+@app.before_request
+def _bootstrap_once():
+    global _BOOTSTRAPPED
+    if not _BOOTSTRAPPED:
+        try:
+            ensure_admin_github()
+        except Exception as e:
+            print(f"Bootstrap admin (before_request once) skipped: {e}")
+        _BOOTSTRAPPED = True
+
+    
 
 # ===============================================
 # API ROUTES - ADMIN IMPORT (GitHub storage)
