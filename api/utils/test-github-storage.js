@@ -2,12 +2,24 @@ import { githubReadFile, githubWriteFile } from './github-storage.js';
 
 const owner = process.env.GITHUB_OWNER || 'wimmerj';
 const repo = process.env.GITHUB_REPO || 'quiz-web-app';
-const token = process.env.GITHUB_TOKEN || 'quiz_user:O4z6nafEKCacD92p09ZwgOQGOlI1h7pC';
+// POZOR: Pro test vložte váš GitHub token zde (začíná ghp_)
+const token = process.env.GITHUB_TOKEN || 'VLOŽTE_VÁŠ_GITHUB_TOKEN_ZDE';
 const path = 'data/users.json';
 
 async function testGithubStorage() {
+    console.log('Owner:', owner);
+    console.log('Repo:', repo);
+    console.log('Token nastaven:', !!token);
+    console.log('Token začíná ghp_:', token.startsWith('ghp_'));
+    console.log('Path:', path);
+    
     if (!token) {
         console.error('GITHUB_TOKEN není nastaven!');
+        return;
+    }
+    
+    if (!token.startsWith('ghp_')) {
+        console.error('GITHUB_TOKEN má nesprávný formát! Musí začínat "ghp_"');
         return;
     }
     // 1. Načtení dat
