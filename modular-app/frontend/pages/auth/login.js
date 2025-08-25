@@ -13,7 +13,7 @@ class LoginManager {
     }
 
     init() {
-        this.logger.info('Login page initializing...');
+        this.logger.info('Login page  initializing...');
         this.setupEventListeners();
         this.setupFormValidation();
         this.checkExistingAuth();
