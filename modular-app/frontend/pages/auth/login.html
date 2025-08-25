@@ -346,26 +346,30 @@
     <!-- Scripts -->
     <script src="../../shared/logger.js"></script>
     <script src="../../shared/navigation.js"></script>
-        <script src="../../shared/api-client.js?v=20250807-login"></script>
-        <script src="../../shared/auth-login.js"></script>
-        <script>
-            // Fallback: if shared script 404s, try local login.js path
-            (function(){
-                var check = function(){
-                    if (!window.APIClient || !document.querySelector('.auth-form.active')) {
+            <script src="../../shared/api-client.js?v=20250807-login"></script>
+            <script src="login.js"></script>
+            <script>
+                // Fallback: if module-local script 404s, try shared/auth-login.js
+                (function(){
+                    function loadShared() {
                         var s = document.createElement('script');
-                        s.src = 'login.js';
+                        s.src = '../../shared/auth-login.js';
                         document.body.appendChild(s);
                     }
-                };
-                window.addEventListener('error', function(e){
-                    if (String(e?.target?.src || '').includes('auth-login.js')) {
-                        check();
-                    }
-                }, true);
-                // Also attempt after DOM ready in case of silent 404
-                document.addEventListener('DOMContentLoaded', function(){ setTimeout(check, 100); });
-            })();
-        </script>
+                    window.addEventListener('error', function(e){
+                        if (String(e?.target?.src || '').endsWith('/auth/login.js') || String(e?.target?.src || '').endsWith('login.js')) {
+                            loadShared();
+                        }
+                    }, true);
+                    // If UI not initialized shortly after DOM ready, try shared
+                    document.addEventListener('DOMContentLoaded', function(){
+                        setTimeout(function(){
+                            if (!window.APIClient || !document.querySelector('.auth-form.active')) {
+                                loadShared();
+                            }
+                        }, 150);
+                    });
+                })();
+            </script>
 </body>
 </html>
