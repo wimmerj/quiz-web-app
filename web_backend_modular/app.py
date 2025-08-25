@@ -531,16 +531,19 @@ def register():
         db.session.commit()
         token = generate_token(user.id, user.role)
     
-    # Log registration
-    user_id_log = user['id'] if isinstance(user, dict) else user.id
-    log_entry = SystemLog(
-        user_id=user_id_log,
-        action='user_registered',
-        ip_address=request.remote_addr,
-        user_agent=request.headers.get('User-Agent')
-    )
-    db.session.add(log_entry)
-    db.session.commit()
+    # Log registration (avoid FK to SQL users when using GitHub storage)
+    try:
+        user_id_log = None if (STORAGE_BACKEND == 'github' and github_store) else (user['id'] if isinstance(user, dict) else user.id)
+        log_entry = SystemLog(
+            user_id=user_id_log,
+            action='user_registered',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent')
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+    except Exception as e:
+        print(f"SystemLog register write skipped: {e}")
     
     return jsonify({
         'message': 'User registered successfully',
@@ -592,16 +595,19 @@ def login():
         db.session.commit()
         token = generate_token(user.id, user.role)
     
-    # Log login
-    user_id_log = user['id'] if isinstance(user, dict) else user.id
-    log_entry = SystemLog(
-        user_id=user_id_log,
-        action='user_login',
-        ip_address=request.remote_addr,
-        user_agent=request.headers.get('User-Agent')
-    )
-    db.session.add(log_entry)
-    db.session.commit()
+    # Log login (avoid FK to SQL users when using GitHub storage)
+    try:
+        user_id_log = None if (STORAGE_BACKEND == 'github' and github_store) else (user['id'] if isinstance(user, dict) else user.id)
+        log_entry = SystemLog(
+            user_id=user_id_log,
+            action='user_login',
+            ip_address=request.remote_addr,
+            user_agent=request.headers.get('User-Agent')
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+    except Exception as e:
+        print(f"SystemLog login write skipped: {e}")
     
     return jsonify({
         'message': 'Login successful',
@@ -787,13 +793,16 @@ def submit_answer():
     if not data or not all(k in data for k in ('question_id', 'selected_answer')):
         return jsonify({'error': 'Missing required fields'}), 400
     
-    question = Question.query.get(data['question_id'])
-    if not question:
-        return jsonify({'error': 'Question not found'}), 404
-    
-    is_correct = int(data['selected_answer']) == question.correct_answer
-
+    question = Question.query.get(data['question_id']) if STORAGE_BACKEND != 'github' else None
     if STORAGE_BACKEND == 'github' and github_store:
+        # We don't have SQL questions; verify correctness against GitHub questions.json
+        gh_data = github_store.read_json('questions.json') or {}
+        qmap = {q.get('id'): q for q in (gh_data.get('questions') or [])}
+        q = qmap.get(data['question_id'])
+        if not q:
+            return jsonify({'error': 'Question not found'}), 404
+        correct_answer = int(q.get('correct_answer')) if q.get('correct_answer') is not None else None
+        is_correct = int(data['selected_answer']) == correct_answer if correct_answer is not None else False
         uid = int(request.current_user['user_id'])
         prog = github_store.read_progress(uid)
         entry = {
@@ -806,7 +815,15 @@ def submit_answer():
         }
         prog.setdefault('entries', []).append(entry)
         github_store.write_progress(uid, prog)
+        return jsonify({
+            'correct': is_correct,
+            'correct_answer': correct_answer,
+            'explanation': q.get('explanation')
+        })
     else:
+        if not question:
+            return jsonify({'error': 'Question not found'}), 404
+        is_correct = int(data['selected_answer']) == question.correct_answer
         progress = QuizProgress(
             user_id=request.current_user['user_id'],
             question_id=data['question_id'],
@@ -817,12 +834,12 @@ def submit_answer():
         )
         db.session.add(progress)
         db.session.commit()
-    
-    return jsonify({
-        'correct': is_correct,
-        'correct_answer': question.correct_answer,
-        'explanation': question.explanation or question.ai_explanation
-    })
+
+        return jsonify({
+            'correct': is_correct,
+            'correct_answer': question.correct_answer,
+            'explanation': question.explanation or question.ai_explanation
+        })
 
 # ===============================================
 # INITIALIZATION
