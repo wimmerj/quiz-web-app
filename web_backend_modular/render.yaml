@@ -20,7 +20,7 @@ services:
       - key: FLASK_ENV
         value: production
       - key: CORS_ORIGINS
-        value: https://your-username.github.io,https://localhost:3000
+  value: https://quiz-web-app-chi-ten.vercel.app,http://localhost:3000,http://127.0.0.1:3000
       - key: MONICA_API_KEY
         value: your-monica-api-key-here
 
