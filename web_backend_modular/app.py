@@ -481,8 +481,8 @@ def register():
         email = None
     
     if STORAGE_BACKEND == 'github' and github_store:
-        # index: usernames -> id, next_id
-        idx = github_store.read_users_index()
+        # index: usernames -> id, next_id (do not create on read)
+        idx = github_store.read_json('users/_index.json') or {"next_id": 1, "usernames": {}}
         username = data['username']
         if username in idx.get('usernames', {}):
             return jsonify({'error': 'Username already exists'}), 409
@@ -506,12 +506,28 @@ def register():
             'battle_losses': 0,
             'settings': {}
         }
-        github_store.save_user(user)
-        # update index
-        idx['usernames'][username] = new_id
-        idx['next_id'] = new_id + 1
-        github_store.write_users_index(idx)
-        token = generate_token(user['id'], user['role'])
+        # Try GitHub write; if it fails (token missing or no perms), fallback to SQL registration
+        try:
+            github_store.save_user(user)
+            # update index
+            idx['usernames'][username] = new_id
+            idx['next_id'] = new_id + 1
+            github_store.write_json('users/_index.json', idx, message='Update users index')
+            token = generate_token(user['id'], user['role'])
+        except Exception as e:
+            print(f"GitHub storage write failed, falling back to SQL registration: {e}")
+            # SQL fallback
+            user_sql = User(
+                username=data['username'],
+                email=email,
+                password_hash=password_hash,
+                salt=salt,
+                avatar=data.get('avatar', '\ud83d\udc64')
+            )
+            db.session.add(user_sql)
+            db.session.commit()
+            token = generate_token(user_sql.id, user_sql.role)
+            user = user_sql  # normalize for response
     else:
         # SQL path
         if User.query.filter_by(username=data['username']).first():
@@ -567,7 +583,8 @@ def login():
         return jsonify({'error': 'Missing username or password'}), 400
     
     if STORAGE_BACKEND == 'github' and github_store:
-        idx = github_store.read_users_index()
+        # Read index without creating it on first access
+        idx = github_store.read_json('users/_index.json') or {"next_id": 1, "usernames": {}}
         user_id = idx.get('usernames', {}).get(data['username'])
         if not user_id:
             return jsonify({'error': 'Invalid credentials'}), 401
@@ -579,8 +596,12 @@ def login():
             return jsonify({'error': 'Invalid credentials'}), 401
         if not user.get('is_active', True):
             return jsonify({'error': 'Account is disabled'}), 403
-        user['last_login'] = datetime.utcnow().isoformat()
-        github_store.save_user(user)
+        # Best-effort last_login update; ignore write failures to avoid 500
+        try:
+            user['last_login'] = datetime.utcnow().isoformat()
+            github_store.save_user(user)
+        except Exception as e:
+            print(f"GitHub save_user(last_login) skipped: {e}")
         token = generate_token(user['id'], user.get('role', 'student'))
     else:
         user = User.query.filter_by(username=data['username']).first()
