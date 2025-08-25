@@ -20,9 +20,23 @@ services:
       - key: FLASK_ENV
         value: production
       - key: CORS_ORIGINS
-  value: https://quiz-web-app-chi-ten.vercel.app,http://localhost:3000,http://127.0.0.1:3000
+        value: https://quiz-web-app-chi-ten.vercel.app,http://localhost:3000,http://127.0.0.1:3000
       - key: MONICA_API_KEY
         value: your-monica-api-key-here
+      - key: FRONTEND_URL
+        value: https://quiz-web-app-chi-ten.vercel.app
+      - key: STORAGE_BACKEND
+        value: github
+      - key: GH_TOKEN
+        sync: false
+      - key: GH_OWNER
+        value: wimmerj
+      - key: GH_REPO
+        value: quiz-web-app
+      - key: GH_BRANCH
+        value: main
+      - key: GH_BASE_DIR
+        value: data
 
 databases:
   - name: quiz-db

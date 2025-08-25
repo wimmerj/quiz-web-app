@@ -5,7 +5,7 @@ Modular Quiz App - Backend API Server
 Optimized for Render.com with Monica AI integration
 """
 
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, redirect
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -21,6 +21,7 @@ import asyncio
 from datetime import datetime, timedelta
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+from .github_storage import GitHubStorage
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -67,6 +68,28 @@ MONICA_ENABLED = bool(MONICA_API_KEY and MONICA_API_KEY != 'your-monica-api-key-
 JWT_SECRET = app.config['SECRET_KEY']
 JWT_ALGORITHM = 'HS256'
 JWT_EXPIRATION_HOURS = 24
+
+# Storage backend configuration
+STORAGE_BACKEND = os.environ.get('STORAGE_BACKEND', 'sql').lower()  # 'sql' | 'github'
+GH_TOKEN = os.environ.get('GH_TOKEN')
+GH_OWNER = os.environ.get('GH_OWNER')
+GH_REPO = os.environ.get('GH_REPO')
+GH_BRANCH = os.environ.get('GH_BRANCH', 'main')
+GH_BASE_DIR = os.environ.get('GH_BASE_DIR', 'data')
+
+github_store = None
+if STORAGE_BACKEND == 'github' and GH_TOKEN and GH_OWNER and GH_REPO:
+    github_store = GitHubStorage(
+        token=GH_TOKEN,
+        owner=GH_OWNER,
+        repo=GH_REPO,
+        branch=GH_BRANCH,
+        base_dir=GH_BASE_DIR
+    )
+    print("✅ GitHub storage enabled")
+else:
+    if STORAGE_BACKEND == 'github':
+        print("⚠️ GitHub storage requested but env vars are missing; falling back to SQL")
 
 # ===============================================
 # DATABASE MODELS
@@ -344,6 +367,8 @@ def health_check():
     return jsonify({
         "status": "healthy",
         "database": db_status,
+    "storage_backend": STORAGE_BACKEND,
+    "github_storage": bool(github_store is not None),
         "monica_ai": "enabled" if MONICA_ENABLED else "disabled",
         "timestamp": datetime.utcnow().isoformat(),
         "version": "2.0.0-modular"
@@ -396,6 +421,37 @@ def app_info():
     })
 
 # ===============================================
+# OPTIONAL FRONTEND SERVE FROM ROOT (Render landing)
+# ===============================================
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..', 'modular-app', 'frontend'))
+
+@app.route('/')
+def serve_root_index():
+    # If a dedicated frontend URL is configured, redirect there
+    fe_url = os.environ.get('FRONTEND_URL')
+    if fe_url:
+        return redirect(fe_url, code=302)
+    # Try to serve modular frontend if present in the container
+    try:
+        return send_from_directory(FRONTEND_DIR, 'index.html')
+    except Exception:
+        return (
+            "<h1>Quiz API</h1><p>Frontend není v tomto buildu k dispozici. "
+            "Navštivte <a href='/api/info'>/api/info</a> nebo nastavte FRONTEND_URL pro přesměrování.</p>",
+            200,
+            {"Content-Type": "text/html; charset=utf-8"}
+        )
+
+@app.route('/shared/<path:filename>')
+def serve_frontend_shared(filename):
+    return send_from_directory(os.path.join(FRONTEND_DIR, 'shared'), filename)
+
+@app.route('/pages/<path:filename>')
+def serve_frontend_pages(filename):
+    return send_from_directory(os.path.join(FRONTEND_DIR, 'pages'), filename)
+
+# ===============================================
 # API ROUTES - AUTHENTICATION
 # ===============================================
 
@@ -417,35 +473,61 @@ def register():
     if not email:
         email = None
     
-    # Check if user exists
-    if User.query.filter_by(username=data['username']).first():
-        return jsonify({'error': 'Username already exists'}), 409
-    
-    # Check email only if provided
-    if email and User.query.filter_by(email=email).first():
-        return jsonify({'error': 'Email already exists'}), 409
-    
-    # Create new user
-    salt = secrets.token_hex(16)
-    password_hash = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), salt.encode('utf-8'), 100000).hex()
-    
-    user = User(
-        username=data['username'],
-        email=email,  # Use the processed email (can be None)
-        password_hash=password_hash,
-        salt=salt,
-        avatar=data.get('avatar', '👤')
-    )
-    
-    db.session.add(user)
-    db.session.commit()
-    
-    # Generate token
-    token = generate_token(user.id, user.role)
+    if STORAGE_BACKEND == 'github' and github_store:
+        # index: usernames -> id, next_id
+        idx = github_store.read_users_index()
+        username = data['username']
+        if username in idx.get('usernames', {}):
+            return jsonify({'error': 'Username already exists'}), 409
+        # email uniqueness optional (check if we want to enforce)
+        # derive new id
+        new_id = int(idx.get('next_id', 1))
+        salt = secrets.token_hex(16)
+        password_hash = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), salt.encode('utf-8'), 100000).hex()
+        user = {
+            'id': new_id,
+            'username': username,
+            'email': email,
+            'password_hash': password_hash,
+            'salt': salt,
+            'role': 'student',
+            'avatar': data.get('avatar', '👤'),
+            'created_at': datetime.utcnow().isoformat(),
+            'is_active': True,
+            'battle_rating': 1500,
+            'battle_wins': 0,
+            'battle_losses': 0,
+            'settings': {}
+        }
+        github_store.save_user(user)
+        # update index
+        idx['usernames'][username] = new_id
+        idx['next_id'] = new_id + 1
+        github_store.write_users_index(idx)
+        token = generate_token(user['id'], user['role'])
+    else:
+        # SQL path
+        if User.query.filter_by(username=data['username']).first():
+            return jsonify({'error': 'Username already exists'}), 409
+        if email and User.query.filter_by(email=email).first():
+            return jsonify({'error': 'Email already exists'}), 409
+        salt = secrets.token_hex(16)
+        password_hash = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), salt.encode('utf-8'), 100000).hex()
+        user = User(
+            username=data['username'],
+            email=email,
+            password_hash=password_hash,
+            salt=salt,
+            avatar=data.get('avatar', '👤')
+        )
+        db.session.add(user)
+        db.session.commit()
+        token = generate_token(user.id, user.role)
     
     # Log registration
+    user_id_log = user['id'] if isinstance(user, dict) else user.id
     log_entry = SystemLog(
-        user_id=user.id,
+        user_id=user_id_log,
         action='user_registered',
         ip_address=request.remote_addr,
         user_agent=request.headers.get('User-Agent')
@@ -456,11 +538,11 @@ def register():
     return jsonify({
         'message': 'User registered successfully',
         'user': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'role': user.role,
-            'avatar': user.avatar
+            'id': user['id'] if isinstance(user, dict) else user.id,
+            'username': user['username'] if isinstance(user, dict) else user.username,
+            'email': user['email'] if isinstance(user, dict) else user.email,
+            'role': user['role'] if isinstance(user, dict) else user.role,
+            'avatar': user['avatar'] if isinstance(user, dict) else user.avatar
         },
         'token': token
     }), 201
@@ -474,29 +556,39 @@ def login():
     if not data or not all(k in data for k in ('username', 'password')):
         return jsonify({'error': 'Missing username or password'}), 400
     
-    # Find user
-    user = User.query.filter_by(username=data['username']).first()
-    if not user:
-        return jsonify({'error': 'Invalid credentials'}), 401
-    
-    # Verify password
-    password_hash = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), user.salt.encode('utf-8'), 100000).hex()
-    if password_hash != user.password_hash:
-        return jsonify({'error': 'Invalid credentials'}), 401
-    
-    if not user.is_active:
-        return jsonify({'error': 'Account is disabled'}), 403
-    
-    # Update last login
-    user.last_login = datetime.utcnow()
-    db.session.commit()
-    
-    # Generate token
-    token = generate_token(user.id, user.role)
+    if STORAGE_BACKEND == 'github' and github_store:
+        idx = github_store.read_users_index()
+        user_id = idx.get('usernames', {}).get(data['username'])
+        if not user_id:
+            return jsonify({'error': 'Invalid credentials'}), 401
+        user = github_store.read_user_by_id(int(user_id))
+        if not user:
+            return jsonify({'error': 'Invalid credentials'}), 401
+        ph = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), user['salt'].encode('utf-8'), 100000).hex()
+        if ph != user['password_hash']:
+            return jsonify({'error': 'Invalid credentials'}), 401
+        if not user.get('is_active', True):
+            return jsonify({'error': 'Account is disabled'}), 403
+        user['last_login'] = datetime.utcnow().isoformat()
+        github_store.save_user(user)
+        token = generate_token(user['id'], user.get('role', 'student'))
+    else:
+        user = User.query.filter_by(username=data['username']).first()
+        if not user:
+            return jsonify({'error': 'Invalid credentials'}), 401
+        password_hash = hashlib.pbkdf2_hmac('sha256', data['password'].encode('utf-8'), user.salt.encode('utf-8'), 100000).hex()
+        if password_hash != user.password_hash:
+            return jsonify({'error': 'Invalid credentials'}), 401
+        if not user.is_active:
+            return jsonify({'error': 'Account is disabled'}), 403
+        user.last_login = datetime.utcnow()
+        db.session.commit()
+        token = generate_token(user.id, user.role)
     
     # Log login
+    user_id_log = user['id'] if isinstance(user, dict) else user.id
     log_entry = SystemLog(
-        user_id=user.id,
+        user_id=user_id_log,
         action='user_login',
         ip_address=request.remote_addr,
         user_agent=request.headers.get('User-Agent')
@@ -507,13 +599,13 @@ def login():
     return jsonify({
         'message': 'Login successful',
         'user': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'role': user.role,
-            'avatar': user.avatar,
-            'battle_rating': user.battle_rating,
-            'settings': json.loads(user.settings) if user.settings else {}
+            'id': user['id'] if isinstance(user, dict) else user.id,
+            'username': user['username'] if isinstance(user, dict) else user.username,
+            'email': user.get('email') if isinstance(user, dict) else user.email,
+            'role': user.get('role', 'student') if isinstance(user, dict) else user.role,
+            'avatar': user.get('avatar', '👤') if isinstance(user, dict) else user.avatar,
+            'battle_rating': user.get('battle_rating', 1500) if isinstance(user, dict) else user.battle_rating,
+            'settings': user.get('settings', {}) if isinstance(user, dict) else (json.loads(user.settings) if user.settings else {})
         },
         'token': token
     })
@@ -522,9 +614,44 @@ def login():
 @login_required
 def get_profile():
     """Get user profile"""
-    user = User.query.get(request.current_user['user_id'])
-    if not user:
-        return jsonify({'error': 'User not found'}), 404
+    if STORAGE_BACKEND == 'github' and github_store:
+        user = github_store.read_user_by_id(int(request.current_user['user_id']))
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        return jsonify({
+            'user': {
+                'id': user['id'],
+                'username': user['username'],
+                'email': user.get('email'),
+                'role': user.get('role', 'student'),
+                'avatar': user.get('avatar', '👤'),
+                'created_at': user.get('created_at'),
+                'last_login': user.get('last_login'),
+                'battle_rating': user.get('battle_rating', 1500),
+                'battle_wins': user.get('battle_wins', 0),
+                'battle_losses': user.get('battle_losses', 0),
+                'settings': user.get('settings', {})
+            }
+        })
+    else:
+        user = User.query.get(request.current_user['user_id'])
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+        return jsonify({
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'role': user.role,
+                'avatar': user.avatar,
+                'created_at': user.created_at.isoformat(),
+                'last_login': user.last_login.isoformat() if user.last_login else None,
+                'battle_rating': user.battle_rating,
+                'battle_wins': user.battle_wins,
+                'battle_losses': user.battle_losses,
+                'settings': json.loads(user.settings) if user.settings else {}
+            }
+        })
     
     return jsonify({
         'user': {
@@ -550,20 +677,41 @@ def get_profile():
 @login_required
 def get_quiz_tables():
     """Get available quiz tables"""
-    tables = db.session.query(Question.table_name).distinct().all()
-    table_list = []
-    
-    for table in tables:
-        table_name = table[0]
-        question_count = Question.query.filter_by(table_name=table_name).count()
-        
-        table_list.append({
-            'name': table_name,
-            'display_name': table_name.replace('_', ' ').title(),
-            'question_count': question_count
-        })
-    
-    return jsonify({'tables': table_list})
+    if STORAGE_BACKEND == 'github' and github_store:
+        data = github_store.read_json('questions.json') or {}
+        tables = data.get('quiz_tables')
+        if tables:
+            # Already have display_name & counts
+            table_list = [{
+                'name': t.get('name'),
+                'display_name': t.get('display_name') or t.get('name', '').replace('_', ' ').title(),
+                'question_count': t.get('question_count', 0)
+            } for t in tables]
+            return jsonify({'tables': table_list})
+        # Fallback: infer from questions
+        questions = data.get('questions', [])
+        counts = {}
+        for q in questions:
+            tn = q.get('table_name')
+            counts[tn] = counts.get(tn, 0) + 1
+        table_list = [{
+            'name': tn,
+            'display_name': tn.replace('_', ' ').title() if tn else 'Unknown',
+            'question_count': cnt
+        } for tn, cnt in counts.items()]
+        return jsonify({'tables': table_list})
+    else:
+        tables = db.session.query(Question.table_name).distinct().all()
+        table_list = []
+        for table in tables:
+            table_name = table[0]
+            question_count = Question.query.filter_by(table_name=table_name).count()
+            table_list.append({
+                'name': table_name,
+                'display_name': table_name.replace('_', ' ').title(),
+                'question_count': question_count
+            })
+        return jsonify({'tables': table_list})
 
 @app.route('/api/quiz/questions/<table_name>', methods=['GET'])
 @login_required
@@ -571,33 +719,47 @@ def get_questions(table_name):
     """Get questions for specific table"""
     mode = request.args.get('mode', 'normal')
     limit = request.args.get('limit', type=int)
-    
+
+    if STORAGE_BACKEND == 'github' and github_store:
+        data = github_store.read_json('questions.json') or {}
+        all_q = [q for q in (data.get('questions') or []) if q.get('table_name') == table_name]
+        # Map to unified shape
+        mapped = []
+        for q in all_q:
+            mapped.append({
+                'id': q.get('id'),
+                'text': q.get('question') or q.get('question_text'),
+                'answers': [q.get('answer_a'), q.get('answer_b'), q.get('answer_c')],
+                'difficulty': q.get('difficulty') or 'medium',
+                'category': q.get('category'),
+                'explanation': q.get('explanation')
+            })
+        # TODO: implement mode filters using stored progress if needed
+        if mode == 'random':
+            import random
+            random.shuffle(mapped)
+        if limit:
+            mapped = mapped[:limit]
+        return jsonify({'questions': mapped})
+
+    # SQL path
     query = Question.query.filter_by(table_name=table_name)
-    
-    # Apply filtering based on mode
     if mode == 'unanswered':
-        # Questions not answered by current user
         answered_ids = db.session.query(QuizProgress.question_id).filter_by(
             user_id=request.current_user['user_id']
         ).subquery()
         query = query.filter(~Question.id.in_(answered_ids))
-    
     elif mode == 'wrong':
-        # Questions answered incorrectly
         wrong_ids = db.session.query(QuizProgress.question_id).filter_by(
             user_id=request.current_user['user_id'],
             is_correct=False
         ).subquery()
         query = query.filter(Question.id.in_(wrong_ids))
-    
     elif mode == 'random':
         query = query.order_by(db.func.random())
-    
     if limit:
         query = query.limit(limit)
-    
     questions = query.all()
-    
     return jsonify({
         'questions': [{
             'id': q.id,
@@ -623,19 +785,31 @@ def submit_answer():
         return jsonify({'error': 'Question not found'}), 404
     
     is_correct = int(data['selected_answer']) == question.correct_answer
-    
-    # Save progress
-    progress = QuizProgress(
-        user_id=request.current_user['user_id'],
-        question_id=data['question_id'],
-        selected_answer=data['selected_answer'],
-        is_correct=is_correct,
-        response_time=data.get('response_time'),
-        quiz_session_id=data.get('session_id')
-    )
-    
-    db.session.add(progress)
-    db.session.commit()
+
+    if STORAGE_BACKEND == 'github' and github_store:
+        uid = int(request.current_user['user_id'])
+        prog = github_store.read_progress(uid)
+        entry = {
+            'question_id': data['question_id'],
+            'selected_answer': data['selected_answer'],
+            'is_correct': is_correct,
+            'response_time': data.get('response_time'),
+            'quiz_session_id': data.get('session_id'),
+            'timestamp': datetime.utcnow().isoformat()
+        }
+        prog.setdefault('entries', []).append(entry)
+        github_store.write_progress(uid, prog)
+    else:
+        progress = QuizProgress(
+            user_id=request.current_user['user_id'],
+            question_id=data['question_id'],
+            selected_answer=data['selected_answer'],
+            is_correct=is_correct,
+            response_time=data.get('response_time'),
+            quiz_session_id=data.get('session_id')
+        )
+        db.session.add(progress)
+        db.session.commit()
     
     return jsonify({
         'correct': is_correct,
