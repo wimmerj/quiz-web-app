@@ -524,15 +524,37 @@ class ModularAPIClient {
     }
 }
 
+// Backward-compatible wrapper for register to accept object or args
+ModularAPIClient.prototype.register = async function(usernameOrObj, password, email = '') {
+    let payload;
+    if (typeof usernameOrObj === 'object' && usernameOrObj !== null) {
+        // Support { username, password, email }
+        const { username, password: pwd, email: em } = usernameOrObj;
+        payload = { username, password: pwd, email: em || '' };
+    } else {
+        payload = { username: usernameOrObj, password, email };
+    }
+    const response = await this.request(this.endpoints.register, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    });
+    if (response.success) {
+        this.safeLog('success', 'Registration successful', { username: payload.username, email: payload.email });
+    }
+    return response;
+};
+
 // Global API client instance
 let APIClient = null;
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     APIClient = new ModularAPIClient();
-    window.APIClient = APIClient; // Make globally available
+    // Make globally available (both aliases)
+    window.APIClient = APIClient;
+    window.apiClient = APIClient; // backward-compat alias used by some pages
     
-    // Backward compatibility
+    // Backward compatibility helpers
     window.enhancedIntegration = {
         loginUser: (username, password) => APIClient.login(username, password),
         registerUser: (username, password, email) => APIClient.register(username, password, email),
