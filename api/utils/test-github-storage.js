@@ -2,7 +2,7 @@ import { githubReadFile, githubWriteFile } from './github-storage.js';
 
 const owner = process.env.GITHUB_OWNER || 'wimmerj';
 const repo = process.env.GITHUB_REPO || 'quiz-web-app';
-const token = process.env.GITHUB_TOKEN;
+const token = process.env.GITHUB_TOKEN || 'quiz_user:O4z6nafEKCacD92p09ZwgOQGOlI1h7pC';
 const path = 'data/users.json';
 
 async function testGithubStorage() {
