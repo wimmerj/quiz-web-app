@@ -21,7 +21,14 @@ import asyncio
 from datetime import datetime, timedelta
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from .github_storage import GitHubStorage
+# Import GitHubStorage with an absolute import so this file can be loaded
+# both as a package module and as a top-level module (e.g., gunicorn app:app)
+try:
+    from github_storage import GitHubStorage
+except ImportError:  # Fallback when Python path doesn't include this directory
+    import sys, os
+    sys.path.append(os.path.dirname(__file__))
+    from github_storage import GitHubStorage
 
 # Initialize Flask app
 app = Flask(__name__)
