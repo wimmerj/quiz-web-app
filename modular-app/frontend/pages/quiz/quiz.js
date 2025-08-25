@@ -462,17 +462,18 @@ class QuizModule {
         if (this.settings.backendMode === 'server') {
             try {
                 const response = await window.APIClient.get(`/api/quiz/questions/${this.currentTable}`);
-                if (response.success && response.data) {
-                    this.questions = response.data.map(q => ({
+                if (response && response.success && response.data && Array.isArray(response.data.questions)) {
+                    // Backend returns unified shape: { id, text, answers[3], explanation }
+                    this.questions = response.data.questions.map(q => ({
                         id: q.id,
-                        question: q.otazka || q.question,
-                        answer_a: q.odpoved_a || q.answer_a,
-                        answer_b: q.odpoved_b || q.answer_b,
-                        answer_c: q.odpoved_c || q.answer_c,
-                        correct_answer: q.spravna_odpoved || q.correct_answer,
-                        explanation: q.vysvetleni || q.explanation || 'Bez vysvětlení'
+                        question: q.text || q.question || '',
+                        answer_a: q.answers?.[0] ?? q.answer_a,
+                        answer_b: q.answers?.[1] ?? q.answer_b,
+                        answer_c: q.answers?.[2] ?? q.answer_c,
+                        // Do not include correct_answer from server responses for fairness
+                        correct_answer: q.correct_answer || 'A',
+                        explanation: q.explanation || 'Bez vysvětlení'
                     }));
-                    
                     Logger.success('Questions loaded from server', { count: this.questions.length });
                     return;
                 }
