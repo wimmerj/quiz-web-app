@@ -30,7 +30,8 @@ class ModularAPIClient {
             adminSystem: '/api/admin/system',
             
             // Special endpoints
-            monica: '/api/monica',
+            monica: '/api/monica', // legacy
+            monicaEvaluate: '/api/monica/evaluate',
             publicMonica: '/api/public-monica',
             test: '/api/test',
             health: '/api/health'
@@ -54,15 +55,36 @@ class ModularAPIClient {
     }
     
     detectBackendURL() {
-        // Try to detect the correct backend URL
-        const hostname = window.location.hostname;
-        
-        if (hostname === 'localhost' || hostname === '127.0.0.1') {
-            return 'http://localhost:3000';  // Local development
-        } else {
-            // Correct Vercel URL matching your dashboard
-            return 'https://quiz-web-app-chi-ten.vercel.app';  // Production on Vercel
+        // Priority order for API base URL resolution:
+        // 1) URL param ?apiBase=...
+        // 2) window.__API_BASE_URL__ (injected by config)
+        // 3) localStorage 'api_base_url'
+        // 4) <meta name="api-base-url" content="...">
+        // 5) localhost default
+        // 6) Render default (quiz-api.onrender.com)
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const urlParam = params.get('apiBase');
+            if (urlParam) {
+                const clean = urlParam.replace(/\/$/, '');
+                try { localStorage.setItem('api_base_url', clean); } catch (_) {}
+                return clean;
+            }
+        } catch (_) {}
+        if (typeof window !== 'undefined' && window.__API_BASE_URL__) {
+            return String(window.__API_BASE_URL__).replace(/\/$/, '');
         }
+        try {
+            const stored = localStorage.getItem('api_base_url');
+            if (stored) return stored.replace(/\/$/, '');
+        } catch (_) {}
+        const meta = document.querySelector('meta[name="api-base-url"]');
+        if (meta && meta.content) return meta.content.replace(/\/$/, '');
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1') {
+            return 'http://localhost:3000';
+        }
+        return 'https://quiz-api.onrender.com';
     }
     
     setupInterceptors() {
@@ -308,8 +330,10 @@ class ModularAPIClient {
     
     // Configuration methods
     setBaseURL(url) {
-        this.baseURL = url;
-        this.safeLog('info', 'Base URL updated', { baseURL: url });
+        const clean = String(url || '').replace(/\/$/, '');
+        this.baseURL = clean;
+        try { localStorage.setItem('api_base_url', clean); } catch (_) {}
+        this.safeLog('info', 'Base URL updated', { baseURL: clean });
     }
     
     setTimeout(ms) {
@@ -485,38 +509,20 @@ class ModularAPIClient {
                 questionLength: question.length, 
                 answerLength: userAnswer.length 
             });
-            
-            // Use current Vercel deployment Monica AI proxy
-            const VERCEL_MONICA_URL = 'https://quiz-web-app-chi-ten.vercel.app/api/monica';
-            
-            const response = await fetch(VERCEL_MONICA_URL, {
+            // Call backend endpoint (works across environments)
+            const resp = await this.request(this.endpoints.monicaEvaluate, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    question: question,
-                    correctAnswer: correctAnswer,
-                    userAnswer: userAnswer
-                })
+                body: JSON.stringify({ question, correctAnswer, userAnswer })
             });
-            
-            if (!response.ok) {
-                throw new Error(`Monica API error: ${response.status} - ${response.statusText}`);
+            if (!resp.success) {
+                throw new Error(resp.error || 'Evaluation failed');
             }
-            
-            const data = await response.json();
-            
-            // Extract evaluation from Vercel response format
-            const evaluation = data.success ? data.evaluation : data;
-            
-            this.safeLog('success', 'Answer evaluation completed via Vercel public proxy', { 
+            const evaluation = resp.data;
+            this.safeLog('success', 'Answer evaluation completed', { 
                 score: evaluation.score, 
-                method: evaluation.method || 'vercel-monica-public-proxy'
+                method: evaluation.method || 'backend-eval'
             });
-            
             return evaluation;
-            
         } catch (error) {
             this.safeLog('error', 'Answer evaluation failed', error);
             throw error;
@@ -524,15 +530,37 @@ class ModularAPIClient {
     }
 }
 
+// Backward-compatible wrapper for register to accept object or args
+ModularAPIClient.prototype.register = async function(usernameOrObj, password, email = '') {
+    let payload;
+    if (typeof usernameOrObj === 'object' && usernameOrObj !== null) {
+        // Support { username, password, email }
+        const { username, password: pwd, email: em } = usernameOrObj;
+        payload = { username, password: pwd, email: em || '' };
+    } else {
+        payload = { username: usernameOrObj, password, email };
+    }
+    const response = await this.request(this.endpoints.register, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    });
+    if (response.success) {
+        this.safeLog('success', 'Registration successful', { username: payload.username, email: payload.email });
+    }
+    return response;
+};
+
 // Global API client instance
 let APIClient = null;
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     APIClient = new ModularAPIClient();
-    window.APIClient = APIClient; // Make globally available
+    // Make globally available (both aliases)
+    window.APIClient = APIClient;
+    window.apiClient = APIClient; // backward-compat alias used by some pages
     
-    // Backward compatibility
+    // Backward compatibility helpers
     window.enhancedIntegration = {
         loginUser: (username, password) => APIClient.login(username, password),
         registerUser: (username, password, email) => APIClient.register(username, password, email),
