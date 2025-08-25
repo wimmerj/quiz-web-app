@@ -3,7 +3,7 @@ services:
     name: quiz-api
     env: python
     region: frankfurt
-  plan: starter
+    plan: starter
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
@@ -16,7 +16,7 @@ services:
       - key: FLASK_ENV
         value: production
       - key: CORS_ORIGINS
-    value: https://wimmerj.github.io,http://localhost:3000,http://127.0.0.1:3000
+        value: https://wimmerj.github.io,http://localhost:3000,http://127.0.0.1:3000
       - key: MONICA_API_KEY
         value: your-monica-api-key-here
       - key: FRONTEND_URL

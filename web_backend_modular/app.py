@@ -5,7 +5,7 @@ Modular Quiz App - Backend API Server
 Optimized for Render.com with Monica AI integration
 """
 
-from flask import Flask, request, jsonify, send_from_directory, redirect
+from flask import Flask, request, jsonify, send_from_directory, redirect, g
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -282,17 +282,18 @@ def login_required(f):
         token = request.headers.get('Authorization')
         if not token:
             return jsonify({'error': 'Token missing'}), 401
-        
+
         if token.startswith('Bearer '):
             token = token[7:]
-        
+
         payload = verify_token(token)
         if not payload:
             return jsonify({'error': 'Invalid token'}), 401
-        
-        request.current_user = payload
+
+        # Store on flask.g for request scope
+        g.current_user = payload
         return f(*args, **kwargs)
-    
+
     return decorated
 
 def admin_required(f):
@@ -302,17 +303,18 @@ def admin_required(f):
         token = request.headers.get('Authorization')
         if not token:
             return jsonify({'error': 'Token missing'}), 401
-        
+
         if token.startswith('Bearer '):
             token = token[7:]
-        
+
         payload = verify_token(token)
         if not payload or payload.get('role') != 'admin':
             return jsonify({'error': 'Admin access required'}), 403
-        
-        request.current_user = payload
+
+        # Store on flask.g for request scope
+        g.current_user = payload
         return f(*args, **kwargs)
-    
+
     return decorated
 
 # ===============================================
@@ -697,7 +699,7 @@ def login():
 def get_profile():
     """Get user profile"""
     if STORAGE_BACKEND == 'github' and github_store:
-        user = github_store.read_user_by_id(int(request.current_user['user_id']))
+        user = github_store.read_user_by_id(int(g.current_user['user_id']))
         if not user:
             return jsonify({'error': 'User not found'}), 404
         return jsonify({
@@ -716,7 +718,7 @@ def get_profile():
             }
         })
     else:
-        user = User.query.get(request.current_user['user_id'])
+        user = User.query.get(g.current_user['user_id'])
         if not user:
             return jsonify({'error': 'User not found'}), 404
         return jsonify({
@@ -828,12 +830,12 @@ def get_questions(table_name):
     query = Question.query.filter_by(table_name=table_name)
     if mode == 'unanswered':
         answered_ids = db.session.query(QuizProgress.question_id).filter_by(
-            user_id=request.current_user['user_id']
+            user_id=g.current_user['user_id']
         ).subquery()
         query = query.filter(~Question.id.in_(answered_ids))
     elif mode == 'wrong':
         wrong_ids = db.session.query(QuizProgress.question_id).filter_by(
-            user_id=request.current_user['user_id'],
+            user_id=g.current_user['user_id'],
             is_correct=False
         ).subquery()
         query = query.filter(Question.id.in_(wrong_ids))
@@ -870,9 +872,18 @@ def submit_answer():
         q = qmap.get(data['question_id'])
         if not q:
             return jsonify({'error': 'Question not found'}), 404
-        correct_answer = int(q.get('correct_answer')) if q.get('correct_answer') is not None else None
+        # Support both numeric index (0/1/2) and letter (A/B/C) stored in GitHub
+        ca_raw = q.get('correct_answer')
+        if isinstance(ca_raw, str):
+            letter_map = {'A': 0, 'a': 0, 'B': 1, 'b': 1, 'C': 2, 'c': 2}
+            correct_answer = letter_map.get(ca_raw.strip(), None)
+        else:
+            try:
+                correct_answer = int(ca_raw) if ca_raw is not None else None
+            except Exception:
+                correct_answer = None
         is_correct = int(data['selected_answer']) == correct_answer if correct_answer is not None else False
-        uid = int(request.current_user['user_id'])
+        uid = int(g.current_user['user_id'])
         prog = github_store.read_progress(uid)
         entry = {
             'question_id': data['question_id'],
@@ -894,7 +905,7 @@ def submit_answer():
             return jsonify({'error': 'Question not found'}), 404
         is_correct = int(data['selected_answer']) == question.correct_answer
         progress = QuizProgress(
-            user_id=request.current_user['user_id'],
+            user_id=g.current_user['user_id'],
             question_id=data['question_id'],
             selected_answer=data['selected_answer'],
             is_correct=is_correct,
@@ -979,6 +990,192 @@ def before_first_request_bootstrap_admin():
         ensure_admin_github()
     except Exception as e:
         print(f"Bootstrap admin (before_first_request) skipped: {e}")
+
+# ===============================================
+# API ROUTES - ADMIN IMPORT (GitHub storage)
+# ===============================================
+
+def _admin_import_dir() -> str:
+    """Resolve absolute path to admin_import_ready directory in repo."""
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    repo_root = os.path.abspath(os.path.join(base_dir, '..'))
+    return os.path.abspath(os.path.join(repo_root, 'admin_import_ready'))
+
+
+def _load_import_file(file_path: str) -> dict:
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+@app.route('/api/admin/import/list', methods=['GET'])
+@admin_required
+def admin_import_list():
+    """List available import JSON files prepared in admin_import_ready.
+    Returns the content of _import_index.json if available, otherwise lists *.json files.
+    """
+    try:
+        if not (STORAGE_BACKEND == 'github' and github_store):
+            return jsonify({'error': 'GitHub storage is required for import'}), 400
+        imp_dir = _admin_import_dir()
+        index_path = os.path.join(imp_dir, '_import_index.json')
+        if os.path.exists(index_path):
+            idx = _load_import_file(index_path)
+            return jsonify({'ok': True, 'index': idx})
+        # Fallback: list .json files except index
+        files = [
+            {
+                'file': fn,
+                'table': os.path.splitext(fn)[0],
+                'questions': None
+            }
+            for fn in os.listdir(imp_dir)
+            if fn.lower().endswith('.json') and fn != '_import_index.json'
+        ]
+        return jsonify({'ok': True, 'index': {'files': files}})
+    except Exception as e:
+        return jsonify({'ok': False, 'error': str(e)}), 500
+
+
+@app.route('/api/admin/import', methods=['POST'])
+@admin_required
+def admin_import():
+    """Import one or more JSON question banks into GitHub questions.json.
+    Body: { files: ["file1.json", ...] } or { all: true }
+    """
+    if not (STORAGE_BACKEND == 'github' and github_store):
+        return jsonify({'error': 'GitHub storage is required for import'}), 400
+
+    payload = request.get_json(silent=True) or {}
+    import_all = bool(payload.get('all'))
+    files = payload.get('files') or []
+
+    try:
+        imp_dir = _admin_import_dir()
+        if import_all or not files:
+            # load from index or directory
+            index_path = os.path.join(imp_dir, '_import_index.json')
+            if os.path.exists(index_path):
+                idx = _load_import_file(index_path)
+                files = [item['file'] for item in idx.get('files', [])]
+            else:
+                files = [fn for fn in os.listdir(imp_dir) if fn.lower().endswith('.json') and fn != '_import_index.json']
+
+        # Load current questions.json (if missing, initialize)
+        data = github_store.read_json('questions.json') or {}
+        quiz_tables = data.get('quiz_tables') or []
+        questions = data.get('questions') or []
+        next_table_id = int(data.get('next_table_id', 1))
+        next_question_id = int(data.get('next_question_id', 1))
+
+        # Helper: find table by name
+        def find_table(name: str):
+            for t in quiz_tables:
+                if t.get('name') == name:
+                    return t
+            return None
+
+        # Build quick dedupe set for existing questions in a table (by text)
+        existing_by_table = {}
+        for q in questions:
+            tn = q.get('table_name')
+            txt = (q.get('question') or q.get('question_text') or '').strip()
+            if tn and txt:
+                existing_by_table.setdefault(tn, set()).add(txt)
+
+        imported = []
+        total_new = 0
+        for fn in files:
+            src_path = os.path.join(imp_dir, fn)
+            if not os.path.exists(src_path):
+                imported.append({'file': fn, 'status': 'missing'})
+                continue
+            try:
+                src = _load_import_file(src_path)
+                table_name = src.get('name') or os.path.splitext(fn)[0]
+                table_desc = src.get('description') or f'Imported from {fn}'
+                tbl = find_table(table_name)
+                if not tbl:
+                    tbl = {
+                        'id': next_table_id,
+                        'name': table_name,
+                        'display_name': table_name,
+                        'description': table_desc,
+                        'question_count': 0,
+                        'category': 'imported',
+                        'created_at': datetime.utcnow().isoformat()
+                    }
+                    quiz_tables.append(tbl)
+                    next_table_id += 1
+
+                new_count = 0
+                src_questions = src.get('questions') or []
+                # Ensure dedupe set exists
+                existing_by_table.setdefault(table_name, set())
+
+                for q in src_questions:
+                    q_text = (q.get('question') or '').strip()
+                    if not q_text:
+                        continue
+                    if q_text in existing_by_table[table_name]:
+                        # skip duplicates by text
+                        continue
+                    ca = q.get('correct_answer')
+                    # Normalize correct answer to numeric index
+                    if isinstance(ca, str):
+                        ca_map = {'A': 0, 'a': 0, 'B': 1, 'b': 1, 'C': 2, 'c': 2}
+                        ca_norm = ca_map.get(ca.strip(), None)
+                    else:
+                        try:
+                            ca_norm = int(ca) if ca is not None else None
+                        except Exception:
+                            ca_norm = None
+                    new_q = {
+                        'id': next_question_id,
+                        'table_name': table_name,
+                        'question': q_text,
+                        'answer_a': q.get('answer_a'),
+                        'answer_b': q.get('answer_b'),
+                        'answer_c': q.get('answer_c'),
+                        'correct_answer': ca_norm,
+                        'explanation': q.get('explanation'),
+                        'difficulty': q.get('difficulty') or 'medium',
+                        'category': q.get('category') or 'imported'
+                    }
+                    questions.append(new_q)
+                    existing_by_table[table_name].add(q_text)
+                    next_question_id += 1
+                    new_count += 1
+                # Update table question_count (increment by new)
+                try:
+                    tbl['question_count'] = int(tbl.get('question_count', 0)) + new_count
+                except Exception:
+                    tbl['question_count'] = new_count
+
+                total_new += new_count
+                imported.append({'file': fn, 'table': table_name, 'added': new_count})
+            except Exception as ie:
+                imported.append({'file': fn, 'status': 'error', 'error': str(ie)})
+
+        # Update metadata
+        metadata = data.get('metadata') or {}
+        metadata['total_questions'] = len(questions)
+        metadata['total_tables'] = len(quiz_tables)
+        metadata['last_updated'] = datetime.utcnow().isoformat()
+        metadata['version'] = metadata.get('version', '1.0.0')
+
+        # Persist back to GitHub
+        out = {
+            'quiz_tables': quiz_tables,
+            'questions': questions,
+            'next_table_id': next_table_id,
+            'next_question_id': next_question_id,
+            'metadata': metadata
+        }
+        github_store.write_json('questions.json', out, message=f'Import questions ({total_new} new)')
+
+        return jsonify({'ok': True, 'imported': imported, 'total_added': total_new})
+    except Exception as e:
+        return jsonify({'ok': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     init_database()

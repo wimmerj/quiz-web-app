@@ -477,6 +477,28 @@ class AdminModule {
         
         console.debug('Admin event listeners setup complete');
     }
+
+    async importQuestions() {
+        try {
+            if (!window.APIClient || !window.APIClient.isAuthenticated()) {
+                this.showNotification('Pro import se prosím přihlaste jako admin.', 'warning');
+                return;
+            }
+            this.showNotification('Spouštím import připravených databází…', 'info');
+            const resp = await window.APIClient.importDatabase({ all: true });
+            if (!resp.success) {
+                throw new Error(resp.error || 'Import selhal');
+            }
+            const data = resp.data || resp;
+            const added = data.total_added ?? (data.imported ? data.imported.reduce((s, r) => s + (r.added || 0), 0) : 0);
+            this.showNotification(`Import dokončen. Přidáno ${added} otázek.`, 'success');
+            // Refresh Tables tab to reflect new counts
+            await this.loadTablesData();
+        } catch (e) {
+            console.error('Admin import failed:', e);
+            this.showNotification(`Chyba importu: ${e.message || e}`, 'error');
+        }
+    }
     
     switchTab(tabName) {
         // Update tab buttons
