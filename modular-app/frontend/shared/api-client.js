@@ -253,15 +253,18 @@ class ModularAPIClient {
         return await this.request(`${this.endpoints.questions}/${tableName}`);
     }
     
-    async submitAnswer(questionId, answer, isCorrect, timeSpent) {
+    async submitAnswer(questionId, answer, isCorrect, timeSpent, sessionId = null) {
+        // Translate to backend schema
+        const payload = {
+            question_id: questionId,
+            selected_answer: answer, // 0/1/2 expected by backend
+            is_correct: !!isCorrect,
+            response_time: timeSpent,
+            session_id: sessionId
+        };
         return await this.request(this.endpoints.submitAnswer, {
             method: 'POST',
-            body: JSON.stringify({
-                questionId,
-                answer,
-                isCorrect,
-                timeSpent
-            })
+            body: JSON.stringify(payload)
         });
     }
     
