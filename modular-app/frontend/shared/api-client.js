@@ -12,22 +12,22 @@ class ModularAPIClient {
         this.authToken = this.loadAuthToken();
         
         this.endpoints = {
-            // CONSOLIDATED AUTH ENDPOINTS (all in /api/auth)
-            login: '/api/auth?action=login',
-            register: '/api/auth?action=register',
-            logout: '/api/auth?action=logout',
-            profile: '/api/auth?action=profile',
+            // VERCEL SERVERLESS ENDPOINTS
+            login: '/api/auth/login',
+            register: '/api/auth/register',
+            logout: '/api/auth/logout',
+            profile: '/api/auth/profile',
             
-            // CONSOLIDATED QUIZ ENDPOINTS (all in /api/quiz)
-            tables: '/api/quiz?action=tables',
-            questions: '/api/quiz?action=questions',
-            submitAnswer: '/api/quiz?action=submit-answer',
+            // QUIZ ENDPOINTS (to be created)
+            tables: '/api/quiz/tables',
+            questions: '/api/quiz/questions',
+            submitAnswer: '/api/quiz/submit-answer',
             
-            // CONSOLIDATED ADMIN ENDPOINTS (all in /api/admin)
-            adminUsers: '/api/admin?action=users',
-            adminStats: '/api/admin?action=statistics',
-            adminImport: '/api/admin?action=import',
-            adminSystem: '/api/admin?action=system',
+            // ADMIN ENDPOINTS (to be created)
+            adminUsers: '/api/admin/users',
+            adminStats: '/api/admin/stats',
+            adminImport: '/api/admin/import',
+            adminSystem: '/api/admin/system',
             
             // Special endpoints
             monica: '/api/monica',
