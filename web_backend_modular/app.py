@@ -83,6 +83,9 @@ GH_OWNER = os.environ.get('GH_OWNER')
 GH_REPO = os.environ.get('GH_REPO')
 GH_BRANCH = os.environ.get('GH_BRANCH', 'main')
 GH_BASE_DIR = os.environ.get('GH_BASE_DIR', 'data')
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@quiz.app')
 
 github_store = None
 if STORAGE_BACKEND == 'github' and GH_TOKEN and GH_OWNER and GH_REPO:
@@ -97,6 +100,41 @@ if STORAGE_BACKEND == 'github' and GH_TOKEN and GH_OWNER and GH_REPO:
 else:
     if STORAGE_BACKEND == 'github':
         print("⚠️ GitHub storage requested but env vars are missing; falling back to SQL")
+
+# Ensure default admin exists in GitHub storage (bootstrap)
+def ensure_admin_github():
+    if not (STORAGE_BACKEND == 'github' and github_store):
+        return
+    try:
+        idx = github_store.read_json('users/_index.json') or {"next_id": 1, "usernames": {}}
+        if ADMIN_USERNAME in idx.get('usernames', {}):
+            return  # already present
+        # Create admin user
+        new_id = int(idx.get('next_id', 1))
+        salt = secrets.token_hex(16)
+        password_hash = hashlib.pbkdf2_hmac('sha256', ADMIN_PASSWORD.encode('utf-8'), salt.encode('utf-8'), 100000).hex()
+        admin_user = {
+            'id': new_id,
+            'username': ADMIN_USERNAME,
+            'email': ADMIN_EMAIL,
+            'password_hash': password_hash,
+            'salt': salt,
+            'role': 'admin',
+            'avatar': '⚙️',
+            'created_at': datetime.utcnow().isoformat(),
+            'is_active': True,
+            'battle_rating': 1500,
+            'battle_wins': 0,
+            'battle_losses': 0,
+            'settings': {}
+        }
+        github_store.save_user(admin_user)
+        idx['usernames'][ADMIN_USERNAME] = new_id
+        idx['next_id'] = new_id + 1
+        github_store.write_json('users/_index.json', idx, message='Bootstrap admin user')
+        print("✅ Bootstrapped admin user in GitHub storage")
+    except Exception as e:
+        print(f"⚠️ Failed to ensure admin in GitHub storage: {e}")
 
 # ===============================================
 # DATABASE MODELS
@@ -354,6 +392,12 @@ class MonicaAIService:
 
 # Initialize Monica AI service
 monica_ai = MonicaAIService(MONICA_API_KEY)
+
+# Attempt admin bootstrap early (non-fatal)
+try:
+    ensure_admin_github()
+except Exception as _e:
+    print(f"Bootstrap admin (early) skipped: {_e}")
 
 # ===============================================
 # API ROUTES - HEALTH & INFO
@@ -927,6 +971,14 @@ def init_database():
             
             db.session.commit()
             print("✅ Sample questions added")
+
+@app.before_first_request
+def before_first_request_bootstrap_admin():
+    # Ensure admin exists in GitHub storage (no-op for SQL mode)
+    try:
+        ensure_admin_github()
+    except Exception as e:
+        print(f"Bootstrap admin (before_first_request) skipped: {e}")
 
 if __name__ == '__main__':
     init_database()
